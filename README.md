@@ -11,18 +11,12 @@ The NETN ETR module provides a common standard interface for sending tasks to si
 ## Scope
 
 The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine granularity:
-
-a. It enables the transformation of command and control messages into tasks that can be executed by a simulator.
-
-b. It defines status reports that can be used for producing command and control reports needed for decision making.
-
-c. It supports the modelling of simulated command and control interactions between federates in a distributed simulation, for example during a MRM disaggregation process.
-
-d. It contains a comprehensive set of tasks and reports that can easily be interpreted and executed by simulators.
-
-e. It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) tools, but it is independent of a specific COTS CGF tool, agent framework, or agent modelling paradigm.
-
-f. It is independent of any specific doctrine or tactics.
+* It enables the transformation of command and control messages into tasks that can be executed by a simulator.
+* It defines status reports that can be used for producing command and control reports needed for decision making.
+* It supports the modelling of simulated command and control interactions between federates in a distributed simulation, for example during a MRM disaggregation process.
+* It contains a comprehensive set of tasks and reports that can easily be interpreted and executed by simulators.
+* It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) tools, but it is independent of a specific COTS CGF tool, agent framework, or agent modelling paradigm.
+* It is independent of any specific doctrine or tactics.
 An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task it is not specified how an entity (physical or aggregate) will / should perform the task.
 	
 
