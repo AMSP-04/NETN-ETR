@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelIdentification>
-        <name>NETN-ETR_v2.0.3</name>
+        <name>NETN-ETR</name>
         <type>FOM</type>
-        <version>2.0.3</version>
-        <modificationDate>2019-02-26</modificationDate>
+        <version>2.0.4</version>
+        <modificationDate>2019-05-20</modificationDate>
         <securityClassification>Unclassified</securityClassification>
-        <purpose>Entity Task and Report (ETR)</purpose>
+        <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
-        <description>Module for sending and reporting task at entity level i.e. vehicle or aggregate level. </description>
+        <description>	
+NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module. 
+        
+This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN ETR FOM module is available as a XML file for use in HLA based federations.
+        </description>
+		
         <useLimitation></useLimitation>
         <useHistory>v1.0.0 - First version of the module. It is development of the old NETN-LBML FOM module.</useHistory>
         <useHistory>v1.0.1 - Fixed typos.</useHistory>
         <useHistory>v2.0.1 - Modified version as described in "LLBML-ChangeProposal-v0.8.docx"</useHistory>
         <useHistory>v2.0.2 - Modified version as described in "LLBML-ChangeProposal-v0.9.docx"</useHistory>
         <useHistory>v2.0.3 - modified version as described in "LLBML-ChangeProposal-v0.10.docx"</useHistory>
+		<useHistory>v2.0.4 - Updated model identification descriptions."</useHistory>
         <poc>
             <pocType>Primary author</pocType>
             <pocName>Henk Henderson</pocName>
             <pocOrg>TNO</pocOrg>
             <pocEmail>henk.henderson@tno.nl</pocEmail>
+        </poc>
+		<poc>
+            <pocType>Primary author</pocType>
+            <pocName>Lennart Olsson</pocName>
+            <pocOrg>Pitch Technologies</pocOrg>
+            <pocEmail>lennart.olsson@pitchtechnologies.com</pocEmail>
         </poc>
         <other></other>
     </modelIdentification>
