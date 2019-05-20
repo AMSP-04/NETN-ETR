@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification>
+    <modelIdentification notes="netn-etr_1">
         <name>NETN ETR</name>
         <type>FOM</type>
         <version>2.0.4</version>
@@ -1349,5 +1349,18 @@ for aggregate entities, also use entity types from platform tables to describe t
             </variantRecordData>
         </variantRecordDataTypes>
     </dataTypes>
-    <notes/>
+    <notes>
+    <note>
+    <label>netn-etr_1</label>
+    <semantics>
+The interaction classes are organized in a root class and four base classes: ETR_Task, ETR_Report, ETR_TaskManagement, and ETR_SimCon. 
+
+* ETR_Root: root interaction class for the Entitiy Tasking and Reporting (ETR) interaction classes.
+* ETR_Task: A base interaction class for more specialized task interaction classes.
+* ETR_Report: A base interaction class for more specialized report interaction classes.
+* ETR_TaskManagement: A base interaction class for more specialized task management interaction classes.
+* ETR_SimCon: A base interaction class for more specialized Simulation Control (SimCon) interaction classes
+</semantics>
+    </note>
+    </notes>
 </objectModel>
