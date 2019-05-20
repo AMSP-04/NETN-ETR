@@ -329,7 +329,6 @@
 <xsl:apply-templates select="parent::ns:interactionClass" mode="inherited"/>
 </xsl:if>
 <xsl:if test="not(ns:parameter or ns:semantics)">
-{multi-excerpt-include:<xsl:value-of select="$dependency"/>|name=<xsl:apply-templates select="ancestor::ns:interactionClass" mode="parent"/><xsl:value-of select="ns:name"/>|nopanel=true}
 </xsl:if>
 </xsl:template>
 
