@@ -11,6 +11,16 @@ The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine 
 * It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) tools, but it is independent of a specific COTS CGF tool, agent framework, or agent modelling paradigm.
 * It is independent of any specific doctrine or tactics.
 An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task it is not specified how an entity (physical or aggregate) will / should perform the task.
+	## Overview
+The interaction classes are organized in four base classes: ETR_Task, ETR_Report, ETR_TaskManagement, and ETR_SimCon. 
+There is one root class:
+1.	ETR_Root: root interaction class for the Entitiy Tasking and Reporting (ETR) interaction classes.
+a.	ETR_Task: A base interaction class for more specialized task interaction classes.
+b.	ETR_Report: A base interaction class for more specialized report interaction classes.
+c.	ETR_TaskManagement: A base interaction class for more specialized task management interaction classes.
+d.	ETR_SimCon: A base interaction class for more specialized Simulation Control (SimCon) interaction classes
+
+![][objectclasses]
 	
 ### MoveTasks an entity to move in the specified direction for the given duration.
 ### MoveToLocationTasks an entity to move to the specified location.
