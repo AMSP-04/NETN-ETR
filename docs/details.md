@@ -35,7 +35,7 @@ The task state diagram is shown below.
         * The task shall transition to the Waiting state.
 
 * Waiting State
-    A task in the Waiting state shall be handled in the following way:
+  A task in the Waiting state shall be handled in the following way:
     1.	Determine if the task can start using the following conditions:
         * For a non-concurrent mode task:
             * The task’s taskee is not executioning a task, and
