@@ -36,9 +36,10 @@ The following interaction classes are defined:
 
 The following table provides a grouping of tasks per function.
 
-Functional group	Interactions
-Movement Tasks	Move
-MoveToLocarion
+|Functional group|Interactions|
+|---|---|
+|Movement Tasks| Move
+MoveToLocation
 MoveToEntity
 MoveIntoFormation
 FollowEntity
@@ -48,23 +49,25 @@ Patrol
 PatrolRepeating
 StopAtSideOfRoad
 SetOrderedSpeed
-SetOrderedAltitude
-Engineering Tasks	CreateObstacle
+SetOrderedAltitude|
+|Engineering Tasks|CreateObstacle
 CreateMinefield
 ClearObstacle
 CreatePassage
-RemovePassage
-Engagement Tasks	FireAtLocation
+RemovePassage|
+|Engagement Tasks|FireAtLocation
 FirAtLocationWM
 FireAtEntity
 FireAtEntityWM
-SetRulesOfEngagement
-Other Tasks	Mount
+SetRulesOfEngagement|
+|Other Tasks|Mount
 Dismount
 Wait
 EstablishCheckPoint
 OperateCheckPoint
-RemoveCheckPoint
+RemoveCheckPoint|
+
+
 8.2.2.	ENTITY REPORTS
 This section summarizes the Entity Report interaction classes in the ETR FOM module, shown in the figure below.
  
