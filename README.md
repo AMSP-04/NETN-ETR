@@ -119,7 +119,7 @@ The following states are defined for a task:
 
 The task state diagram is shown below.
 
-<img src="./images/etr_taskstates.png" />
+<img src="./images/etr_taskstates.png" width="75%"/>
   
 #### Received State
 A task in the Received state shall be handled in the following way:
@@ -175,7 +175,7 @@ A task in the TaskStatus state shall be handled as specified in the substates, a
 ### Task List Order
 Each entity has a task list for non-concurrent mode tasks. The task at the head of the list is the first task to be started once the currently executing task completes. The ordering of tasks in the task list shall be according to the following figure.
 
-<img src="./images/etr_tasklist.png" />
+<img src="./images/etr_tasklist.png" width="75%"/>
  
 The tasklist shall be divided in two parts: a left part that contains tasks where the StartWhen is specified, and a right part that contains tasks where no StartWhen is specified. The division point shall mark the head of the left part and the tail of the right part. A part is empty if there are no tasks for that part.
 
@@ -222,14 +222,15 @@ The following table defines which tasks for the same entity can execute concurre
 A Simulation Control message for an entity shall be executed immediately, regardless the presence of any (concurrent or non-concurrent) executing task.
 
 ### Magic Move
-A MagicMove for an entity shall implicitly cancel all tasks for the entity. A TaskStatusReport (cancelled) shall be issued for each task in accordance with the task state diagram.
+A `MagicMove` for an entity shall implicitly cancel all tasks for the entity. A TaskStatusReport (cancelled) shall be issued for each task in accordance with the task state diagram.
 
 ### Magic Resources
-A MagicResource shall update the entity resources. Waiting or executing tasks of the entity are effected in the sense that these tasks have more or less resources available after the MagicResource.
+A `MagicResource` shall update the entity resources. Waiting or executing tasks of the entity are effected in the sense that these tasks have more or less resources available after the MagicResource.
 
 ### Entity Task and Reporting Capabilities
 It shall be possible to query an entity for the ETR tasks and ETR reports that it supports. The set of tasks and reports that an entity supports is implementation specific, and shall be used in the Received state of a task to determine if the task is supported.
-With the interaction class QueryCapabilitiesSupported an entity can be queried for the supported ETR tasks and ETR reports. The result is provided via the interaction class CapabilitiesSupported.
+
+With the interaction class `QueryCapabilitiesSupported` an entity can be queried for the supported ETR tasks and ETR reports. The result is provided via the interaction class `CapabilitiesSupported`.
 
 ## Implementation Requirements
 This section lists the requirements for federate applications that implement Entity Tasking and Reporting. The requirements are provided from receiver point of view (entity taskee, the federate application modelling the entity) and sender point of view (entity tasker, the federate application sending a task or receiving a report for an entity).
@@ -246,4 +247,3 @@ In addition, for the receiver, the following SHALL be documented in the federati
 7.	Time frequencies and conditions for the supported ETR Reports.
 8.	Modeling agreements related to checkpoints (if supported, see EstablishCheckPoint, OperateCheckPoint, and RemoveCheckPoint).
 9.	Modeling agreements related to minefields (if supported, see CreateMineField).
-
