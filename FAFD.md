@@ -38,18 +38,7 @@ The following table provides a grouping of tasks per function.
 
 |Functional group|Interactions|
 |---|---|
-|Movement Tasks| Move
-MoveToLocation
-MoveToEntity
-MoveIntoFormation
-FollowEntity
-TurnToHeading
-TurnToOrientation
-Patrol
-PatrolRepeating
-StopAtSideOfRoad
-SetOrderedSpeed
-SetOrderedAltitude|
+|Movement Tasks| Move<br/>MoveToLocation<br/>MoveToEntity<br/>MoveIntoFormation<br/>FollowEntity<br/>TurnToHeading<br/>TurnToOrientation<br/>Patrol<br/>PatrolRepeating<br/>StopAtSideOfRoad<br/>SetOrderedSpeed<br/>SetOrderedAltitude|
 |Engineering Tasks|CreateObstacle
 CreateMinefield
 ClearObstacle
