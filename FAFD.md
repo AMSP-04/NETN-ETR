@@ -39,22 +39,9 @@ The following table provides a grouping of tasks per function.
 |Functional group|Interactions|
 |---|---|
 |Movement Tasks| Move<br/>MoveToLocation<br/>MoveToEntity<br/>MoveIntoFormation<br/>FollowEntity<br/>TurnToHeading<br/>TurnToOrientation<br/>Patrol<br/>PatrolRepeating<br/>StopAtSideOfRoad<br/>SetOrderedSpeed<br/>SetOrderedAltitude|
-|Engineering Tasks|CreateObstacle
-CreateMinefield
-ClearObstacle
-CreatePassage
-RemovePassage|
-|Engagement Tasks|FireAtLocation
-FirAtLocationWM
-FireAtEntity
-FireAtEntityWM
-SetRulesOfEngagement|
-|Other Tasks|Mount
-Dismount
-Wait
-EstablishCheckPoint
-OperateCheckPoint
-RemoveCheckPoint|
+|Engineering Tasks|CreateObstacle<br/>CreateMinefield<br/>ClearObstacle<br/>CreatePassage<br/>RemovePassage|
+|Engagement Tasks|FireAtLocation<br/>FirAtLocationWM<br/>FireAtEntity<br/>FireAtEntityWM<br/>SetRulesOfEngagement|
+|Other Tasks|Mount<br/>Dismount<br/>Wait<br/>EstablishCheckPoint<br/>OperateCheckPoint<br/>RemoveCheckPoint|
 
 
 8.2.2.	ENTITY REPORTS
