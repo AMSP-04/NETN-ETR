@@ -21,7 +21,7 @@ The interaction classes are organized in a root class and four base classes: ETR
 * ETR_TaskManagement: A base interaction class for more specialized task management interaction classes.
 * ETR_SimCon: A base interaction class for more specialized Simulation Control (SimCon) interaction classes
 
-<img src="./images/objectclasses.png" width="50%"/>
+<img src="./images/etr_baseclasses.png" width="50%"/>
       
 	
 	
