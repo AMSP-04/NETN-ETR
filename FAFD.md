@@ -1,5 +1,5 @@
-## ENTITY TASKS
-This section summarizes the ETR Task interaction classes in the ETR FOM module.
+## Entity Tasks
+This section summarizes the Entity Task interaction classes in the ETR FOM module.
 
 ![](./etr_task.png)
 
@@ -11,13 +11,13 @@ The following interaction classes are defined:
 4.	MoveIntoFormation: Tasks an aggregate entity to move into the given formation with the given heading.
 5.	FollowEntity: Tasks an entity to follow another entity.
 6.	TurnToHeading: Tasks an entity to turn to the specified heading.
- a.	TurnToOrientation: Tasks an entity to turn to a specified orientation, including pitch and roll.
+ *	TurnToOrientation: Tasks an entity to turn to a specified orientation, including pitch and roll.
 7.	Mount: Task the entity to mount in the specified entity .
 8.	Dismount: Task the entity to dismount from the entity where it is in.
 9.	FireAtLocation: Tasks an entity to fire at a location.
- a.	FireAtLocationWM: Tasks an entity to fire at a location with the specified weapon and munition.
+ *	FireAtLocationWM: Tasks an entity to fire at a location with the specified weapon and munition.
 10.	FireAtEntity: Tasks an entity to fire at another specified entity.
- a.	FireAtEntityWM: Tasks an entity to fire at a specified entity with the specified weapon and munition.
+ *	FireAtEntityWM: Tasks an entity to fire at a specified entity with the specified weapon and munition.
 11.	SetOrderedSpeed: Set/Change the ordered speed.
 12.	SetOrderedAltitude: Set/Change the ordered altitude for a flying entity..
 13.	Wait: Tasks an entity to wait a defined duration.
@@ -27,12 +27,12 @@ The following interaction classes are defined:
 17.	StopAtSideOfRoad: Tasks an entity to stop at the side of the road.
 18.	RemoveCheckPoint: This task removes the check point that is generated in the EstablishCheckpoint task.
 19.	CreateObstacle: Tasks an entity to create an obstacle with the given geometry.
- a.	CreateMinefield: Tasks an entity to create a minefield within the specified geometry.
+ *	CreateMinefield: Tasks an entity to create a minefield within the specified geometry.
 20.	ClearObstacle: Task an entity to clear the obstacle or minefield with the given ID.
 21.	AddPassage: Tasks an entity to lay/build a passage between the two given points.
 22.	RemovePassage: Tasks an entity to remove the pasasage with the given ID.
 23.	Patrol: Defines a patrol, covering the path from the current location to the start point of the patrol route, and the patrol route itself.
- a.	PatrolRepeating: Task an entity to repeat a patrol task for the given duration.
+ *	PatrolRepeating: Task an entity to repeat a patrol task for the given duration.
 
 The following table provides a grouping of tasks per function.
 
