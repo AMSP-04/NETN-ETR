@@ -22,55 +22,56 @@ The following states are defined for a task:
 
 The task state diagram is shown below.
   
-* Received State
-
-    A task in the Received state shall be handled in the following way:
+#### Received State
+A task in the Received state shall be handled in the following way:
  
-    1. Determine if the task is supported. The determination is made by the federate application in accordance with section 8.4.3.
-    2. If the task is not supported then
-        * A TaskStatusReport (refused) shall be returned to the Tasker.
-        * The task is removed.
-    3. Else
-        * For a non-concurrent mode task:
-            * The task shall be placed in the entity task list in accordance with section 8.3.3.
-        * A TaskStatusReport (accepted) shall be returned to the Tasker.
-        * The task shall transition to the Waiting state.
+1. Determine if the task is supported. The determination is made by the federate application in accordance with section 8.4.3.
+2. If the task is not supported then
+    * A TaskStatusReport (refused) shall be returned to the Tasker.
+    * The task is removed.
+3. Else
+    * For a non-concurrent mode task:
+        * The task shall be placed in the entity task list in accordance with section 8.3.3.
+    * A TaskStatusReport (accepted) shall be returned to the Tasker.
+    * The task shall transition to the Waiting state.
 
-* Waiting State
-  A task in the Waiting state shall be handled in the following way:
-    1.	Determine if the task can start using the following conditions:
-        * For a non-concurrent mode task:
-            * The task’s taskee is not executioning a task, and
-            * The task is at head of the task list, and
-            * The task has no StartWhen time (i.e. the StartWhen is undefined), or the task has a StartWhen time and this time is less than or equal to the current time.
-        * For a concurrent mode task:
-            * The task has no StartWhen time (i.e. the StartWhen is undefined), or the task has a StartWhen time and this time is less than or equal to the current time, and
-            * The task does not conflict with other executing tasks (see section 8.3.4).
-    2.	If the task can start then
-        * For a non-concurrent mode task:
-            * The task shall be removed from the task list.
-            * A TaskStatusReport (executing) shall be returned to the Tasker.
-            * The task shall transition to the Executing state.
-    3.	Else
-        * The task shall remain in the Waiting state, even if the current time has passed the time specified in the StartWhen of the task.
+#### Waiting State
+A task in the Waiting state shall be handled in the following way:
+1.	Determine if the task can start using the following conditions:
+    * For a non-concurrent mode task:
+        * The task’s taskee is not executioning a task, and
+        * The task is at head of the task list, and
+        * The task has no StartWhen time (i.e. the StartWhen is undefined), or the task has a StartWhen time and this time is less than or equal to the current time.
+    * For a concurrent mode task:
+        * The task has no StartWhen time (i.e. the StartWhen is undefined), or the task has a StartWhen time and this time is less than or equal to the current time, and
+        * The task does not conflict with other executing tasks (see section 8.3.4).
+2.	If the task can start then
+    * For a non-concurrent mode task:
+        * The task shall be removed from the task list.
+        * A TaskStatusReport (executing) shall be returned to the Tasker.
+        * The task shall transition to the Executing state.
+3.	Else
+    * The task shall remain in the Waiting state, even if the current time has passed the time specified in the StartWhen of the task.
 
-* Executing State
-    A task in the Executing state shall be handled in the following way:
-    1.	Determine if the task has completed. The conditions are scenario specific and the determination is up to the federate application.
-    2.	If the task has completed then
-        * A TaskStatusReport (completed) shall be returned to the Tasker.
-        * The task is removed.
-    3.	Else
-        * The task shall remain in the Executing state.
+#### Executing State
+A task in the Executing state shall be handled in the following way:
 
-* TaskStatus State
-    A task in the TaskStatus state shall be handled as specified in the substates, and also in the following way:
-    1.	If the task is cancelled by either a CancelAllTasks or CancelSpecifiedTask then
-        * A TaskStatusReport (cancelled) shall be returned to the Tasker.
-        * The task is removed.
-    2.	If the task cannot be handled due to an internal federate application error then
-        * A TaskStatusReport (error) shall be returned to the Tasker and a description of the error shall be included in the message.
-        * The task is removed.
+1.	Determine if the task has completed. The conditions are scenario specific and the determination is up to the federate application.
+2.	If the task has completed then
+    * A TaskStatusReport (completed) shall be returned to the Tasker.
+    * The task is removed.
+3.	Else
+    * The task shall remain in the Executing state.
+
+#### TaskStatus State
+A task in the TaskStatus state shall be handled as specified in the substates, and also in the following way:
+
+1.	If the task is cancelled by either a CancelAllTasks or CancelSpecifiedTask then
+    * A TaskStatusReport (cancelled) shall be returned to the Tasker.
+    * The task is removed.
+2.	If the task cannot be handled due to an internal federate application error then
+    * A TaskStatusReport (error) shall be returned to the Tasker and a description of the error shall be included in the message.
+    * The task is removed.
 
 ### TASK LIST ORDERING
 Each entity has a task list for non-concurrent mode tasks. The task at the head of the list is the first task to be started once the currently executing task completes. The ordering of tasks in the task list shall be according to the following figure.
