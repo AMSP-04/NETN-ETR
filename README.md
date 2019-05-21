@@ -172,9 +172,10 @@ A task in the TaskStatus state shall be handled as specified in the substates, a
     * A `TaskStatusReport` (error) shall be returned to the Tasker and a description of the error shall be included in the message.
     * The task is removed.
 
-### TASK LIST ORDERING
+### Task List Order
 Each entity has a task list for non-concurrent mode tasks. The task at the head of the list is the first task to be started once the currently executing task completes. The ordering of tasks in the task list shall be according to the following figure.
 
+<img src="./images/etr_tasklist.png" />
  
 The tasklist shall be divided in two parts: a left part that contains tasks where the StartWhen is specified, and a right part that contains tasks where no StartWhen is specified. The division point shall mark the head of the left part and the tail of the right part. A part is empty if there are no tasks for that part.
 
