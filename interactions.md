@@ -3,7 +3,7 @@
 
 This section summarizes the Entity Task interaction classes in the ETR FOM module.
 
-![](./etr_task.png)
+<img src="./etr_task.png" width="50%"/>
 
 |Task|Description|
 |---|---|
@@ -35,7 +35,7 @@ This section summarizes the Entity Task interaction classes in the ETR FOM modul
 ## Entity Reports
 This section summarizes the Entity Report interaction classes in the ETR FOM module, shown in the figure below.
  
-![](./etr_report.png)
+<img src="./etr_report.png" width="50%"/>
 
 |Report|Description|
 |---|---|
@@ -47,7 +47,8 @@ This section summarizes the Entity Report interaction classes in the ETR FOM mod
 ## Task Management
 This section summarizes the Task Management interaction classes in the ETR FOM module, shown in the figure below.
  
-![](./etr_taskmanagement.png)
+<img src="./etr_taskmanagement.png" width="50%"/>
+
 
 |Task Management|Description|
 |---|---|
@@ -59,7 +60,7 @@ This section summarizes the Task Management interaction classes in the ETR FOM m
 ## Simulation Control
 This section summarizes the Simulaltion Control interaction classes in the ETR FOM module, shown in the figure below.
 
-![](./etr_simcon.png)
+<img src="./etr_simcon.png" width="50%"/>
 
 |Simulation Control|Description|
 |---|---|
