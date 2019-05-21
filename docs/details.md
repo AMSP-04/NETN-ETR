@@ -23,7 +23,9 @@ The following states are defined for a task:
 The task state diagram is shown below.
   
 * Received State
+
     A task in the Received state shall be handled in the following way:
+ 
     1. Determine if the task is supported. The determination is made by the federate application in accordance with section 8.4.3.
     2. If the task is not supported then
         * A TaskStatusReport (refused) shall be returned to the Tasker.
