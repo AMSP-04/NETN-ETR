@@ -118,7 +118,7 @@ The following states are defined for a task:
 
 The task state diagram is shown below.
 
-<img src="./images/etr_taskstates.png" width="50%"/>
+<img src="./images/etr_taskstates.png" />
   
 #### Received State
 A task in the Received state shall be handled in the following way:
