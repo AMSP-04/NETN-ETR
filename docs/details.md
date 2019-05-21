@@ -21,6 +21,8 @@ The following states are defined for a task:
 * TaskStatus.Executing: the task is executing.
 
 The task state diagram is shown below.
+
+<img src="./images/etr_taskstates.png" width="50%"/>
   
 #### Received State
 A task in the Received state shall be handled in the following way:
