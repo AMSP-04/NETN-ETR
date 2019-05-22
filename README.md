@@ -1,4 +1,5 @@
-# LOW LEVEL BML FOM MODULE
+# Low Level BML FOM Module
+
 ## Purpose
 The NETN-LBML FOM module is simulation oriented and focuses on tasks with a fine granularity:
 * It helps the simulation in understanding the C-BML message and it also introduces some concepts about "Command & Control" that simulations could use between themselves (for example during the disaggregation process).
