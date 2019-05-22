@@ -146,8 +146,8 @@ The receiver:
 The sender:
 4.	SHALL provide all interaction class parameters when sending an ETR interaction.
 In addition, for the receiver, the following SHALL be documented in the federation agreements:
-5.	Distance tolerances of supported tasks (for the tasks Mount, EstablishCheckPoint, OperateCheckPoint, RemoveCheckPoint, CreateObstacle, ClearObstacle, CreateMinefield, AddPassage, and RemovePassage).
+5.	Distance tolerances of supported tasks (for the tasks `Mount`, `EstablishCheckPoint`, `OperateCheckPoint`, `RemoveCheckPoint`, `CreateObstacle`, `ClearObstacle`, `CreateMinefield`, `AddPassage`, and `RemovePassage`).
 6.	Entities that provide ETR Reports.
 7.	Time frequencies and conditions for the supported ETR Reports.
-8.	Modeling agreements related to checkpoints (if supported, see EstablishCheckPoint, OperateCheckPoint, and RemoveCheckPoint).
-9.	Modeling agreements related to minefields (if supported, see CreateMineField).
+8.	Modeling agreements related to checkpoints (if supported, see `EstablishCheckPoint`, `OperateCheckPoint`, and `RemoveCheckPoint`).
+9.	Modeling agreements related to minefields (if supported, see `CreateMineField`).
