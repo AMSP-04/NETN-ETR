@@ -13,13 +13,13 @@ The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine 
 
 An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task it is not specified how an entity (physical or aggregate) will / should perform the task.
 	## Overview
-The interaction classes are organized in a root class and four base classes: ETR_Task, ETR_Report, ETR_TaskManagement, and ETR_SimCon. 
+The interaction classes are organized in a root class and four base classes: `ETR_Task`, `ETR_Report`, `ETR_TaskManagement`, and `ETR_SimCon`. 
 
-* ETR_Root: root interaction class for the Entitiy Tasking and Reporting (ETR) interaction classes.
-* ETR_Task: A base interaction class for more specialized task interaction classes.
-* ETR_Report: A base interaction class for more specialized report interaction classes.
-* ETR_TaskManagement: A base interaction class for more specialized task management interaction classes.
-* ETR_SimCon: A base interaction class for more specialized Simulation Control (SimCon) interaction classes
+* `ETR_Root`: root interaction class for the Entitiy Tasking and Reporting (ETR) interaction classes.
+* `ETR_Task`: A base interaction class for more specialized task interaction classes.
+* `ETR_Report`: A base interaction class for more specialized report interaction classes.
+* `ETR_TaskManagement`: A base interaction class for more specialized task management interaction classes.
+* `ETR_SimCon`: A base interaction class for more specialized Simulation Control (SimCon) interaction classes
 
 <img src="./images/etr_baseclasses.png" width="50%"/>
       
