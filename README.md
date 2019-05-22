@@ -13,7 +13,7 @@ This module contains no HLA object classes.
 
 ### Module Interactions
 
-Figure 7-6: Interactions from the LBML FOM Module.
+<img src="./images/llbml-interactions.png"/>
 
 This module contains the following HLA interactions:
 * LBMLMessage: abstract root class of low level BML interactions.
