@@ -1,0 +1,6 @@
+#!/bin/bash
+cd "${0%/*}"
+pwd 
+
+xsltproc --output ../README.md ETR.xslt ../NETN-ETR.xml
+cat details.md > ../README.md
