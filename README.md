@@ -21,9 +21,9 @@ This module contains the following HLA interactions:
 * ChangeOrderedAltitude: Change the ordered altitude. Usually sent with TaskType InterruptCurrentTask to adjust the current move task.
 * ChangeOrderedSpeed: Change the ordered speed. Usually sent with TaskType InterruptCurrentTask to adjust the current move task.
 * FireAtLocation: tasks a unit to fire at a location:
- * FireIndirectWM: Tasks a unit to fire at a location with the specified weapon and munition.
+   * FireIndirectWM: Tasks a unit to fire at a location with the specified weapon and munition.
 * FireAtUnit: tasks a unit to fire at a specified unit:
- * FireDirectWM: The weapon type and the munition type to use.
+   * FireDirectWM: The weapon type and the munition type to use.
 * FollowRoute: Tasks a unit to follow the specified route.
 * FollowUnit: tasks a unit to follow another unit.
 * Move: Tasks a unit to move in the specified direction. The unit will keep on moving until the specified end time or when ordered otherwise.
@@ -32,18 +32,18 @@ This module contains the following HLA interactions:
 * MoveToUnit: Tasks a unit to move to another unit.
 * SetRulesOfEngagement: tasks a unit to change the rules of engagement.
 * TurnToHeading: Tasks a unit to turn to the specified heading:
- * TurnToOrientation: Pitch and roll parameters.
+   * TurnToOrientation: Pitch and roll parameters.
 * VehicleDismount: Tasks a unit to dismount.
 * VehicleMount: Tasks a unit to mount the specified vehicle.
 * Wait: tasks a unit to wait until the specified end time. Wait indefinitely if no end time is specified.
 * LBMLTaskManagement: Task management interactions. For now only used to cancel tasks. Can be extended to reschedule tasks:
- * CancelAllTasks: Cancel all tasks. Tasks already started have to be aborted immediately.
- * CancelSpecifiedTasks: Cancel all specified tasks. Tasks already started have to be aborted immediately.
+   * CancelAllTasks: Cancel all tasks. Tasks already started have to be aborted immediately.
+   * CancelSpecifiedTasks: Cancel all specified tasks. Tasks already started have to be aborted immediately.
 * LBMLReport: root class of low level BML reports:
 * StatusReport: root class of reports from blue units about their status:
 * ActivityStatusReport: Base class for an activity report (absolute truth):
- * CurrentActivityStatusReport: Time and status of the current task.
- * NextActivityStatusReport: Time and start condition of the next activity.
+   * CurrentActivityStatusReport: Time and status of the current task.
+   * NextActivityStatusReport: Time and start condition of the next activity.
 * AmmunitionStatusReport: a report about the amount of ammunition the unit still has.
 * DamageStatusReport: a report from a unit that has been damaged or destroyed.
 * FuelStatusReport: a report about the amount of fuel the unit still has.
@@ -51,8 +51,8 @@ This module contains the following HLA interactions:
 * TaskStatusReport: A report about the status of a task the unit was ordered to execute.
 * UnderAttackStatusReport: a report that the unit is under attack.
 * SpotReport: a report from a blue unit about a spotted enemy, neutral, or unknown unit:
- * ActivitySpotReport: The information here is based on perception information which is determined from situation awareness, intel or potentially instinct:
- * CurrentActivitySpotReport: Elapsed time and status of the current task.
- * NextActivitySpotReport: Time and start condition of the next activity.
- * InSensorReport: Sensor type and sensed entities identifiers.
- * InWeaponRangeReport: Weapon type and entity identifiers of entities in weapon range.
+   * ActivitySpotReport: The information here is based on perception information which is determined from situation awareness, intel or potentially instinct:
+    * CurrentActivitySpotReport: Elapsed time and status of the current task.
+    * NextActivitySpotReport: Time and start condition of the next activity.
+  * InSensorReport: Sensor type and sensed entities identifiers.
+  * InWeaponRangeReport: Weapon type and entity identifiers of entities in weapon range.
