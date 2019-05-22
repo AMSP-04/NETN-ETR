@@ -52,7 +52,7 @@ This module contains the following HLA interactions:
 * UnderAttackStatusReport: a report that the unit is under attack.
 * SpotReport: a report from a blue unit about a spotted enemy, neutral, or unknown unit:
    * ActivitySpotReport: The information here is based on perception information which is determined from situation awareness, intel or potentially instinct:
-    * CurrentActivitySpotReport: Elapsed time and status of the current task.
-    * NextActivitySpotReport: Time and start condition of the next activity.
+      * CurrentActivitySpotReport: Elapsed time and status of the current task.
+      * NextActivitySpotReport: Time and start condition of the next activity.
   * InSensorReport: Sensor type and sensed entities identifiers.
   * InWeaponRangeReport: Weapon type and entity identifiers of entities in weapon range.
