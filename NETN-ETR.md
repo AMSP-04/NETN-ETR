@@ -1,8 +1,14 @@
-# NETN ETR	
+# NETN ETR
+	
 NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module. 
         
 This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN ETR FOM module is available as a XML file for use in HLA based federations.
-        ## PurposeThe NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.## Scope
+        
+
+## Purpose
+The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.
+
+## Scope
 The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine granularity:
 * It enables the transformation of command and control messages into tasks that can be executed by a simulator.
 * It defines status reports that can be used for producing command and control reports needed for decision making.
@@ -12,7 +18,9 @@ The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine 
 * It is independent of any specific doctrine or tactics.
 
 An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task it is not specified how an entity (physical or aggregate) will / should perform the task.
-	## Overview
+	
+
+## Overview
 The interaction classes are organized in a root class and four base classes: `ETR_Task`, `ETR_Report`, `ETR_TaskManagement`, and `ETR_SimCon`. 
 
 * `ETR_Root`: root interaction class for the Entitiy Tasking and Reporting (ETR) interaction classes.
@@ -21,7 +29,7 @@ The interaction classes are organized in a root class and four base classes: `ET
 * `ETR_TaskManagement`: A base interaction class for more specialized task management interaction classes.
 * `ETR_SimCon`: A base interaction class for more specialized Simulation Control (SimCon) interaction classes
 
-<img src="./images/etr_baseclasses.png" width="50%"/>
+<img src="./images/etr_baseclasses.png" width="75%"/>
       
 	
 	
@@ -29,7 +37,7 @@ The interaction classes are organized in a root class and four base classes: `ET
 
 This section summarizes the Entity Task interaction classes in the ETR FOM module.
 
-<img src="./images/etr_task.png" width="75%"/>
+<img src="./images/etr_task.png" width="90%"/>
 
 |Task|Description|
 |---|---|
@@ -61,7 +69,7 @@ This section summarizes the Entity Task interaction classes in the ETR FOM modul
 ### Entity Reports
 This section summarizes the Entity Report interaction classes in the ETR FOM module, shown in the figure below.
  
-<img src="./images/etr_report.png" width="75%"/>
+<img src="./images/etr_report.png" width="85%"/>
 
 |Report|Description|
 |---|---|
@@ -73,7 +81,7 @@ This section summarizes the Entity Report interaction classes in the ETR FOM mod
 ### Task Management
 This section summarizes the Task Management interaction classes in the ETR FOM module, shown in the figure below.
  
-<img src="./images/etr_taskmanagement.png" width="75%"/>
+<img src="./images/etr_taskmanagement.png" width="85%"/>
 
 
 |Task Management|Description|
@@ -86,7 +94,7 @@ This section summarizes the Task Management interaction classes in the ETR FOM m
 ### Simulation Control
 This section summarizes the Simulaltion Control interaction classes in the ETR FOM module, shown in the figure below.
 
-<img src="./images/etr_simcon.png" width="75%"/>
+<img src="./images/etr_simcon.png" width="85%"/>
 
 |Simulation Control|Description|
 |---|---|
@@ -119,7 +127,7 @@ The following states are defined for a task:
 
 The task state diagram is shown below.
 
-<img src="./images/etr_taskstates.png" width="75%"/>
+<img src="./images/etr_taskstates.png" width="85%"/>
   
 #### Received State
 A task in the Received state shall be handled in the following way:
@@ -175,7 +183,7 @@ A task in the TaskStatus state shall be handled as specified in the substates, a
 ### Task List Order
 Each entity has a task list for non-concurrent mode tasks. The task at the head of the list is the first task to be started once the currently executing task completes. The ordering of tasks in the task list shall be according to the following figure.
 
-<img src="./images/etr_tasklist.png" width="75%"/>
+<img src="./images/etr_tasklist.png" width="85%"/>
  
 The tasklist shall be divided in two parts: a left part that contains tasks where the StartWhen is specified, and a right part that contains tasks where no StartWhen is specified. The division point shall mark the head of the left part and the tail of the right part. A part is empty if there are no tasks for that part.
 
