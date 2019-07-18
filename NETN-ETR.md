@@ -1,6 +1,9 @@
-# NETN ETR
-	
-NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module. 
+# NETN-ETR
+
+Copyright (C) 2019 NATO/OTAN.
+This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENSE.md).
+
+## Introduction
         
 This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN ETR FOM module is available as a XML file for use in HLA based federations.
         
