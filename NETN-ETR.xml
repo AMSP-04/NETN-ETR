@@ -3,8 +3,8 @@
     <modelIdentification notes="netn-etr_1">
         <name>NETN ETR</name>
         <type>FOM</type>
-        <version>2.0.4</version>
-        <modificationDate>2019-05-20</modificationDate>
+        <version>2.0.5</version>
+        <modificationDate>2019-05-22</modificationDate>
         <securityClassification>Unclassified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -30,6 +30,7 @@ An entity in ETR can be either a physical entity (e.g. platform or lifeform) or 
         <useHistory>v2.0.2 - Modified version as described in "LLBML-ChangeProposal-v0.9.docx"</useHistory>
         <useHistory>v2.0.3 - modified version as described in "LLBML-ChangeProposal-v0.10.docx"</useHistory>
 		<useHistory>v2.0.4 - Updated model identification descriptions."</useHistory>
+        <useHistory>v2.0.5 - TransactionId Datatype moved to NETN Base"</useHistory>
         <poc>
             <pocType>Primary author</pocType>
             <pocName>Henk Henderson</pocName>
@@ -42,7 +43,11 @@ An entity in ETR can be either a physical entity (e.g. platform or lifeform) or 
             <pocOrg>Pitch Technologies</pocOrg>
             <pocEmail>lennart.olsson@pitchtechnologies.com</pocEmail>
         </poc>
-        <other></other>
+        <other>
+Copyright © 2019 by NATO/OTAN. All rights reserved.
+This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
+
+Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
     </modelIdentification>
     <interactions>
         <interactionClass>
@@ -1242,23 +1247,6 @@ Other - Federate application specific.</semantics>
             </arrayData>
         </arrayDataTypes>
         <fixedRecordDataTypes>
-            <fixedRecordData>
-                <name>TransactionId</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Unique identifier for a transaction. 
-Used for Tasks, ManagementTasks and Reports. 
-The combination of FederateHandle and a counter gives a unique TransactionId in the Federation Execution even if a federate should resign (for some reason) and then join again.</semantics>
-                <field>
-                    <name>Counter</name>
-                    <dataType>CounterInt32</dataType>
-                    <semantics>This value shall be incremented by 1 for each new TransactionId.</semantics>
-                </field>
-                <field>
-                    <name>FederateHandle</name>
-                    <dataType>HLAhandle</dataType>
-                    <semantics>The handle that the federate get when joining the federation. Required</semantics>
-                </field>
-            </fixedRecordData>
             <fixedRecordData>
                 <name>SpottedEntity</name>
                 <encoding>HLAfixedRecord</encoding>

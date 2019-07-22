@@ -7,11 +7,34 @@ This version of NETN-ETR was developed by MSG-163.
 
 The NETN ETR module is not backward compatible with the previous NETN LLBML Module and usage require updates to federates to use the new class names and structure.
 
-#### GITHUB ISSUE #x
-* Change 1
-* Change 2
-* Change 3
-* ...
+#### NETN-ETR#3 Move TransactionId Datatype definition to NETN Base
+* TransactionId Datatype moved to NETN Base
+
+#### NETN-ERT#4 Add more tasks
+* Added EstablishCheckPoint
+* Added OperateCheckPoint
+* Added RemoveCheckPoint
+* Added StopAtSideOfRoad
+* Added CreateObstacle
+* Added CreateMinefield
+* Added ClearObstacle
+* Added AddPassage
+* Added RemovePassage
+* Added Patrol
+* Added PatrolRepeating
+* Removed FollowRoute
+* Renamed MoveToUnit to MoveToEntity 
+* Renamed FollowUnit to FollowEntity
+* Renamed VehicleMount to Mount
+* Renamed VehicleDismount to Dismount
+* Renamed FireIndirectWM to FireAtLocationWM
+* Renamed FireAtUnit to FireAtEntity
+* Renamed FireDirectWM to FireAtEntityWM
+* Renamed ChangeOrderedSpeed to SetOrderedSpeed
+* Renamed ChangeOrderedAltitude to SetOrderedAltitude
+* Added MagicMove
+* Added MagicResource
+
 
 
 ### Previous structure
