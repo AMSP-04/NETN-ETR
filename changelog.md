@@ -1,4 +1,4 @@
-## Changelog
+## Changelog NETN-ETR
 
 ### Changes in v tbd
 This version is the initial version of the new NETN-ETR FOM module based on previous (now deprecated) LLBML FOM Module related to C2SIM and part of AMSP-04 Ed. A. modules. 
@@ -35,7 +35,11 @@ The NETN ETR module is not backward compatible with the previous NETN LLBML Modu
 * Added MagicMove
 * Added MagicResource
 
+#### NETN-ETR#5 Typo: SensorReport.SpottedEnities
+* Changed Parameter SensorReport.SpottedEnities to SpottedEntities.
 
+#### NETN-ETR#6 Typo: MOUNT.EntiityId
+* Changed Parameter MOUNT.EntiityId to EntityId
 
 ### Previous structure
 
