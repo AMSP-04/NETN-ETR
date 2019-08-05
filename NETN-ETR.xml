@@ -3,9 +3,9 @@
     <modelIdentification notes="netn-etr_1">
         <name>NETN ETR</name>
         <type>FOM</type>
-        <version>2.0.5</version>
-        <modificationDate>2019-05-22</modificationDate>
-        <securityClassification>Unclassified</securityClassification>
+        <version>2.0 (RC 1)</version>
+        <modificationDate>2019-08-01</modificationDate>
+        <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
         <description>	
@@ -13,41 +13,84 @@ NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Modu
         
 This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN ETR FOM module is available as a XML file for use in HLA based federations.
         </description>
-		
-        <useLimitation>
-The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine granularity:
-* It enables the transformation of command and control messages into tasks that can be executed by a simulator.
-* It defines status reports that can be used for producing command and control reports needed for decision making.
-* It supports the modelling of simulated command and control interactions between federates in a distributed simulation, for example during a MRM disaggregation process.
-* It contains a comprehensive set of tasks and reports that can easily be interpreted and executed by simulators.
-* It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) tools, but it is independent of a specific COTS CGF tool, agent framework, or agent modelling paradigm.
-* It is independent of any specific doctrine or tactics.
-An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task it is not specified how an entity (physical or aggregate) will / should perform the task.
-	</useLimitation>
-        <useHistory>v1.0.0 - First version of the module. It is development of the old NETN-LBML FOM module.</useHistory>
-        <useHistory>v1.0.1 - Fixed typos.</useHistory>
-        <useHistory>v2.0.1 - Modified version as described in "LLBML-ChangeProposal-v0.8.docx"</useHistory>
-        <useHistory>v2.0.2 - Modified version as described in "LLBML-ChangeProposal-v0.9.docx"</useHistory>
-        <useHistory>v2.0.3 - modified version as described in "LLBML-ChangeProposal-v0.10.docx"</useHistory>
-		<useHistory>v2.0.4 - Updated model identification descriptions."</useHistory>
-        <useHistory>v2.0.5 - TransactionId Datatype moved to NETN Base"</useHistory>
+        <useLimitation> The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine granularity: * It enables the transformation of command and control messages into tasks that can be executed by a simulator. * It defines status reports that can be used for producing command and control reports needed for decision making. * It supports the modelling of simulated command and control interactions between federates in a distributed simulation, for example during a MRM disaggregation process. * It contains a comprehensive set of tasks and reports that can easily be interpreted and executed by simulators. * It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) tools, but it is independent of a specific COTS CGF tool, agent framework, or agent modelling paradigm. * It is independent of any specific doctrine or tactics. An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task it is not specified how an entity (physical or aggregate) will / should perform the task. 	</useLimitation>
+        <useHistory>NETN-LBML_v1.1.0 - Developed by MSG-106 and MSG-134 for NETN-FOM v2.0.</useHistory>
+        <useHistory>v2.0.0 - Renamed and updated by MSG-163 for NETN-FOM v3.0</useHistory>
+        <poc>
+            <pocType>Release authority</pocType>
+            <pocName>NATO Modelling and Simulation Group</pocName>
+            <pocOrg>NATO Science and Technology Organization</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
         <poc>
             <pocType>Primary author</pocType>
-            <pocName>Henk Henderson</pocName>
-            <pocOrg>TNO</pocOrg>
-            <pocEmail>henk.henderson@tno.nl</pocEmail>
+            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
         </poc>
-		<poc>
+        <poc>
             <pocType>Primary author</pocType>
+            <pocName>MSG-134 NATO Distributed Simulation Architecture &amp; Design, Compliance Testing and Certification</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-106 Enhanced CAX Architecture, Desing and Methodology</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Henk Henderson</pocName>
+            <pocOrg>TNO, the Netherlands</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
             <pocName>Lennart Olsson</pocName>
-            <pocOrg>Pitch Technologies</pocOrg>
-            <pocEmail>lennart.olsson@pitchtechnologies.com</pocEmail>
+            <pocOrg>Pitch Technologies, Sweden</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Tom van den Berg</pocName>
+            <pocOrg>TNO, the Netherlands</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Björn Löfstrand</pocName>
+            <pocOrg>Pitch Technologies, Sweden</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Martin Asprusten</pocName>
+            <pocOrg>FFI, Norway</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Nico de Reus</pocName>
+            <pocOrg>TNO, the Netherlands</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Rikke Amilde Løvlid</pocName>
+            <pocOrg>FFI, Norway</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Ole-Martin Mevassvik</pocName>
+            <pocOrg>FFI, Norway</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Anders Alstad</pocName>
+            <pocOrg>FFI, Norway</pocOrg>
         </poc>
         <other>
 Copyright © 2019 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
+        <glyph type="png" height="48" width="48" alt="">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</glyph>
     </modelIdentification>
     <interactions>
         <interactionClass>
@@ -1338,17 +1381,15 @@ for aggregate entities, also use entity types from platform tables to describe t
         </variantRecordDataTypes>
     </dataTypes>
     <notes>
-    <note>
-    <label>netn-etr_1</label>
-    <semantics>
-The interaction classes are organized in a root class and four base classes: ETR_Task, ETR_Report, ETR_TaskManagement, and ETR_SimCon. 
-
-* ETR_Root: root interaction class for the Entitiy Tasking and Reporting (ETR) interaction classes.
-* ETR_Task: A base interaction class for more specialized task interaction classes.
-* ETR_Report: A base interaction class for more specialized report interaction classes.
-* ETR_TaskManagement: A base interaction class for more specialized task management interaction classes.
-* ETR_SimCon: A base interaction class for more specialized Simulation Control (SimCon) interaction classes
-</semantics>
-    </note>
+        <note>
+            <label>netn-etr_1</label>
+            <semantics>The interaction classes are organized in a root class and four base classes: ETR_Task, ETR_Report, ETR_TaskManagement, and ETR_SimCon. 
+ 
+* ETR_Root: root interaction class for the Entitiy Tasking and Reporting (ETR) interaction classes. 
+* ETR_Task: A base interaction class for more specialized task interaction classes. 
+* ETR_Report: A base interaction class for more specialized report interaction classes. 
+* ETR_TaskManagement: A base interaction class for more specialized task management interaction classes. 
+* ETR_SimCon: A base interaction class for more specialized Simulation Control (SimCon) interaction classes</semantics>
+        </note>
     </notes>
 </objectModel>

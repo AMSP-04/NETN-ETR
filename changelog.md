@@ -1,6 +1,6 @@
 ## Changelog NETN-ETR
 
-### Changes in v tbd
+### Changes in 2.0
 This version is the initial version of the new NETN-ETR FOM module based on previous (now deprecated) LLBML FOM Module related to C2SIM and part of AMSP-04 Ed. A. modules. 
 
 This version of NETN-ETR was developed by MSG-163.
@@ -40,6 +40,16 @@ The NETN ETR module is not backward compatible with the previous NETN LLBML Modu
 
 #### NETN-ETR#6 Typo: MOUNT.EntiityId
 * Changed Parameter MOUNT.EntiityId to EntityId
+
+
+
+<useHistory>v1.0.0 - First version of the module. It is development of the old NETN-LBML FOM module.</useHistory>
+<useHistory>v1.0.1 - Fixed typos.</useHistory>
+<useHistory>v2.0.1 - Modified version as described in "LLBML-ChangeProposal-v0.8.docx"</useHistory>
+<useHistory>v2.0.2 - Modified version as described in "LLBML-ChangeProposal-v0.9.docx"</useHistory>
+<useHistory>v2.0.3 - modified version as described in "LLBML-ChangeProposal-v0.10.docx"</useHistory>
+<useHistory>v2.0.4 - Updated model identification descriptions."</useHistory>
+<useHistory>v2.0.5 - TransactionId Datatype moved to NETN Base"</useHistory>
 
 ### Previous structure
 
