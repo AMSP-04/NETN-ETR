@@ -49,7 +49,7 @@ Version numbering of this FOM Module and associated documentation is based on th
 |Version|Description|
 |---|---|
 |v1.1.0 |NETN-LBML included in NETN FOM v2.0 as part of AMSP-04 Ed A.|
-|v1.0|Release of new module based on deprecated NETN LLBML FOM Module. Includes updated structure and additional capabilities. Included in NETN FOM v3.0 as part of AMSP-04 Ed B.|
+|v1.x|Release of new module based on deprecated NETN LLBML FOM Module. Includes updated structure and additional capabilities. Included in NETN FOM v3.0 as part of AMSP-04 Ed B.|
 
 [Changelog](changelog.md)
 
