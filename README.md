@@ -11,4 +11,5 @@ The NETN ETR module provides a common standard interface for sending tasks to si
 
 ### Status
 The NETN ETR FOM module is currently being drafted, see Develop Branch.
+Once released, NETN-ETR will replace NETN-LBML which will become deprecated.
 
