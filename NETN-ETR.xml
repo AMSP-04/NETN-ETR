@@ -4,7 +4,7 @@
         <name>NETN ETR</name>
         <type>FOM</type>
         <version>2.0 (RC 1)</version>
-        <modificationDate>2019-08-01</modificationDate>
+        <modificationDate>2019-11-14</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -448,7 +448,7 @@ When empty, the reason is not defined.</semantics>
 If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location where the checkpoint should be established to make the task possible. 
  
-A checkpoint instance (NETN-SE FOM) shall be created and registerd when the entity reaches the location for the checkpoint. The attribute CheckPoint.Deactivated (from RPR_v2) shall show the status of the checkpoint. 
+A CheckPoint instance (NETN-Physical FOM) shall be created and registerd when the entity reaches the location for the checkpoint. The attribute CheckPoint.Deactivated (from RPR_v2) shall show the status of the checkpoint. 
  
 The modelling federate decides when the checkpoint shall be activated, it may be direct at the creation or when the attribute PercentComplete has reached a threshold level. 
  
@@ -530,7 +530,7 @@ See semantics for the interaction EstablishCheckPoint how ownership of the dynam
 If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location of the checkpoint to make the task possible. 
  
-A checkpoint instance (NETN-SE FOM) shall be removed from the Federation Execution when the entity reaches the location for the checkpoint. 
+A CheckPoint instance (NETN-Physical FOM) shall be removed from the Federation Execution when the entity reaches the location for the checkpoint. 
  
 If a NETN_CulturalFeature instance is assigned to the checkpoint is shall be deleted.</semantics>
                         <parameter>

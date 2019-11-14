@@ -50,6 +50,7 @@ The NETN ETR module is not backward compatible with the previous NETN LLBML Modu
 <useHistory>v2.0.3 - modified version as described in "LLBML-ChangeProposal-v0.10.docx"</useHistory>
 <useHistory>v2.0.4 - Updated model identification descriptions."</useHistory>
 <useHistory>v2.0.5 - TransactionId Datatype moved to NETN Base"</useHistory>
+<useHistory>v2.0.6 - 2019-11-14 - LO - Updated semantics for EstablishCheckPoint and RemoveCheckPoint"</useHistory>
 
 ### Previous structure
 
