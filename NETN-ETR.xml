@@ -4,7 +4,7 @@
         <name>NETN ETR</name>
         <type>FOM</type>
         <version>2.0 (RC 1)</version>
-        <modificationDate>2019-11-14</modificationDate>
+        <modificationDate>2019-12-10</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -458,6 +458,8 @@ The attribute NETN_CulturalFeature.Status shall be ActiveStatusEnum8.Active when
  
 The duraction defines when the checkpoint is deactivated unless another entity from the modelling federate Operates the checkpoint. 
  
+See semantics for object class CheckPoint in NETN-Physical FOM for implications on entities passing a CheckPoint.  
+
 The federation agreements shall specify how the ownership of the dynamic attribute at the checkpoint shall be managed when the checkpoint is deactivated. One of the following cases shall be managed in the federation: 
  
 1. Dynamic attributes of the checkpoint are released with the HLA Ownership Management services unconditionalAttributeOwnershipDivestiture at deactivation. 
@@ -501,7 +503,10 @@ The attribute CheckPoint.Deactivated (from RPR_v2) shall show the status at the 
  
 If a NETN_CulturalFeature is accociated with the checkpoint the status shall be displayed for the NETN_CulturalFeature instance. 
  
-See semantics for the interaction EstablishCheckPoint how ownership of the dynamics attribute at the checkpoint instance shall be managed.</semantics>
+See semantics for the interaction EstablishCheckPoint how ownership of the dynamics attribute at the checkpoint instance shall be managed.
+
+See semantics for object class CheckPoint in NETN-Physical FOM for implications on entities passing a CheckPoint.  
+</semantics>
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
