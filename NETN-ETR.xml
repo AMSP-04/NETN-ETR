@@ -458,7 +458,7 @@ The attribute NETN_CulturalFeature.Status shall be ActiveStatusEnum8.Active when
  
 The duraction defines when the checkpoint is deactivated unless another entity from the modelling federate Operates the checkpoint. 
  
-See semantics for object class CheckPoint in NETN-Physical FOM for implications on entities passing a CheckPoint.  
+See semantics for object class CheckPoint in NETN-Physical FOM for implications on entities passing a CheckPoint.
 
 The federation agreements shall specify how the ownership of the dynamic attribute at the checkpoint shall be managed when the checkpoint is deactivated. One of the following cases shall be managed in the federation: 
  
@@ -505,7 +505,7 @@ If a NETN_CulturalFeature is accociated with the checkpoint the status shall be 
  
 See semantics for the interaction EstablishCheckPoint how ownership of the dynamics attribute at the checkpoint instance shall be managed.
 
-See semantics for object class CheckPoint in NETN-Physical FOM for implications on entities passing a CheckPoint.  
+See semantics for object class CheckPoint in NETN-Physical FOM for implications on entities passing a CheckPoint.
 </semantics>
                         <parameter>
                             <name>UniqueId</name>
@@ -980,32 +980,7 @@ The orienation will be set in the given heading.</semantics>
         </interactionClass>
     </interactions>
     <dataTypes>
-        <simpleDataTypes>
-            <simpleData>
-                <name>TimeSecInt32</name>
-                <representation>HLAinteger32BE</representation>
-                <units>NA</units>
-                <resolution>1</resolution>
-                <accuracy>Perfect</accuracy>
-                <semantics>Specifies a time in seconds.</semantics>
-            </simpleData>
-            <simpleData>
-                <name>TimeMinutesInt32</name>
-                <representation>HLAinteger32BE</representation>
-                <units>NA</units>
-                <resolution>1</resolution>
-                <accuracy>Perfect</accuracy>
-                <semantics>Specifies a time in minutes.</semantics>
-            </simpleData>
-            <simpleData>
-                <name>NumberOfEquipment32</name>
-                <representation>HLAinteger32BE</representation>
-                <units>NA</units>
-                <resolution>1</resolution>
-                <accuracy>Perfect</accuracy>
-                <semantics>The number of something.</semantics>
-            </simpleData>
-        </simpleDataTypes>
+        <simpleDataTypes/>
         <enumeratedDataTypes>
             <enumeratedData>
                 <name>RulesOfEngagementEnum8</name>
@@ -1358,7 +1333,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>NumberOfEquipment</name>
-                    <dataType>NumberOfEquipment32</dataType>
+                    <dataType>QuantityInt32</dataType>
                     <semantics>The number of the equipment.</semantics>
                 </field>
             </fixedRecordData>
