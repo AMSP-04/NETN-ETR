@@ -7,7 +7,10 @@ This version of NETN-ETR was developed by MSG-163.
 
 The NETN ETR module is not backward compatible with the previous NETN LLBML Module and usage require updates to federates to use the new class names and structure.
 
+#### Updated the datatype PathVariantStruct used in parameter Waypoints at MoveToLocation and MoveToEntity
+
 #### Updated datatype for Waypoints at MoveToLocation and MoveToEntity and Destination at MoveToLocation
+
 #### New Task, SetTransmitterStatus 
 
 #### NETN-ETR#3 Move TransactionId Datatype definition to NETN Base

@@ -161,11 +161,15 @@ When empty, the reason is not defined.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to move to the specified location.</semantics>
+                        <semantics>Tasks an entity to move to the specified location.
+
+An empty Waypoints array implies that the entity shall move from the current position direct to the Destination.</semantics>
                         <parameter>
                             <name>Destination</name>
                             <dataType>PointVariantStruct</dataType>
-                            <semantics>The location to move to.</semantics>
+                            <semantics>The location to move to.
+
+Required.</semantics>
                         </parameter>
                         <parameter>
                             <name>MoveType</name>
@@ -183,11 +187,15 @@ When empty, the reason is not defined.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to move to another entity.</semantics>
+                        <semantics>Tasks an entity to move to another entity.
+
+An empty Waypoints array implies that the entity shall move from the current position direct to the position of the Entity.</semantics>
                         <parameter>
                             <name>Entity</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>The entity to move to.</semantics>
+                            <semantics>The entity to move to.
+
+Required.</semantics>
                         </parameter>
                         <parameter>
                             <name>MoveType</name>
@@ -1302,6 +1310,13 @@ Other - Federate application specific.</semantics>
                 <encoding>HLAvariableArray</encoding>
                 <semantics>An array with spotted equipment at the spotted entity.</semantics>
             </arrayData>
+            <arrayData>
+                <name>ArrayOfWorldLocationStruct</name>
+                <dataType>WorldLocationStruct</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>A polygonal chain with geoentric points, may be empty.</semantics>
+            </arrayData>
         </arrayDataTypes>
         <fixedRecordDataTypes>
             <fixedRecordData>
@@ -1399,8 +1414,10 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <alternative>
                     <enumerator>PathObject</enumerator>
                     <name>Waypoints</name>
-                    <dataType>ArrayOfWorldLocationStruct2</dataType>
-                    <semantics>The path defined by waypints, not necessarily registered in the federation execution as a NETN_GeoObject.Path.</semantics>
+                    <dataType>ArrayOfWorldLocationStruct</dataType>
+                    <semantics>The path defined by waypoints, not necessarily registered in the federation execution as a NETN_GeoObject.Path.
+
+The array can be empty (size=0).</semantics>
                 </alternative>
                 <alternative>
                     <enumerator>UuidReference</enumerator>
@@ -1409,7 +1426,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <semantics>A UUID that referes to a NETN_GeoObject.Path that is registred iin the federation execution.</semantics>
                 </alternative>
                 <encoding>HLAvariantRecord</encoding>
-                <semantics>Defines the path, either as a polygonal chain with at least two points or a UUID that refers to a in the federation execution registred NETN_GeoObject.Path.</semantics>
+                <semantics>Defines the path, either as a polygonal chain or a UUID that refers to a in the federation execution registred NETN_GeoObject.Path.</semantics>
             </variantRecordData>
             <variantRecordData>
                 <name>PointVariantStruct</name>
