@@ -7,6 +7,9 @@ This version of NETN-ETR was developed by MSG-163.
 
 The NETN ETR module is not backward compatible with the previous NETN LLBML Module and usage require updates to federates to use the new class names and structure.
 
+#### Updated datatype for Waypoints at MoveToLocation and MoveToEntity and Destination at MoveToLocation
+#### New Task, SetTransmitterStatus 
+
 #### NETN-ETR#3 Move TransactionId Datatype definition to NETN Base
 * TransactionId Datatype moved to NETN Base
 
@@ -52,6 +55,7 @@ The NETN ETR module is not backward compatible with the previous NETN LLBML Modu
 <useHistory>v2.0.5 - TransactionId Datatype moved to NETN Base"</useHistory>
 <useHistory>v2.0.6 - 2019-11-14 - LO - Updated semantics for EstablishCheckPoint and RemoveCheckPoint"</useHistory>
 <useHistory>v2.0.7 - 2019-12-10 - LO - Updated semantics for EstablishCheckPoint and OperateCheckPoint, described implications on passing entities
+
 ### Previous structure
 
 The NETN-ETR FOM Module is based on previous released NETN-LLBML FOM module developed by MSG-068, updated by MSG-106 and prepared for release by MSG-134.

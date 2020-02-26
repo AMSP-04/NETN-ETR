@@ -4,7 +4,7 @@
         <name>NETN ETR</name>
         <type>FOM</type>
         <version>2.0 (RC 1)</version>
-        <modificationDate>2019-12-10</modificationDate>
+        <modificationDate>2020-02-26</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -164,7 +164,7 @@ When empty, the reason is not defined.</semantics>
                         <semantics>Tasks an entity to move to the specified location.</semantics>
                         <parameter>
                             <name>Destination</name>
-                            <dataType>WorldLocationStruct</dataType>
+                            <dataType>PointVariantStruct</dataType>
                             <semantics>The location to move to.</semantics>
                         </parameter>
                         <parameter>
@@ -174,7 +174,7 @@ When empty, the reason is not defined.</semantics>
                         </parameter>
                         <parameter>
                             <name>Waypoints</name>
-                            <dataType>WorldLocationStructLengthlessArray</dataType>
+                            <dataType>PathVariantStruct</dataType>
                             <semantics>Optional route to the destination.</semantics>
                         </parameter>
                     </interactionClass>
@@ -196,7 +196,7 @@ When empty, the reason is not defined.</semantics>
                         </parameter>
                         <parameter>
                             <name>Waypoints</name>
-                            <dataType>WorldLocationStructLengthlessArray</dataType>
+                            <dataType>PathVariantStruct</dataType>
                             <semantics>Optional route to the destination.</semantics>
                         </parameter>
                     </interactionClass>
@@ -448,18 +448,17 @@ When empty, the reason is not defined.</semantics>
 If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location where the checkpoint should be established to make the task possible. 
  
-A CheckPoint instance (NETN-Physical FOM) shall be created and registerd when the entity reaches the location for the checkpoint. The attribute CheckPoint.Deactivated (from RPR_v2) shall show the status of the checkpoint. 
+A CheckPoint instance (NETN-SE NETN_Facility.CheckPoint) shall be created and registerd when the entity reaches the location for the checkpoint. The attribute CheckPoint.Status shall show the status of the checkpoint. 
  
 The modelling federate decides when the checkpoint shall be activated, it may be direct at the creation or when the attribute PercentComplete has reached a threshold level. 
  
-The modelling federate may register a NETN_CulturalFeature instance to model the checkpoint. 
-Set the attribute CheckPoint.ReferencedObjectIdentifier to the NETN_CulturalFeature instance. 
-The attribute NETN_CulturalFeature.Status shall be ActiveStatusEnum8.Active when the checkpoint is operated. 
+The modelling federate may register a NETN-SE NETN_GeoPoint.Point instance to model the checkpoint, 
+set the attribute LocationReference to the Point instance. 
  
 The duraction defines when the checkpoint is deactivated unless another entity from the modelling federate Operates the checkpoint. 
  
-See semantics for object class CheckPoint in NETN-Physical FOM for implications on entities passing a CheckPoint.
-
+See semantics for object class NETN-SE NETN_Facility.CheckPoint for implications on entities passing a CheckPoint. 
+ 
 The federation agreements shall specify how the ownership of the dynamic attribute at the checkpoint shall be managed when the checkpoint is deactivated. One of the following cases shall be managed in the federation: 
  
 1. Dynamic attributes of the checkpoint are released with the HLA Ownership Management services unconditionalAttributeOwnershipDivestiture at deactivation. 
@@ -499,14 +498,11 @@ The federation agreements shall specify how the ownership of the dynamic attribu
 If the Taskee entity is not at the checkpoint location, it has to move to that location with a seperate move task. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location of the checkpoint to make the task possible. 
  
-The attribute CheckPoint.Deactivated (from RPR_v2) shall show the status at the checkpoint. 
+The attribute CheckPoint.Status shall show the status at the checkpoint. 
  
-If a NETN_CulturalFeature is accociated with the checkpoint the status shall be displayed for the NETN_CulturalFeature instance. 
+See semantics for the interaction EstablishCheckPoint how ownership of the dynamics attribute at the checkpoint instance shall be managed. 
  
-See semantics for the interaction EstablishCheckPoint how ownership of the dynamics attribute at the checkpoint instance shall be managed.
-
-See semantics for object class CheckPoint in NETN-Physical FOM for implications on entities passing a CheckPoint.
-</semantics>
+See semantics for object class CheckPoint in NETN-SE FOM for implications on entities passing a CheckPoint.</semantics>
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
@@ -682,6 +678,18 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                                 <semantics>The interval time between two cycles.</semantics>
                             </parameter>
                         </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>SetTransmitterStatus</name>
+                        <sharing>Neither</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Task to enable/disable the AIS transmitter(s) of a vessel.</semantics>
+                        <parameter>
+                            <name>Status</name>
+                            <dataType>TransmitterStatusEnum8</dataType>
+                            <semantics>Status on the transmitter.</semantics>
+                        </parameter>
                     </interactionClass>
                 </interactionClass>
                 <interactionClass>
@@ -1224,6 +1232,32 @@ Other - Federate application specific.</semantics>
                     <value>1</value>
                 </enumerator>
             </enumeratedData>
+            <enumeratedData>
+                <name>PathTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Specifies if the path is the actual path with waypoints or if it is a reference to registred NETN_GeoObject.Path through a UUID.</semantics>
+                <enumerator>
+                    <name>PathObject</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>UuidReference</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>PointTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Specifies if the point is the actual location or if it is a reference to registred NETN_GeoObject.Point through a UUID.</semantics>
+                <enumerator>
+                    <name>Location</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>UuidReference</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
         </enumeratedDataTypes>
         <arrayDataTypes>
             <arrayData>
@@ -1357,6 +1391,44 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </alternative>
                 <encoding>HLAvariantRecord</encoding>
                 <semantics>The number or density of mines.</semantics>
+            </variantRecordData>
+            <variantRecordData>
+                <name>PathVariantStruct</name>
+                <discriminant>PathReference</discriminant>
+                <dataType>PathTypeEnum32</dataType>
+                <alternative>
+                    <enumerator>PathObject</enumerator>
+                    <name>Waypoints</name>
+                    <dataType>ArrayOfWorldLocationStruct2</dataType>
+                    <semantics>The path defined by waypints, not necessarily registered in the federation execution as a NETN_GeoObject.Path.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>UuidReference</enumerator>
+                    <name>UUID</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <semantics>A UUID that referes to a NETN_GeoObject.Path that is registred iin the federation execution.</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>Defines the path, either as a polygonal chain with at least two points or a UUID that refers to a in the federation execution registred NETN_GeoObject.Path.</semantics>
+            </variantRecordData>
+            <variantRecordData>
+                <name>PointVariantStruct</name>
+                <discriminant>PointReference</discriminant>
+                <dataType>PointTypeEnum32</dataType>
+                <alternative>
+                    <enumerator>Location</enumerator>
+                    <name>Location</name>
+                    <dataType>WorldLocationStruct</dataType>
+                    <semantics>The geocentric location.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>UuidReference</enumerator>
+                    <name>UUID</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <semantics>A UUID that refers to a NETN_GeoObject.Point.</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>Defines the point, either a Location or a UUID reference to a NETN_GeoObject.Point.</semantics>
             </variantRecordData>
         </variantRecordDataTypes>
     </dataTypes>
