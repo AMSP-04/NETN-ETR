@@ -7,6 +7,20 @@ This version of NETN-ETR was developed by MSG-163.
 
 The NETN ETR module is not backward compatible with the previous NETN LLBML Module and usage require updates to federates to use the new class names and structure.
 
+#### 2020-03-05 - LO
+Moved Array ArrayOfWorldLocationStruct to NETN-SE
+Moved Enum PathTypeEnum32 to NETN-SE
+Moved HLAvariantRecord PathVariantStruct to NETN-SE
+Moved Enum PointTypeEnum32 to NETN-SE
+Moved HLAvariantRecord PointVariantStruct to NETN-SE
+Changed datatype at attribute: CreateObstacle.Geometry: ArrayOfWorldLocationStruct
+Changed datatype at attribute: Patrol.PatrolRoute: PathVariantStruct
+Changed datatype at attribute: EstablishCheckPoint.Location: PointVariantStruct
+Added new attribute to ETR_Task: CommunicationNetworkIdentifiers
+Added new attribute to ETR_Report: CommunicationNetworkIdentifiers
+Added new Task: Jamming
+Added new Task: Observe
+
 #### Updated the datatype PathVariantStruct used in parameter Waypoints at MoveToLocation and MoveToEntity
 
 #### Updated datatype for Waypoints at MoveToLocation and MoveToEntity and Destination at MoveToLocation
