@@ -7,6 +7,13 @@ This version of NETN-ETR was developed by MSG-163.
 
 The NETN ETR module is not backward compatible with the previous NETN LLBML Module and usage require updates to federates to use the new class names and structure.
 
+#### 2020-03-19 - LO
+Moved datatypes to NETN-BASE
+Two parameters for specifing Point, at a number of tasks
+Two parameters for specifing Path, at a number of tasks
+Altitude modelling, datatypes
+Identifier -> Id, (naming conventions)
+
 #### 2020-03-05 - LO
 Moved Array ArrayOfWorldLocationStruct to NETN-SE
 Moved Enum PathTypeEnum32 to NETN-SE
