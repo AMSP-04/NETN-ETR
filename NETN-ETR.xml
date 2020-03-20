@@ -3,8 +3,8 @@
     <modelIdentification notes="netn-etr_1">
         <name>NETN ETR</name>
         <type>FOM</type>
-        <version>2.0 (RC 1)</version>
-        <modificationDate>2020-02-26</modificationDate>
+        <version>2.0 (Baseline MAR 2020)</version>
+        <modificationDate>2020-03-20</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -85,6 +85,10 @@ This module is a specification of how to represent simulation tasks requests pro
             <pocName>Anders Alstad</pocName>
             <pocOrg>FFI, Norway</pocOrg>
         </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
+        </reference>
         <other>
 Copyright © 2019 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
@@ -142,8 +146,8 @@ When empty, the reason is not defined.</semantics>
                     <parameter>
                         <name>CommunicationNetworkIds</name>
                         <dataType>ArrayOfUuid</dataType>
-                        <semantics>List with ids to CommunicationNetworkIdentifier that represents the communication network.
-
+                        <semantics>List with ids to CommunicationNetworkIdentifier that represents the communication network. 
+ 
 Optional.</semantics>
                     </parameter>
                     <interactionClass>
@@ -169,38 +173,34 @@ Optional.</semantics>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Tasks an entity to move to the specified Location/Destination. 
-
-At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use.
  
-If Waypoints and/or Path is specified:
-* The entity shall connect to the path from the current position to the nearest position or nearest waypoint in the path, depending on how the application manage this.
-* The entity shall leave the path at the the nearest position or nearest wapoint in the path and move to the Location/Destination, depending how the application manage this.
-
-This implies that the full path or a part of the path is used.An empty Waypoints array implies that the entity shall move from the current position direct to the Destination.
-If both are specified, it is up to the application to choose which to use.
-</semantics>
+At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use. 
+ 
+If Waypoints and/or Path is specified: 
+* The entity shall connect to the path from the current position to the nearest position or nearest waypoint in the path, depending on how the application manage this. 
+* The entity shall leave the path at the the nearest position or nearest wapoint in the path and move to the Location/Destination, depending how the application manage this. 
+ 
+This implies that the full path or a part of the path is used.An empty Waypoints array implies that the entity shall move from the current position direct to the Destination. 
+If both are specified, it is up to the application to choose which to use.</semantics>
                         <parameter>
                             <name>Location</name>
                             <dataType>WorldLocationStruct</dataType>
                             <semantics>The location to move to. Format: Geocentric.</semantics>
                         </parameter>
                         <parameter>
-                            <name>Destination</name>
+                            <name>LocationUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>The location to move to. Refered by a UUID. 
-</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>Waypoints</name>
-                            <dataType>ArrayOfWorldLocationStruct</dataType>
-                            <semantics>Optional route to use to get to the Location/Destination. 
-
-</semantics>
+                            <semantics>The location to move to. Refered by a UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>Path</name>
+                            <dataType>ArrayOfWorldLocationStruct</dataType>
+                            <semantics>Optional route to use to get to the Location/Destination.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>PathUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>Optional path to use to get to the Location/Destination. Refered by an UUID. </semantics>
+                            <semantics>Optional path to use to get to the Location/Destination. Refered by an UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>MoveType</name>
@@ -215,26 +215,26 @@ If both are specified, it is up to the application to choose which to use.
                         <order>Receive</order>
                         <semantics>Tasks an entity to move to another entity. 
  
-If Waypoints and/or Path is specified:
-* The entity shall connect to the path from the current position to the nearest position or nearest waypoint in the path, depending on how the application manage this.
-* The entity shall leave the path at the the nearest position or nearest wapoint in the path and move to the Location/Destination, depending how the application manage this.
-
-This implies that the full path or a part of the path is used.An empty Waypoints array implies that the entity shall move from the current position direct to the Destination.
+If Waypoints and/or Path is specified: 
+* The entity shall connect to the path from the current position to the nearest position or nearest waypoint in the path, depending on how the application manage this. 
+* The entity shall leave the path at the the nearest position or nearest wapoint in the path and move to the Location/Destination, depending how the application manage this. 
+ 
+This implies that the full path or a part of the path is used.An empty Waypoints array implies that the entity shall move from the current position direct to the Destination. 
 If both are specified, it is up to the application to choose which to use.</semantics>
                         <parameter>
                             <name>Entity</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
                             <semantics>The entity to move to. 
-
+ 
 Required.</semantics>
                         </parameter>
                         <parameter>
-                            <name>Waypoints</name>
+                            <name>Path</name>
                             <dataType>ArrayOfWorldLocationStruct</dataType>
                             <semantics>Optional route to the specified entity.</semantics>
                         </parameter>
                         <parameter>
-                            <name>Path</name>
+                            <name>PathUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
                             <semantics>Optional path to the specified entity.</semantics>
                         </parameter>
@@ -249,8 +249,8 @@ Required.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an aggregate entity to move into the given formation with the given heading.
-
+                        <semantics>Tasks an aggregate entity to move into the given formation with the given heading. 
+ 
 At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use.</semantics>
                         <parameter>
                             <name>Formation</name>
@@ -263,11 +263,11 @@ At least one of Location and Destination paramter should be specified. If both a
                             <semantics>The location (x, y and z) to move to.</semantics>
                         </parameter>
                         <parameter>
-                            <name>Destination</name>
+                            <name>LocationUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>The location to make the formation at.
-
- Refered by a UUID. </semantics>
+                            <semantics>The location to make the formation at. 
+ 
+Refered by a UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>Heading</name>
@@ -360,8 +360,8 @@ At least one of Location and Destination paramter should be specified. If both a
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to fire at a location.
-
+                        <semantics>Tasks an entity to fire at a location. 
+ 
 At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use.</semantics>
                         <parameter>
                             <name>Location</name>
@@ -369,10 +369,10 @@ At least one of Location and Destination paramter should be specified. If both a
                             <semantics>The location to fire at.</semantics>
                         </parameter>
                         <parameter>
-                            <name>Destination</name>
+                            <name>LocationUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>The location to fire at.
-
+                            <semantics>The location to fire at. 
+ 
 Refered by an UUID.</semantics>
                         </parameter>
                         <parameter>
@@ -506,7 +506,7 @@ Refered by an UUID.</semantics>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>The task defines a location where a checkpoint shall be established and then operated. 
-At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use.
+At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use. 
  
 If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location where the checkpoint should be established to make the task possible. 
@@ -515,7 +515,7 @@ A CheckPoint instance (NETN-SE NETN_Facility.CheckPoint) shall be created and re
  
 The modelling federate decides when the checkpoint shall be activated, it may be direct at the creation or when the attribute PercentComplete has reached a threshold level. 
  
-If  parameter Location is specified and Destination is not specified:
+If  parameter Location is specified and Destination is not specified: 
 The modelling federate shall register a NETN-SE NETN_GeoPoint.Point instance to model the checkpoint. 
 Set the attribute NETN_Facility.CheckPoint.LocationReference to the Point.UniqueId. 
  
@@ -541,10 +541,10 @@ The federation agreements shall specify how the ownership of the dynamic attribu
                             <semantics>The position for the Check Point.</semantics>
                         </parameter>
                         <parameter>
-                            <name>Destination</name>
+                            <name>LocationUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>The location for the checkpoint.
-
+                            <semantics>The location for the checkpoint. 
+ 
 Refered by an UUID.</semantics>
                         </parameter>
                         <parameter>
@@ -713,18 +713,17 @@ The corresponding Environment Object instance in the RPR-FOM should be created.<
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Defines a patrol task, covering the path from the current location to the start point of the patrol route, and the patrol route itself. 
-
+ 
 The patrol route shall be followed from start to end. 
-
+ 
 The entity behaviour at the end point depends on the patrol type.</semantics>
                         <parameter>
-                            <name>Waypoints</name>
+                            <name>Path</name>
                             <dataType>ArrayOfWorldLocationStruct</dataType>
-                            <semantics>Specifies the route to patrol, as a pylogonal chain.
-</semantics>
+                            <semantics>Specifies the route to patrol, as a pylogonal chain.</semantics>
                         </parameter>
                         <parameter>
-                            <name>Path</name>
+                            <name>PathUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
                             <semantics>Specifies the route to patrol, refered by an UUID.</semantics>
                         </parameter>
@@ -812,9 +811,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                     <sharing>Neither</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>A base interaction class for more specialized report interaction classes.
-
-</semantics>
+                    <semantics>A base interaction class for more specialized report interaction classes.</semantics>
                     <parameter>
                         <name>ReportId</name>
                         <dataType>TransactionId</dataType>
@@ -828,8 +825,8 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                     <parameter>
                         <name>CommunicationNetworkIds</name>
                         <dataType>ArrayOfUuid</dataType>
-                        <semantics>List with ids to CommunicationNetworkIdentifier that represents the communication network.
-
+                        <semantics>List with ids to CommunicationNetworkIdentifier that represents the communication network. 
+ 
 Optional.</semantics>
                     </parameter>
                     <parameter>
@@ -1063,21 +1060,18 @@ Optional.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use.
-
-Place the entity to the specified location with a given heading. All given task of the entity are cancelled.
-
-</semantics>
+                        <semantics>At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use. 
+ 
+Place the entity to the specified location with a given heading. All given task of the entity are cancelled.</semantics>
                         <parameter>
                             <name>Location</name>
                             <dataType>WorldLocationStruct</dataType>
                             <semantics>The new location for the entity.</semantics>
                         </parameter>
                         <parameter>
-                            <name>Destination</name>
+                            <name>LocationUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>The new location for the entity. Refered by a UUID. 
-</semantics>
+                            <semantics>The new location for the entity. Refered by a UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>Heading</name>
