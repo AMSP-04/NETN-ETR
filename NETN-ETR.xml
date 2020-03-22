@@ -172,13 +172,13 @@ Optional.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to move to the specified Location/Destination.
-
-The Location is required and the LocationUuId is optional.
-If both parameters are received then is up to the subscribing application to choose which to use.
-
-The Path is optional. If no Path is provided then the subscribing application shall assume it received a zero-length array. Also the PathUuid is optional.
-If both parameters are received then is up to the subscribing application to choose which to use.
+                        <semantics>Tasks an entity to move to the specified Location/Destination. 
+ 
+The Location is required and the LocationUuId is optional. 
+If both parameters are received then is up to the subscribing application to choose which to use. 
+ 
+The Path is optional. If no Path is provided then the subscribing application shall assume it received a zero-length array. Also the PathUuid is optional. 
+If both parameters are received then is up to the subscribing application to choose which to use. 
  
 The interpretation of the Path is as follows: 
 * The entity shall connect to the path from the current position to the nearest position or nearest waypoint in the path, depending on how the application manage this. 
@@ -217,9 +217,9 @@ This implies that the full path or a part of the path is used. An empty (zero le
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Tasks an entity to move to another entity. 
-
-The Path is optional. If no Path is provided then the subscribing application shall assume it received a zero-length array. Also the PathUuid is optional.
-If both parameters are received then is up to the subscribing application to choose which to use.
+ 
+The Path is optional. If no Path is provided then the subscribing application shall assume it received a zero-length array. Also the PathUuid is optional. 
+If both parameters are received then is up to the subscribing application to choose which to use. 
  
 The interpretation of the Path is as follows: 
 * The entity shall connect to the path from the current position to the nearest position or nearest waypoint in the path, depending on how the application manage this. 
@@ -781,7 +781,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Controls the orientation of the sensor. It can be used in parallel to movement tasks such as Move</semantics>
+                        <semantics>Observation to cover area with sensors. It can be used in parallel to movement tasks such as Move</semantics>
                         <parameter>
                             <name>ObservationArea</name>
                             <dataType>GeocentricPolygon</dataType>
@@ -793,7 +793,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics></semantics>
+                        <semantics>Jamming of a communication network in a specified area.</semantics>
                         <parameter>
                             <name>JammedArea</name>
                             <dataType>WorldLocationStruct</dataType>
