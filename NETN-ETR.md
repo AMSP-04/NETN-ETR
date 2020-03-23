@@ -67,7 +67,7 @@ This section summarizes the Entity Task interaction classes in the ETR FOM modul
 |AddPassage|Tasks an entity to lay/build a passage between the two given points. The passage can for example be a passage through an obstacle or a bridge over a river. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible. |
 |RemovePassage|Tasks an entity to remove the pasasage with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible.|
 |Patrol|Defines a patrol, covering the path from the current location to the  start point of the patrol route, and the patrol route itself. The patrol route will be followed from start to end. The entity behaviour at the end point depends on the patrol type.|
-|SetTransmitterStatus||
+|SetTransmitterStatus|Task entity to switch on/off all of its transmitters.|
 |Observe|Observation to cover area with sensors. |
 |Jamming|Jamming of a communication network in a specified area.|
 

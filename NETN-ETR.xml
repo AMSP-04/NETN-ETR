@@ -769,7 +769,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Task to enable/disable the AIS transmitter(s) of a vessel.</semantics>
+                        <semantics>Task entity to switch on/off all of its transmitters.</semantics>
                         <parameter>
                             <name>Status</name>
                             <dataType>TransmitterOperationalStatusEnum8</dataType>
@@ -785,7 +785,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <parameter>
                             <name>ObservationArea</name>
                             <dataType>GeocentricPolygon</dataType>
-                            <semantics></semantics>
+                            <semantics>Area to observe.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -797,17 +797,17 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <parameter>
                             <name>JammedArea</name>
                             <dataType>WorldLocationStruct</dataType>
-                            <semantics></semantics>
+                            <semantics>Area affected by jamming.</semantics>
                         </parameter>
                         <parameter>
                             <name>CommunicationNetworkId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics></semantics>
+                            <semantics>Reference to the affected Communication Network.</semantics>
                         </parameter>
                         <parameter>
                             <name>JammingEnabled</name>
                             <dataType>HLAboolean</dataType>
-                            <semantics></semantics>
+                            <semantics>Jamming enabled or disabled.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -1249,35 +1249,6 @@ In the concurrent mode, the task is executed concurrently with other tasks. As s
                 <enumerator>
                     <name>ConcurrentMode</name>
                     <value>1</value>
-                </enumerator>
-            </enumeratedData>
-            <enumeratedData>
-                <name>PerceivedForceIdentifierEnum32</name>
-                <representation>HLAinteger32BE</representation>
-                <semantics>The percieved affiliation of the detected entity.</semantics>
-                <enumerator>
-                    <name>Unknown</name>
-                    <value>0</value>
-                </enumerator>
-                <enumerator>
-                    <name>AssumedFriend</name>
-                    <value>1</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friend</name>
-                    <value>2</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral</name>
-                    <value>3</value>
-                </enumerator>
-                <enumerator>
-                    <name>Suspect</name>
-                    <value>4</value>
-                </enumerator>
-                <enumerator>
-                    <name>Hostile</name>
-                    <value>5</value>
                 </enumerator>
             </enumeratedData>
             <enumeratedData>
