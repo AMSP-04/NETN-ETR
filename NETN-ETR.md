@@ -4,7 +4,7 @@ Copyright (C) 2019 NATO/OTAN.
 This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENCE.md).
 
 ## Introduction
-        
+
 This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN ETR FOM module is available as an XML file for use in HLA based federations.
         
 
@@ -71,10 +71,10 @@ This section summarizes the Entity Task interaction classes in the ETR FOM modul
 |Observe|Observation to cover area with sensors. |
 |Jamming|Jamming of a communication network in a specified area.|
 
-	
+
 ### Entity Reports
 This section summarizes the Entity Report interaction classes in the ETR FOM module, shown in the figure below.
- 
+
 <img src="./images/etr_report.png" width="85%"/>
 
 |Report|Description|
@@ -86,7 +86,7 @@ This section summarizes the Entity Report interaction classes in the ETR FOM mod
 
 ### Task Management
 This section summarizes the Task Management interaction classes in the ETR FOM module, shown in the figure below.
- 
+
 <img src="./images/etr_taskmanagement.png" width="85%"/>
 
 
@@ -134,10 +134,10 @@ The following states are defined for a task:
 The task state diagram is shown below.
 
 <img src="./images/etr_taskstates.png" width="85%"/>
-  
+
 #### Received State
 A task in the Received state shall be handled in the following way:
- 
+
 1. Determine if the task is supported. The determination is made by the federate application in accordance with section 8.4.3.
 2. If the task is not supported then
     * A `TaskStatusReport` (refused) shall be returned to the Tasker.
@@ -190,7 +190,7 @@ A task in the TaskStatus state shall be handled as specified in the substates, a
 Each entity has a task list for non-concurrent mode tasks. The task at the head of the list is the first task to be started once the currently executing task completes. The ordering of tasks in the task list shall be according to the following figure.
 
 <img src="./images/etr_tasklist.png" width="85%"/>
- 
+
 The tasklist shall be divided in two parts: a left part that contains tasks where the StartWhen is specified, and a right part that contains tasks where no StartWhen is specified. The division point shall mark the head of the left part and the tail of the right part. A part is empty if there are no tasks for that part.
 
 A task shall be placed in the task list as follows:
@@ -255,10 +255,10 @@ The receiver:
 3.	SHALL provide all interaction class parameters when sending an ETR interaction.
 
 The sender:
-4.	SHALL provide all interaction class parameters when sending an ETR interaction.
+1.	SHALL provide all interaction class parameters when sending an ETR interaction.
 In addition, for the receiver, the following SHALL be documented in the federation agreements:
-5.	Distance tolerances of supported tasks (for the tasks `Mount`, `EstablishCheckPoint`, `OperateCheckPoint`, `RemoveCheckPoint`, `CreateObstacle`, `ClearObstacle`, `CreateMinefield`, `AddPassage`, and `RemovePassage`).
-6.	Entities that provide ETR Reports.
-7.	Time frequencies and conditions for the supported ETR Reports.
-8.	Modelling agreements related to checkpoints (if supported, see `EstablishCheckPoint`, `OperateCheckPoint`, and `RemoveCheckPoint`).
-9.	Modeling agreements related to minefields (if supported, see `CreateMineField`).
+2.	Distance tolerances of supported tasks (for the tasks `Mount`, `EstablishCheckPoint`, `OperateCheckPoint`, `RemoveCheckPoint`, `CreateObstacle`, `ClearObstacle`, `CreateMinefield`, `AddPassage`, and `RemovePassage`).
+3.	Entities that provide ETR Reports.
+4.	Time frequencies and conditions for the supported ETR Reports.
+5.	Modelling agreements related to checkpoints (if supported, see `EstablishCheckPoint`, `OperateCheckPoint`, and `RemoveCheckPoint`).
+6.	Modeling agreements related to minefields (if supported, see `CreateMineField`).
