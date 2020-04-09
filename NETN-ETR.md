@@ -253,6 +253,7 @@ The receiver:
 1.	SHALL support all ETR TaskManagement and ETR SimCon classes.
 2.	MAY support a subset of the ETR Task and ETR Report classes.
 3.	SHALL provide all interaction class parameters when sending an ETR interaction.
+
 The sender:
 4.	SHALL provide all interaction class parameters when sending an ETR interaction.
 In addition, for the receiver, the following SHALL be documented in the federation agreements:
