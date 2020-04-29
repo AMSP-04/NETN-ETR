@@ -4,7 +4,7 @@
         <name>NETN ETR</name>
         <type>FOM</type>
         <version>2.0 (Baseline MAR 2020)</version>
-        <modificationDate>2020-03-20</modificationDate>
+        <modificationDate>2020-04-28</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -90,7 +90,7 @@ This module is a specification of how to represent simulation tasks requests pro
             <identification>NETN-BASE</identification>
         </reference>
         <other>
-Copyright © 2019 by NATO/OTAN. All rights reserved.
+Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
