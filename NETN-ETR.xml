@@ -3,8 +3,8 @@
     <modelIdentification notes="netn-etr_1">
         <name>NETN ETR</name>
         <type>FOM</type>
-        <version>2.0 (Baseline MAR 2020)</version>
-        <modificationDate>2020-04-28</modificationDate>
+        <version>2.0 </version>
+        <modificationDate>2020-06-25</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -90,7 +90,7 @@ This module is a specification of how to represent simulation tasks requests pro
             <identification>NETN-BASE</identification>
         </reference>
         <other>
-Copyright © 2020 by NATO/OTAN. All rights reserved.
+Copyright © 2019 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
@@ -256,7 +256,7 @@ Required.</semantics>
                         <order>Receive</order>
                         <semantics>Tasks an aggregate entity to move into the given formation with the given heading. 
  
-At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use.</semantics>
+At least one of Location and LocationUuuid paramter should be specified. If both are specified, it is up to the application to choose which to use.</semantics>
                         <parameter>
                             <name>Formation</name>
                             <dataType>FormationEnum32</dataType>
@@ -273,6 +273,12 @@ At least one of Location and Destination paramter should be specified. If both a
                             <semantics>The location to make the formation at. 
  
 Refered by a UUID.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Distance</name>
+                            <dataType>MeterFloat32</dataType>
+                            <semantics>The minimum distance between the units in the formation.
+  </semantics>
                         </parameter>
                         <parameter>
                             <name>Heading</name>
@@ -511,7 +517,7 @@ Refered by an UUID.</semantics>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>The task defines a location where a checkpoint shall be established and then operated. 
-At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use. 
+At least one of Location and LocationUuid paramter should be specified. If both are specified, it is up to the application to choose which to use. 
  
 If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location where the checkpoint should be established to make the task possible. 
@@ -520,11 +526,11 @@ A CheckPoint instance (NETN-SE NETN_Facility.CheckPoint) shall be created and re
  
 The modelling federate decides when the checkpoint shall be activated, it may be direct at the creation or when the attribute PercentComplete has reached a threshold level. 
  
-If  parameter Location is specified and Destination is not specified: 
+If  parameter Location is specified and LocationUuid is not specified: 
 The modelling federate shall register a NETN-SE NETN_GeoPoint.Point instance to model the checkpoint. 
-Set the attribute NETN_Facility.CheckPoint.LocationReference to the Point.UniqueId. 
+Set the attribute NETN_Facility.CheckPoint. LocationReference to the Point.UniqueId. 
  
-The Duration defines the time when the checkpoint is active by the specified Taskee. 
+Duration specifies the length of time after the establishment of the check point during which it will be active and operated by the Taskee.
  
 See semantics for object class NETN-SE NETN_Facility.CheckPoint for implications on entities passing a CheckPoint. 
  
@@ -542,7 +548,7 @@ The federation agreements shall specify how the ownership of the dynamic attribu
                         </parameter>
                         <parameter>
                             <name>Location</name>
-                            <dataType>PointVariantStruct</dataType>
+                            <dataType>WorldLocationStruct</dataType>
                             <semantics>The position for the Check Point.</semantics>
                         </parameter>
                         <parameter>
@@ -789,7 +795,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         </parameter>
                     </interactionClass>
                     <interactionClass>
-                        <name>Jamming</name>
+                        <name>Jam</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -841,7 +847,7 @@ Optional.</semantics>
                     </parameter>
                     <interactionClass>
                         <name>StatusReport</name>
-                        <sharing>PublishSubscribe</sharing>
+                        <sharing>Neither</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Status report from an entity about its own (perceived) state. This report is generated with a certain frequency specified in the federation agreements.</semantics>
