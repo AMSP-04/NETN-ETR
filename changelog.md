@@ -7,6 +7,9 @@ This version of NETN-ETR was developed by MSG-163.
 
 The NETN ETR module is not backward compatible with the previous NETN LLBML Module and usage require updates to federates to use the new class names and structure.
 
+#### 2020-06-25 - LO
+#20, #25, #29, #31, #32
+
 #### 2020-03-20 - LO
 Renamed parameters for UUID reference:
 Destination -> LocationUuid, Waypoints -> Path, Path -> PathUuid
