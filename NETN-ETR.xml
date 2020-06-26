@@ -4,7 +4,7 @@
         <name>NETN ETR</name>
         <type>FOM</type>
         <version>2.0 </version>
-        <modificationDate>2020-06-25</modificationDate>
+        <modificationDate>2020-06-27</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -277,8 +277,7 @@ Refered by a UUID.</semantics>
                         <parameter>
                             <name>Distance</name>
                             <dataType>MeterFloat32</dataType>
-                            <semantics>The minimum distance between the units in the formation.
-  </semantics>
+                            <semantics>The minimum distance between the units in the formation.</semantics>
                         </parameter>
                         <parameter>
                             <name>Heading</name>
@@ -530,7 +529,7 @@ If  parameter Location is specified and LocationUuid is not specified:
 The modelling federate shall register a NETN-SE NETN_GeoPoint.Point instance to model the checkpoint. 
 Set the attribute NETN_Facility.CheckPoint. LocationReference to the Point.UniqueId. 
  
-Duration specifies the length of time after the establishment of the check point during which it will be active and operated by the Taskee.
+Duration specifies the length of time after the establishment of the check point during which it will be active and operated by the Taskee. 
  
 See semantics for object class NETN-SE NETN_Facility.CheckPoint for implications on entities passing a CheckPoint. 
  
@@ -795,7 +794,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         </parameter>
                     </interactionClass>
                     <interactionClass>
-                        <name>Jam</name>
+                        <name>JamCommunication</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -1044,6 +1043,25 @@ Optional.</semantics>
                             <semantics>Any additional comments. For example reason for cancelling, error, etc.</semantics>
                         </parameter>
                     </interactionClass>
+                    <interactionClass>
+                        <name>QueryCapabilitiesSupported</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Query which ETR tasks and ETR reports that the entity supports. The taskee shall respond with a CapabilitiesSupported message.</semantics>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CapabilitiesSupported</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Provides the set of ETR_Task, ETR_SimCon and ETR_Report interactions that the federate modelling the entity supports. This interaction is in response to a QueryCapabilitiesSupported, using the same Taskee and Tasker. The names returned is the base interaction class name and not fully qualified.</semantics>
+                        <parameter>
+                            <name>CapabilityNames</name>
+                            <dataType>ArrayOfNames</dataType>
+                            <semantics>Array of task and report names that the entity supports; the names match with the FOM interaction class names.</semantics>
+                        </parameter>
+                    </interactionClass>
                 </interactionClass>
                 <interactionClass>
                     <name>ETR_SimCon</name>
@@ -1101,25 +1119,6 @@ The orienation will be set in the given heading.</semantics>
                             <name>Resource</name>
                             <dataType>NETN_SupplyStruct</dataType>
                             <semantics>Defines the resource type that will get a new quantity value.</semantics>
-                        </parameter>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>QueryCapabilitiesSupported</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Query which ETR tasks and ETR reports that the entity supports. The taskee shall respond with a CapabilitiesSupported message.</semantics>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>CapabilitiesSupported</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Provide the set of ETR tasks and ETR reports that the entity supports. This interaction is in response to a QueryCapabilitiesSupported, using the same Taskee and Tasker.</semantics>
-                        <parameter>
-                            <name>CapabilityNames</name>
-                            <dataType>ArrayOfNames</dataType>
-                            <semantics>Array of task and report names that the entity supports; the names match with the FOM interaction class names.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
