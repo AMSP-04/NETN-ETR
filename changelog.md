@@ -32,7 +32,7 @@ Changed datatype at attribute: Patrol.PatrolRoute: PathVariantStruct
 Changed datatype at attribute: EstablishCheckPoint.Location: PointVariantStruct
 Added new attribute to ETR_Task: CommunicationNetworkIdentifiers
 Added new attribute to ETR_Report: CommunicationNetworkIdentifiers
-Added new Task: Jamming
+Added new Task: JamCommunicaction
 Added new Task: Observe
 
 #### Updated the datatype PathVariantStruct used in parameter Waypoints at MoveToLocation and MoveToEntity
