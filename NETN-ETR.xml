@@ -155,7 +155,7 @@ Optional.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to move in the specified direction for the given duration.</semantics>
+                        <semantics>Task entity to move in the specified direction for the given duration.</semantics>
                         <parameter>
                             <name>Direction</name>
                             <dataType>AngleRadianFloat32</dataType>
@@ -172,7 +172,7 @@ Optional.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to move to the specified Location/Destination. 
+                        <semantics>Task entity to move to the specified Location/Destination. 
  
 The Location is required and the LocationUuId is optional. 
 If both parameters are received then is up to the subscribing application to choose which to use. 
@@ -216,7 +216,7 @@ This implies that the full path or a part of the path is used. An empty (zero le
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to move to another entity. 
+                        <semantics>Task entity to move to another entity. 
  
 The Path is optional. If no Path is provided then the subscribing application shall assume it received a zero-length array. Also the PathUuid is optional. 
 If both parameters are received then is up to the subscribing application to choose which to use. 
@@ -254,7 +254,7 @@ Required.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an aggregate entity to move into the given formation with the given heading. 
+                        <semantics>Task aggregate entity to move into the given formation with the given heading. 
  
 At least one of Location and LocationUuuid paramter should be specified. If both are specified, it is up to the application to choose which to use.</semantics>
                         <parameter>
@@ -290,7 +290,7 @@ Refered by a UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to follow another entity.</semantics>
+                        <semantics>Task entity to follow another entity.</semantics>
                         <parameter>
                             <name>Entity</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
@@ -322,7 +322,7 @@ Refered by a UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to turn to the specified heading.</semantics>
+                        <semantics>Task entity to turn to the specified heading.</semantics>
                         <parameter>
                             <name>Heading</name>
                             <dataType>AngleRadianFloat32</dataType>
@@ -333,7 +333,7 @@ Refered by a UUID.</semantics>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Tasks an entity to turn to a specified orientation, including pitch and roll.</semantics>
+                            <semantics>Task entity to turn to a specified orientation, including pitch and roll.</semantics>
                             <parameter>
                                 <name>Pitch</name>
                                 <dataType>AngleRadianFloat32</dataType>
@@ -351,7 +351,7 @@ Refered by a UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Task the entity to mount in the specified entity. The taskee entiity should be within a certain distance tolerance of the entiity to mount into. this tolerance must be specified in the federation agreements. Mount includes: embark (vessel), board (plane), and so on.</semantics>
+                        <semantics>Task entity to mount in the specified entity. The taskee should be within a certain distance tolerance of the entiity to mount into. this tolerance must be specified in the federation agreements. Mount includes: embark (vessel), board (plane), and so on.</semantics>
                         <parameter>
                             <name>EntityId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
@@ -363,14 +363,14 @@ Refered by a UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Task the entity to dismount from the entity where it is in.</semantics>
+                        <semantics>Task entity to dismount from the entity where it is in.</semantics>
                     </interactionClass>
                     <interactionClass>
                         <name>FireAtLocation</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to fire at a location. 
+                        <semantics>Tasks entity to fire at a location. 
  
 At least one of Location and Destination paramter should be specified. If both are specified, it is up to the application to choose which to use.</semantics>
                         <parameter>
@@ -395,7 +395,7 @@ Refered by an UUID.</semantics>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Tasks an entity to fire at a location with the specified weapon and munition.</semantics>
+                            <semantics>Task entity to fire at a location with the specified weapon and munition.</semantics>
                             <parameter>
                                 <name>WeaponTypeToUse</name>
                                 <dataType>EntityTypeStruct</dataType>
@@ -423,7 +423,7 @@ Refered by an UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to fire at another specified entity.</semantics>
+                        <semantics>Task entity to fire at another specified entity.</semantics>
                         <parameter>
                             <name>Target</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
@@ -434,7 +434,7 @@ Refered by an UUID.</semantics>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Tasks an entity to fire at a specified entity with the specified weapon and munition.</semantics>
+                            <semantics>Task entity to fire at a specified entity with the specified weapon and munition.</semantics>
                             <parameter>
                                 <name>WeaponTypeToUse</name>
                                 <dataType>EntityTypeStruct</dataType>
@@ -462,7 +462,7 @@ Refered by an UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Set/Change the ordered speed. Usually sent in ConcurrentMode to adjust the current move task.</semantics>
+                        <semantics>Task entity to set the ordered speed.</semantics>
                         <parameter>
                             <name>Speed</name>
                             <dataType>VelocityMeterPerSecondFloat32</dataType>
@@ -474,7 +474,7 @@ Refered by an UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Set/Change the ordered altitude for a flying entity. Usually sent in ConurrentMode to adjust the current move task.</semantics>
+                        <semantics>Task entity to set the ordered altitude.</semantics>
                         <parameter>
                             <name>Altitude</name>
                             <dataType>AltitudeMeterFloat64</dataType>
@@ -491,7 +491,7 @@ Refered by an UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to wait a defined duration.</semantics>
+                        <semantics>Task entity to wait a defined duration.</semantics>
                         <parameter>
                             <name>Duration</name>
                             <dataType>TimeSecInt32</dataType>
@@ -503,7 +503,7 @@ Refered by an UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Change the rules of engagment for an entity.</semantics>
+                        <semantics>Task entity to change the rules of engagement.</semantics>
                         <parameter>
                             <name>RulesOfEngagement</name>
                             <dataType>RulesOfEngagementEnum8</dataType>
@@ -515,7 +515,8 @@ Refered by an UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>The task defines a location where a checkpoint shall be established and then operated. 
+                        <semantics>Task entity to establish a checkpoint. The task defines a location where a checkpoint shall be established and then operated. 
+
 At least one of Location and LocationUuid paramter should be specified. If both are specified, it is up to the application to choose which to use. 
  
 If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
@@ -574,7 +575,7 @@ Refered by an UUID.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>The task activates a deactivated check point. 
+                        <semantics>Task entity to operate a checkpoint. The task activates a deactivated check point. 
  
 If the Taskee entity is not at the checkpoint location, it has to move to that location with a seperate move task. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location of the checkpoint to make the task possible. 
@@ -600,14 +601,14 @@ See semantics for object class CheckPoint in NETN-SE FOM for implications on ent
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to stop at the side of the road. This task is only relevant for an entity that is moving along a road to a destination. The executing move task is canceled and a new move is defined to a position at the side of the road (the simulator has to calculate this location).</semantics>
+                        <semantics>Task entity to stop at the side of the road. This task is only relevant for an entity that is moving along a road to a destination. The executing move task is canceled and a new move is defined to a position at the side of the road (the simulator has to calculate this location).</semantics>
                     </interactionClass>
                     <interactionClass>
                         <name>RemoveCheckPoint</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>This task removes the checkpoint that is generated in the EstablishCheckpoint task. 
+                        <semantics>Task entity to remove a checkpoint. This task removes the checkpoint that is generated in the EstablishCheckpoint task. 
  
 If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location of the checkpoint to make the task possible. 
@@ -626,7 +627,7 @@ If a NETN_CulturalFeature instance is assigned to the checkpoint is shall be del
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to create an obstacle with the given geometry. 
+                        <semantics>Task entity to create an obstacle with the given geometry. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the geometry of the obstacle to make the task possible. 
 The corresponding Environment Object instance  in the RPR-FOM should be created.</semantics>
                         <parameter>
@@ -654,7 +655,7 @@ The corresponding Environment Object instance  in the RPR-FOM should be created.
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Tasks an entity to create a minefield within the specified geometry. The taskee should publish the minefield as a RPR-FOM object when finished. This interaction should not be confused with the MinefieldObjectTransaction interaction of the RPR-FOM, which asks a federate directly to “magic create” a minefield. Warning: The RPR-FOM contains several ways of representing a minefield, and the taskee may decide which representation to use. It is recommended to agree on this in advance, through the use of a Federation Agreement. 
+                            <semantics>Task entity to create a minefield within the specified geometry. The taskee should publish the minefield as a RPR-FOM object when finished. This interaction should not be confused with the MinefieldObjectTransaction interaction of the RPR-FOM, which asks a federate directly to “magic create” a minefield. Warning: The RPR-FOM contains several ways of representing a minefield, and the taskee may decide which representation to use. It is recommended to agree on this in advance, through the use of a Federation Agreement. 
 Allowed values for attributes of the parent (CreateObstacle): 
 - ObstacleType = (5.1.0.5.10.*.* or 5.1.0.5.11.*.* or 5.1.0.5.12.*.*) 
 - GeometryType = Area</semantics>
@@ -687,7 +688,7 @@ Allowed values for attributes of the parent (CreateObstacle):
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to lay/build a passage between the two given points. The passage can for example be a passage through an obstacle or a bridge over a river. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible. 
+                        <semantics>Task entity to lay/build a passage between the two given points. The passage can for example be a passage through an obstacle or a bridge over a river. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible. 
 The corresponding Environment Object instance in the RPR-FOM should be created.</semantics>
                         <parameter>
                             <name>Point1</name>
@@ -710,7 +711,7 @@ The corresponding Environment Object instance in the RPR-FOM should be created.<
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks an entity to remove the pasasage with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible.</semantics>
+                        <semantics>Task entity to remove the pasasage with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible.</semantics>
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
@@ -722,11 +723,7 @@ The corresponding Environment Object instance in the RPR-FOM should be created.<
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Defines a patrol task, covering the path from the current location to the start point of the patrol route, and the patrol route itself. 
- 
-The patrol route shall be followed from start to end. 
- 
-The entity behaviour at the end point depends on the patrol type.</semantics>
+                        <semantics>Task entity to perform a patrol. The patrol covers the path from the current location to the start point of the patrol route, and the patrol route itself. The patrol route shall be followed from start to end. The entity behaviour at the end point depends on the patrol type.</semantics>
                         <parameter>
                             <name>Path</name>
                             <dataType>ArrayOfWorldLocationStruct</dataType>
@@ -752,7 +749,7 @@ The entity behaviour at the end point depends on the patrol type.</semantics>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Task an entity to repeat a patrol task for the given duration. For this task the patrol type other is not allowed. 
+                            <semantics>Task entity to repeat a patrol for the given duration. For this task the patrol type other is not allowed. 
  
 When the duration time has elapsed then the last cycle of the patrol will be completed before the task ends. 
  
@@ -786,7 +783,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Observation to cover area with sensors. It can be used in parallel to movement tasks such as Move</semantics>
+                        <semantics>Task entity to observe an area with sensors.</semantics>
                         <parameter>
                             <name>ObservationArea</name>
                             <dataType>GeocentricPolygon</dataType>
@@ -798,7 +795,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Jamming of a communication network in a specified area.</semantics>
+                        <semantics>Task entity to jam a communication network in a specified area.</semantics>
                         <parameter>
                             <name>JammedArea</name>
                             <dataType>WorldLocationStruct</dataType>
