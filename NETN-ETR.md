@@ -103,7 +103,7 @@ This section summarizes the Simulation Control interaction classes in the ETR FO
 |MagicMove|Place the entity to the specified location with a given heading. All given task of the entity are cancelled.|
 |MagicResource|Changes the resource amount of the entity.|
 
-## ETR Task Handling
+## ETR Task Processing
 
 The following sections define how tasks shall be handled.
 
@@ -231,19 +231,22 @@ There are the following restrictions regarding concurrency:
 
 So, several tasks can be executed at the same time. For example a Patrol, SetOrderedSpeed and FireAtEntity; or a MoveToLocation, SetOrderedAltitude and FireAtLocation. A FireAtEntity task can be timed while executing a MoveToLocation task by using the StartWhen time. It is also possible to change the speed or altitiude after a certain time during a movement by using the StartWhen time for the SetOrderedSpeed or SetOrderedAltitude task.
 
-## ETR SimCon Handling
-A Simulation Control message for an entity shall be executed immediately, regardless of the presence of any (concurrent or non-concurrent) executing task.
+## ETR Task Management Tasks
+
+### Entity Task and Reporting Capabilities
+
+It shall be possible to query an entity for the ETR tasks and ETR reports that it supports. The set of tasks and reports that an entity supports is implementation-specific, and shall be used in the Received state of a task to determine if the task is supported.
+
+With the interaction class `QueryCapabilitiesSupported` an entity can be queried for the supported ETR tasks and ETR reports. The result is provided via the interaction class `CapabilitiesSupported`.
+
+## ETR Simulation Control Tasks
+A Simulation Control task for an entity shall be executed immediately, regardless of the presence of any (concurrent or non-concurrent) executing task.
 
 ### Magic Move
 A `MagicMove` for an entity shall implicitly cancel all tasks for the entity. A TaskStatusReport (cancelled) shall be issued for each task in accordance with the task state diagram.
 
 ### Magic Resources
 A `MagicResource` shall update the entity resources. Waiting or executing tasks of the entity are affected in the sense that these tasks have more or less resources available after the MagicResource.
-
-### Entity Task and Reporting Capabilities
-It shall be possible to query an entity for the ETR tasks and ETR reports that it supports. The set of tasks and reports that an entity supports is implementation-specific, and shall be used in the Received state of a task to determine if the task is supported.
-
-With the interaction class `QueryCapabilitiesSupported` an entity can be queried for the supported ETR tasks and ETR reports. The result is provided via the interaction class `CapabilitiesSupported`.
 
 ## Implementation Requirements
 This section lists the requirements for applications that implement Entity Tasking and Reporting. The requirements are provided from receiver point of view (entity taskee, the federate application modelling the entity) and sender point of view (entity tasker, the federate application sending a task or receiving a report for an entity).
