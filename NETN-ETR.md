@@ -132,12 +132,12 @@ The task state diagram is shown below.
 #### Received State
 A task in the Received state shall be handled in the following way:
 
-1. Determine if the task is supported. The determination is made by the federate application in accordance with [Entity Task and Reporting Capabilities](#Entity Task and Reporting Capabilities).
+1. Determine if the task is supported. The determination is made by the federate application in accordance with [Entity Task and Reporting Capabilities](#Entity-Task-and-Reporting-Capabilities).
 2. If the task is not supported then
     * A `TaskStatusReport` (refused) shall be returned to the Tasker.
     * The task is removed.
 3. Else
-    * The task shall be placed in either the non-concurrent task list or the concurrent task list depending on the task mode, in accordance with [Task List Ordering](#Task List Ordering).
+    * The task shall be placed in either the non-concurrent task list or the concurrent task list depending on the task mode, in accordance with [Task List Ordering](#Task-List-Ordering).
     * A `TaskStatusReport` (accepted) shall be returned to the Tasker.
     * The task shall transition to the Waiting state.
 
@@ -151,7 +151,7 @@ A task in the Waiting state shall be handled in the following way:
     * For a concurrent mode task:
         * The task is at the head of the concurrent task list and
         * The task has no `StartWhen` time (i.e. the StartWhen is undefined), or the task has a StartWhen time and this time is less than or equal to the current time, and
-        * The task does not conflict with other executing tasks, see [Concurrent Tasks](#Concurrent Tasks).
+        * The task does not conflict with other executing tasks, see [Concurrent Tasks](#Concurrent-Tasks).
 2.	If the task can start then
     - The task shall be removed from the task list.
     - A `TaskStatusReport` (executing) shall be returned to the Tasker.
