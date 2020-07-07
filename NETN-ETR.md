@@ -218,19 +218,16 @@ There are the following restrictions regarding concurrency:
    2. A task in this group can run together with a task in the Weapon or SetAction group.
 
 2. Weapon group:
-
-  1.	Only one task in this group can be executed at the same time.
-  2.	A task in this group can run together with a task in the Movement or SetAction group.
+   1. Only one task in this group can be executed at the same time.
+   2. A task in this group can run together with a task in the Movement or SetAction group.
 
 3. SetAction group:
-
-  1.	Multiple tasks in this group can be executed at the same time.
-  2.	A task in this group can run together with a task in the Movement or Weapon group.
+   1. Multiple tasks in this group can be executed at the same time.
+   2. A task in this group can run together with a task in the Movement or Weapon group.
 
 4. Single group:
-
-  1.	Only one task in this group can be executed at the same time.
-  2.	A task in this group can not run together with a task in another group.
+   1. Only one task in this group can be executed at the same time.
+   2. A task in this group can not run together with a task in another group.
 
 So, several tasks can be executed at the same time. For example a Patrol, SetOrderedSpeed and FireAtEntity; or a MoveToLocation, SetOrderedAltitude and FireAtLocation. A FireAtEntity task can be timed while executing a MoveToLocation task by using the StartWhen time. It is also possible to change the speed or altitiude after a certain time during a movement by using the StartWhen time for the SetOrderedSpeed or SetOrderedAltitude task.
 
