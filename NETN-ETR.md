@@ -231,11 +231,11 @@ There are the following restrictions regarding concurrency:
 
 So, several tasks can be executed at the same time. For example a Patrol, SetOrderedSpeed and FireAtEntity; or a MoveToLocation, SetOrderedAltitude and FireAtLocation. A FireAtEntity task can be timed while executing a MoveToLocation task by using the StartWhen time. It is also possible to change the speed or altitiude after a certain time during a movement by using the StartWhen time for the SetOrderedSpeed or SetOrderedAltitude task.
 
-## ETR Task Management Tasks
+## ETR Task Management
 
 
 
-## ETR Simulation Control Tasks
+## ETR Simulation Control
 A Simulation Control task for an entity shall be executed immediately, regardless of the presence of any (concurrent or non-concurrent) executing task.
 
 ### Entity Task and Reporting Capabilities
