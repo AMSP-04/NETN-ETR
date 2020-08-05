@@ -145,10 +145,8 @@ When empty, the reason is not defined.</semantics>
                     </parameter>
                     <parameter>
                         <name>CommunicationNetworkIds</name>
-                        <dataType>ArrayOfUuid</dataType>
-                        <semantics>List with ids to CommunicationNetworkIdentifier that represents the communication network. 
- 
-Optional.</semantics>
+                        <dataType>ArrayOfText64</dataType>
+                        <semantics>Optional. List with ids to CommunicationNetworkIdentifier that represents the communication network.</semantics>
                     </parameter>
                     <interactionClass>
                         <name>Move</name>
@@ -516,7 +514,7 @@ Refered by an UUID.</semantics>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Task entity to establish a checkpoint. The task defines a location where a checkpoint shall be established and then operated. 
-
+ 
 At least one of Location and LocationUuid paramter should be specified. If both are specified, it is up to the application to choose which to use. 
  
 If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
@@ -791,25 +789,25 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         </parameter>
                     </interactionClass>
                     <interactionClass>
-                        <name>JamCommunication</name>
+                        <name>DisruptCommunication</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Task entity to jam a communication network in a specified area.</semantics>
+                        <semantics>Task entity to introduce a communication network disruption.</semantics>
                         <parameter>
-                            <name>JammedArea</name>
-                            <dataType>WorldLocationStruct</dataType>
-                            <semantics>Area affected by jamming.</semantics>
+                            <name>AffectedCommunicationNetwork</name>
+                            <dataType>Text64</dataType>
+                            <semantics>Optional: Reference to the affected Communication Network. If not provided all communication networks are affected.</semantics>
                         </parameter>
                         <parameter>
-                            <name>CommunicationNetworkId</name>
-                            <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>Reference to the affected Communication Network.</semantics>
+                            <name>AffectedArea</name>
+                            <dataType>GeodeticQuadrangle</dataType>
+                            <semantics>Area affected by discruption.</semantics>
                         </parameter>
                         <parameter>
-                            <name>JammingEnabled</name>
+                            <name>DisruptionEnabled</name>
                             <dataType>HLAboolean</dataType>
-                            <semantics>Jamming enabled or disabled.</semantics>
+                            <semantics>Optional: Disruption enabled or disabled. Default is True = Enabled.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -831,10 +829,8 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                     </parameter>
                     <parameter>
                         <name>CommunicationNetworkIds</name>
-                        <dataType>ArrayOfUuid</dataType>
-                        <semantics>List with ids to CommunicationNetworkIdentifier that represents the communication network. 
- 
-Optional.</semantics>
+                        <dataType>ArrayOfText64</dataType>
+                        <semantics>Optional. List with ids to CommunicationNetworkIdentifier that represents the communication network.</semantics>
                     </parameter>
                     <parameter>
                         <name>Comments</name>
@@ -994,6 +990,11 @@ Optional.</semantics>
                         <dataType>Callsign</dataType>
                         <semantics>Identifies the commander of the task.</semantics>
                     </parameter>
+                    <parameter>
+                        <name>CommunicationNetworkIds</name>
+                        <dataType>ArrayOfText64</dataType>
+                        <semantics>Optional. List with ids to CommunicationNetworkIdentifier that represents the communication network.</semantics>
+                    </parameter>
                     <interactionClass>
                         <name>CancelSpecifiedTasks</name>
                         <sharing>PublishSubscribe</sharing>
@@ -1038,25 +1039,6 @@ Optional.</semantics>
                             <name>Comments</name>
                             <dataType>HLAunicodeString</dataType>
                             <semantics>Any additional comments. For example reason for cancelling, error, etc.</semantics>
-                        </parameter>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>QueryCapabilitiesSupported</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Query which ETR tasks and ETR reports that the entity supports. The taskee shall respond with a CapabilitiesSupported message.</semantics>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>CapabilitiesSupported</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Provides the set of ETR_Task, ETR_SimCon and ETR_Report interactions that the federate modelling the entity supports. This interaction is in response to a QueryCapabilitiesSupported, using the same Taskee and Tasker. The names returned is the base interaction class name and not fully qualified.</semantics>
-                        <parameter>
-                            <name>CapabilityNames</name>
-                            <dataType>ArrayOfNames</dataType>
-                            <semantics>Array of task and report names that the entity supports; the names match with the FOM interaction class names.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -1117,6 +1099,25 @@ The orienation will be set in the given heading.</semantics>
                             <dataType>NETN_SupplyStruct</dataType>
                             <semantics>Defines the resource type that will get a new quantity value.</semantics>
                         </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CapabilitiesSupported</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Provides the set of ETR_Task, ETR_SimCon and ETR_Report interactions that the federate modelling the entity supports. This interaction is in response to a QueryCapabilitiesSupported, using the same Taskee and Tasker. The names returned is the base interaction class name and not fully qualified.</semantics>
+                        <parameter>
+                            <name>CapabilityNames</name>
+                            <dataType>ArrayOfNames</dataType>
+                            <semantics>Array of task and report names that the entity supports; the names match with the FOM interaction class names.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>QueryCapabilitiesSupported</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Query which ETR tasks and ETR reports that the entity supports. The taskee shall respond with a CapabilitiesSupported message.</semantics>
                     </interactionClass>
                 </interactionClass>
             </interactionClass>
