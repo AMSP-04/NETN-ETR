@@ -4,7 +4,7 @@
         <name>NETN ETR</name>
         <type>FOM</type>
         <version>2.0 </version>
-        <modificationDate>2020-06-27</modificationDate>
+        <modificationDate>2020-08-07</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
