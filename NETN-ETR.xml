@@ -640,8 +640,8 @@ The corresponding Environment Object instance  in the RPR-FOM should be created.
                         </parameter>
                         <parameter>
                             <name>Geometry</name>
-                            <dataType>ArrayOfWorldLocationStruct</dataType>
-                            <semantics>A set of points defining the point, polygon or area of the Obstacle.</semantics>
+                            <dataType>AreaVariantStruct</dataType>
+                            <semantics>Area of the obstacle.</semantics>
                         </parameter>
                         <parameter>
                             <name>UniqueId</name>
