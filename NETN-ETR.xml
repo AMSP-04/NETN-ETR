@@ -784,7 +784,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <semantics>Task entity to observe an area with sensors.</semantics>
                         <parameter>
                             <name>ObservationArea</name>
-                            <dataType>GeocentricPolygon</dataType>
+                            <dataType>AreaVariantStruct</dataType>
                             <semantics>Area to observe.</semantics>
                         </parameter>
                     </interactionClass>
