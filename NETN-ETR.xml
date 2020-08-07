@@ -1406,9 +1406,8 @@ Default value: Moving (213)</semantics>
                 </field>
                 <field>
                     <name>Symbol</name>
-                    <dataType>SymbolIdentifierArray15</dataType>
-                    <semantics>MIL STD 2525C for the entity, the detailed level may vary, the publishing federate decides the level of details in the symbol description. 
- 
+                    <dataType>SymbolIdentifier</dataType>
+                    <semantics>Symbol identifier for the entity, the detailed level may vary, the publishing federate decides the level of details in the symbol description. E.g. 
 Default Ground value: SUGP------***** 
 Default Air value: SUAP------***** 
 Default Sea Surface value: SUSP------***** 
