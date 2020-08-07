@@ -1113,7 +1113,7 @@ The orienation will be set in the given heading.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
-                        <name>QueryCapabilitiesSupported</name>
+                        <name>QuerySupportedCapabilities</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
