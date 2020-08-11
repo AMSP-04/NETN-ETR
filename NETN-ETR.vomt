@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_92" class="java.beans.XMLDecoder">
- <int>5</int>
+<java version="11.0.5" class="java.beans.XMLDecoder">
+ <int>6</int>
  <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentProject">
   <boolean>true</boolean>
   <string>ETR Project</string>
@@ -78,19 +78,12 @@
       <string>INTERACTION_CLASS_TABLE</string>
      </object>
      <object idref="PersistentProjectHelper$PersistentModule1"/>
-     <int>0</int>
+     <int>1</int>
      <int>0</int>
      <int>1586</int>
      <int>810</int>
      <object class="java.util.Collections" method="emptySet"/>
-     <object class="java.util.LinkedHashSet">
-      <void method="add">
-       <string>HLAinteractionRoot.ETR_Root.ETR_Report</string>
-      </void>
-      <void method="add">
-       <string>HLAinteractionRoot.ETR_Root.ETR_TaskManagement</string>
-      </void>
-     </object>
+     <object class="java.util.LinkedHashSet"/>
     </object>
    </void>
   </object>
@@ -99,6 +92,7 @@
     <object idref="PersistentProjectHelper$PersistentModule0"/>
    </void>
   </object>
+  <boolean>false</boolean>
   <boolean>false</boolean>
  </object>
 </java>
