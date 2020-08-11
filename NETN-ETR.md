@@ -100,7 +100,7 @@ This section summarizes the Simulation Control interaction classes in the ETR FO
 |---|---|
 |MagicMove|Place the entity to the specified location with a given heading. All given task of the entity are cancelled.|
 |MagicResource|Changes the resource amount of the entity.|
-|QueryCapabilitiesSupported|Query an entity which tasks and reports it supports. The taskee shall respond with a CapabilitiesSupported message.|
+|QuerySupportedCapabilities|Query an entity which tasks and reports it supports. The taskee shall respond with a CapabilitiesSupported message.|
 |CapabilitiesSupported|Provide the set of tasks and reports that the entity supports. This interaction is in response to a QueryCapabilitiesSupported, using the same Taskee and Tasker.|
 
 ## ETR Task Processing
@@ -242,7 +242,7 @@ A Simulation Control task for an entity shall be executed immediately, regardles
 
 It shall be possible to query an entity for the ETR tasks and ETR reports that it supports. The set of tasks and reports that an entity supports is implementation-specific, and shall be used in the Received state of a task to determine if the task is supported.
 
-With the interaction class `QueryCapabilitiesSupported` an entity can be queried for the supported ETR tasks and ETR reports. The result is provided via the interaction class `CapabilitiesSupported`.
+With the interaction class `QuerySupportedCapabilities` an entity can be queried for the supported ETR tasks and ETR reports. The result is provided via the interaction class `CapabilitiesSupported`.
 
 ### Magic Move
 A `MagicMove` for an entity shall implicitly cancel all tasks for the entity. A TaskStatusReport (cancelled) shall be issued for each task in accordance with the task state diagram.

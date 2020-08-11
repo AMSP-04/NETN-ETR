@@ -4,7 +4,7 @@
         <name>NETN ETR</name>
         <type>FOM</type>
         <version>2.0 </version>
-        <modificationDate>2020-08-07</modificationDate>
+        <modificationDate>2020-08-12</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -114,40 +114,40 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <parameter>
                         <name>TaskId</name>
                         <dataType>TransactionId</dataType>
-                        <semantics>REQUIRED. Identifies the task.</semantics>
+                        <semantics>Required. Identifies the task.</semantics>
                     </parameter>
                     <parameter>
                         <name>Taskee</name>
                         <dataType>UuidArrayOfHLAbyte16</dataType>
-                        <semantics>REQUIRED. The entity that has to execute the task.</semantics>
+                        <semantics>Required. The entity that has to execute the task.</semantics>
                     </parameter>
                     <parameter>
                         <name>Tasker</name>
                         <dataType>Callsign</dataType>
-                        <semantics>OPTIONAL (default empty string). 
+                        <semantics>Optional (default empty string). 
 Identifies the commander of the task. 
 When empty, the commander is not defined.</semantics>
                     </parameter>
                     <parameter>
                         <name>StartWhen</name>
                         <dataType>Datetime18</dataType>
-                        <semantics>REQUIRED. Time when the task execution has to start. Use the value 00000000000000.000 to indicate that the time is undefined.</semantics>
+                        <semantics>Required. Time when the task execution has to start. Use the value 00000000000000.000 to indicate that the time is undefined.</semantics>
                     </parameter>
                     <parameter>
                         <name>Why</name>
                         <dataType>HLAunicodeString</dataType>
-                        <semantics>OPTIONAL (default empty string). For what reason has this task to be executed. 
+                        <semantics>Optional (default empty string). For what reason has this task to be executed. 
 When empty, the reason is not defined.</semantics>
                     </parameter>
                     <parameter>
                         <name>TaskMode</name>
                         <dataType>TaskModeEnum8</dataType>
-                        <semantics>REQUIRED. Determines the task mode.</semantics>
+                        <semantics>Required. Determines the task mode.</semantics>
                     </parameter>
                     <parameter>
                         <name>CommunicationNetworkIds</name>
                         <dataType>ArrayOfText64</dataType>
-                        <semantics>OPTIONAL (default empty list)l. List with ids to CommunicationNetworkIdentifierthat represents the communication network.</semantics>
+                        <semantics>Optional (default empty list). List with ids to CommunicationNetworkIdentifierthat represents the communication network.</semantics>
                     </parameter>
                     <interactionClass>
                         <name>Move</name>
@@ -158,12 +158,12 @@ When empty, the reason is not defined.</semantics>
                         <parameter>
                             <name>Direction</name>
                             <dataType>AngleRadianFloat32</dataType>
-                            <semantics>REQUIRED. Determines the azimuth direction, in radians.</semantics>
+                            <semantics>Required. Determines the azimuth direction, in radians.</semantics>
                         </parameter>
                         <parameter>
                             <name>Duration</name>
                             <dataType>TimeSecInt32</dataType>
-                            <semantics>REQUIRED. The duration of the move (seconds)</semantics>
+                            <semantics>Required. The duration of the move (seconds)</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -173,7 +173,7 @@ When empty, the reason is not defined.</semantics>
                         <order>Receive</order>
                         <semantics>Task entity to move to the specified Location/Destination. 
  
-The Location is required and the LocationUuId is optional. 
+The Location is Required and the LocationUuId is optional. 
 If both parameters are received then is up to the subscribing application to choose which to use. 
  
 The Path is optional. If no Path is provided then the subscribing application shall assume it received a zero-length array. Also the PathUuid is optional. 
@@ -187,27 +187,27 @@ This implies that the full path or a part of the path is used. An empty (zero le
                         <parameter>
                             <name>Location</name>
                             <dataType>WorldLocationStruct</dataType>
-                            <semantics>REQUIRED. The location to move to. Format: Geocentric.</semantics>
+                            <semantics>Required. The location to move to. Format: Geocentric.</semantics>
                         </parameter>
                         <parameter>
                             <name>LocationUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>OPTIONAL. The location to move to. Refered by a UUID.</semantics>
+                            <semantics>Optional. The location to move to. Refered by a UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>Path</name>
                             <dataType>ArrayOfWorldLocationStruct</dataType>
-                            <semantics>OPTIONAL (default empty list). Route to use to get to the Location/Destination.</semantics>
+                            <semantics>Optional (default empty list). Route to use to get to the Location/Destination.</semantics>
                         </parameter>
                         <parameter>
                             <name>PathUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>OPTIONAL. Path to use to get to the Location/Destination. Refered by an UUID.</semantics>
+                            <semantics>Optional. Path to use to get to the Location/Destination. Refered by an UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>MoveType</name>
                             <dataType>MoveTypeEnum32</dataType>
-                            <semantics>REQUIRED. Indicates if roads have to be followed.</semantics>
+                            <semantics>Required. Indicates if roads have to be followed.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -228,24 +228,22 @@ This implies that the full path or a part of the path is used. An empty (zero le
                         <parameter>
                             <name>Entity</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. The entity to move to. 
- 
-</semantics>
+                            <semantics>Required. The entity to move to.</semantics>
                         </parameter>
                         <parameter>
                             <name>Path</name>
                             <dataType>ArrayOfWorldLocationStruct</dataType>
-                            <semantics>OPTIONAL. Route to the specified entity.</semantics>
+                            <semantics>Optional. Route to the specified entity.</semantics>
                         </parameter>
                         <parameter>
                             <name>PathUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>OPTIONAL. path to the specified entity.</semantics>
+                            <semantics>Optional. path to the specified entity.</semantics>
                         </parameter>
                         <parameter>
                             <name>MoveType</name>
                             <dataType>MoveTypeEnum32</dataType>
-                            <semantics>REQUIRED. Indicates if roads have to be followed.</semantics>
+                            <semantics>Required. Indicates if roads have to be followed.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -255,34 +253,34 @@ This implies that the full path or a part of the path is used. An empty (zero le
                         <order>Receive</order>
                         <semantics>Task aggregate entity to move into the given formation on the given locaion with the given heading. 
  
-The Location is required and the LocationUuId is optional.
+The Location is required and the LocationUuId is optional. 
 If both parameters are received, then is up to the subscribing application to choose which to use.</semantics>
                         <parameter>
-                            <name> Formation</name>
+                            <name>Formation</name>
                             <dataType>FormationEnum32</dataType>
-                            <semantics>REQUIRED. The category of positional arrangement the aggregate.</semantics>
+                            <semantics>Required. The category of positional arrangement the aggregate.</semantics>
                         </parameter>
                         <parameter>
                             <name>Location</name>
                             <dataType>WorldLocationStruct</dataType>
-                            <semantics>REQUIRED. The location (x, y and z) to move to.</semantics>
+                            <semantics>Required. The location (x, y and z) to move to.</semantics>
                         </parameter>
                         <parameter>
                             <name>LocationUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>OPTIONAL. The location to make the formation at. 
+                            <semantics>Optional. The location to make the formation at. 
  
 Refered by a UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>Distance</name>
                             <dataType>MeterFloat32</dataType>
-                            <semantics>REQUIRED. The minimum distance between the units in the formation.</semantics>
+                            <semantics>Required. The minimum distance between the units in the formation.</semantics>
                         </parameter>
                         <parameter>
                             <name>Heading</name>
                             <dataType>AngleRadianFloat32</dataType>
-                            <semantics>REQUIRED. The heading of the formation in radians.</semantics>
+                            <semantics>Required. The heading of the formation in radians.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -294,27 +292,27 @@ Refered by a UUID.</semantics>
                         <parameter>
                             <name>Entity</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. The entity to follow.</semantics>
+                            <semantics>Required. The entity to follow.</semantics>
                         </parameter>
                         <parameter>
                             <name>Behind</name>
                             <dataType>MeterFloat32</dataType>
-                            <semantics>REQUIRED. The distance in meters behind the entity to follow.</semantics>
+                            <semantics>Required. The distance in meters behind the entity to follow.</semantics>
                         </parameter>
                         <parameter>
                             <name>Right</name>
                             <dataType>MeterFloat32</dataType>
-                            <semantics>REQUIRED. The distance in meters to the right of the entity to follow.</semantics>
+                            <semantics>Required. The distance in meters to the right of the entity to follow.</semantics>
                         </parameter>
                         <parameter>
                             <name>Above</name>
                             <dataType>MeterFloat32</dataType>
-                            <semantics>REQUIRED. The distance in meters above the entity to follow.</semantics>
+                            <semantics>Required. The distance in meters above the entity to follow.</semantics>
                         </parameter>
                         <parameter>
                             <name>Duration</name>
                             <dataType>TimeSecInt32</dataType>
-                            <semantics>REQUIRED. The duration of the folow action (seconds).</semantics>
+                            <semantics>Required. The duration of the folow action (seconds).</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -326,7 +324,7 @@ Refered by a UUID.</semantics>
                         <parameter>
                             <name>Heading</name>
                             <dataType>AngleRadianFloat32</dataType>
-                            <semantics>REQUIRED. Determines the heading, in radians, an entity has to turn to.</semantics>
+                            <semantics>Required. Determines the heading, in radians, an entity has to turn to.</semantics>
                         </parameter>
                         <interactionClass>
                             <name>TurnToOrientation</name>
@@ -337,12 +335,12 @@ Refered by a UUID.</semantics>
                             <parameter>
                                 <name>Pitch</name>
                                 <dataType>AngleRadianFloat32</dataType>
-                                <semantics>REQUIRED. Defines the angle ot the pitch.</semantics>
+                                <semantics>Required. Defines the angle ot the pitch.</semantics>
                             </parameter>
                             <parameter>
                                 <name>Roll</name>
                                 <dataType>AngleRadianFloat32</dataType>
-                                <semantics>REQUIRED. Defines the angle ot the roll.</semantics>
+                                <semantics>Required. Defines the angle ot the roll.</semantics>
                             </parameter>
                         </interactionClass>
                     </interactionClass>
@@ -355,7 +353,7 @@ Refered by a UUID.</semantics>
                         <parameter>
                             <name>EntityId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. Id of the entiy in which the taskee entity is mounted.</semantics>
+                            <semantics>Required. Id of the entiy in which the taskee entity is mounted.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -372,24 +370,24 @@ Refered by a UUID.</semantics>
                         <order>Receive</order>
                         <semantics>Tasks entity to fire at a location. 
  
-The Location is required and the LocationUuId is optional.
+The Location is required and the LocationUuId is optional. 
 If both parameters are received, then is up to the subscribing application to choose which to use.</semantics>
                         <parameter>
                             <name>Location</name>
                             <dataType>WorldLocationStruct</dataType>
-                            <semantics>REQUIRED. The location to fire at.</semantics>
+                            <semantics>Required. The location to fire at.</semantics>
                         </parameter>
                         <parameter>
                             <name>LocationUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>OPTIONAL. The location to fire at. 
+                            <semantics>Optional. The location to fire at. 
  
 Refered by an UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>Duration</name>
                             <dataType>TimeSecInt32</dataType>
-                            <semantics>REQUIRED. The duration of the fire (seconds).</semantics>
+                            <semantics>Required. The duration of the fire (seconds).</semantics>
                         </parameter>
                         <interactionClass>
                             <name>FireAtLocationWM</name>
@@ -400,22 +398,22 @@ Refered by an UUID.</semantics>
                             <parameter>
                                 <name>WeaponTypeToUse</name>
                                 <dataType>EntityTypeStruct</dataType>
-                                <semantics>REQUIRED. Preferd weapon type.</semantics>
+                                <semantics>Required. Preferd weapon type.</semantics>
                             </parameter>
                             <parameter>
                                 <name>MunitionTypeToUse</name>
                                 <dataType>EntityTypeStruct</dataType>
-                                <semantics>REQUIRED. Prefered muntion type.</semantics>
+                                <semantics>Required. Prefered muntion type.</semantics>
                             </parameter>
                             <parameter>
                                 <name>QuantityFired</name>
                                 <dataType>Integer16</dataType>
-                                <semantics>REQUIRED. Number of rounds to fire</semantics>
+                                <semantics>Required. Number of rounds to fire</semantics>
                             </parameter>
                             <parameter>
                                 <name>RateOfFire</name>
                                 <dataType>Float32</dataType>
-                                <semantics>REQUIRED. Number of rounds per second.</semantics>
+                                <semantics>Required. Number of rounds per second.</semantics>
                             </parameter>
                         </interactionClass>
                     </interactionClass>
@@ -428,7 +426,7 @@ Refered by an UUID.</semantics>
                         <parameter>
                             <name>Target</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. The entity to fire at.</semantics>
+                            <semantics>Required. The entity to fire at.</semantics>
                         </parameter>
                         <interactionClass>
                             <name>FireAtEntityWM</name>
@@ -439,22 +437,22 @@ Refered by an UUID.</semantics>
                             <parameter>
                                 <name>WeaponTypeToUse</name>
                                 <dataType>EntityTypeStruct</dataType>
-                                <semantics>REQUIRED. Preferd weapon type.</semantics>
+                                <semantics>Required. Preferd weapon type.</semantics>
                             </parameter>
                             <parameter>
                                 <name>MunitionTypeToUse</name>
                                 <dataType>EntityTypeStruct</dataType>
-                                <semantics>REQUIRED. Prefered munition type.</semantics>
+                                <semantics>Required. Prefered munition type.</semantics>
                             </parameter>
                             <parameter>
                                 <name>QuantityFired</name>
                                 <dataType>Integer16</dataType>
-                                <semantics>REQUIRED. Number of rounds.</semantics>
+                                <semantics>Required. Number of rounds.</semantics>
                             </parameter>
                             <parameter>
                                 <name>RateOfFire</name>
                                 <dataType>Float32</dataType>
-                                <semantics>REQUIRED. Number of rounds per second.</semantics>
+                                <semantics>Required. Number of rounds per second.</semantics>
                             </parameter>
                         </interactionClass>
                     </interactionClass>
@@ -467,7 +465,7 @@ Refered by an UUID.</semantics>
                         <parameter>
                             <name>Speed</name>
                             <dataType>VelocityMeterPerSecondFloat32</dataType>
-                            <semantics>REQUIRED. Determines the ordered speed to set for an entity, in m/s.</semantics>
+                            <semantics>Required. Determines the ordered speed to set for an entity, in m/s.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -479,12 +477,12 @@ Refered by an UUID.</semantics>
                         <parameter>
                             <name>Altitude</name>
                             <dataType>AltitudeMeterFloat64</dataType>
-                            <semantics>REQUIRED. Defines the altitude.</semantics>
+                            <semantics>Required. Defines the altitude.</semantics>
                         </parameter>
                         <parameter>
                             <name>AltitudeType</name>
                             <dataType>AltitudeTypeEnum8</dataType>
-                            <semantics>REQUIRED. Above the ground or sea.</semantics>
+                            <semantics>Required. Above the ground or sea.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -496,7 +494,7 @@ Refered by an UUID.</semantics>
                         <parameter>
                             <name>Duration</name>
                             <dataType>TimeSecInt32</dataType>
-                            <semantics>REQUIRED. Specifies the wait time (seconds).</semantics>
+                            <semantics>Required. Specifies the wait time (seconds).</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -508,7 +506,7 @@ Refered by an UUID.</semantics>
                         <parameter>
                             <name>RulesOfEngagement</name>
                             <dataType>RulesOfEngagementEnum8</dataType>
-                            <semantics>REQUIRED. Determines the rules of engagment for a entity.</semantics>
+                            <semantics>Required. Determines the rules of engagment for a entity.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -518,8 +516,8 @@ Refered by an UUID.</semantics>
                         <order>Receive</order>
                         <semantics>Task entity to establish a checkpoint. The task defines a location where a checkpoint shall be established and then operated. 
  
-The Location is required and the LocationUuId is optional.
-If both parameters are received, then is up to the subscribing application to choose which to use.
+The Location is required and the LocationUuId is optional. 
+If both parameters are received, then is up to the subscribing application to choose which to use. 
  
 If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location where the checkpoint should be established to make the task possible. 
@@ -546,29 +544,29 @@ The federation agreements shall specify how the ownership of the dynamic attribu
                         <parameter>
                             <name>Name</name>
                             <dataType>HLAunicodeString</dataType>
-                            <semantics>REQUIRED. Name of the Check Point.</semantics>
+                            <semantics>Required. Name of the Check Point.</semantics>
                         </parameter>
                         <parameter>
                             <name>Location</name>
                             <dataType>WorldLocationStruct</dataType>
-                            <semantics>REQUIRED. The position for the Check Point.</semantics>
+                            <semantics>Required. The position for the Check Point.</semantics>
                         </parameter>
                         <parameter>
                             <name>LocationUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>OPTIONAL. The location for the checkpoint. 
+                            <semantics>Optional. The location for the checkpoint. 
  
 Refered by an UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>Duration</name>
                             <dataType>TimeSecInt32</dataType>
-                            <semantics>REQUIRED. The duration of the action (seconds)</semantics>
+                            <semantics>Required. The duration of the action (seconds)</semantics>
                         </parameter>
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. May be generated by the current system if not defined. 
+                            <semantics>Required. May be generated by the current system if not defined. 
 (The modelling application creates a object instance of the object class NETN-SE CheckPoint)</semantics>
                         </parameter>
                     </interactionClass>
@@ -590,12 +588,12 @@ See semantics for object class CheckPoint in NETN-SE FOM for implications on ent
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. Identifier for the CheckPoint</semantics>
+                            <semantics>Required. Identifier for the CheckPoint</semantics>
                         </parameter>
                         <parameter>
                             <name>Duration</name>
                             <dataType>TimeSecInt32</dataType>
-                            <semantics>REQUIRED. The duration of the action  (seconds)</semantics>
+                            <semantics>Required. The duration of the action  (seconds)</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -621,7 +619,7 @@ If a NETN_CulturalFeature instance is assigned to the checkpoint is shall be del
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. Identifier for the CheckPoint</semantics>
+                            <semantics>Required. Identifier for the CheckPoint</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -635,22 +633,22 @@ The corresponding Environment Object instance  in the RPR-FOM should be created.
                         <parameter>
                             <name>ObstacleType</name>
                             <dataType>EntityTypeStruct</dataType>
-                            <semantics>REQUIRED. The type of the obstacle defined by the entity type of the obstacle (SISO REF-010-2018 Land Culture Features) .</semantics>
+                            <semantics>Required. The type of the obstacle defined by the entity type of the obstacle (SISO REF-010-2018 Land Culture Features) .</semantics>
                         </parameter>
                         <parameter>
                             <name>GeometryType</name>
                             <dataType>GeometryEnum32</dataType>
-                            <semantics>REQUIRED. The type of the geometry which can be Point, Polygon or Area</semantics>
+                            <semantics>Required. The type of the geometry which can be Point, Polygon or Area</semantics>
                         </parameter>
                         <parameter>
                             <name>Geometry</name>
                             <dataType>AreaVariantStruct</dataType>
-                            <semantics>REQUIRED. Area of the obstacle.</semantics>
+                            <semantics>Required. Area of the obstacle.</semantics>
                         </parameter>
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. A unique UUID of the Obstacle.</semantics>
+                            <semantics>Required. A unique UUID of the Obstacle.</semantics>
                         </parameter>
                         <interactionClass>
                             <name>CreateMinefield</name>
@@ -664,12 +662,12 @@ Allowed values for attributes of the parent (CreateObstacle):
                             <parameter>
                                 <name>TypeOfMines</name>
                                 <dataType>EntityTypeStruct</dataType>
-                                <semantics>REQUIRED. Type of mines used defined by the EntityTypeStruct see  section 15.5, UID 418, SISO-REF-010-2018.</semantics>
+                                <semantics>Required. Type of mines used defined by the EntityTypeStruct see  section 15.5, UID 418, SISO-REF-010-2018.</semantics>
                             </parameter>
                             <parameter>
                                 <name>MineCount_MineDensity</name>
                                 <dataType>MineCountVariantStruct</dataType>
-                                <semantics>REQUIRED. Can contain either the count of mines, or the density</semantics>
+                                <semantics>Required. Can contain either the count of mines, or the density</semantics>
                             </parameter>
                         </interactionClass>
                     </interactionClass>
@@ -682,7 +680,7 @@ Allowed values for attributes of the parent (CreateObstacle):
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. A unique UUID of the Obstacle.</semantics>
+                            <semantics>Required. A unique UUID of the Obstacle.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -695,17 +693,17 @@ The corresponding Environment Object instance in the RPR-FOM should be created.<
                         <parameter>
                             <name>Point1</name>
                             <dataType>WorldLocationStruct</dataType>
-                            <semantics>REQUIRED. The line between point1 and point2 defines the geometry of the passage.</semantics>
+                            <semantics>Required. The line between point1 and point2 defines the geometry of the passage.</semantics>
                         </parameter>
                         <parameter>
                             <name>Point2</name>
                             <dataType>WorldLocationStruct</dataType>
-                            <semantics>REQUIRED. The line between point1 and point2 defines the geometry of the passage.</semantics>
+                            <semantics>Required. The line between point1 and point2 defines the geometry of the passage.</semantics>
                         </parameter>
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. A unique UUID of the passage.</semantics>
+                            <semantics>Required. A unique UUID of the passage.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -717,7 +715,7 @@ The corresponding Environment Object instance in the RPR-FOM should be created.<
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. A unique UUID of the passage.</semantics>
+                            <semantics>Required. A unique UUID of the passage.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -725,29 +723,29 @@ The corresponding Environment Object instance in the RPR-FOM should be created.<
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Task entity to perform a patrol. The patrol covers the path from the current location to the start point of the patrol route, and the patrol route itself. The patrol route shall be followed from start to end. The entity behaviour at the end point depends on the patrol type.
-
-The Path is required and should contain at least two point. The PathUuid is optional.
+                        <semantics>Task entity to perform a patrol. The patrol covers the path from the current location to the start point of the patrol route, and the patrol route itself. The patrol route shall be followed from start to end. The entity behaviour at the end point depends on the patrol type. 
+ 
+The Path is required and should contain at least two point. The PathUuid is optional. 
 If both parameters are received, then is up to the subscribing application to choose which to use.</semantics>
                         <parameter>
                             <name>Path</name>
                             <dataType>ArrayOfWorldLocationStruct</dataType>
-                            <semantics>REQUIRED. Specifies the route to patrol, as a pylogonal chain.</semantics>
+                            <semantics>Required. Specifies the route to patrol, as a pylogonal chain.</semantics>
                         </parameter>
                         <parameter>
                             <name>PathUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>OPTIONAL. Specifies the route to patrol, refered by an UUID.</semantics>
+                            <semantics>Optional. Specifies the route to patrol, refered by an UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>PatrolType</name>
                             <dataType>PatrolTypeEnum32</dataType>
-                            <semantics>REQUIRED. Defines how the patrol shall be excuted. The total move from the start point to start point (for patroltype is circle and reverse) is defined as one cycle (see also PatrolRepeating).</semantics>
+                            <semantics>Required. Defines how the patrol shall be excuted. The total move from the start point to start point (for patroltype is circle and reverse) is defined as one cycle (see also PatrolRepeating).</semantics>
                         </parameter>
                         <parameter>
                             <name>MoveType</name>
                             <dataType>PatrolMoveTypeEnum32</dataType>
-                            <semantics>REQUIRED. Defines how the entity shall move during the patrol route.</semantics>
+                            <semantics>Required. Defines how the entity shall move during the patrol route.</semantics>
                         </parameter>
                         <interactionClass>
                             <name>PatrolRepeating</name>
@@ -762,12 +760,12 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                             <parameter>
                                 <name>Duration</name>
                                 <dataType>TimeSecInt32</dataType>
-                                <semantics>REQUIRED. The duration of the total patrol task.</semantics>
+                                <semantics>Required. The duration of the total patrol task.</semantics>
                             </parameter>
                             <parameter>
                                 <name>IntervalTime</name>
                                 <dataType>TimeSecInt32</dataType>
-                                <semantics>REQUIRED. The interval time between two cycles.</semantics>
+                                <semantics>Required. The interval time between two cycles.</semantics>
                             </parameter>
                         </interactionClass>
                     </interactionClass>
@@ -780,7 +778,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <parameter>
                             <name>Status</name>
                             <dataType>TransmitterOperationalStatusEnum8</dataType>
-                            <semantics>REQUIRED. Status on the transmitter.</semantics>
+                            <semantics>Required. Status on the transmitter.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -792,7 +790,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <parameter>
                             <name>ObservationArea</name>
                             <dataType>AreaVariantStruct</dataType>
-                            <semantics>REQUIRED. Area to observe.</semantics>
+                            <semantics>Required. Area to observe.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -804,17 +802,17 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <parameter>
                             <name>AffectedCommunicationNetwork</name>
                             <dataType>Text64</dataType>
-                            <semantics>REQUIRED. Reference to the affected Communication Network. If not provided all communication networks are affected.</semantics>
+                            <semantics>Required. Reference to the affected Communication Network. If not provided all communication networks are affected.</semantics>
                         </parameter>
                         <parameter>
                             <name>AffectedArea</name>
                             <dataType>GeodeticQuadrangle</dataType>
-                            <semantics>REQUIRED. Area affected by discruption.</semantics>
+                            <semantics>Required. Area affected by discruption.</semantics>
                         </parameter>
                         <parameter>
                             <name>DisruptionEnabled</name>
                             <dataType>HLAboolean</dataType>
-                            <semantics>REQUIRED. Disruption enabled or disabled. Default is True = Enabled.</semantics>
+                            <semantics>Required. Disruption enabled or disabled. Default is True = Enabled.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -827,22 +825,22 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                     <parameter>
                         <name>ReportId</name>
                         <dataType>TransactionId</dataType>
-                        <semantics>REQUIRED. Identifies the Report</semantics>
+                        <semantics>Required. Identifies the Report</semantics>
                     </parameter>
                     <parameter>
                         <name>When</name>
                         <dataType>Datetime18</dataType>
-                        <semantics>REQUIRED. Date and time when the reported status was valid.</semantics>
+                        <semantics>Required. Date and time when the reported status was valid.</semantics>
                     </parameter>
                     <parameter>
                         <name>CommunicationNetworkIds</name>
                         <dataType>ArrayOfText64</dataType>
-                        <semantics>OPTIONAL (default empty list). List with ids to CommunicationNetworkIdentifier that represents the communication network.</semantics>
+                        <semantics>Optional (default empty list). List with ids to CommunicationNetworkIdentifier that represents the communication network.</semantics>
                     </parameter>
                     <parameter>
                         <name>Comments</name>
                         <dataType>HLAunicodeString</dataType>
-                        <semantics>OPTIONAL. Any additional comments</semantics>
+                        <semantics>Optional. Any additional comments</semantics>
                     </parameter>
                     <interactionClass>
                         <name>StatusReport</name>
@@ -853,7 +851,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <parameter>
                             <name>EntityId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. The entity that is reported about.</semantics>
+                            <semantics>Required. The entity that is reported about.</semantics>
                         </parameter>
                         <interactionClass>
                             <name>PositionStatusReport</name>
@@ -864,17 +862,17 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                             <parameter>
                                 <name>Position</name>
                                 <dataType>WorldLocationStruct</dataType>
-                                <semantics>REQUIRED. Position of the entity at the specified time.</semantics>
+                                <semantics>Required. Position of the entity at the specified time.</semantics>
                             </parameter>
                             <parameter>
                                 <name>Heading</name>
                                 <dataType>AngleRadianFloat32</dataType>
-                                <semantics>REQUIRED. Heading of the entity.</semantics>
+                                <semantics>Required. Heading of the entity.</semantics>
                             </parameter>
                             <parameter>
                                 <name>Speed</name>
                                 <dataType>VelocityMeterPerSecondFloat32</dataType>
-                                <semantics>REQUIRED. Speed of the entity.</semantics>
+                                <semantics>Required. Speed of the entity.</semantics>
                             </parameter>
                         </interactionClass>
                         <interactionClass>
@@ -886,7 +884,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                             <parameter>
                                 <name>DamageType</name>
                                 <dataType>DamageStatusEnhancedEnum32</dataType>
-                                <semantics>REQUIRED. Damage state of the reported entity.</semantics>
+                                <semantics>Required. Damage state of the reported entity.</semantics>
                             </parameter>
                         </interactionClass>
                         <interactionClass>
@@ -898,7 +896,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                             <parameter>
                                 <name>Resource</name>
                                 <dataType>NETN_SupplyStruct</dataType>
-                                <semantics>REQUIRED. The type of resource and remaining quantity.</semantics>
+                                <semantics>Required. The type of resource and remaining quantity.</semantics>
                             </parameter>
                         </interactionClass>
                         <interactionClass>
@@ -910,12 +908,12 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                             <parameter>
                                 <name>FromDirection</name>
                                 <dataType>AngleRadianFloat32</dataType>
-                                <semantics>REQUIRED. FromDirection (Direction from which the entity is attacked, between 0..2π or -1 when not specified.)</semantics>
+                                <semantics>Required. FromDirection (Direction from which the entity is attacked, between 0..2π or -1 when not specified.)</semantics>
                             </parameter>
                             <parameter>
                                 <name>Severeness</name>
                                 <dataType>AttackTypeEnum32</dataType>
-                                <semantics>REQUIRED. Severeness of the attack upon the reporting entity.</semantics>
+                                <semantics>Required. Severeness of the attack upon the reporting entity.</semantics>
                             </parameter>
                         </interactionClass>
                     </interactionClass>
@@ -928,17 +926,17 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <parameter>
                             <name>Observer</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. Entity that observed the enemy (or neutral/unknown entity) and sends the spot report.</semantics>
+                            <semantics>Required. Entity that observed the enemy (or neutral/unknown entity) and sends the spot report.</semantics>
                         </parameter>
                         <parameter>
                             <name>IdentificationLevel</name>
                             <dataType>IdentificationLevelEnum8</dataType>
-                            <semantics>REQUIRED. The identification level of the entit(y)(ies) spotted.</semantics>
+                            <semantics>Required. The identification level of the entit(y)(ies) spotted.</semantics>
                         </parameter>
                         <parameter>
                             <name>SpottedEntities</name>
                             <dataType>ArrayOfSpottedEntities</dataType>
-                            <semantics>REQUIRED. Spotted entities at the time specified in the parameter 'When'.</semantics>
+                            <semantics>Required. Spotted entities at the time specified in the parameter 'When'.</semantics>
                         </parameter>
                         <interactionClass>
                             <name>SensorReport</name>
@@ -949,7 +947,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                             <parameter>
                                 <name>SensorType</name>
                                 <dataType>EntityTypeStruct</dataType>
-                                <semantics>REQUIRED. The type of the sensor that detected the entit(y)(ies).</semantics>
+                                <semantics>Required. The type of the sensor that detected the entit(y)(ies).</semantics>
                             </parameter>
                         </interactionClass>
                     </interactionClass>
@@ -962,17 +960,17 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <parameter>
                             <name>Observer</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>REQUIRED. Entity that observed the enemy (or neutral/unknown entity) and sends the report.</semantics>
+                            <semantics>Required. Entity that observed the enemy (or neutral/unknown entity) and sends the report.</semantics>
                         </parameter>
                         <parameter>
                             <name>WeaponType</name>
                             <dataType>EntityTypeStruct</dataType>
-                            <semantics>REQUIRED. The type of the weapon.</semantics>
+                            <semantics>Required. The type of the weapon.</semantics>
                         </parameter>
                         <parameter>
                             <name>EntitiesInWeaponRange</name>
                             <dataType>ArrayOfUuid</dataType>
-                            <semantics>REQUIRED. Array with entities.</semantics>
+                            <semantics>Required. Array with entities.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -985,22 +983,22 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                     <parameter>
                         <name>TaskManagementId</name>
                         <dataType>TransactionId</dataType>
-                        <semantics>REQUIRED. Identifies the management task.</semantics>
+                        <semantics>Required. Identifies the management task.</semantics>
                     </parameter>
                     <parameter>
                         <name>Taskee</name>
                         <dataType>UuidArrayOfHLAbyte16</dataType>
-                        <semantics>REQUIRED. The entity that has to execute the task.</semantics>
+                        <semantics>Required. The entity that has to execute the task.</semantics>
                     </parameter>
                     <parameter>
                         <name>Tasker</name>
                         <dataType>Callsign</dataType>
-                        <semantics>OPTIONAL (default emtpyy string). Identifies the commander of the task.</semantics>
+                        <semantics>Optional (default empty string). Identifies the commander of the task.</semantics>
                     </parameter>
                     <parameter>
                         <name>CommunicationNetworkIds</name>
                         <dataType>ArrayOfText64</dataType>
-                        <semantics>OPTIONAL (default empty list). List with ids to CommunicationNetworkIdentifier that represents the communication network.</semantics>
+                        <semantics>Optional (default empty list). List with ids to CommunicationNetworkIdentifier that represents the communication network.</semantics>
                     </parameter>
                     <interactionClass>
                         <name>CancelSpecifiedTasks</name>
@@ -1011,7 +1009,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <parameter>
                             <name>Tasks</name>
                             <dataType>ArrayOfTaskIds</dataType>
-                            <semantics>REQUIRED. Tasks that have to be cancelled.</semantics>
+                            <semantics>Required. Tasks that have to be cancelled.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -1030,22 +1028,22 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                         <parameter>
                             <name>TaskId</name>
                             <dataType>TransactionId</dataType>
-                            <semantics>REQUIRED. Identifies the task associated with the task report.</semantics>
+                            <semantics>Required. Identifies the task associated with the task report.</semantics>
                         </parameter>
                         <parameter>
                             <name>TaskStatus</name>
                             <dataType>TaskStatusEnum32</dataType>
-                            <semantics>REQUIRED. Indicates the evaluation status of the task.</semantics>
+                            <semantics>Required. Indicates the evaluation status of the task.</semantics>
                         </parameter>
                         <parameter>
                             <name>When</name>
                             <dataType>Datetime18</dataType>
-                            <semantics>REQUIRED. Creation date and time of the report.</semantics>
+                            <semantics>Required. Creation date and time of the report.</semantics>
                         </parameter>
                         <parameter>
                             <name>Comments</name>
                             <dataType>HLAunicodeString</dataType>
-                            <semantics>OPTIONAL (default empty string). Any additional comments. For example reason for cancelling, error, etc.</semantics>
+                            <semantics>Optional (default empty string). Any additional comments. For example reason for cancelling, error, etc.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -1058,42 +1056,41 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                     <parameter>
                         <name>TaskId</name>
                         <dataType>TransactionId</dataType>
-                        <semantics>REQUIRED. Identifies the task</semantics>
+                        <semantics>Required. Identifies the task</semantics>
                     </parameter>
                     <parameter>
                         <name>Taskee</name>
                         <dataType>UuidArrayOfHLAbyte16</dataType>
-                        <semantics>REQUIRED. The entity that has to execute the task</semantics>
+                        <semantics>Required. The entity that has to execute the task</semantics>
                     </parameter>
                     <parameter>
                         <name>Tasker</name>
                         <dataType>Callsign</dataType>
-                        <semantics>OPTIONAL (default empty string). Indentifies the commander of the task.</semantics>
+                        <semantics>Optional (default empty string). Indentifies the commander of the task.</semantics>
                     </parameter>
                     <interactionClass>
                         <name>MagicMove</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>The Location is required and the LocationUuId is optional.
-If both parameters are received, then is up to the subscribing application to choose which to use.
+                        <semantics>The Location is required and the LocationUuId is optional. 
+If both parameters are received, then is up to the subscribing application to choose which to use. 
  
-Place the entity to the specified location with a given heading. All given task of the entity are cancelled.</semantics>
+Place the entity to the specified location with the given heading. All given task of the entity are cancelled.</semantics>
                         <parameter>
                             <name>Location</name>
                             <dataType>WorldLocationStruct</dataType>
-                            <semantics>REQUIRED. The new location for the entity.</semantics>
+                            <semantics>Required. Location of the entity.</semantics>
                         </parameter>
                         <parameter>
                             <name>LocationUuid</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
-                            <semantics>OPTIONAL. The new location for the entity. Refered by a UUID.</semantics>
+                            <semantics>Optional. The new location for the entity. Refered by a UUID.</semantics>
                         </parameter>
                         <parameter>
                             <name>Heading</name>
                             <dataType>AngleRadianFloat32</dataType>
-                            <semantics>REQUIRED. The entity is set in the position without a move order and without using simulation time (magic placement). 
-The orienation will be set in the given heading.</semantics>
+                            <semantics>Required. Heading of the entity.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -1105,7 +1102,7 @@ The orienation will be set in the given heading.</semantics>
                         <parameter>
                             <name>Resource</name>
                             <dataType>NETN_SupplyStruct</dataType>
-                            <semantics>REQUIRED. Defines the resource type that will get a new quantity value.</semantics>
+                            <semantics>Required. Defines the resource type that will get a new quantity value.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -1113,11 +1110,11 @@ The orienation will be set in the given heading.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Provides the set of ETR_Task, ETR_SimCon and ETR_Report interactions that the federate modelling the entity supports. This interaction is in response to a QueryCapabilitiesSupported, using the same Taskee and Tasker. The names returned is the base interaction class name and not fully qualified.</semantics>
+                        <semantics>Provides the set of ETR_Task, ETR_SimCon and ETR_Report interactions that the federate modelling the entity supports. This interaction is in response to a QuerySupportedCapabilities, using the same Taskee and Tasker. The names returned is the base interaction class name and not fully qualified.</semantics>
                         <parameter>
                             <name>CapabilityNames</name>
                             <dataType>ArrayOfNames</dataType>
-                            <semantics>REQUIRED. Array of task and report names that the entity supports; the names match with the FOM interaction class names.</semantics>
+                            <semantics>Required. Array of task and report names that the entity supports; the names match with the FOM interaction class names.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -1415,11 +1412,11 @@ Default value: Moving (213)</semantics>
                 <field>
                     <name>Symbol</name>
                     <dataType>SymbolIdentifier</dataType>
-                    <semantics>Symbol identifier for the entity, the detailed level may vary, the publishing federate decides the level of details in the symbol description. E.g. 
-Default Ground value: SUGP------***** 
-Default Air value: SUAP------***** 
-Default Sea Surface value: SUSP------***** 
-Default Subsurface value: SUUP------*****</semantics>
+                    <semantics>Symbol identifier for the entity. The detailed level may vary and the publishing federate decides the level of details in the symbol description. E.g. 
+Default Ground value: app6b:SUGP------***** 
+Default Air value: app6b:SUAP------***** 
+Default Sea Surface value: app6b:SUSP------***** 
+Default Subsurface value: app6b:SUUP------*****</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
