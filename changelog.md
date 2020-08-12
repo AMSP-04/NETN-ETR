@@ -7,44 +7,13 @@ This version of NETN-ETR was developed by MSG-163.
 
 The NETN ETR module is not backward compatible with the previous NETN LLBML Module and usage require updates to federates to use the new class names and structure.
 
-#### 2020-06-25 - LO
-#20, #25, #29, #31, #32
-
-#### 2020-03-20 - LO
-Renamed parameters for UUID reference:
-Destination -> LocationUuid, Waypoints -> Path, Path -> PathUuid
-
-#### 2020-03-19 - LO
-Moved datatypes to NETN-BASE
-Two parameters for specifing Point, at a number of tasks
-Two parameters for specifing Path, at a number of tasks
-Altitude modelling, datatypes
-Identifier -> Id, (naming conventions)
-
-#### 2020-03-05 - LO
-Moved Array ArrayOfWorldLocationStruct to NETN-SE
-Moved Enum PathTypeEnum32 to NETN-SE
-Moved HLAvariantRecord PathVariantStruct to NETN-SE
-Moved Enum PointTypeEnum32 to NETN-SE
-Moved HLAvariantRecord PointVariantStruct to NETN-SE
-Changed datatype at attribute: CreateObstacle.Geometry: ArrayOfWorldLocationStruct
-Changed datatype at attribute: Patrol.PatrolRoute: PathVariantStruct
-Changed datatype at attribute: EstablishCheckPoint.Location: PointVariantStruct
-Added new attribute to ETR_Task: CommunicationNetworkIdentifiers
-Added new attribute to ETR_Report: CommunicationNetworkIdentifiers
-Added new Task: JamCommunicaction
-Added new Task: Observe
-
-#### Updated the datatype PathVariantStruct used in parameter Waypoints at MoveToLocation and MoveToEntity
-
-#### Updated datatype for Waypoints at MoveToLocation and MoveToEntity and Destination at MoveToLocation
-
-#### New Task, SetTransmitterStatus 
-
-#### NETN-ETR#3 Move TransactionId Datatype definition to NETN Base
-* TransactionId Datatype moved to NETN Base
-
-#### NETN-ERT#4 Add more tasks
+* Added new attribute to ETR_Task: CommunicationNetworkIdentifiers
+* Added new Task: DisruptCommunicaction
+* Added new Task: Observe
+* Added SetTransmitterStatus 
+* Added MagicMove
+* Added MagicResource* Added QuerySupportedCapabilities interaction
+* Added CapabilitiesSupported interaction
 * Added EstablishCheckPoint
 * Added OperateCheckPoint
 * Added RemoveCheckPoint
@@ -56,7 +25,9 @@ Added new Task: Observe
 * Added RemovePassage
 * Added Patrol
 * Added PatrolRepeating
+
 * Removed FollowRoute
+
 * Renamed MoveToUnit to MoveToEntity 
 * Renamed FollowUnit to FollowEntity
 * Renamed VehicleMount to Mount
@@ -66,14 +37,8 @@ Added new Task: Observe
 * Renamed FireDirectWM to FireAtEntityWM
 * Renamed ChangeOrderedSpeed to SetOrderedSpeed
 * Renamed ChangeOrderedAltitude to SetOrderedAltitude
-* Added MagicMove
-* Added MagicResource
-
-#### NETN-ETR#5 Typo: SensorReport.SpottedEnities
-* Changed Parameter SensorReport.SpottedEnities to SpottedEntities.
-
-#### NETN-ETR#6 Typo: MOUNT.EntiityId
-* Changed Parameter MOUNT.EntiityId to EntityId
+* Renamed Parameter SensorReport.SpottedEnities to SpottedEntities.
+* Renamed Parameter MOUNT.EntiityId to EntityId
 
 
 

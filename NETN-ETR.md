@@ -38,32 +38,32 @@ This section summarizes the Entity Task interaction classes in the ETR FOM modul
 
 |Task|Description|
 |---|---|
+|AddPassage|Task entity to lay/build a passage between the two given points. The passage can for example be a passage through an obstacle or a bridge over a river. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible. |
+|ClearObstacle|Task an entity to clear the obstacle or minefield with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the geometry of the obstacle to make the task possible.|
+|CreateObstacle|Task entity to create an obstacle with the given geometry. |
+|Dismount|Task entity to dismount from the entity where it is in.|
+|EstablishCheckPoint|Task entity to establish a checkpoint. The task defines a location where a checkpoint shall be established and then operated. |
+|DisruptCommunication|Task entity to introduce a communication network disruption.|
+|FireAtEntity|Task entity to fire at another specified entity.|
+|FireAtLocation|Task entity to fire at a location.|
+|FollowEntity|Task entity to follow another entity.|
 |Move|Task entity to move in the specified direction for the given duration.|
+|MoveIntoFormation|Task aggregate entity to move into the given formation with the given heading.|
 |MoveToLocation|Task entity to move to the specified location.|
 |MoveToEntity|Task entity to move to another entity.|
-|MoveIntoFormation|Task aggregate entity to move into the given formation with the given heading.|
-|FollowEntity|Task entity to follow another entity.|
-|TurnToHeading|Task entity to turn to the specified heading.|
 |Mount|Task entity to mount in the specified entity. The taskee should be within a certain distance tolerance of the entiity to mount into. this tolerance must be specified in the federation agreements. Mount includes: embark (vessel), board (plane), and so on.|
-|Dismount|Task entity to dismount from the entity where it is in.|
-|FireAtLocation|Task entity to fire at a location.|
-|FireAtEntity|Task entity to fire at another specified entity.|
-|SetOrderedSpeed|Task entity to set the ordered speed.|
-|SetOrderedAltitude|Task entity to set the ordered altitude.|
-|Wait|Task entity to wait a defined duration.|
-|SetRulesOfEngagement|Task entity to change the rules of engagement.|
-|EstablishCheckPoint|Task entity to establish a checkpoint. The task defines a location where a checkpoint shall be established and then operated. |
-|OperateCheckPoint| Task entity to operate a checkpoint. The task activates a deactivated check point. |
-|StopAtSideOfRoad|Task entity to stop at the side of the road. This task is only relevant for an entity that is moving along a road to a destination. The executing move task is canceled and a new move is defined to a position at the side of the road (the simulator has to calculate this location).|
-|RemoveCheckPoint|Task entity to remove a checkpoint. This task removes the checkpoint that is generated in the EstablishCheckpoint task. |
-|CreateObstacle|Task entity to create an obstacle with the given geometry. |
-|ClearObstacle|Task an entity to clear the obstacle or minefield with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the geometry of the obstacle to make the task possible.|
-|AddPassage|Task entity to lay/build a passage between the two given points. The passage can for example be a passage through an obstacle or a bridge over a river. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible. |
-|RemovePassage|Task entity to remove the pasasage with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible.|
-|Patrol|Task entity to perform a patrol. The patrol covers the path from the current location to the start point of the patrol route, and the patrol route itself. The patrol route shall be followed from start to end. The entity behaviour at the end point depends on the patrol type.|
-|SetTransmitterStatus|Task entity to switch on/off all of its transmitters.|
 |Observe|Task entity to observe an area with sensors. |
-|JamCommunication|Task entity to jam a communication network in a specified area.|
+|OperateCheckPoint| Task entity to operate a checkpoint. The task activates a deactivated check point. |
+|Patrol|Task entity to perform a patrol. The patrol covers the path from the current location to the start point of the patrol route, and the patrol route itself. The patrol route shall be followed from start to end. The entity behaviour at the end point depends on the patrol type.|
+|RemoveCheckPoint|Task entity to remove a checkpoint. This task removes the checkpoint that is generated in the EstablishCheckpoint task. |
+|RemovePassage|Task entity to remove the pasasage with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible.|
+|SetOrderedAltitude|Task entity to set the ordered altitude.|
+|SetOrderedSpeed|Task entity to set the ordered speed.|
+|SetRulesOfEngagement|Task entity to change the rules of engagement.|
+|SetTransmitterStatus|Task entity to switch on/off all of its transmitters.|
+|StopAtSideOfRoad|Task entity to stop at the side of the road. This task is only relevant for an entity that is moving along a road to a destination. The executing move task is canceled and a new move is defined to a position at the side of the road (the simulator has to calculate this location).|
+|TurnToHeading|Task entity to turn to the specified heading.|
+|Wait|Task entity to wait a defined duration.|
 
 
 ### Entity Reports
@@ -89,8 +89,6 @@ This section summarizes the Task Management interaction classes in the ETR FOM m
 |CancelSpecifiedTasks|Cancel all specified tasks. Tasks already started are also cancelled.|
 |CancelAllTasks|Cancel all tasks. Tasks already started are also cancelled.|
 |TaskStatusReport|A report about the status of a task given to an entity. The status of the task defined by the TaskId can be: Accepted, Refused, Cancelled, Executing, Completed or Error.|
-|QueryCapabilitiesSupported|Query an entity which tasks and reports it supports. The taskee shall respond with a CapabilitiesSupported message.|
-|CapabilitiesSupported|Provide the set of tasks and reports that the entity supports. This interaction is in response to a QueryCapabilitiesSupported, using the same Taskee and Tasker.|
 
 
 ### Simulation Control
@@ -102,6 +100,8 @@ This section summarizes the Simulation Control interaction classes in the ETR FO
 |---|---|
 |MagicMove|Place the entity to the specified location with a given heading. All given task of the entity are cancelled.|
 |MagicResource|Changes the resource amount of the entity.|
+|QuerySupportedCapabilities|Query an entity which tasks and reports it supports. The taskee shall respond with a CapabilitiesSupported message.|
+|CapabilitiesSupported|Provide the set of tasks and reports that the entity supports. This interaction is in response to a QueryCapabilitiesSupported, using the same Taskee and Tasker.|
 
 ## ETR Task Processing
 
@@ -196,19 +196,19 @@ A task shall be placed in the task list as follows:
 
 In order to define which tasks can run concurrently, we divide the tasks in four task groups:
 
-| Movement group    | Weapon group     | SetAction group      | Single group |
-| ----------------- | ---------------- | -------------------- | ------------ |
-| Move              | FireAtLocation   | SetOrderedSpeed      | Mount              |
-| MoveToLocation    | FireAtLocationWM | SetOrderedAltitude   | Dismount             |
-| MoveToEntity      | FireAtEntity     | SetRulesOfEngagement | EstablishCheckPoint             |
-| MoveIntoFormation | FireAtEntityWM   | SetTransmitterStatus | OperateCheckPoint             |
-| FollowEntity      |                  | JamCommunication | RemoveCheckPoint             |
-| TurnToHeading     |                  |                      |  CreateObstacle            |
-| TurnToOrientation |                  |                      | CreateMinefield             |
-| Wait              |                  |                      |   ClearObstacle           |
-| Patrol            |                  |                      | AddPassage             |
-| PatrolRepeating   |                  |                      | RemovePassage             |
-| StopAtSideOfRoad  |                  |                      |              |
+| Movement group | Weapon group | SetAction group | Single group |
+| --- | --- | --- | --- |
+| Move | FireAtLocation | SetOrderedSpeed | Mount |
+| MoveToLocation | FireAtLocationWM | SetOrderedAltitude | Dismount |
+| MoveToEntity | FireAtEntity | SetRulesOfEngagement | EstablishCheckPoint |
+| MoveIntoFormation | FireAtEntityWM | SetTransmitterStatus | OperateCheckPoint |
+| FollowEntity || DisruptCommunication | RemoveCheckPoint |
+| TurnToHeading ||| CreateObstacle |
+| TurnToOrientation ||| CreateMinefield |
+| Wait | | | ClearObstacle |
+| Patrol | | | AddPassage |
+| PatrolRepeating | | | RemovePassage |
+| StopAtSideOfRoad | | | |
 | Observe | | | |
 
 There are the following restrictions regarding concurrency:
@@ -231,16 +231,18 @@ There are the following restrictions regarding concurrency:
 
 So, several tasks can be executed at the same time. For example a Patrol, SetOrderedSpeed and FireAtEntity; or a MoveToLocation, SetOrderedAltitude and FireAtLocation. A FireAtEntity task can be timed while executing a MoveToLocation task by using the StartWhen time. It is also possible to change the speed or altitiude after a certain time during a movement by using the StartWhen time for the SetOrderedSpeed or SetOrderedAltitude task.
 
-## ETR Task Management Tasks
+## ETR Task Management
+
+
+
+## ETR Simulation Control
+A Simulation Control task for an entity shall be executed immediately, regardless of the presence of any (concurrent or non-concurrent) executing task.
 
 ### Entity Task and Reporting Capabilities
 
 It shall be possible to query an entity for the ETR tasks and ETR reports that it supports. The set of tasks and reports that an entity supports is implementation-specific, and shall be used in the Received state of a task to determine if the task is supported.
 
-With the interaction class `QueryCapabilitiesSupported` an entity can be queried for the supported ETR tasks and ETR reports. The result is provided via the interaction class `CapabilitiesSupported`.
-
-## ETR Simulation Control Tasks
-A Simulation Control task for an entity shall be executed immediately, regardless of the presence of any (concurrent or non-concurrent) executing task.
+With the interaction class `QuerySupportedCapabilities` an entity can be queried for the supported ETR tasks and ETR reports. The result is provided via the interaction class `CapabilitiesSupported`.
 
 ### Magic Move
 A `MagicMove` for an entity shall implicitly cancel all tasks for the entity. A TaskStatusReport (cancelled) shall be issued for each task in accordance with the task state diagram.
