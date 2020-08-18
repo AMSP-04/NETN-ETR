@@ -676,7 +676,7 @@ Allowed values for attributes of the parent (CreateObstacle):
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Task an entity to clear the obstacle or minefield with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the geometry of the obstacle to make the task possible.</semantics>
+                        <semantics>Task entity to clear the obstacle or minefield with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the geometry of the obstacle to make the task possible.</semantics>
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>

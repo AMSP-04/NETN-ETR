@@ -5,7 +5,7 @@ This version is the initial version of the new NETN-ETR FOM module based on prev
 
 This version of NETN-ETR was developed by MSG-163.
 
-The NETN ETR module is not backward compatible with the previous NETN LLBML Module and usage require updates to federates to use the new class names and structure.
+The NETN-ETR FOM module is not backward compatible with the previous NETN LLBML Module and usage require updates to federates to use the new class names and structure.
 
 * Added new attribute to ETR_Task: CommunicationNetworkIdentifiers
 * Added new Task: DisruptCommunicaction
