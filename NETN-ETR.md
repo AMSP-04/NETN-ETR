@@ -4,13 +4,13 @@ Copyright (C) 2020 NATO/OTAN.
 This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENCE.md).
 
 ## Introduction
-This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN ETR FOM module is available as an XML file for use in HLA based federations.
+This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN-ETR FOM module is available as an XML file for use in HLA based federations.
 
 ### Purpose
-The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low-level tasks that can easily be interpreted and executed by simulators that model the behaviour of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.
+The NETN-ETR FOM module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low-level tasks that can easily be interpreted and executed by simulators that model the behaviour of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.
 
 ### Scope
-The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine granularity:
+The NETN-ETR FOM module is simulation oriented and focuses on tasks with a fine granularity:
 * It enables the transformation of command and control messages into tasks that can be executed by a simulator.
 * It defines status reports that can be used for producing command and control reports needed for decision making.
 * It supports the modelling of simulated command and control interactions between federates in a distributed simulation, for example during an MRM disaggregation process.
@@ -39,7 +39,7 @@ This section summarizes the Entity Task interaction classes in the ETR FOM modul
 |Task|Description|
 |---|---|
 |AddPassage|Task entity to lay/build a passage between the two given points. The passage can for example be a passage through an obstacle or a bridge over a river. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible. |
-|ClearObstacle|Task an entity to clear the obstacle or minefield with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the geometry of the obstacle to make the task possible.|
+|ClearObstacle|Task entity to clear the obstacle or minefield with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the geometry of the obstacle to make the task possible.|
 |CreateObstacle|Task entity to create an obstacle with the given geometry. |
 |Dismount|Task entity to dismount from the entity where it is in.|
 |EstablishCheckPoint|Task entity to establish a checkpoint. The task defines a location where a checkpoint shall be established and then operated. |
@@ -229,11 +229,7 @@ There are the following restrictions regarding concurrency:
    1. Only one task in this group can be executed at the same time.
    2. A task in this group can not run together with a task in another group.
 
-So, several tasks can be executed at the same time. For example a Patrol, SetOrderedSpeed and FireAtEntity; or a MoveToLocation, SetOrderedAltitude and FireAtLocation. A FireAtEntity task can be timed while executing a MoveToLocation task by using the StartWhen time. It is also possible to change the speed or altitiude after a certain time during a movement by using the StartWhen time for the SetOrderedSpeed or SetOrderedAltitude task.
-
-## ETR Task Management
-
-
+So, several tasks can be executed at the same time. For example a `Patrol`, `SetOrderedSpeed` and `FireAtEntity`; or a `MoveToLocation`, `SetOrderedAltitude` and `FireAtLocation`. A `FireAtEntity` task can be timed while executing a `MoveToLocation` task by using the `StartWhen` time. It is also possible to change the speed or altitude after a certain time during a movement by using the `StartWhen` time for the `SetOrderedSpeed` or `SetOrderedAltitude` task.
 
 ## ETR Simulation Control
 A Simulation Control task for an entity shall be executed immediately, regardless of the presence of any (concurrent or non-concurrent) executing task.
@@ -245,10 +241,10 @@ It shall be possible to query an entity for the ETR tasks and ETR reports that i
 With the interaction class `QuerySupportedCapabilities` an entity can be queried for the supported ETR tasks and ETR reports. The result is provided via the interaction class `CapabilitiesSupported`.
 
 ### Magic Move
-A `MagicMove` for an entity shall implicitly cancel all tasks for the entity. A TaskStatusReport (cancelled) shall be issued for each task in accordance with the task state diagram.
+A `MagicMove` for an entity shall implicitly cancel all tasks for the entity. A `TaskStatusReport` (cancelled) shall be issued for each task in accordance with the task state diagram.
 
 ### Magic Resources
-A `MagicResource` shall update the entity resources. Waiting or executing tasks of the entity are affected in the sense that these tasks have more or less resources available after the MagicResource.
+A `MagicResource` shall update the entity resources. Waiting or executing tasks of the entity are affected in the sense that these tasks have more or less resources available after the `MagicResource`.
 
 ## Implementation Requirements
 This section lists the requirements for applications that implement Entity Tasking and Reporting. The requirements are provided from receiver point of view (entity taskee, the federate application modelling the entity) and sender point of view (entity tasker, the federate application sending a task or receiving a report for an entity).
@@ -256,10 +252,10 @@ This section lists the requirements for applications that implement Entity Taski
 The receiver:
 1.	SHALL support all ETR TaskManagement and ETR SimCon classes.
 2.	MAY support a subset of the ETR Task and ETR Report classes.
-3.	SHALL provide all interaction class parameters when sending an ETR interaction.
+3.	SHALL provide the interaction class parameters in accordance with the parameter-semantics in the FOM.
 
 The sender:
-1.	SHALL provide all interaction class parameters when sending an ETR interaction.
+1.	SHALL provide the interaction class parameters in accordance with the parameter-semantics in the FOM.
 
 In addition, for the receiver, the following SHALL be documented in the federation agreements:
 1.	Distance tolerances of supported tasks (for the tasks `Mount`, `EstablishCheckPoint`, `OperateCheckPoint`, `RemoveCheckPoint`, `CreateObstacle`, `ClearObstacle`, `CreateMinefield`, `AddPassage`, and `RemovePassage`).
