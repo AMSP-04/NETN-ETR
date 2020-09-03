@@ -771,7 +771,7 @@ Place the entity to the specified location with the given heading. All given tas
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time then the cylce starts directly (without delay). If the time of a cylce takes less then the interval time then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
+                            <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time then the cycle starts directly (without delay). If the time of a cycle takes less then the interval time then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
                             <parameter>
                                 <name>Duration</name>
                                 <dataType>TimeSecInt32</dataType>
@@ -801,7 +801,7 @@ Place the entity to the specified location with the given heading. All given tas
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Task entity to remove the pasasage with the given UUID. The taskee entity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible.</semantics>
+                        <semantics>Task entity to remove the passage with the given UUID. The tasked entity should be within a certain distance tolerance (specified in the federation agreement) of one of the points of the passage to make the task possible.</semantics>
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UUID</dataType>
