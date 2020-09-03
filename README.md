@@ -4,7 +4,7 @@ NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Modu
 
 ## Introduction
 
-This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN-ETR FOM module is available as an XML file for use in HLA based federations.
+This module is a specification of how to represent simulation task requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN-ETR FOM module is available as an XML file for use in HLA based federations.
         
 
 ### Purpose
@@ -47,8 +47,8 @@ Version numbering of this FOM Module and associated documentation is based on th
 
 |Version|Description|
 |---|---|
-|v1.1.0 |NETN-LBML included in NETN FOM v2.0 as part of AMSP-04 Ed A.|
-|v1.x|Release of new module based on deprecated NETN LLBML FOM Module. Includes updated structure and additional capabilities. Included in NETN FOM v3.0 as part of AMSP-04 Ed B.|
+|v1.1.0 |NETN-LBML included in NETN FOM v2.0|
+|v2.0|Release of renamed module based on NETN LLBML FOM Module with updated structure and additional capabilities. Included in NETN FOM v3.0|
 
 [Changelog](changelog.md)
 

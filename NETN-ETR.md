@@ -18,16 +18,16 @@ The NETN-ETR FOM module is simulation oriented and focuses on tasks with a fine 
 * It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) tools, but it is independent of a specific COTS CGF tool, agent framework, or agent modelling paradigm.
 * It is independent of any specific doctrine or tactics.
 
-An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task, it is not specified how an entity (physical or aggregate) will / should perform the task.
+An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or only an aggregate entity, then this is specified in the definition of the task. In the definition of each task, it is not specified how an entity (physical or aggregate) will / should perform the task.
 
 ## Overview
 The interaction classes are organized in a root class and four base classes: `ETR_Task`, `ETR_Report`, `ETR_TaskManagement`, and `ETR_SimCon`. 
 
-* `ETR_Root`: root interaction class for the Entitiy Tasking and Reporting (ETR) interaction classes.
+* `ETR_Root`: root interaction class for the Entity Tasking and Reporting (ETR) interaction classes.
 * `ETR_Task`: A base interaction class for more specialized task interaction classes.
 * `ETR_Report`: A base interaction class for more specialized report interaction classes.
 * `ETR_TaskManagement`: A base interaction class for more specialized task management interaction classes.
-* `ETR_SimCon`: A base interaction class for more specialized Simulation Control (SimCon) interaction classes
+* `ETR_SimCon`: A base interaction class for more specialized Simulation Control interaction classes
 
 <img src="./images/etr_baseclasses.png" width="75%"/>
 
@@ -38,32 +38,37 @@ This section summarizes the Entity Task interaction classes in the ETR FOM modul
 
 |Task|Description|
 |---|---|
-|AddPassage|Task entity to lay/build a passage between the two given points. The passage can for example be a passage through an obstacle or a bridge over a river. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible. |
-|ClearObstacle|Task entity to clear the obstacle or minefield with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the geometry of the obstacle to make the task possible.|
-|CreateObstacle|Task entity to create an obstacle with the given geometry. |
-|Dismount|Task entity to dismount from the entity where it is in.|
-|EstablishCheckPoint|Task entity to establish a checkpoint. The task defines a location where a checkpoint shall be established and then operated. |
-|DisruptCommunication|Task entity to introduce a communication network disruption.|
-|FireAtEntity|Task entity to fire at another specified entity.|
-|FireAtLocation|Task entity to fire at a location.|
-|FollowEntity|Task entity to follow another entity.|
-|Move|Task entity to move in the specified direction for the given duration.|
-|MoveIntoFormation|Task aggregate entity to move into the given formation with the given heading.|
-|MoveToLocation|Task entity to move to the specified location.|
-|MoveToEntity|Task entity to move to another entity.|
-|Mount|Task entity to mount in the specified entity. The taskee should be within a certain distance tolerance of the entiity to mount into. this tolerance must be specified in the federation agreements. Mount includes: embark (vessel), board (plane), and so on.|
-|Observe|Task entity to observe an area with sensors. |
-|OperateCheckPoint| Task entity to operate a checkpoint. The task activates a deactivated check point. |
-|Patrol|Task entity to perform a patrol. The patrol covers the path from the current location to the start point of the patrol route, and the patrol route itself. The patrol route shall be followed from start to end. The entity behaviour at the end point depends on the patrol type.|
-|RemoveCheckPoint|Task entity to remove a checkpoint. This task removes the checkpoint that is generated in the EstablishCheckpoint task. |
-|RemovePassage|Task entity to remove the pasasage with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible.|
-|SetOrderedAltitude|Task entity to set the ordered altitude.|
-|SetOrderedSpeed|Task entity to set the ordered speed.|
-|SetRulesOfEngagement|Task entity to change the rules of engagement.|
-|SetTransmitterStatus|Task entity to switch on/off all of its transmitters.|
-|StopAtSideOfRoad|Task entity to stop at the side of the road. This task is only relevant for an entity that is moving along a road to a destination. The executing move task is canceled and a new move is defined to a position at the side of the road (the simulator has to calculate this location).|
-|TurnToHeading|Task entity to turn to the specified heading.|
-|Wait|Task entity to wait a defined duration.|
+|AddPassage|Tasking of an entity to lay/build a passage between the two given points. The passage can, for example, be a passage through an obstacle or a bridge over a river. The tasked entity should be within a certain distance tolerance (specified in the federation agreement) of one of the points of the passage. A passage object should be registered in the federation with the provided UUID.|
+|ClearObstacle|Tasking of an entity to clear an obstacle or minefield with the given UUID. The tasked entity should be within a certain distance (tolerance specified in the federation agreement) of one of the points of the geometry of the obstacle.|
+|CreateObstacle|Tasking of an entity to create an obstacle with the given geometry. The tasked entity should be within a certain distance tolerance (specified in the federation agreement) of one of the points of the geometry.|
+|CreateMinefield|Tasking of an entity to create a minefield within the specified geometry. When the task is completed, a minefield object should be published in the federation (e.g. RPR-FOM Minefield). This tasking interaction is different from the RPR-FOM MinefieldObjectTransaction interaction, which asks a federate to create a minefield magically.|
+|Dismount|Tasking of an entity to dismount from a mounted position. When the task is completed, the tasked entity is no longer attached to or embarked in another entity.|
+|DisruptCommunication|Tasking of an entity to introduce a communication network disruption.|
+|EstablishCheckPoint|Tasking of an entity to establish a checkpoint. The task defines a location where a checkpoint shall be established and then operated. The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the location of the checkpoint. If not, a separate move task should be issued first. During the execution of the task, a CheckPoint object (NETN-SE) should be registered in the federation. The completion and operational status of the CheckPoint object should be updated continuously during the execution of the task or at task completion. Immediately after the checkpoint has been established, it will be operated by the tasked entity for a specified duration of time.|xx
+|FireAtEntity|Tasking of an entity to fire at another specified target entity.|
+|FireAtEntityWM|Tasking of an entity to fire at a specified target entity with the specified weapon and munition data.|
+|FireAtLocation|Tasking of an entity to fire at a location.|
+|FireAtLocationWM|Tasking of an entity to fire at a location with the specified weapon and munition.|
+|FollowEntity|Tasking of an entity to follow another entity at a specified distance.|
+|Move|Tasking of an entity to move in a specified direction for a given duration of time.|
+|MoveIntoFormation|Tasking of an entity to move into the given formation on the given location with the given heading. |
+|MoveToLocation|Tasking of an entity to move to the specified destination location. If a path is provided, the entity should follow the path as its route to the destination. The entity should align with the path from its current position to the nearest position or waypoint on the path. The entity should leave the path at position or waypoint on the path closest to the destination. The entity moves directly towards the destination location if no path (or a zero-length path) is provided.|
+|MoveToEntity|Tasking of an entity to move to another entity. If a path is provided, the entity should follow the path as its route to the entity. The entity should align with the path from its current position to the nearest position or waypoint on the path. The entity should leave the path at position or waypoint on the path closest to the destination entity. The entity moves directly towards the destination entity if no path (or a zero-length path) is provided.|
+|Mount|Tasking of entity to mount the specified entity. The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the location of the entity to mount.|
+|Observe|Tasking of an entity to observe an area.|
+|OperateCheckPoint|Tasking of an entity to operate a checkpoint. The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the location of the checkpoint. If not, a separate move task should be issued first. The tasked entity activates an inactive checkpoint and operates the checkpoint for the specified duration of time.|
+|Patrol|Tasking of an entity to perform a patrol. The tasked entity moves from its current position to the start of the patrol route and then moves according to patrol route from its start point in the path, through all waypoints.|
+|PatrolRepeating|Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time then the cylce starts directly (without delay). If the time of a cylce takes less then the interval time then the entity waits at the first point of the patrol route until the next cycle is started.|
+|RemoveCheckPoint|Tasking of an entity to remove a checkpoint. This task removes a previously established checkpoint. The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the location of the checkpoint. If not, a separate move task should be issued first. After completion of the task, the checkpoint object should be deleted from the federation.|
+|RemovePassage|Task entity to remove the pasasage with the given UUID. The taskee entity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible.|
+|SetOrderedAltitude|Tasking of an entity to set move to specified altitude.|
+|SetOrderedSpeed|Tasking of an entity to change speed.|
+|SetRulesOfEngagement|Tasking of an entity to change its rules of engagement.|
+|SetTransmitterStatus|Tasking of an entity to switch on/off all of its transmitters.|
+|StopAtSideOfRoad|Tasking of an entity to stop at the side of the road. This task is only relevant for an entity that is moving along a road to a destination. The executing move task is cancelled and a new move is defined to a position at the side of the road (the simulator has to calculate this location).|
+|TurnToHeading|Tasking of an entity to turn to the specified heading.|
+|TurnToOrientation|Tasking of an entity to rotate to a specified orientation, including pitch and roll.|
+|Wait|Tasking of an entity to wait for a duration of time.|
 
 
 ### Entity Reports
@@ -73,9 +78,19 @@ This section summarizes the Entity Report interaction classes in the ETR FOM mod
 
 |Report|Description|
 |---|---|
-|StatusReport|Status report from an entity about its own (perceived) state. This report is generated with a certain frequency specified in the federation agreements.|
-|SpotReport|Spot reports are reports used by all entities to transmit intelligence or information about a spotted enemy, neutral, or unknown entity.|
-|InWeaponRangeReport|The entities that are in range of a specific weapon.|
+|InWeaponRangeReport|Report on a unit's ability to reach specific targets with its weapon systems.|
+|SpotReport|Report on a unit's awareness of spotted entities.|
+|SensorReport|Report on a unit's sensor detection of entities.|
+|StatusReport|Report on a unit's own (perceived) state. This report should be generated with a frequency specified in the federation agreements.|
+|DamageStatusReport|Report on a unit's damage status.|
+|PositionStatusReport|Report on a unit's position, speed, and heading.|
+|ResourceStatusReport|Report on a unit's remaining amount resources.|
+|UnderAttackStatusReport|Report from a unit that it is under attack.|
+
+
+
+
+
 
 
 ### Task Management
