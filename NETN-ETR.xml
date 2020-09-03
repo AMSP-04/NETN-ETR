@@ -227,41 +227,50 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <parameter>
                         <name>TaskId</name>
                         <dataType>TransactionId</dataType>
-                        <semantics>Required. Identifies the task</semantics>
+                        <semantics>Required. Uniqie identifier for the simulation control task.</semantics>
                     </parameter>
                     <parameter>
                         <name>Taskee</name>
                         <dataType>UUID</dataType>
-                        <semantics>Required. The entity that has to execute the task</semantics>
+                        <semantics>Required. Reference to the entity that should execute the task.</semantics>
                     </parameter>
                     <parameter>
                         <name>Tasker</name>
                         <dataType>Callsign</dataType>
-                        <semantics>Optional (default empty string). Indentifies the commander of the task.</semantics>
+                        <semantics>Optional. Indentifies the commander of the task.</semantics>
                     </parameter>
+                    <interactionClass>
+                        <name>CapabilitiesSupported</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Provides the set of ETR_Task, ETR_SimCon and ETR_Report interactions that the federate modelling the entity supports. This interaction is in response to a QuerySupportedCapabilities. </semantics>
+                        <parameter>
+                            <name>CapabilityNames</name>
+                            <dataType>ArrayOfNames</dataType>
+                            <semantics>Required. Array of task and report names that the entity supports; the names match with the FOM class names of NETN-ETR Tasks, Reports and SimCon interactions.</semantics>
+                        </parameter>
+                    </interactionClass>
                     <interactionClass>
                         <name>MagicMove</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>The Location is required and the LocationUuId is optional. 
-If both parameters are received, then is up to the subscribing application to choose which to use. 
- 
-Place the entity to the specified location with the given heading. All given task of the entity are cancelled.</semantics>
+                        <semantics>A simulation control task that instructs the entity to immediately jump to the specified location and update the new position and heading.</semantics>
                         <parameter>
                             <name>Location</name>
                             <dataType>WorldLocationStruct</dataType>
                             <semantics>Required. Location of the entity.</semantics>
                         </parameter>
                         <parameter>
-                            <name>LocationUuid</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Optional. The new location for the entity. Refered by a UUID.</semantics>
-                        </parameter>
-                        <parameter>
                             <name>Heading</name>
                             <dataType>AngleRadianFloat32</dataType>
                             <semantics>Required. Heading of the entity.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>LocationUuid</name>
+                            <dataType>UUID</dataType>
+                            <semantics>Optional. The new location for the entity. Refered by a UUID.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -269,7 +278,7 @@ Place the entity to the specified location with the given heading. All given tas
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Changes the resource amount of the entity.</semantics>
+                        <semantics>A simulation control task that instructs the entity to set amount of available resources immediately</semantics>
                         <parameter>
                             <name>Resource</name>
                             <dataType>NETN_SupplyStruct</dataType>
@@ -277,23 +286,11 @@ Place the entity to the specified location with the given heading. All given tas
                         </parameter>
                     </interactionClass>
                     <interactionClass>
-                        <name>CapabilitiesSupported</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Provides the set of ETR_Task, ETR_SimCon and ETR_Report interactions that the federate modelling the entity supports. This interaction is in response to a QuerySupportedCapabilities, using the same Taskee and Tasker. The names returned is the base interaction class name and not fully qualified.</semantics>
-                        <parameter>
-                            <name>CapabilityNames</name>
-                            <dataType>ArrayOfNames</dataType>
-                            <semantics>Required. Array of task and report names that the entity supports; the names match with the FOM interaction class names.</semantics>
-                        </parameter>
-                    </interactionClass>
-                    <interactionClass>
                         <name>QuerySupportedCapabilities</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Query which ETR tasks and ETR reports that the entity supports. The taskee shall respond with a CapabilitiesSupported message.</semantics>
+                        <semantics>Query which tasks, reports and SimCon actions that an entity supports. The queried entity shall respond with a CapabilitiesSupported message.</semantics>
                     </interactionClass>
                 </interactionClass>
                 <interactionClass>
@@ -771,7 +768,7 @@ Place the entity to the specified location with the given heading. All given tas
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time then the cycle starts directly (without delay). If the time of a cycle takes less then the interval time then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
+                            <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed, then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time, then the cycle starts directly (without delay). If the time of a cycle takes less then the interval time, then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
                             <parameter>
                                 <name>Duration</name>
                                 <dataType>TimeSecInt32</dataType>
@@ -866,7 +863,7 @@ Place the entity to the specified location with the given heading. All given tas
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasking of an entity to stop at the side of the road. This task is only relevant for an entity that is moving along a road to a destination. The executing move task is cancelled and a new move is defined to a position at the side of the road (the simulator has to calculate this location).</semantics>
+                        <semantics>Tasking of an entity to stop at the side of the road. This task is only relevant for an entity that is moving along a road to a destination. The executing move task is cancelled, and a new move is defined towards a position at the side of the road (the simulator has to calculate this location).</semantics>
                     </interactionClass>
                     <interactionClass>
                         <name>TurnToHeading</name>
@@ -919,48 +916,48 @@ Place the entity to the specified location with the given heading. All given tas
                     <parameter>
                         <name>TaskManagementId</name>
                         <dataType>TransactionId</dataType>
-                        <semantics>Required. Identifies the management task.</semantics>
+                        <semantics>Required. Uniqie identifier for the management task.</semantics>
                     </parameter>
                     <parameter>
                         <name>Taskee</name>
                         <dataType>UUID</dataType>
-                        <semantics>Required. The entity that has to execute the task.</semantics>
+                        <semantics>Required. Reference to the entity that should execute the task.</semantics>
                     </parameter>
                     <parameter>
                         <name>Tasker</name>
                         <dataType>Callsign</dataType>
-                        <semantics>Optional (default empty string). Identifies the commander of the task.</semantics>
+                        <semantics>Optional. Identifies the commander of the task.</semantics>
                     </parameter>
                     <parameter>
                         <name>CommunicationNetworkIds</name>
                         <dataType>ArrayOfText64</dataType>
-                        <semantics>Optional (default empty list). List with ids to CommunicationNetworkIdentifier that represents the communication network.</semantics>
+                        <semantics>Optional. Reference to communication networks (NETN-COM) used to transfer task management messages. If not provided, the message transmission should not be modelled and federates should receive and act on the task management messages directly.</semantics>
                     </parameter>
-                    <interactionClass>
-                        <name>CancelSpecifiedTasks</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Cancel all specified tasks. Tasks already started are also cancelled.</semantics>
-                        <parameter>
-                            <name>Tasks</name>
-                            <dataType>ArrayOfTaskIds</dataType>
-                            <semantics>Required. Tasks that have to be cancelled.</semantics>
-                        </parameter>
-                    </interactionClass>
                     <interactionClass>
                         <name>CancelAllTasks</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Cancel all tasks. Tasks already started are also cancelled.</semantics>
+                        <semantics>Management task to an entity to cancel all queued and ongoing tasks.</semantics>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CancelSpecifiedTasks</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Management task to an entity to cancel all specified tasks.</semantics>
+                        <parameter>
+                            <name>Tasks</name>
+                            <dataType>ArrayOfTaskIds</dataType>
+                            <semantics>Required. Tasks that should be cancelled.</semantics>
+                        </parameter>
                     </interactionClass>
                     <interactionClass>
                         <name>TaskStatusReport</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>A report about the status of a task given to an entity. The status of the task defined by the TaskId can be: Accepted, Refused, Cancelled, Executing, Completed or Error.</semantics>
+                        <semantics>A management task report regarding the status of a specific task assigned to an entity.</semantics>
                         <parameter>
                             <name>TaskId</name>
                             <dataType>TransactionId</dataType>
@@ -969,7 +966,7 @@ Place the entity to the specified location with the given heading. All given tas
                         <parameter>
                             <name>TaskStatus</name>
                             <dataType>TaskStatusEnum32</dataType>
-                            <semantics>Required. Indicates the evaluation status of the task.</semantics>
+                            <semantics>Required. Indicates the status of the task.</semantics>
                         </parameter>
                         <parameter>
                             <name>When</name>
@@ -979,7 +976,7 @@ Place the entity to the specified location with the given heading. All given tas
                         <parameter>
                             <name>Comments</name>
                             <dataType>HLAunicodeString</dataType>
-                            <semantics>Optional (default empty string). Any additional comments. For example reason for cancelling, error, etc.</semantics>
+                            <semantics>Optional. Any additional comments. For example reason for cancelling, errors, etc.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
