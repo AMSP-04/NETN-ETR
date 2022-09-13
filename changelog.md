@@ -1,5 +1,15 @@
 ## Changelog NETN-ETR
 
+### Changes in 3.0
+This version of NETN-ETR was developed by MSG-191.
+Major changes include:
+* Adaptation to HLA4
+* Addition of Task objectClasses representing active and future tasks.
+
+* Added dependency to NETN-MRM
+* Added attribute TaskList to AggregateEntity objectClass
+* Added attribute SupportedTasks to AggregateEntity objectClass
+
 ### Changes in 2.0
 This version is the initial version of the new NETN-ETR FOM module based on previous (now deprecated) LLBML FOM Module related to C2SIM and part of AMSP-04 Ed. A. modules. 
 

@@ -51,6 +51,49 @@ This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 Int
 Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
         <glyph type="png" height="48" width="48" alt="">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</glyph>
     </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass notes="COPY-RPRnoteBase1 COPY-RPRnoteBase1">
+                <name>BaseEntity</name>
+                <sharing>Subscribe</sharing>
+                <semantics>A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.</semantics>
+                <attribute>
+                    <name>Tasks</name>
+                    <dataType>ArrayOfTasks</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics></semantics>
+                </attribute>
+                <attribute>
+                    <name>Activity</name>
+                    <dataType>AggregateMissionEnum16</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics></semantics>
+                </attribute>
+                <attribute>
+                    <name>SupportedTasks</name>
+                    <dataType>ArrayOfTaskTypes</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics></semantics>
+                </attribute>
+            </objectClass>
+        </objectClass>
+    </objects>
     <interactions>
         <interactionClass>
             <name>HLAinteractionRoot</name>
@@ -244,7 +287,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Provides the set of ETR_Task, ETR_SimCon and ETR_Report interactions that the federate modelling the entity supports. This interaction is in response to a QuerySupportedCapabilities. </semantics>
+                        <semantics>Provides the set of ETR_Task, ETR_SimCon and ETR_Report interactions that the federate modelling the entity supports. This interaction is in response to a QuerySupportedCapabilities.</semantics>
                         <parameter>
                             <name>CapabilityNames</name>
                             <dataType>ArrayOfNames</dataType>
@@ -1168,6 +1211,31 @@ Other - Federate application specific.</semantics>
                     <value>1</value>
                 </enumerator>
             </enumeratedData>
+            <enumeratedData>
+                <name>TaskTypeEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics></semantics>
+                <enumerator>
+                    <name>Move</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Follow</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Patrol</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Mount</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Dismount</name>
+                    <value>5</value>
+                </enumerator>
+            </enumeratedData>
         </enumeratedDataTypes>
         <arrayDataTypes>
             <arrayData>
@@ -1204,6 +1272,20 @@ Other - Federate application specific.</semantics>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
                 <semantics>An array with spotted equipment at the spotted entity.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfTasks</name>
+                <dataType>TaskStruct</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics></semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfTaskTypes</name>
+                <dataType>TaskTypeEnum</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics></semantics>
             </arrayData>
         </arrayDataTypes>
         <fixedRecordDataTypes>
@@ -1273,6 +1355,111 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <semantics>The number of the equipment.</semantics>
                 </field>
             </fixedRecordData>
+            <fixedRecordData>
+                <name>TaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics></semantics>
+                <field>
+                    <name>Id</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Task unique Id</semantics>
+                </field>
+                <field>
+                    <name>Start</name>
+                    <dataType>Datetime18</dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>End</name>
+                    <dataType>Datetime18</dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>Type</name>
+                    <dataType>TaskTypeEnum</dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>TaskSpecific</name>
+                    <dataType>TaskVariantRecord</dataType>
+                    <semantics></semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MoveTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics></semantics>
+                <field>
+                    <name>Waypoint</name>
+                    <dataType>ArrayOfWorldLocationStruct</dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>NextWaypoint</name>
+                    <dataType>HLAinteger32BE</dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>Direction</name>
+                    <dataType></dataType>
+                    <semantics></semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>PatrolTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics></semantics>
+                <field>
+                    <name>PatrolType</name>
+                    <dataType>PatrolTypeEnum</dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>Move</name>
+                    <dataType>MoveTaskStruct</dataType>
+                    <semantics></semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>FollowTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics></semantics>
+                <field>
+                    <name>FollowedEntity</name>
+                    <dataType>UUID</dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>Offset</name>
+                    <dataType></dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics></semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>EstablishTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics></semantics>
+                <field>
+                    <name>Activity</name>
+                    <dataType></dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics></semantics>
+                </field>
+            </fixedRecordData>
         </fixedRecordDataTypes>
         <variantRecordDataTypes>
             <variantRecordData>
@@ -1294,6 +1481,37 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <encoding>HLAvariantRecord</encoding>
                 <semantics>The number or density of mines.</semantics>
             </variantRecordData>
+            <variantRecordData>
+                <name>TaskVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>TaskTypeEnum</dataType>
+                <alternative>
+                    <enumerator>Move</enumerator>
+                    <name>Move</name>
+                    <dataType>MoveTaskStruct</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Follow</enumerator>
+                    <name>Follow</name>
+                    <dataType>FollowTaskStruct</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Patrol</enumerator>
+                    <name>Patrol</name>
+                    <dataType>PatrolTaskStruct</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>EstablishCheckPoint</enumerator>
+                    <name>Establish</name>
+                    <dataType>EstalishTaskStruct</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics></semantics>
+            </variantRecordData>
         </variantRecordDataTypes>
     </dataTypes>
     <notes>
@@ -1306,6 +1524,14 @@ for aggregate entities, also use entity types from platform tables to describe t
 * ETR_Report: A base interaction class for more specialized report interaction classes. 
 * ETR_TaskManagement: A base interaction class for more specialized task management interaction classes. 
 * ETR_SimCon: A base interaction class for more specialized Simulation Control (SimCon) interaction classes</semantics>
+        </note>
+        <note>
+            <label>COPY-RPRnoteBase1</label>
+            <semantics>Federates shall send the time at which the data is valid in the user defined tag with every attribute values update and interaction; see datatype RPRUserDefinedTag for the encoding. All federates shall transmit this field, even if they do not use it themselves, so that other federates can use its value to compensate for network transport delays.</semantics>
+        </note>
+        <note>
+            <label>COPY-RPRnoteBase1</label>
+            <semantics>Federates shall send the time at which the data is valid in the user defined tag with every attribute values update and interaction; see datatype RPRUserDefinedTag for the encoding. All federates shall transmit this field, even if they do not use it themselves, so that other federates can use its value to compensate for network transport delays.</semantics>
         </note>
     </notes>
 </objectModel>
