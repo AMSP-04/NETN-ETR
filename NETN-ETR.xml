@@ -111,7 +111,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <semantics>A base interaction class for more specialized report interaction classes.</semantics>
                     <parameter>
                         <name>ReportId</name>
-                        <dataType>TransactionId</dataType>
+                        <dataType>UUID</dataType>
                         <semantics>Required. Uniqie identifier for the report.</semantics>
                     </parameter>
                     <parameter>
@@ -269,7 +269,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <semantics>A base interaction class for EXCON Task interaction classes.</semantics>
                     <parameter>
                         <name>TaskId</name>
-                        <dataType>TransactionId</dataType>
+                        <dataType>UUID</dataType>
                         <semantics>Required. Uniqie identifier for the simulation control task.</semantics>
                     </parameter>
                     <parameter>
@@ -344,7 +344,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <semantics>A base interaction class for more specialized task interaction classes.</semantics>
                     <parameter>
                         <name>TaskId</name>
-                        <dataType>TransactionId</dataType>
+                        <dataType>UUID</dataType>
                         <semantics>Required. Uniqie identifier for the task.</semantics>
                     </parameter>
                     <parameter>
@@ -958,7 +958,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <semantics>A base interaction class for more specialized task management interaction classes.</semantics>
                     <parameter>
                         <name>TaskManagementId</name>
-                        <dataType>TransactionId</dataType>
+                        <dataType>UUID</dataType>
                         <semantics>Required. Uniqie identifier for the management task.</semantics>
                     </parameter>
                     <parameter>
@@ -1003,7 +1003,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <semantics>A management task report regarding the status of a specific task assigned to an entity.</semantics>
                         <parameter>
                             <name>TaskId</name>
-                            <dataType>TransactionId</dataType>
+                            <dataType>UUID</dataType>
                             <semantics>Required. Identifies the task associated with the task report.</semantics>
                         </parameter>
                         <parameter>
@@ -1247,7 +1247,7 @@ Other - Federate application specific.</semantics>
             </arrayData>
             <arrayData>
                 <name>ArrayOfTaskIds</name>
-                <dataType>TransactionId</dataType>
+                <dataType>UUID</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
                 <semantics>Array of Task Ids.</semantics>
