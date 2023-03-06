@@ -45,10 +45,10 @@ This module is a specification of how to represent simulation tasks requests pro
             <identification>NETN-BASE</identification>
         </reference>
         <other>
-Copyright © 2019 by NATO/OTAN. All rights reserved.
+Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
-Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
+Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
         <glyph type="png" height="48" width="48" alt="">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</glyph>
     </modelIdentification>
     <objects>
@@ -91,6 +91,156 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <order>Receive</order>
                     <semantics></semantics>
                 </attribute>
+                <objectClass>
+                    <name>PhysicalEntity</name>
+                    <objectClass>
+                        <name>Platform</name>
+                        <sharing>Subscribe</sharing>
+                        <semantics>A physical object under the control of armed forces upon which sensor, communication, or weapon systems may be mounted.</semantics>
+                        <attribute>
+                            <name>CurrentTaskProgresses</name>
+                            <dataType>ArrayOfTaskProgress</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Array of current task progresses</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>CurrentTaskDefinitions</name>
+                            <dataType>ArrayOfTaskDefinitions</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Array of current tasks</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>PreviousTasks</name>
+                            <dataType>ArrayOfTaskDefinitions</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Array of completed or cancelled tasks.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>PlannedTasks</name>
+                            <dataType>ArrayOfTaskDefinitions</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Array of all planned tasks.</semantics>
+                        </attribute>
+                    </objectClass>
+                    <objectClass>
+                        <name>Lifeform</name>
+                        <sharing>Subscribe</sharing>
+                        <semantics>A living military platform (human or not).</semantics>
+                        <attribute>
+                            <name>CurrentTaskProgresses</name>
+                            <dataType>ArrayOfTaskProgress</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Array of current task progresses</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>CurrentTaskDefinitions</name>
+                            <dataType>ArrayOfTaskDefinitions</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Array of current tasks</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>PreviousTasks</name>
+                            <dataType>ArrayOfTaskDefinitions</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Array of completed or cancelled tasks.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>PlannedTasks</name>
+                            <dataType>ArrayOfTaskDefinitions</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Array of all planned tasks.</semantics>
+                        </attribute>
+                    </objectClass>
+                </objectClass>
+                <objectClass>
+                    <name>AggregateEntity</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>A group of one or more separate objects that operate together as part of an organization. These objects may be discrete, may be other aggregate objects, or may be a mixture of both.</semantics>
+                    <attribute>
+                        <name>CurrentTaskProgresses</name>
+                        <dataType>ArrayOfTaskProgress</dataType>
+                        <updateType>NA</updateType>
+                        <updateCondition></updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. Array of current task progresses</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>CurrentTaskDefinitions</name>
+                        <dataType>ArrayOfTaskDefinitions</dataType>
+                        <updateType>NA</updateType>
+                        <updateCondition></updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. Array of current tasks</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>PreviousTasks</name>
+                        <dataType>ArrayOfTaskDefinitions</dataType>
+                        <updateType>NA</updateType>
+                        <updateCondition></updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. Array of completed or cancelled tasks.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>PlannedTasks</name>
+                        <dataType>ArrayOfTaskDefinitions</dataType>
+                        <updateType>NA</updateType>
+                        <updateCondition></updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. Array of all planned tasks.</semantics>
+                    </attribute>
+                </objectClass>
             </objectClass>
         </objectClass>
     </objects>
@@ -282,6 +432,21 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>Callsign</dataType>
                         <semantics>Optional. Indentifies the commander of the task.</semantics>
                     </parameter>
+                    <parameter>
+                        <name>MainTaskId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Optional. Unique ID of the main task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>PreviousTaskId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Optional. Unique ID of the previous task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>NextTaskId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Optional. Unique ID of the next task.</semantics>
+                    </parameter>
                     <interactionClass>
                         <name>CapabilitiesSupported</name>
                         <sharing>PublishSubscribe</sharing>
@@ -376,6 +541,21 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <name>CommunicationNetworkIds</name>
                         <dataType>ArrayOfText64</dataType>
                         <semantics>Optional. Reference to communication networks (NETN-COM) used to transfer tasking messages. If not provided, the task transmission should not be modelled and federates should receive and act on the task messages directly.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>MainTaskId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Optional. Unique ID of the main task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>PreviousTaskId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Optional. Unique ID of the previous task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>NextTaskId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Optional. Unique ID of the next task.</semantics>
                     </parameter>
                     <interactionClass>
                         <name>AddPassage</name>
@@ -977,6 +1157,73 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <semantics>Optional. Reference to communication networks (NETN-COM) used to transfer task management messages. If not provided, the message transmission should not be modelled and federates should receive and act on the task management messages directly.</semantics>
                     </parameter>
                     <interactionClass>
+                        <name>RequestTaskStatusReport</name>
+                        <sharing>Neither</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Requests the responsible federate to send TaskStatusReport interactions for the specified tasks. 
+ 
+For this class, the Taskee parameter is Optional, and refers to the entity for whom task status reports are being requested. If omitted, request refers to all tasks specified in Tasks. At least one of Taskee or Tasks must be specified.</semantics>
+                        <parameter>
+                            <name>Tasks</name>
+                            <dataType>ArrayOfTaskIds</dataType>
+                            <semantics>Optional. Tasks for which status reports are being requested. If omitted, request refers to all previously sent tasks with the specified Taskee. At least one of this Parameter or Taskee must be specified.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>RemoteTaskExecution</name>
+                        <sharing>Neither</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics></semantics>
+                        <interactionClass>
+                            <name>RequestRemoteTaskCancel</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Send a request to target federate to cancel current remote task.</semantics>
+                            <parameter>
+                                <name>FederateId</name>
+                                <dataType>UUID</dataType>
+                                <semantics>Required. Target federate.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>TaskId</name>
+                                <dataType>UUID</dataType>
+                                <semantics>Required. Unique ID of task to be canceled.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>RemoteTaskRequestResponse</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Response if the task will be executed.</semantics>
+                            <parameter>
+                                <name>ResponseStatus</name>
+                                <dataType>RemoteTaskResponseStatusEnum</dataType>
+                                <semantics>Required. If the task is accepted or refused.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>RequestRemoteTaskExecution</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Interaction to request a remote execution of a task.</semantics>
+                            <parameter>
+                                <name>FederateId</name>
+                                <dataType>UUID</dataType>
+                                <semantics>Required. Unique ID of target federate.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>TaskDefinition</name>
+                                <dataType>TaskDefinition</dataType>
+                                <semantics>Required. Task definition of the task to be executed.</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
                         <name>CancelAllTasks</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -1022,6 +1269,13 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                             <semantics>Optional. Any additional comments. For example reason for cancelling, errors, etc.</semantics>
                         </parameter>
                     </interactionClass>
+                    <interactionClass>
+                        <name>RequestCurrentSensorDetections</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics></semantics>
+                    </interactionClass>
                 </interactionClass>
             </interactionClass>
         </interactionClass>
@@ -1029,6 +1283,184 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
     <dataTypes>
         <simpleDataTypes/>
         <enumeratedDataTypes>
+            <enumeratedData>
+                <name>TaskTypeEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>All possible tasks defined in NETN_ETR and NETN_ETR_EXT</semantics>
+                <enumerator>
+                    <name>Move</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>FollowEntity</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Patrol</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Mount</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Dismount</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>AddPassage</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>ClearObstacle</name>
+                    <value>7</value>
+                </enumerator>
+                <enumerator>
+                    <name>CreateObstacle</name>
+                    <value>8</value>
+                </enumerator>
+                <enumerator>
+                    <name>CreateMinefield</name>
+                    <value>9</value>
+                </enumerator>
+                <enumerator>
+                    <name>Wait</name>
+                    <value>10</value>
+                </enumerator>
+                <enumerator>
+                    <name>DisruptCommunication</name>
+                    <value>11</value>
+                </enumerator>
+                <enumerator>
+                    <name>EstablishCheckpoint</name>
+                    <value>12</value>
+                </enumerator>
+                <enumerator>
+                    <name>FireAtEntity</name>
+                    <value>13</value>
+                </enumerator>
+                <enumerator>
+                    <name>FireAtEntityWM</name>
+                    <value>14</value>
+                </enumerator>
+                <enumerator>
+                    <name>FireAtLocation</name>
+                    <value>15</value>
+                </enumerator>
+                <enumerator>
+                    <name>FireAtLocationWM</name>
+                    <value>16</value>
+                </enumerator>
+                <enumerator>
+                    <name>MoveIntoFormation</name>
+                    <value>17</value>
+                </enumerator>
+                <enumerator>
+                    <name>MoveToEntity</name>
+                    <value>18</value>
+                </enumerator>
+                <enumerator>
+                    <name>MoveToLocation</name>
+                    <value>19</value>
+                </enumerator>
+                <enumerator>
+                    <name>Observe</name>
+                    <value>20</value>
+                </enumerator>
+                <enumerator>
+                    <name>OperateCheckpoint</name>
+                    <value>21</value>
+                </enumerator>
+                <enumerator>
+                    <name>PatrolRepeating</name>
+                    <value>22</value>
+                </enumerator>
+                <enumerator>
+                    <name>RemoveCheckpoint</name>
+                    <value>23</value>
+                </enumerator>
+                <enumerator>
+                    <name>RemovePassage</name>
+                    <value>24</value>
+                </enumerator>
+                <enumerator>
+                    <name>SetOrderedSpeed</name>
+                    <value>25</value>
+                </enumerator>
+                <enumerator>
+                    <name>SetOrderedAltitude</name>
+                    <value>26</value>
+                </enumerator>
+                <enumerator>
+                    <name>SetRulesOfEngagement</name>
+                    <value>27</value>
+                </enumerator>
+                <enumerator>
+                    <name>StopAtSideOfRoad</name>
+                    <value>28</value>
+                </enumerator>
+                <enumerator>
+                    <name>TurnToHeading</name>
+                    <value>29</value>
+                </enumerator>
+                <enumerator>
+                    <name>TurnToOrientation</name>
+                    <value>30</value>
+                </enumerator>
+                <enumerator>
+                    <name>ClearSeObject</name>
+                    <value>31</value>
+                </enumerator>
+                <enumerator>
+                    <name>CreateSeObject</name>
+                    <value>32</value>
+                </enumerator>
+                <enumerator>
+                    <name>CreateSeMinefield</name>
+                    <value>33</value>
+                </enumerator>
+                <enumerator>
+                    <name>CreateSeBreach</name>
+                    <value>34</value>
+                </enumerator>
+                <enumerator>
+                    <name>CreateSeCheckpoint</name>
+                    <value>35</value>
+                </enumerator>
+                <enumerator>
+                    <name>MoveToLocation_EXT</name>
+                    <value>36</value>
+                </enumerator>
+                <enumerator>
+                    <name>Patrol_EXT</name>
+                    <value>37</value>
+                </enumerator>
+                <enumerator>
+                    <name>PatrolRepeating_EXT</name>
+                    <value>38</value>
+                </enumerator>
+                <enumerator>
+                    <name>MagicMove</name>
+                    <value>39</value>
+                </enumerator>
+                <enumerator>
+                    <name>MagicResource</name>
+                    <value>40</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>RemoteTaskResponseStatusEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Response status for remote task execution tasks.</semantics>
+                <enumerator>
+                    <name>REFUSED</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>ACCEPTED</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
             <enumeratedData>
                 <name>RulesOfEngagementEnum8</name>
                 <representation>HLAoctet</representation>
@@ -1211,31 +1643,6 @@ Other - Federate application specific.</semantics>
                     <value>1</value>
                 </enumerator>
             </enumeratedData>
-            <enumeratedData>
-                <name>TaskTypeEnum</name>
-                <representation>HLAinteger32BE</representation>
-                <semantics></semantics>
-                <enumerator>
-                    <name>Move</name>
-                    <value>1</value>
-                </enumerator>
-                <enumerator>
-                    <name>Follow</name>
-                    <value>2</value>
-                </enumerator>
-                <enumerator>
-                    <name>Patrol</name>
-                    <value>3</value>
-                </enumerator>
-                <enumerator>
-                    <name>Mount</name>
-                    <value>4</value>
-                </enumerator>
-                <enumerator>
-                    <name>Dismount</name>
-                    <value>5</value>
-                </enumerator>
-            </enumeratedData>
         </enumeratedDataTypes>
         <arrayDataTypes>
             <arrayData>
@@ -1286,6 +1693,34 @@ Other - Federate application specific.</semantics>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
                 <semantics></semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfSpottedObjects</name>
+                <dataType>SpottedObject</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics></semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfTaskDefinitions</name>
+                <dataType>TaskDefinition</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Array containing tasks definitions.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfTaskProgress</name>
+                <dataType>TaskProgress</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Array of task progress types.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfWaypoints_EXT</name>
+                <dataType>Waypoint_EXT</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Array containing extended waypoints.</semantics>
             </arrayData>
         </arrayDataTypes>
         <fixedRecordDataTypes>
@@ -1460,6 +1895,621 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <semantics></semantics>
                 </field>
             </fixedRecordData>
+            <fixedRecordData>
+                <name>SpottedObject</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics></semantics>
+                <field>
+                    <name>SpottedObject</name>
+                    <dataType>UUID</dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>Location</name>
+                    <dataType>WorldLocationStruct</dataType>
+                    <semantics>Location where the object was spotted.</semantics>
+                </field>
+                <field>
+                    <name>Symbol</name>
+                    <dataType>SymbolIdentifier</dataType>
+                    <semantics></semantics>
+                </field>
+                <field>
+                    <name>Type</name>
+                    <dataType>EnvironmentObjectTypeStruct</dataType>
+                    <semantics></semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>TaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Fixed record to describe definition of a task.</semantics>
+                <field>
+                    <name>TaskId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Unique identifier for the task.</semantics>
+                </field>
+                <field>
+                    <name>Taskee</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Reference to who is executing the task.</semantics>
+                </field>
+                <field>
+                    <name>Tasker</name>
+                    <dataType>Callsign</dataType>
+                    <semantics>Callsign of the commander of the task.</semantics>
+                </field>
+                <field>
+                    <name>StartWhen</name>
+                    <dataType>Datetime18</dataType>
+                    <semantics>Timestamp of when the task should start.</semantics>
+                </field>
+                <field>
+                    <name>Why</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>A text describing the reason for this task.</semantics>
+                </field>
+                <field>
+                    <name>TaskMode</name>
+                    <dataType>TaskModeEnum8</dataType>
+                    <semantics>Determines the task mode.</semantics>
+                </field>
+                <field>
+                    <name>CommunicationNetworkIds</name>
+                    <dataType>ArrayOfText64</dataType>
+                    <semantics>Reference to the communication networks (NETN-COM) used to transfer this task.</semantics>
+                </field>
+                <field>
+                    <name>Activity</name>
+                    <dataType>AggregateMissionEnum16</dataType>
+                    <semantics>Suggested activity for unit executing this task.</semantics>
+                </field>
+                <field>
+                    <name>Status</name>
+                    <dataType>TaskStatusEnum32</dataType>
+                    <semantics>Current status of this task.</semantics>
+                </field>
+                <field>
+                    <name>DefinitionData</name>
+                    <dataType>TaskDefinitionVariantRecord</dataType>
+                    <semantics>Task specific definition details.</semantics>
+                </field>
+                <field>
+                    <name>MainTaskId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Unique identifier of the main task if this task is part of a complex task sequence. Equals TaskId if this task is the main task.</semantics>
+                </field>
+                <field>
+                    <name>PreviousTaskId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Unique identifier of the previous task if this task is part of a complex task sequence. Null if this task is the first in the sequence.</semantics>
+                </field>
+                <field>
+                    <name>NextTaskId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Unique identifier of the next task if this task is part of a complex task sequence. Null if this task is the last in the sequence.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>TaskProgress</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Fixed record to describe progress of a task.</semantics>
+                <field>
+                    <name>TaskId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Reference to the task this progress belongs to.</semantics>
+                </field>
+                <field>
+                    <name>LastUpdated</name>
+                    <dataType>Datetime18</dataType>
+                    <semantics>When was this task last updated.</semantics>
+                </field>
+                <field>
+                    <name>ExecutingFederateId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Reference to the federate that is executing this task.</semantics>
+                </field>
+                <field>
+                    <name>ETC</name>
+                    <dataType>Datetime18</dataType>
+                    <semantics>Estimated time to completion.</semantics>
+                </field>
+                <field>
+                    <name>ProgressData</name>
+                    <dataType>TaskProgressVariantRecord</dataType>
+                    <semantics>Variant record with task specific progress data.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MoveToLocationTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for MoveToLocation task.</semantics>
+                <field>
+                    <name>Location</name>
+                    <dataType>WorldLocationStruct</dataType>
+                    <semantics>Location to move to.</semantics>
+                </field>
+                <field>
+                    <name>Path</name>
+                    <dataType>ArrayOfWorldLocationStruct</dataType>
+                    <semantics>Path to use in order to move to Location.</semantics>
+                </field>
+                <field>
+                    <name>MoveType</name>
+                    <dataType>MoveTypeEnum32</dataType>
+                    <semantics>Indicates if roads have to be followed.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>PatrolTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific task for a single Patrol task.</semantics>
+                <field>
+                    <name>Path</name>
+                    <dataType>ArrayOfWorldLocationStruct</dataType>
+                    <semantics>Specifies the route to patrol.</semantics>
+                </field>
+                <field>
+                    <name>PatrolType</name>
+                    <dataType>PatrolTypeEnum32</dataType>
+                    <semantics>Defined how the patrol should be executed. The full movement from start point, through the patrol route and back to the start point is called one cycle.</semantics>
+                </field>
+                <field>
+                    <name>MoveType</name>
+                    <dataType>PatrolMoveTypeEnum32</dataType>
+                    <semantics>Defines how the entity shall move during the patrol route.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CreateSeObjectTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for CreateSeObject tasks.</semantics>
+                <field>
+                    <name>Name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>Name of the object to create</semantics>
+                </field>
+                <field>
+                    <name>Geometry</name>
+                    <dataType>GeometryVariant</dataType>
+                    <semantics>The geometry of the object to create. Point geometry will create a PointObject; Path geometry will create a LinearObject; Circle, Polygon and Quadrangle geometry will create an ArealObject. This parameter contextualizes the Type parameter.</semantics>
+                </field>
+                <field>
+                    <name>Type</name>
+                    <dataType>EnvironmentObjectTypeStruct</dataType>
+                    <semantics>Type of object to create. Must be interpreted in context of the Geometry parameter.</semantics>
+                </field>
+                <field>
+                    <name>Comment</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>Comment to add to the created object.</semantics>
+                </field>
+                <field>
+                    <name>TimeToComplete</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>The time it shall take the tasked entity to create the object. If unspecified, this is decided by federate accepting the task.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CreateSeMinefieldTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for CreateSeObjectMinefield Task, builds on CreateSeObjectTaskDefinition.</semantics>
+                <field>
+                    <name>BaseSeObjectTaskDefinition</name>
+                    <dataType>CreateSeObjectTaskDefinition</dataType>
+                    <semantics>Reference to base object.</semantics>
+                </field>
+                <field>
+                    <name>Density</name>
+                    <dataType>QuantityFloat32</dataType>
+                    <semantics>Mine density</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>PatrolRepeatingTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for PatrolRepeating task, builds on PatrolTaskDefinition.</semantics>
+                <field>
+                    <name>PatrolTaskDefinition</name>
+                    <dataType>PatrolTaskDefinition</dataType>
+                    <semantics>Reference to base patrol.</semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>The duration of the total patrol task.</semantics>
+                </field>
+                <field>
+                    <name>IntervalTime</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>The time between the start of two routes.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MoveToLocationProgress</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task progress for tasks related to movement.</semantics>
+                <field>
+                    <name>NextWaypointIndex</name>
+                    <dataType>UnsignedInteger16</dataType>
+                    <semantics>Index of the next waypoint in the path.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>PatrolRepeatingProgress</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task progress data for patrolRepeatingProgress, builds on MoveToLocationProgress data.</semantics>
+                <field>
+                    <name>MoveToLocationProgress</name>
+                    <dataType>MoveToLocationProgress</dataType>
+                    <semantics>Base object</semantics>
+                </field>
+                <field>
+                    <name>ElapsedTime</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>Elapsed time since start.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>SeObjectProgress</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task progress for create and clear Se objects (CreateSeObstacle, CreateSeMinefield, ClearSeObject, CreateSeCheckpoint and BreachSeObject).</semantics>
+                <field>
+                    <name>ElapsedTime</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>How much time have elapsed in this task.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>FireAtEntityTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for FireAtEntity task.</semantics>
+                <field>
+                    <name>UUID</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Target to fire at.</semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>Duration of the fire (seconds).</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>FireAtEntityWMTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for fireAtEnityWM task, builds on FireAtEntity task.</semantics>
+                <field>
+                    <name>FireAtEntityTask</name>
+                    <dataType>FireAtEntityTaskDefinition</dataType>
+                    <semantics>UUID and duration.</semantics>
+                </field>
+                <field>
+                    <name>WeaponTypeToUse</name>
+                    <dataType>EntityTypeStruct</dataType>
+                    <semantics>Preferred weapon type.</semantics>
+                </field>
+                <field>
+                    <name>MunitionTypeToUse</name>
+                    <dataType>EntityTypeStruct</dataType>
+                    <semantics>Preferred munition to use.</semantics>
+                </field>
+                <field>
+                    <name>QuantityFired</name>
+                    <dataType>Integer16</dataType>
+                    <semantics>Number of rounds.</semantics>
+                </field>
+                <field>
+                    <name>RateOfFire</name>
+                    <dataType>Float32</dataType>
+                    <semantics>Number of rounds per second.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>FireAtLocationTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task spcific data for FireAtLocation task.</semantics>
+                <field>
+                    <name>Location</name>
+                    <dataType>WorldLocationStruct</dataType>
+                    <semantics>Locataion of where to fire.</semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>How long to fire for.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>FireAtLocationWMTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for FireAtLocationWM task, builds on FireAtEntity.</semantics>
+                <field>
+                    <name>FireAtLocationTask</name>
+                    <dataType>FireAtLocationTaskDefinition</dataType>
+                    <semantics>UUID and duration.</semantics>
+                </field>
+                <field>
+                    <name>WeaponTypeToUse</name>
+                    <dataType>EntityTypeStruct</dataType>
+                    <semantics>Preferred weapon type.</semantics>
+                </field>
+                <field>
+                    <name>MunitionTypeToUse</name>
+                    <dataType>EntityTypeStruct</dataType>
+                    <semantics>Preferred munition to use.</semantics>
+                </field>
+                <field>
+                    <name>QuantityFired</name>
+                    <dataType>Integer16</dataType>
+                    <semantics>Number of rounds.</semantics>
+                </field>
+                <field>
+                    <name>RateOfFire</name>
+                    <dataType>Float32</dataType>
+                    <semantics>Number of rounds per second.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>FireAtProgress</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task progress data for all FireAt tasks (FireAtLocation, FireAtEntity, FireAtLocationWM and FireAtEntityWM).</semantics>
+                <field>
+                    <name>ElapsedTime</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>Elapsed time since the task started to execute.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>Waypoint_EXT</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Extended WorldLocationStruct that includes speed.</semantics>
+                <field>
+                    <name>WorldLocationStruct</name>
+                    <dataType>WorldLocationStruct</dataType>
+                    <semantics>Coordinate to move towards.</semantics>
+                </field>
+                <field>
+                    <name>Speed</name>
+                    <dataType>VelocityMeterPerSecondFloat32</dataType>
+                    <semantics>Speed over ground for a entity, in m/s.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MoveToLocationDefinition_EXT</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for MoveToLocationExtended task.</semantics>
+                <field>
+                    <name>Path_EXT</name>
+                    <dataType>ArrayOfWaypoints_EXT</dataType>
+                    <semantics>Array of extended waypoints.</semantics>
+                </field>
+                <field>
+                    <name>MoveType</name>
+                    <dataType>MoveTypeEnum32</dataType>
+                    <semantics>Indicates if roads have to be followed.</semantics>
+                </field>
+                <field>
+                    <name>Location</name>
+                    <dataType>Waypoint_EXT</dataType>
+                    <semantics>Location to move to, using extended waypoint.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MoveProgress_EXT</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task progress data for MoveToLocation_EXT and PatrolRepeating_EXT task</semantics>
+                <field>
+                    <name>LastPassedWaypoint</name>
+                    <dataType>Waypoint_EXT</dataType>
+                    <semantics>Last passed waypoint.</semantics>
+                </field>
+                <field>
+                    <name>NextWaypoint</name>
+                    <dataType>Waypoint_EXT</dataType>
+                    <semantics>Next waypoint to move towards.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>ClearSeObjectTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for ClearSeObject.</semantics>
+                <field>
+                    <name>UniqueId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Unique ID of the object to be cleared.</semantics>
+                </field>
+                <field>
+                    <name>TimeToComplete</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>The time it shall take the tasked entity to clear the object. If unspecified, this is decided by federate accepting the task.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>SetOrderedSpeedTaskDefiniton</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for setOrderedSpeed task.</semantics>
+                <field>
+                    <name>Speed</name>
+                    <dataType>VelocityMeterPerSecondFloat32</dataType>
+                    <semantics>Determines the ordered speed to set for an entity, in m/s.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>SetOrderedAltitudeTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for SetOrderedAltitude</semantics>
+                <field>
+                    <name>Altitude</name>
+                    <dataType>AltitudeMeterFloat64</dataType>
+                    <semantics>Defines the altitude.</semantics>
+                </field>
+                <field>
+                    <name>AltitudeType</name>
+                    <dataType>AltitudeTypeEnum8</dataType>
+                    <semantics>Above the ground or sea.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CreateSeBreachTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task definition of createSeBreach task.</semantics>
+                <field>
+                    <name>BaseSeObjectTaskDefinition</name>
+                    <dataType>CreateSeObjectTaskDefinition</dataType>
+                    <semantics>Reference to base object.</semantics>
+                </field>
+                <field>
+                    <name>HostObjectId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>UniqueId of the host object.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MountTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for Mount task.</semantics>
+                <field>
+                    <name>EntityId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Reference to the entity to mount.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>DismountTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for Dismount task.</semantics>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>PatrolTaskDefinition_EXT</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for Patrol_EXT task.</semantics>
+                <field>
+                    <name>Path_EXT</name>
+                    <dataType>ArrayOfWaypoints_EXT</dataType>
+                    <semantics>Array of extended waypoints.</semantics>
+                </field>
+                <field>
+                    <name>MoveType</name>
+                    <dataType>MoveTypeEnum32</dataType>
+                    <semantics>Indicates if roads have to be followed.</semantics>
+                </field>
+                <field>
+                    <name>PatrolType</name>
+                    <dataType>PatrolTypeEnum32</dataType>
+                    <semantics>Defined how the patrol should be executed. The full movement from start point, through the patrol route and back to the start point is called one cycle.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>PatrolRepeatingTaskDefinition_EXT</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for PatrolRepeating_EXT Task, builds on PatrolTaskDefinition_EXT.</semantics>
+                <field>
+                    <name>PatrolTaskDefinition_EXT</name>
+                    <dataType>PatrolTaskDefinition_EXT</dataType>
+                    <semantics>Reference to base extended patrol.</semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>The duration of the total patrol task.</semantics>
+                </field>
+                <field>
+                    <name>IntervalTime</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>The time between the start of two routes.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>PatrolRepeatingProgress_EXT</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task progress for PatrolRepeating_EXT task, builds on MoveToLocationProgress_EXT.</semantics>
+                <field>
+                    <name>MoveToLocationProgress_EXT</name>
+                    <dataType>MoveToLocationProgress</dataType>
+                    <semantics>Base object.</semantics>
+                </field>
+                <field>
+                    <name>ElapsedTime</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>Elapsed time since start</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CreateSeCheckpointTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for CreateSeCheckpoint.</semantics>
+                <field>
+                    <name>BaseSeObjectTaskDefinition</name>
+                    <dataType>CreateSeObjectTaskDefinition</dataType>
+                    <semantics>Base CreateSeObject task.</semantics>
+                </field>
+                <field>
+                    <name>Name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>Name of the checkpoint.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>OperateCheckpointTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for OperateSeCheckpoint.</semantics>
+                <field>
+                    <name>UniqueId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>UniqueId of the checkpoint to operate.</semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>How long to operate the checkpoint for.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MagicMoveTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for MagicMove.</semantics>
+                <field>
+                    <name>Location</name>
+                    <dataType>WorldLocationStruct</dataType>
+                    <semantics>Location of the entity.</semantics>
+                </field>
+                <field>
+                    <name>Heading</name>
+                    <dataType>AngleRadianFloat32</dataType>
+                    <semantics>Heading of the entity.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MagicResourceTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for MagicResource.</semantics>
+                <field>
+                    <name>Resource</name>
+                    <dataType>NETN_SupplyStruct</dataType>
+                    <semantics>Defines the resource type that will get a new quantity value.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>WaitTaskDefinition</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for Wait task.</semantics>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>Specifies the wait time (seconds).</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>WaitProgress</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task progress for wait task.</semantics>
+                <field>
+                    <name>ElapsedTime</name>
+                    <dataType>TimeSecInt32</dataType>
+                    <semantics>Elapsed time since the task started to execute.</semantics>
+                </field>
+            </fixedRecordData>
         </fixedRecordDataTypes>
         <variantRecordDataTypes>
             <variantRecordData>
@@ -1512,6 +2562,236 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <encoding>HLAvariantRecord</encoding>
                 <semantics></semantics>
             </variantRecordData>
+            <variantRecordData>
+                <name>TaskDefinitionVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>TaskTypeEnum</dataType>
+                <alternative>
+                    <enumerator>MoveToLocation</enumerator>
+                    <name>MoveToLocation</name>
+                    <dataType>MoveToLocationTaskDefinition</dataType>
+                    <semantics>Reference to the MoveToLocation taskspecific parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateSeObject</enumerator>
+                    <name>CreateSeObject</name>
+                    <dataType>CreateSeObjectTaskDefinition</dataType>
+                    <semantics>Reference to the createSEobject task (NETN-ETR-EXT).</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Patrol</enumerator>
+                    <name>PatrolTask</name>
+                    <dataType>PatrolTaskDefinition</dataType>
+                    <semantics>Reference to Patrol task.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>PatrolRepeating</enumerator>
+                    <name>PatrolRepeating</name>
+                    <dataType>PatrolRepeatingTaskDefinition</dataType>
+                    <semantics>Reference to PatrolRepeating task.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateSeMinefield</enumerator>
+                    <name>CreateSeMinefield</name>
+                    <dataType>CreateSeMinefieldTaskDefinition</dataType>
+                    <semantics>Reference to CreateSeMinefield (NETN-ETR-EXT).</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtEntity</enumerator>
+                    <name>FireAtEntity</name>
+                    <dataType>FireAtEntityTaskDefinition</dataType>
+                    <semantics>Reference to FireAtEntity.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtLocation</enumerator>
+                    <name>FireAtLocation</name>
+                    <dataType>FireAtLocationTaskDefinition</dataType>
+                    <semantics>Reference to FireAtLocation.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtEntityWM</enumerator>
+                    <name>FireAtEntityWM</name>
+                    <dataType>FireAtEntityWMTaskDefinition</dataType>
+                    <semantics>Reference to FireAtEntityWM.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtLocationWM</enumerator>
+                    <name>FireAtLocationWM</name>
+                    <dataType>FireAtLocationWMTaskDefinition</dataType>
+                    <semantics>Reference to FireAtLocationWM.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>MoveToLocation_EXT</enumerator>
+                    <name>MoveToLocation_EXT</name>
+                    <dataType>MoveToLocationDefinition_EXT</dataType>
+                    <semantics>Reference to MoveToLocation_EXT.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>SetOrderedAltitude</enumerator>
+                    <name>SetOrderedAltitude</name>
+                    <dataType>SetOrderedAltitudeTaskDefinition</dataType>
+                    <semantics>Reference to SetOrderedAltitude.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>SetOrderedSpeed</enumerator>
+                    <name>SetOrderedSpeed</name>
+                    <dataType>SetOrderedSpeedTaskDefiniton</dataType>
+                    <semantics>Reference to SetOrderedSpeed.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateSeBreach</enumerator>
+                    <name>CreateSeBreach</name>
+                    <dataType>CreateSeBreachTaskDefinition</dataType>
+                    <semantics>Reference to CreateSeBreach.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Mount</enumerator>
+                    <name>Mount</name>
+                    <dataType>MountTaskDefinition</dataType>
+                    <semantics>Reference to Mount.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Dismount</enumerator>
+                    <name>Dismount</name>
+                    <dataType>DismountTaskDefinition</dataType>
+                    <semantics>Reference to Dismount.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Patrol_EXT</enumerator>
+                    <name>Patrol_EXT</name>
+                    <dataType>PatrolTaskDefinition_EXT</dataType>
+                    <semantics>Reference to Patrol_EXT.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>PatrolRepeating_EXT</enumerator>
+                    <name>PatrolRepeating_EXT</name>
+                    <dataType>PatrolRepeatingTaskDefinition_EXT</dataType>
+                    <semantics>Reference to PatrolRepeating_EXT.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateSeCheckpoint</enumerator>
+                    <name>CreateSeCheckpoint</name>
+                    <dataType>CreateSeCheckpointTaskDefinition</dataType>
+                    <semantics>Reference to CreateSeCheckpoint (NETN-ETR-EXT).</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>OperateCheckpoint</enumerator>
+                    <name>OperateCheckpoint</name>
+                    <dataType>OperateCheckpointTaskDefinition</dataType>
+                    <semantics>Reference to OperateCheckpoint.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>ClearSeObject</enumerator>
+                    <name>ClearSeObject</name>
+                    <dataType>ClearSeObjectTaskDefinition</dataType>
+                    <semantics>Reference to ClearSeObject.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>MagicMove</enumerator>
+                    <name>MagicMove</name>
+                    <dataType>MagicMoveTaskDefinition</dataType>
+                    <semantics>Reference to MagicMove.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>MagicResource</enumerator>
+                    <name>MagicResource</name>
+                    <dataType>MagicResourceTaskDefinition</dataType>
+                    <semantics>Reference to MagicResource.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Wait</enumerator>
+                    <name>Wait</name>
+                    <dataType>WaitTaskDefinition</dataType>
+                    <semantics>Reference to Wait.</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>Variant record for task specific data.</semantics>
+            </variantRecordData>
+            <variantRecordData>
+                <name>TaskProgressVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>TaskTypeEnum</dataType>
+                <alternative>
+                    <enumerator>MoveToLocation</enumerator>
+                    <name>MoveToLocationProgress</name>
+                    <dataType>MoveToLocationProgress</dataType>
+                    <semantics>Progression for basic move task.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Patrol</enumerator>
+                    <name>PatrolProgress</name>
+                    <dataType>MoveToLocationProgress</dataType>
+                    <semantics>Progress for basic patrol task</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>PatrolRepeating</enumerator>
+                    <name>PatrolRepeatingProgress</name>
+                    <dataType>PatrolRepeatingProgress</dataType>
+                    <semantics>Progress for repeating patrol.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>ClearSeObject</enumerator>
+                    <name>ClearSeObjectProgress</name>
+                    <dataType>SeObjectProgress</dataType>
+                    <semantics>Progress for ClearSeObject</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateSeObject</enumerator>
+                    <name>CreateSeObjectProgress</name>
+                    <dataType>SeObjectProgress</dataType>
+                    <semantics>Progress for CreateSeObject</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateSeMinefield</enumerator>
+                    <name>CreateSeMinefieldProgress</name>
+                    <dataType>SeObjectProgress</dataType>
+                    <semantics>Progress for CreateSeMinefield</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateSeBreach</enumerator>
+                    <name>CreateSeBreachProgress</name>
+                    <dataType>SeObjectProgress</dataType>
+                    <semantics>Progress for CreateSeBreach</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateSeCheckpoint</enumerator>
+                    <name>CreateSeCheckpointProgress</name>
+                    <dataType>SeObjectProgress</dataType>
+                    <semantics>Progress for CreateSeCheckpoint</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtEntity</enumerator>
+                    <name>FireAtEntityProgress</name>
+                    <dataType>FireAtProgress</dataType>
+                    <semantics>Progress for FireAtEntity</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtEntityWM</enumerator>
+                    <name>FireAtEntityWMProgress</name>
+                    <dataType>FireAtProgress</dataType>
+                    <semantics>Progress for FireAtEntityWM</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtLocation</enumerator>
+                    <name>FireAtLocationProgress</name>
+                    <dataType>FireAtProgress</dataType>
+                    <semantics>Progress for FireAtLocation</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtLocationWM</enumerator>
+                    <name>FireAtLocationWMProgress</name>
+                    <dataType>FireAtProgress</dataType>
+                    <semantics>Progress for FireAtLocationWM</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Wait</enumerator>
+                    <name>Wait</name>
+                    <dataType>WaitProgress</dataType>
+                    <semantics>Progress for wait task.</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>Variant record for task progress data.</semantics>
+            </variantRecordData>
         </variantRecordDataTypes>
     </dataTypes>
     <notes>
@@ -1524,10 +2804,6 @@ for aggregate entities, also use entity types from platform tables to describe t
 * ETR_Report: A base interaction class for more specialized report interaction classes. 
 * ETR_TaskManagement: A base interaction class for more specialized task management interaction classes. 
 * ETR_SimCon: A base interaction class for more specialized Simulation Control (SimCon) interaction classes</semantics>
-        </note>
-        <note>
-            <label>COPY-RPRnoteBase1</label>
-            <semantics>Federates shall send the time at which the data is valid in the user defined tag with every attribute values update and interaction; see datatype RPRUserDefinedTag for the encoding. All federates shall transmit this field, even if they do not use it themselves, so that other federates can use its value to compensate for network transport delays.</semantics>
         </note>
         <note>
             <label>COPY-RPRnoteBase1</label>
