@@ -388,7 +388,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <semantics>Report on a unit's remaining amount resources.</semantics>
                             <parameter>
                                 <name>Resource</name>
-                                <dataType>NETN_SupplyStruct</dataType>
+                                <dataType>SupplyStruct</dataType>
                                 <semantics>Required. The type of resource and remaining quantity.</semantics>
                             </parameter>
                         </interactionClass>
@@ -489,7 +489,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <semantics>A simulation control task that instructs the entity to set amount of available resources immediately</semantics>
                         <parameter>
                             <name>Resource</name>
-                            <dataType>NETN_SupplyStruct</dataType>
+                            <dataType>SupplyStruct</dataType>
                             <semantics>Required. Defines the resource type that will get a new quantity value.</semantics>
                         </parameter>
                     </interactionClass>
@@ -2486,7 +2486,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <semantics>Task specific data for MagicResource.</semantics>
                 <field>
                     <name>Resource</name>
-                    <dataType>NETN_SupplyStruct</dataType>
+                    <dataType>SupplyStruct</dataType>
                     <semantics>Defines the resource type that will get a new quantity value.</semantics>
                 </field>
             </fixedRecordData>
