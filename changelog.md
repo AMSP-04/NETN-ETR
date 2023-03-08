@@ -13,6 +13,7 @@ Major changes include:
 * Changed datatype `TransactionId` to `UUID`
 
 * Replaced all use of Fixed Record datatype `NETN_SupplyStruct` with `SupplyStruct`
+* Added `DelayTime` to `OperateCheckpoint` interaction.
 
 ### Changes in 2.0
 This version is the initial version of the new NETN-ETR FOM module based on previous (now deprecated) LLBML FOM Module related to C2SIM and part of AMSP-04 Ed. A. modules. 

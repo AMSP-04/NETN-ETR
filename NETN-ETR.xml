@@ -986,6 +986,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <dataType>TimeSecInt32</dataType>
                             <semantics>Required. The duration of the operation of the checkpoint.</semantics>
                         </parameter>
+                        <parameter>
+                            <name>DelayTime</name>
+                            <dataType>TimeSecondInteger32</dataType>
+                            <semantics>Optional. New DelayTime attribute for the checkpoint to be operated on. If left blank the DelayTime will remain the same.</semantics>
+                        </parameter>
                     </interactionClass>
                     <interactionClass>
                         <name>Patrol</name>
