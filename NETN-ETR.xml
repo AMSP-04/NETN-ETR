@@ -242,6 +242,33 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     </attribute>
                 </objectClass>
             </objectClass>
+            <objectClass>
+                <name>Task</name>
+                <sharing>Neither</sharing>
+                <semantics>Object to represent a task independently in the federation when needed.</semantics>
+                <attribute>
+                    <name>TaskDefinition</name>
+                    <dataType>TaskDefinition</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Required. Definition description of the task represented.</semantics>
+                </attribute>
+                <attribute>
+                    <name>TaskProgress</name>
+                    <dataType>TaskProgress</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Required. Progress description of the task represented.</semantics>
+                </attribute>
+            </objectClass>
         </objectClass>
     </objects>
     <interactions>
