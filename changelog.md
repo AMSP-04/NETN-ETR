@@ -9,6 +9,8 @@ Major changes include:
 * Added dependency to NETN-MRM
 * Added attribute TaskList to AggregateEntity objectClass
 * Added attribute SupportedTasks to AggregateEntity objectClass
+* Added `WaypointWithSpeed` and `ArrayOfWaypointsWithSpeed`
+* Added new interactions `MoveToLocationWithSpeed`, `PatrolWithSpeed` and `PatrolRepeatingWithSpeed` based on `WaypointWithSpeed`
 
 * Changed datatype `TransactionId` to `UUID`
 

@@ -1161,6 +1161,67 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <semantics>Required. Specifies the wait time (seconds).</semantics>
                         </parameter>
                     </interactionClass>
+                    <interactionClass>
+                        <name>MoveToLocationWithSpeed</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasking of an entity to move to the specified destination location with a given speed for each waypoint. If a path is provided, the entity should follow the path as its route to the destination. The entity should align with the path from its current position to the nearest position or waypoint on the path. The entity should leave the path at position or waypoint on the path closest to the destination. The entity moves directly towards the destination location if no path (or a zero-length path) is provided.</semantics>
+                        <parameter>
+                            <name>Location</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>Required. The location to move to.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Path</name>
+                            <dataType>ArrayOfWaypointsWithSpeed</dataType>
+                            <semantics>Optional. A route to use in order to move to the Location.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>MoveType</name>
+                            <dataType>MoveTypeEnum32</dataType>
+                            <semantics>Required. Indicates if roads have to be followed.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>PatrolWithSpeed</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasking of an entity to perform a patrol. The tasked entity moves from its current position to the start of the patrol route and then moves according to patrol route from its start point in the path, through all waypoints with the speed specified. </semantics>
+                        <parameter>
+                            <name>Path</name>
+                            <dataType>ArrayOfWaypointsWithSpeed</dataType>
+                            <semantics>Required. Specifies the route to patrol.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>PatrolType</name>
+                            <dataType>PatrolTypeEnum32</dataType>
+                            <semantics>Required. Defines how the patrol should be excuted. The full movement from start point, through the patrol route and back to the start point is called one cycle.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>MoveType</name>
+                            <dataType>PatrolMoveTypeEnum32</dataType>
+                            <semantics>Required. Defines how the entity shall move during the patrol route.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>PatrolRepeatingWithSpeed</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed, then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time, then the cycle starts directly (without delay). If the time of a cycle takes less then the interval time, then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
+                            <parameter>
+                                <name>Duration</name>
+                                <dataType>TimeSecondInteger32</dataType>
+                                <semantics>Required. The duration of the total patrol task.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>IntervalTime</name>
+                                <dataType>TimeSecondInteger32</dataType>
+                                <semantics>Required. The time between the start of two cycles, i.e. the time to complete a cycle and any waiting time before starting the next cycle.</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
                 </interactionClass>
                 <interactionClass>
                     <name>ETR_TaskManagement</name>
@@ -1748,8 +1809,8 @@ Other - Federate application specific.</semantics>
                 <semantics>Array of task progress types.</semantics>
             </arrayData>
             <arrayData>
-                <name>ArrayOfWaypoints_EXT</name>
-                <dataType>Waypoint_EXT</dataType>
+                <name>ArrayOfWaypointsWithSpeed</name>
+                <dataType>WaypointWithSpeed</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
                 <semantics>Array containing extended waypoints.</semantics>
@@ -2293,7 +2354,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
             </fixedRecordData>
             <fixedRecordData>
-                <name>Waypoint_EXT</name>
+                <name>WaypointWithSpeed</name>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Extended WorldLocationStruct that includes speed.</semantics>
                 <field>
@@ -2313,7 +2374,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <semantics>Task specific data for MoveToLocationExtended task.</semantics>
                 <field>
                     <name>Path_EXT</name>
-                    <dataType>ArrayOfWaypoints_EXT</dataType>
+                    <dataType>ArrayOfWaypointsWithSpeed</dataType>
                     <semantics>Array of extended waypoints.</semantics>
                 </field>
                 <field>
@@ -2323,7 +2384,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>Location</name>
-                    <dataType>Waypoint_EXT</dataType>
+                    <dataType>WaypointWithSpeed</dataType>
                     <semantics>Location to move to, using extended waypoint.</semantics>
                 </field>
             </fixedRecordData>
@@ -2333,12 +2394,12 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <semantics>Task progress data for MoveToLocation_EXT and PatrolRepeating_EXT task</semantics>
                 <field>
                     <name>LastPassedWaypoint</name>
-                    <dataType>Waypoint_EXT</dataType>
+                    <dataType>WaypointWithSpeed</dataType>
                     <semantics>Last passed waypoint.</semantics>
                 </field>
                 <field>
                     <name>NextWaypoint</name>
-                    <dataType>Waypoint_EXT</dataType>
+                    <dataType>WaypointWithSpeed</dataType>
                     <semantics>Next waypoint to move towards.</semantics>
                 </field>
             </fixedRecordData>
@@ -2418,7 +2479,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <semantics>Task specific data for Patrol_EXT task.</semantics>
                 <field>
                     <name>Path_EXT</name>
-                    <dataType>ArrayOfWaypoints_EXT</dataType>
+                    <dataType>ArrayOfWaypointsWithSpeed</dataType>
                     <semantics>Array of extended waypoints.</semantics>
                 </field>
                 <field>
