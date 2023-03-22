@@ -585,75 +585,87 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <semantics>Optional. Unique ID of the next task.</semantics>
                     </parameter>
                     <interactionClass>
-                        <name>AddPassage</name>
+                        <name>ClearSeObject</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasking of an entity to lay/build a passage between the two given points. The passage can, for example, be a passage through an obstacle or a bridge over a river. The tasked entity should be within a certain distance tolerance (specified in the federation agreement) of one of the points of the passage. A passage object should be registered in the federation with the provided UUID.</semantics>
-                        <parameter>
-                            <name>Point1</name>
-                            <dataType>WorldLocationStruct</dataType>
-                            <semantics>Required. The line between point1 and point2 defines the geometry of the passage.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>Point2</name>
-                            <dataType>WorldLocationStruct</dataType>
-                            <semantics>Required. The line between point1 and point2 defines the geometry of the passage.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>UniqueId</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Required. A unique UUID of the passage.</semantics>
-                        </parameter>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>ClearObstacle</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Tasking of an entity to clear an obstacle or minefield with the given UUID. The tasked entity should be within a certain distance (tolerance specified in the federation agreement) of one of the points of the geometry of the obstacle.</semantics>
+                        <semantics>Tasking of an entity to clear any SeObject with the given UUID. The tasked entity should be within a certain distance (tolerance specified in the federation agreement) of one of the points of the geometry of the obstacle.</semantics>
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UUID</dataType>
                             <semantics>Required. Reference to the Obstacle to clear.</semantics>
                         </parameter>
+                        <parameter>
+                            <name>Duration</name>
+                            <dataType>TimeSecondInteger32</dataType>
+                            <semantics>Optional. Time to clear the SeObject. If unspecified, this is decided by federate accepting the task.</semantics>
+                        </parameter>
                     </interactionClass>
                     <interactionClass>
-                        <name>CreateObstacle</name>
+                        <name>CreateSeObject</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasking of an entity to create an obstacle with the given geometry. The tasked entity should be within a certain distance (tolerance specified in the federation agreement) of one of the points of the geometry.</semantics>
+                        <semantics>Tasking of an entity to create a generic SeObject (NETN-SE) </semantics>
                         <parameter>
                             <name>UniqueId</name>
                             <dataType>UUID</dataType>
-                            <semantics>Required. A unique UUID of the Obstacle.</semantics>
+                            <semantics>Optional. Unique ID of object to create. If not specified, left up to creator.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Name</name>
+                            <dataType>HLAunicodeString</dataType>
+                            <semantics>Required. Name of the object to create. Should (but is not required to) be unique.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Geometry</name>
+                            <dataType>WorldLocationVariantStruct</dataType>
+                            <semantics>Required. Variant record with WorldLocationStructs representing the different ways SeObjects (NETN-SE) locations are represented. PointObject = WorldLocationStruct, LinearObject = WorldLocationPath and ArealObject = WorldLocationLenghtlessArray.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>TimeToComplete</name>
+                            <dataType>TimeSecondInteger32</dataType>
+                            <semantics>Optional. Time to complete the SeObject. If unspecified, this is decided by federate accepting the task.</semantics>
                         </parameter>
                         <parameter>
                             <name>ObstacleType</name>
                             <dataType>EntityTypeStruct</dataType>
                             <semantics>Required. The type of the obstacle defined by the entity type of the obstacle (SISO REF-010 Land Culture Features) .</semantics>
                         </parameter>
-                        <parameter>
-                            <name>Geometry</name>
-                            <dataType>AreaVariantStruct</dataType>
-                            <semantics>Required. Area of the obstacle.</semantics>
-                        </parameter>
                         <interactionClass>
                             <name>CreateMinefield</name>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Tasking of an entity to create a minefield within the specified geometry. When the task is completed, a minefield object should be published in the federation (e.g. RPR-FOM Minefield). This tasking interaction is different from the RPR-FOM MinefieldObjectTransaction interaction, which asks a federate to create a minefield magically.</semantics>
+                            <semantics>Tasking of an entity to create a minefield within the specified geometry. When the task is completed, a minefield object should be published in the federation (e.g. NETN-SE Minefield). This tasking interaction is different from the RPR-FOM MinefieldObjectTransaction interaction, which asks a federate to create a minefield magically.</semantics>
                             <parameter>
                                 <name>TypeOfMines</name>
                                 <dataType>EntityTypeStruct</dataType>
-                                <semantics>Required. Type of mines used defined in SISO-REF-010.</semantics>
+                                <semantics>Required. Type of mines used, defined in SISO-REF-010</semantics>
                             </parameter>
                             <parameter>
                                 <name>MineCount_MineDensity</name>
                                 <dataType>MineCountVariantStruct</dataType>
                                 <semantics>Required. Count or density of mines.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>CreateCheckpoint</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>CreateBreach</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Creates a breach or passage on a Se-Object. Discriminant on GeometryType decides if it is a Point, Line or Areal breach. </semantics>
+                            <parameter>
+                                <name>HostObjectId</name>
+                                <dataType>UUID</dataType>
+                                <semantics>Required. UUID of object where breach will be applied.</semantics>
                             </parameter>
                         </interactionClass>
                     </interactionClass>
@@ -684,38 +696,6 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <name>DisruptionEnabled</name>
                             <dataType>HLAboolean</dataType>
                             <semantics>Required. Disruption enabled or disabled. Default is True = Enabled.</semantics>
-                        </parameter>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>EstablishCheckPoint</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Tasking of an entity to establish a checkpoint. The task defines a location where a checkpoint shall be established and then operated. The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the location of the checkpoint. If not, a separate move task should be issued first. During the execution of the task, a CheckPoint object (NETN-SE) should be registered in the federation. The completion and operational status of the CheckPoint object should be updated continuously during the execution of the task or at task completion. Immediately after the checkpoint has been established, it will be operated by the tasked entity for a specified duration of time.</semantics>
-                        <parameter>
-                            <name>Name</name>
-                            <dataType>HLAunicodeString</dataType>
-                            <semantics>Required. The name of the Check Point.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>Location</name>
-                            <dataType>WorldLocationStruct</dataType>
-                            <semantics>Required. The location of the Check Point.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>UniqueId</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Required. Unique identifier for the SE_CheckPoint object to be created as a result of this task.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>Duration</name>
-                            <dataType>TimeSecInt32</dataType>
-                            <semantics>Required. The duration of the initial operation of the Check Point after it has been established.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>LocationUuid</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Optional. The location for the checkpoint by reference to NETN-SE SE_GeoObject.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -1188,7 +1168,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasking of an entity to perform a patrol. The tasked entity moves from its current position to the start of the patrol route and then moves according to patrol route from its start point in the path, through all waypoints with the speed specified. </semantics>
+                        <semantics>Tasking of an entity to perform a patrol. The tasked entity moves from its current position to the start of the patrol route and then moves according to patrol route from its start point in the path, through all waypoints with the speed specified.</semantics>
                         <parameter>
                             <name>Path</name>
                             <dataType>ArrayOfWaypointsWithSpeed</dataType>
@@ -1734,6 +1714,23 @@ Other - Federate application specific.</semantics>
                 <enumerator>
                     <name>MineDensity</name>
                     <value>1</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>GeometryType</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Specifies different geometries.</semantics>
+                <enumerator>
+                    <name>Point</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Path</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Polygon</name>
+                    <value>3</value>
                 </enumerator>
             </enumeratedData>
         </enumeratedDataTypes>
@@ -2884,6 +2881,31 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </alternative>
                 <encoding>HLAvariantRecord</encoding>
                 <semantics>Variant record for task progress data.</semantics>
+            </variantRecordData>
+            <variantRecordData>
+                <name>WorldLocationVariantStruct</name>
+                <discriminant>GeometryType</discriminant>
+                <dataType>GeometryType</dataType>
+                <alternative>
+                    <enumerator>Point</enumerator>
+                    <name>Point</name>
+                    <dataType>WorldLocationStruct</dataType>
+                    <semantics>A signle point represented as a WorldLocationStruct.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Path</enumerator>
+                    <name>Path</name>
+                    <dataType>WorldLocationPath</dataType>
+                    <semantics>A array representing a path given in WorldLocationStructs.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Polygon</enumerator>
+                    <name>Polygon</name>
+                    <dataType>WorldLocationStructLengthlessArray</dataType>
+                    <semantics>A polygon used to represent ArealObjects (NETN-SE)</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>A point, path or area described in WorldLocationStructs (NETN-SE).</semantics>
             </variantRecordData>
         </variantRecordDataTypes>
     </dataTypes>
