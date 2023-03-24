@@ -25,7 +25,7 @@ Major changes include:
   *  `CreateMinefield`
   *  `RemoveCheckPoint`
   *  `RemovePassage`
-* Added `ClearSeObject` and `CreateSeObject` with `CreateMinefield`, `CreateCheckpoint` and `CreateBreach` as subclasses
+* Added `ClearEngineering` and `Engineering` with `LayMinefield`, `CreateObstacle`, `CreateCheckpoint` and `CreateBreach` as subclasses
 * Added `GeometryType` enum and `WorldLocationVariantStruct` 
 * Changed `Direction` in `Move` and `MoveIntoFormation` to use Degrees instead of radians.
 

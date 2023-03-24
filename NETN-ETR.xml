@@ -87,7 +87,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>Subscribe</sharing>
                         <semantics>A physical object under the control of armed forces upon which sensor, communication, or weapon systems may be mounted.</semantics>
                         <attribute>
-                            <name>CurrentTaskProgresses</name>
+                            <name>ProgressOfCurrentTasks</name>
                             <dataType>ArrayOfTaskProgress</dataType>
                             <updateType>NA</updateType>
                             <updateCondition></updateCondition>
@@ -95,10 +95,10 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Optional. Array of current task progresses</semantics>
+                            <semantics>Optional. Array of progress for current tasks.</semantics>
                         </attribute>
                         <attribute>
-                            <name>CurrentTaskDefinitions</name>
+                            <name>DefinitionsOfCurrentTasks</name>
                             <dataType>ArrayOfTaskDefinitions</dataType>
                             <updateType>NA</updateType>
                             <updateCondition></updateCondition>
@@ -106,7 +106,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Optional. Array of current tasks</semantics>
+                            <semantics>Optional. Array of tasks currently being executed.</semantics>
                         </attribute>
                         <attribute>
                             <name>PreviousTasks</name>
@@ -136,7 +136,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>Subscribe</sharing>
                         <semantics>A living military platform (human or not).</semantics>
                         <attribute>
-                            <name>CurrentTaskProgresses</name>
+                            <name>ProgressOfCurrentTasks</name>
                             <dataType>ArrayOfTaskProgress</dataType>
                             <updateType>NA</updateType>
                             <updateCondition></updateCondition>
@@ -144,10 +144,10 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Optional. Array of current task progresses</semantics>
+                            <semantics>Optional. Array of progress for current tasks.</semantics>
                         </attribute>
                         <attribute>
-                            <name>CurrentTaskDefinitions</name>
+                            <name>DefinitionsOfCurrentTasks</name>
                             <dataType>ArrayOfTaskDefinitions</dataType>
                             <updateType>NA</updateType>
                             <updateCondition></updateCondition>
@@ -155,7 +155,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Optional. Array of current tasks</semantics>
+                            <semantics>Optional. Array of tasks currently being executed.</semantics>
                         </attribute>
                         <attribute>
                             <name>PreviousTasks</name>
@@ -186,7 +186,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <sharing>PublishSubscribe</sharing>
                     <semantics>A group of one or more separate objects that operate together as part of an organization. These objects may be discrete, may be other aggregate objects, or may be a mixture of both.</semantics>
                     <attribute>
-                        <name>CurrentTaskProgresses</name>
+                        <name>ProgressOfCurrentTasks</name>
                         <dataType>ArrayOfTaskProgress</dataType>
                         <updateType>NA</updateType>
                         <updateCondition></updateCondition>
@@ -194,10 +194,10 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional. Array of current task progresses</semantics>
+                        <semantics>Optional. Array of progress for current tasks.</semantics>
                     </attribute>
                     <attribute>
-                        <name>CurrentTaskDefinitions</name>
+                        <name>DefinitionsOfCurrentTasks</name>
                         <dataType>ArrayOfTaskDefinitions</dataType>
                         <updateType>NA</updateType>
                         <updateCondition></updateCondition>
@@ -205,7 +205,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional. Array of current tasks</semantics>
+                        <semantics>Optional. Array of tasks currently being executed.</semantics>
                     </attribute>
                     <attribute>
                         <name>PreviousTasks</name>
@@ -1709,6 +1709,14 @@ Other - Federate application specific.</semantics>
                     <value>34</value>
                 </enumerator>
                 <enumerator>
+                    <name>PatrolRepeating</name>
+                    <value>53</value>
+                </enumerator>
+                <enumerator>
+                    <name>PatrolWithSpeedRepeating</name>
+                    <value>54</value>
+                </enumerator>
+                <enumerator>
                     <name>SetOrderedAltitude</name>
                     <value>35</value>
                 </enumerator>
@@ -1779,14 +1787,6 @@ Other - Federate application specific.</semantics>
                 <enumerator>
                     <name>MoveToEntityWithSpeed</name>
                     <value>52</value>
-                </enumerator>
-                <enumerator>
-                    <name>PatrolRepeating</name>
-                    <value>53</value>
-                </enumerator>
-                <enumerator>
-                    <name>PatrolWithSpeedRepeating</name>
-                    <value>54</value>
                 </enumerator>
             </enumeratedData>
         </enumeratedDataTypes>
