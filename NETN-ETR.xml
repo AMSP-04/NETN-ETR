@@ -11,9 +11,9 @@
         <description>	
 NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module. 
         
-This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN ETR FOM module is available as a XML file for use in HLA based federations.
+This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN ETR FOM module is available as an XML file for use in HLA based federations.
         </description>
-        <useLimitation> The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine granularity: * It enables the transformation of command and control messages into tasks that can be executed by a simulator. * It defines status reports that can be used for producing command and control reports needed for decision making. * It supports the modelling of simulated command and control interactions between federates in a distributed simulation, for example during a MRM disaggregation process. * It contains a comprehensive set of tasks and reports that can easily be interpreted and executed by simulators. * It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) tools, but it is independent of a specific COTS CGF tool, agent framework, or agent modelling paradigm. * It is independent of any specific doctrine or tactics. An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task it is not specified how an entity (physical or aggregate) will / should perform the task. 	</useLimitation>
+        <useLimitation> The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine granularity: * It enables the transformation of command and control messages into tasks that can be executed by a simulator. * It defines status reports that can be used for producing command and control reports needed for decision-making. * It supports the modelling of simulated command and control interactions between federates in a distributed simulation, for example during a MRM disaggregation process. * It contains a comprehensive set of tasks and reports that can easily be interpreted and executed by simulators. * It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) tools, but it is independent of a specific COTS CGF tool, agent framework, or agent modelling paradigm. * It is independent of any specific doctrine or tactics. An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task it is not specified how an entity (physical or aggregate) will / should perform the task. 	</useLimitation>
         <useHistory>NETN-LBML_v1.1.0 - Developed by MSG-106 and MSG-134 for NETN-FOM v2.0.</useHistory>
         <useHistory>v2.0.0 - Renamed and updated by MSG-163 for NETN-FOM v3.0</useHistory>
         <poc>
@@ -1047,7 +1047,7 @@ Heading 90 deg refers to North.</semantics>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed, then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time, then the cycle starts directly (without delay). If the time of a cycle takes less then the interval time, then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
+                            <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed, then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time, then the cycle starts directly (without delay). If the time of a cycle takes less than the interval time, then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
                             <parameter>
                                 <name>Duration</name>
                                 <dataType>TimeMillisecondInt64</dataType>
@@ -1086,7 +1086,7 @@ Heading 90 deg refers to North.</semantics>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed, then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time, then the cycle starts directly (without delay). If the time of a cycle takes less then the interval time, then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
+                            <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed, then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time, then the cycle starts directly (without delay). If the time of a cycle takes less than the interval time, then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
                             <parameter>
                                 <name>Duration</name>
                                 <dataType>TimeMillisecondInt64</dataType>
@@ -1137,7 +1137,7 @@ Heading 90 deg refers to North.</semantics>
                         <parameter>
                             <name>RulesOfEngagement</name>
                             <dataType>RulesOfEngagementEnum8</dataType>
-                            <semantics>Required. Determines the rules of engagment for a entity.</semantics>
+                            <semantics>Required. Determines the rules of engagment for an entity.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -2291,7 +2291,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <field>
                     <name>Speed</name>
                     <dataType>VelocityMeterPerSecondFloat32</dataType>
-                    <semantics>Speed over ground for a entity, in m/s.</semantics>
+                    <semantics>Speed over ground for an entity, in m/s.</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -2330,7 +2330,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
             </fixedRecordData>
             <fixedRecordData>
-                <name>SetOrderedSpeedTaskDefiniton</name>
+                <name>SetOrderedSpeedTaskDefinition</name>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Task specific data for setOrderedSpeed task.</semantics>
                 <field>
@@ -2580,7 +2580,7 @@ Heading 90 deg refers to North.</semantics>
                 <field>
                     <name>RulesOfEngagement</name>
                     <dataType>RulesOfEngagementEnum8</dataType>
-                    <semantics>Determines the rules of engagment for a entity.</semantics>
+                    <semantics>Determines the rules of engagment for an entity.</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -2984,7 +2984,7 @@ Move
                 <alternative>
                     <enumerator>SetOrderedSpeed</enumerator>
                     <name>SetOrderedSpeed</name>
-                    <dataType>SetOrderedSpeedTaskDefiniton</dataType>
+                    <dataType>SetOrderedSpeedTaskDefinition</dataType>
                     <semantics></semantics>
                 </alternative>
                 <alternative>
@@ -3032,7 +3032,7 @@ Move
                 <dataType>TaskTypeEnum</dataType>
                 <alternative>
                     <enumerator>ClearEngineering</enumerator>
-                    <name>ClearEngingeering</name>
+                    <name>ClearEngineering</name>
                     <dataType>ElapsedTimeProgress</dataType>
                     <semantics></semantics>
                 </alternative>
