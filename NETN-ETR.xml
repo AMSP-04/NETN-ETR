@@ -2317,7 +2317,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>ClearEngineeringTaskDefinition</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task specific data for ClearSeObject.</semantics>
+                <semantics>Task specific data for ClearEngineering.</semantics>
                 <field>
                     <name>UniqueId</name>
                     <dataType>UUID</dataType>
@@ -2357,7 +2357,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>CreateBreachTaskDefinition</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task definition of createSeBreach task.</semantics>
+                <semantics>Task definition of CreateBreach task.</semantics>
                 <field>
                     <name>BaseSeObjectTaskDefinition</name>
                     <dataType>EngineeringTaskDefinition</dataType>
@@ -2678,7 +2678,7 @@ Move</semantics>
             <fixedRecordData>
                 <name>PatrolRepeatingProgress</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task progress data for repeating patrol tasks.</semantics>
+                <semantics>Task progress data for PatrolRepeating tasks.</semantics>
                 <field>
                     <name>PathProgress</name>
                     <dataType>MoveTaskProgress</dataType>
