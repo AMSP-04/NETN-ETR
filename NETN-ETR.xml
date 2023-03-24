@@ -591,7 +591,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         </parameter>
                         <parameter>
                             <name>Duration</name>
-                            <dataType>TimeSecondInteger32</dataType>
+                            <dataType>TimeMillisecondInt64</dataType>
                             <semantics>Optional. Time to clear the SeObject. If unspecified, this is decided by federate accepting the task.</semantics>
                         </parameter>
                     </interactionClass>
@@ -647,7 +647,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         </parameter>
                         <parameter>
                             <name>TimeToComplete</name>
-                            <dataType>TimeSecondInteger32</dataType>
+                            <dataType>TimeMillisecondInt64</dataType>
                             <semantics>Optional. Time to complete the SeObject. If unspecified, this is decided by federate accepting the task.</semantics>
                         </parameter>
                         <parameter>
@@ -712,8 +712,8 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         </parameter>
                         <parameter>
                             <name>Duration</name>
-                            <dataType>TimeSecondInteger32</dataType>
-                            <semantics>Optional. The duration of the fire (seconds).</semantics>
+                            <dataType>TimeMillisecondInt64</dataType>
+                            <semantics>Optional. The duration of the fire (Milliseconds).</semantics>
                         </parameter>
                         <interactionClass>
                             <name>FireAtEntityWM</name>
@@ -756,8 +756,8 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         </parameter>
                         <parameter>
                             <name>Duration</name>
-                            <dataType>TimeSecInt32</dataType>
-                            <semantics>Required. The duration of the fire (seconds).</semantics>
+                            <dataType>TimeMillisecondInt64</dataType>
+                            <semantics>Required. The duration of the fire (milliseconds).</semantics>
                         </parameter>
                         <parameter>
                             <name>LocationUuid</name>
@@ -820,8 +820,8 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         </parameter>
                         <parameter>
                             <name>Duration</name>
-                            <dataType>TimeSecInt32</dataType>
-                            <semantics>Required. The duration of the follow action (seconds).</semantics>
+                            <dataType>TimeMillisecondInt64</dataType>
+                            <semantics>Required. The duration of the follow action (milliseconds).</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -839,8 +839,8 @@ Heading 90 deg refers to North.</semantics>
                         </parameter>
                         <parameter>
                             <name>Duration</name>
-                            <dataType>TimeSecInt32</dataType>
-                            <semantics>Required. The duration of the move.</semantics>
+                            <dataType>TimeMillisecondUnsignedInteger32</dataType>
+                            <semantics>Required. The duration of the move (milliseconds).</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -1007,12 +1007,12 @@ Heading 90 deg refers to North.</semantics>
                         </parameter>
                         <parameter>
                             <name>Duration</name>
-                            <dataType>TimeSecInt32</dataType>
-                            <semantics>Required. The duration of the operation of the checkpoint.</semantics>
+                            <dataType>TimeMillisecondInt64</dataType>
+                            <semantics>Required. The duration of the operation of the checkpoint (millisecond).</semantics>
                         </parameter>
                         <parameter>
                             <name>DelayTime</name>
-                            <dataType>TimeSecondInteger32</dataType>
+                            <dataType>TimeMillisecondInt64</dataType>
                             <semantics>Optional. New DelayTime attribute for the checkpoint to be operated on. If left blank the DelayTime will remain the same.</semantics>
                         </parameter>
                     </interactionClass>
@@ -1050,12 +1050,12 @@ Heading 90 deg refers to North.</semantics>
                             <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed, then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time, then the cycle starts directly (without delay). If the time of a cycle takes less then the interval time, then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
                             <parameter>
                                 <name>Duration</name>
-                                <dataType>TimeSecInt32</dataType>
+                                <dataType>TimeMillisecondInt64</dataType>
                                 <semantics>Required. The duration of the total patrol task.</semantics>
                             </parameter>
                             <parameter>
                                 <name>IntervalTime</name>
-                                <dataType>TimeSecInt32</dataType>
+                                <dataType>TimeMillisecondInt64</dataType>
                                 <semantics>Required. The time between the start of two cycles, i.e. the time to complete a cycle and any waiting time before starting the next cycle.</semantics>
                             </parameter>
                         </interactionClass>
@@ -1089,12 +1089,12 @@ Heading 90 deg refers to North.</semantics>
                             <semantics>Tasking of an entity to repeat a patrol for a given duration. When the duration time has passed, then the last cycle of the patrol is completed before the task ends. If the time of a cycle takes longer then the interval time, then the cycle starts directly (without delay). If the time of a cycle takes less then the interval time, then the entity waits at the first point of the patrol route until the next cycle is started.</semantics>
                             <parameter>
                                 <name>Duration</name>
-                                <dataType>TimeSecondInteger32</dataType>
+                                <dataType>TimeMillisecondInt64</dataType>
                                 <semantics>Required. The duration of the total patrol task.</semantics>
                             </parameter>
                             <parameter>
                                 <name>IntervalTime</name>
-                                <dataType>TimeSecondInteger32</dataType>
+                                <dataType>TimeMillisecondInt64</dataType>
                                 <semantics>Required. The time between the start of two cycles, i.e. the time to complete a cycle and any waiting time before starting the next cycle.</semantics>
                             </parameter>
                         </interactionClass>
@@ -1198,8 +1198,8 @@ Heading pi/2 rad refers to North.</semantics>
                         <semantics>Tasking of an entity to wait for a duration of time.</semantics>
                         <parameter>
                             <name>Duration</name>
-                            <dataType>TimeSecInt32</dataType>
-                            <semantics>Required. Specifies the wait time (seconds).</semantics>
+                            <dataType>TimeMillisecondInt64</dataType>
+                            <semantics>Required. Specifies the wait time (milliseconds).</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -1930,46 +1930,6 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
             </fixedRecordData>
             <fixedRecordData>
-                <name>MoveTaskStruct</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics></semantics>
-                <field>
-                    <name>Waypoint</name>
-                    <dataType>ArrayOfWorldLocationStruct</dataType>
-                    <semantics></semantics>
-                </field>
-                <field>
-                    <name>NextWaypoint</name>
-                    <dataType>HLAinteger32BE</dataType>
-                    <semantics></semantics>
-                </field>
-                <field>
-                    <name>Direction</name>
-                    <dataType></dataType>
-                    <semantics></semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
-                <name>PatrolTaskStruct</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics></semantics>
-                <field>
-                    <name>PatrolType</name>
-                    <dataType>PatrolTypeEnum</dataType>
-                    <semantics></semantics>
-                </field>
-                <field>
-                    <name>Duration</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics></semantics>
-                </field>
-                <field>
-                    <name>Move</name>
-                    <dataType>MoveTaskStruct</dataType>
-                    <semantics></semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
                 <name>FollowEntityTaskDefinition</name>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Task specific data for FollowEntity</semantics>
@@ -1995,23 +1955,8 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>Duration</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics>The duration of the follow action (seconds).</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
-                <name>EstablishTaskStruct</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics></semantics>
-                <field>
-                    <name>Activity</name>
-                    <dataType></dataType>
-                    <semantics></semantics>
-                </field>
-                <field>
-                    <name>Duration</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics></semantics>
+                    <dataType>TimeMillisecondInt64</dataType>
+                    <semantics>The duration of the follow action (Milliseconds).</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -2205,7 +2150,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>TimeToComplete</name>
-                    <dataType>TimeSecondInteger32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>The time it shall take the tasked entity to create the object. If unspecified, this is decided by federate accepting the task.</semantics>
                 </field>
             </fixedRecordData>
@@ -2235,12 +2180,12 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>Duration</name>
-                    <dataType>TimeSecInt32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>The duration of the total patrol task.</semantics>
                 </field>
                 <field>
                     <name>IntervalTime</name>
-                    <dataType>TimeSecInt32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>The time between the start of two routes.</semantics>
                 </field>
             </fixedRecordData>
@@ -2255,8 +2200,8 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>Duration</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics>Duration of the fire (seconds). Can be 0</semantics>
+                    <dataType>TimeMillisecondInt64</dataType>
+                    <semantics>Duration of the fire (milliseconds). Can be 0</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -2300,7 +2245,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>Duration</name>
-                    <dataType>TimeSecInt32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>How long to fire for.</semantics>
                 </field>
             </fixedRecordData>
@@ -2380,7 +2325,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>TimeToComplete</name>
-                    <dataType>TimeSecInt32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>The time it shall take the tasked entity to clear the object. If unspecified, this is decided by federate accepting the task.</semantics>
                 </field>
             </fixedRecordData>
@@ -2470,12 +2415,12 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>Duration</name>
-                    <dataType>TimeSecInt32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>The duration of the total patrol task.</semantics>
                 </field>
                 <field>
                     <name>IntervalTime</name>
-                    <dataType>TimeSecInt32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>The time between the start of two routes.</semantics>
                 </field>
             </fixedRecordData>
@@ -2500,8 +2445,8 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>Duration</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics>How long to operate the checkpoint for.</semantics>
+                    <dataType>TimeMillisecondInt64</dataType>
+                    <semantics>How long to operate the checkpoint for (Milliseconds).</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -2510,8 +2455,8 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <semantics>Task specific data for Wait task.</semantics>
                 <field>
                     <name>Duration</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics>Specifies the wait time (seconds).</semantics>
+                    <dataType>TimeMillisecondInt64</dataType>
+                    <semantics>Specifies the wait time (milliseconds).</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -2547,7 +2492,7 @@ Heading 90 deg refers to North.</semantics>
                 </field>
                 <field>
                     <name>Duration</name>
-                    <dataType>TimeSecondInteger32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>The duration of the move.</semantics>
                 </field>
             </fixedRecordData>
@@ -2697,7 +2642,7 @@ Move
 </semantics>
                 <field>
                     <name>ElapsedTime</name>
-                    <dataType>TimeSecondInteger32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>Elapsed time since beginning of task</semantics>
                 </field>
             </fixedRecordData>
@@ -2707,7 +2652,7 @@ Move
                 <semantics>Task progress data for FireAtLocation, FireAtLocationWM, FireAtEntity and FireAtEntityWM</semantics>
                 <field>
                     <name>ElapsedTime</name>
-                    <dataType>TimeSecondInteger32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>Elapsed time since beginning of task.</semantics>
                 </field>
                 <field>
@@ -2742,12 +2687,12 @@ Move
                 </field>
                 <field>
                     <name>ElapsedTime</name>
-                    <dataType>TimeSecondInteger32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>Time elapsed for entire task.</semantics>
                 </field>
                 <field>
                     <name>IntervalElapsedTime</name>
-                    <dataType>TimeSecondInteger32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>Time elapsed in the latest interaval.</semantics>
                 </field>
             </fixedRecordData>

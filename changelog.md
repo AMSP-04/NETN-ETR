@@ -16,6 +16,7 @@ Major changes include:
 
 * Replaced all use of Fixed Record datatype `NETN_SupplyStruct` with `SupplyStruct`
 * Added `DelayTime` to `OperateCheckpoint` interaction.
+* Added `Duration` as optional parameter to `FireAtEntity`
 
 * Removed the following:
   *  `EstablishCheckPoint` 
