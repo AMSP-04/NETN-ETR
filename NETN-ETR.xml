@@ -576,7 +576,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>Activity</name>
                         <dataType>AggregateMissionEnum16</dataType>
-                        <semantics>Optional. Specifies the activity for the entity that will execute the task. If not specified, left up to creator. </semantics>
+                        <semantics>Optional. Specifies the activity for the entity that will execute the task. If not specified, left up to creator.</semantics>
                     </parameter>
                     <interactionClass>
                         <name>ClearEngineering</name>
@@ -710,6 +710,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <dataType>UUID</dataType>
                             <semantics>Required. Reference to the target entity.</semantics>
                         </parameter>
+                        <parameter>
+                            <name>Duration</name>
+                            <dataType>TimeSecondInteger32</dataType>
+                            <semantics>Optional. The duration of the fire (seconds).</semantics>
+                        </parameter>
                         <interactionClass>
                             <name>FireAtEntityWM</name>
                             <sharing>PublishSubscribe</sharing>
@@ -828,8 +833,8 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>Direction</name>
                             <dataType>AngleDegreeFloat32</dataType>
-                            <semantics>Required. Direction of movement (compass degrees).
-Heading 0 deg refers to East.
+                            <semantics>Required. Direction of movement (compass degrees). 
+Heading 0 deg refers to East. 
 Heading 90 deg refers to North.</semantics>
                         </parameter>
                         <parameter>
@@ -862,8 +867,8 @@ Heading 90 deg refers to North.</semantics>
                         <parameter>
                             <name>Heading</name>
                             <dataType>AngleDegreeFloat32</dataType>
-                            <semantics>Required. The heading of the formation. Compass degrees
-Heading 0 deg refers to East.
+                            <semantics>Required. The heading of the formation. Compass degrees 
+Heading 0 deg refers to East. 
 Heading 90 deg refers to North.</semantics>
                         </parameter>
                     </interactionClass>
@@ -887,6 +892,28 @@ Heading 90 deg refers to North.</semantics>
                             <name>MoveType</name>
                             <dataType>MoveTypeEnum32</dataType>
                             <semantics>Required. Indicates if roads have to be followed.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>MoveToEntityWithSpeed</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasking of an entity to move to another entity. If a path with speed is provided, the entity should follow the path as its route to the entity. The entity should align with the path from its current position to the nearest position or waypoint on the path. The entity should leave the path at position or waypoint on the path closest to the destination entity. The entity moves directly towards the destination entity if no path (or a zero-length path) is provided.</semantics>
+                        <parameter>
+                            <name>Entity</name>
+                            <dataType>UUID</dataType>
+                            <semantics>Required. Reference to the entity to move to.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>PathWithSpeed</name>
+                            <dataType>ArrayOfWaypointsWithSpeed</dataType>
+                            <semantics>Optional. Route with speed to the specified entity.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>MoveType</name>
+                            <dataType>MoveTypeEnum32</dataType>
+                            <semantics>Indicates if roads have to be followed.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -919,6 +946,28 @@ Heading 90 deg refers to North.</semantics>
                             <name>LocationUuid</name>
                             <dataType>UUID</dataType>
                             <semantics>Optional. The location to move to, by reference to a NETN_SE, SE_GeoObject.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>MoveToLocationWithSpeed</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasking of an entity to move to the specified destination location with a given speed for each waypoint. If a path is provided, the entity should follow the path as its route to the destination. The entity should align with the path from its current position to the nearest position or waypoint on the path. The entity should leave the path at position or waypoint on the path closest to the destination. The entity moves directly towards the destination location if no path (or a zero-length path) is provided.</semantics>
+                        <parameter>
+                            <name>Location</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>Required. The location to move to.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Path</name>
+                            <dataType>ArrayOfWaypointsWithSpeed</dataType>
+                            <semantics>Optional. A route to use in order to move to the Location.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>MoveType</name>
+                            <dataType>MoveTypeEnum32</dataType>
+                            <semantics>Required. Indicates if roads have to be followed.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -1119,8 +1168,8 @@ Heading 90 deg refers to North.</semantics>
                         <parameter>
                             <name>Heading</name>
                             <dataType>AngleRadianFloat32</dataType>
-                            <semantics>Required. The heading an entity has to turn to.
-Heading 0 rad refers to East.
+                            <semantics>Required. The heading an entity has to turn to. 
+Heading 0 rad refers to East. 
 Heading pi/2 rad refers to North.</semantics>
                         </parameter>
                         <interactionClass>
@@ -1151,50 +1200,6 @@ Heading pi/2 rad refers to North.</semantics>
                             <name>Duration</name>
                             <dataType>TimeSecInt32</dataType>
                             <semantics>Required. Specifies the wait time (seconds).</semantics>
-                        </parameter>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>MoveToLocationWithSpeed</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Tasking of an entity to move to the specified destination location with a given speed for each waypoint. If a path is provided, the entity should follow the path as its route to the destination. The entity should align with the path from its current position to the nearest position or waypoint on the path. The entity should leave the path at position or waypoint on the path closest to the destination. The entity moves directly towards the destination location if no path (or a zero-length path) is provided.</semantics>
-                        <parameter>
-                            <name>Location</name>
-                            <dataType>WorldLocationStruct</dataType>
-                            <semantics>Required. The location to move to.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>Path</name>
-                            <dataType>ArrayOfWaypointsWithSpeed</dataType>
-                            <semantics>Optional. A route to use in order to move to the Location.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>MoveType</name>
-                            <dataType>MoveTypeEnum32</dataType>
-                            <semantics>Required. Indicates if roads have to be followed.</semantics>
-                        </parameter>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>MoveToEntityWithSpeed</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Tasking of an entity to move to another entity. If a path with speed is provided, the entity should follow the path as its route to the entity. The entity should align with the path from its current position to the nearest position or waypoint on the path. The entity should leave the path at position or waypoint on the path closest to the destination entity. The entity moves directly towards the destination entity if no path (or a zero-length path) is provided.</semantics>
-                        <parameter>
-                            <name>Entity</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Required. Reference to the entity to move to.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>PathWithSpeed</name>
-                            <dataType>ArrayOfWaypointsWithSpeed</dataType>
-                            <semantics>Optional. Route with speed to the specified entity.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>MoveType</name>
-                            <dataType>MoveTypeEnum32</dataType>
-                            <semantics>Indicates if roads have to be followed.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -1351,167 +1356,6 @@ For this class, the Taskee parameter is Optional, and refers to the entity for w
     <dataTypes>
         <simpleDataTypes/>
         <enumeratedDataTypes>
-            <enumeratedData>
-                <name>TaskTypeEnum3</name>
-                <representation>HLAinteger32BE</representation>
-                <semantics>All possible tasks defined in NETN_ETR and NETN_ETR_EXT</semantics>
-                <enumerator>
-                    <name>Move</name>
-                    <value>1</value>
-                </enumerator>
-                <enumerator>
-                    <name>FollowEntity</name>
-                    <value>2</value>
-                </enumerator>
-                <enumerator>
-                    <name>Patrol</name>
-                    <value>3</value>
-                </enumerator>
-                <enumerator>
-                    <name>Mount</name>
-                    <value>4</value>
-                </enumerator>
-                <enumerator>
-                    <name>Dismount</name>
-                    <value>5</value>
-                </enumerator>
-                <enumerator>
-                    <name>ClearSeObject</name>
-                    <value>6</value>
-                </enumerator>
-                <enumerator>
-                    <name>CreateSeObject</name>
-                    <value>7</value>
-                </enumerator>
-                <enumerator>
-                    <name>CreateMinefield</name>
-                    <value>9</value>
-                </enumerator>
-                <enumerator>
-                    <name>Wait</name>
-                    <value>10</value>
-                </enumerator>
-                <enumerator>
-                    <name>DisruptCommunication</name>
-                    <value>11</value>
-                </enumerator>
-                <enumerator>
-                    <name>CreateCheckpoint</name>
-                    <value>12</value>
-                </enumerator>
-                <enumerator>
-                    <name>FireAtEntity</name>
-                    <value>13</value>
-                </enumerator>
-                <enumerator>
-                    <name>FireAtEntityWM</name>
-                    <value>14</value>
-                </enumerator>
-                <enumerator>
-                    <name>FireAtLocation</name>
-                    <value>15</value>
-                </enumerator>
-                <enumerator>
-                    <name>FireAtLocationWM</name>
-                    <value>16</value>
-                </enumerator>
-                <enumerator>
-                    <name>MoveIntoFormation</name>
-                    <value>17</value>
-                </enumerator>
-                <enumerator>
-                    <name>MoveToEntity</name>
-                    <value>18</value>
-                </enumerator>
-                <enumerator>
-                    <name>MoveToLocation</name>
-                    <value>19</value>
-                </enumerator>
-                <enumerator>
-                    <name>Observe</name>
-                    <value>20</value>
-                </enumerator>
-                <enumerator>
-                    <name>OperateCheckpoint</name>
-                    <value>21</value>
-                </enumerator>
-                <enumerator>
-                    <name>PatrolRepeating</name>
-                    <value>22</value>
-                </enumerator>
-                <enumerator>
-                    <name>RemoveCheckpoint</name>
-                    <value>23</value>
-                </enumerator>
-                <enumerator>
-                    <name>RemovePassage</name>
-                    <value>24</value>
-                </enumerator>
-                <enumerator>
-                    <name>SetOrderedSpeed</name>
-                    <value>25</value>
-                </enumerator>
-                <enumerator>
-                    <name>SetOrderedAltitude</name>
-                    <value>26</value>
-                </enumerator>
-                <enumerator>
-                    <name>SetRulesOfEngagement</name>
-                    <value>27</value>
-                </enumerator>
-                <enumerator>
-                    <name>StopAtSideOfRoad</name>
-                    <value>28</value>
-                </enumerator>
-                <enumerator>
-                    <name>TurnToHeading</name>
-                    <value>29</value>
-                </enumerator>
-                <enumerator>
-                    <name>TurnToOrientation</name>
-                    <value>30</value>
-                </enumerator>
-                <enumerator>
-                    <name>ClearSeObject</name>
-                    <value>31</value>
-                </enumerator>
-                <enumerator>
-                    <name>CreateSeObject</name>
-                    <value>32</value>
-                </enumerator>
-                <enumerator>
-                    <name>CreateSeMinefield</name>
-                    <value>33</value>
-                </enumerator>
-                <enumerator>
-                    <name>CreateSeBreach</name>
-                    <value>34</value>
-                </enumerator>
-                <enumerator>
-                    <name>CreateSeCheckpoint</name>
-                    <value>35</value>
-                </enumerator>
-                <enumerator>
-                    <name>MoveToLocation_EXT</name>
-                    <value>36</value>
-                </enumerator>
-                <enumerator>
-                    <name>Patrol_EXT</name>
-                    <value>37</value>
-                </enumerator>
-                <enumerator>
-                    <name>PatrolRepeating_EXT</name>
-                    <value>38</value>
-                </enumerator>
-                <enumerator>
-                    <name>MagicMove</name>
-                    <value>39</value>
-                </enumerator>
-                <enumerator>
-                    <name>MagicResource</name>
-                    <value>40</value>
-                </enumerator>
-            </enumeratedData>
             <enumeratedData>
                 <name>RemoteTaskResponseStatusEnum</name>
                 <representation>HLAinteger32BE</representation>
@@ -1983,13 +1827,6 @@ Other - Federate application specific.</semantics>
                 <semantics>An array with spotted equipment at the spotted entity.</semantics>
             </arrayData>
             <arrayData>
-                <name>ArrayOfTasks</name>
-                <dataType>TaskStruct</dataType>
-                <cardinality>Dynamic</cardinality>
-                <encoding>HLAvariableArray</encoding>
-                <semantics></semantics>
-            </arrayData>
-            <arrayData>
                 <name>ArrayOfTaskTypes</name>
                 <dataType>TaskTypeEnum</dataType>
                 <cardinality>Dynamic</cardinality>
@@ -2090,36 +1927,6 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <name>NumberOfEquipment</name>
                     <dataType>QuantityInt32</dataType>
                     <semantics>The number of the equipment.</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
-                <name>TaskStruct</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics></semantics>
-                <field>
-                    <name>Id</name>
-                    <dataType>UUID</dataType>
-                    <semantics>Task unique Id</semantics>
-                </field>
-                <field>
-                    <name>Start</name>
-                    <dataType>Datetime18</dataType>
-                    <semantics></semantics>
-                </field>
-                <field>
-                    <name>End</name>
-                    <dataType>Datetime18</dataType>
-                    <semantics></semantics>
-                </field>
-                <field>
-                    <name>Type</name>
-                    <dataType>TaskTypeEnum</dataType>
-                    <semantics></semantics>
-                </field>
-                <field>
-                    <name>TaskSpecific</name>
-                    <dataType>TaskVariantRecord</dataType>
-                    <semantics></semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -2438,41 +2245,6 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
             </fixedRecordData>
             <fixedRecordData>
-                <name>MoveToLocationProgress</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Task progress for tasks related to movement.</semantics>
-                <field>
-                    <name>NextWaypointIndex</name>
-                    <dataType>UnsignedInteger16</dataType>
-                    <semantics>Index of the next waypoint in the path.</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
-                <name>PatrolRepeatingProgress</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Task progress data for patrolRepeatingProgress, builds on MoveToLocationProgress data.</semantics>
-                <field>
-                    <name>MoveToLocationProgress</name>
-                    <dataType>MoveToLocationProgress</dataType>
-                    <semantics>Base object</semantics>
-                </field>
-                <field>
-                    <name>ElapsedTime</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics>Elapsed time since start.</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
-                <name>SeObjectProgress</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Task progress for create and clear Se objects (CreateSeObstacle, CreateSeMinefield, ClearSeObject, CreateSeCheckpoint and BreachSeObject).</semantics>
-                <field>
-                    <name>ElapsedTime</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics>How much time have elapsed in this task.</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
                 <name>FireAtEntityTaskDefinition</name>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Task specific data for FireAtEntity task.</semantics>
@@ -2484,7 +2256,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <field>
                     <name>Duration</name>
                     <dataType>TimeSecInt32</dataType>
-                    <semantics>Duration of the fire (seconds).</semantics>
+                    <semantics>Duration of the fire (seconds). Can be 0</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -2560,16 +2332,6 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <name>RateOfFire</name>
                     <dataType>Float32</dataType>
                     <semantics>Number of rounds per second.</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
-                <name>FireAtProgress</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Task progress data for all FireAt tasks (FireAtLocation, FireAtEntity, FireAtLocationWM and FireAtEntityWM).</semantics>
-                <field>
-                    <name>ElapsedTime</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics>Elapsed time since the task started to execute.</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -2718,21 +2480,6 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
             </fixedRecordData>
             <fixedRecordData>
-                <name>PatrolRepeatingWithSpeedProgress</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Task progress for PatrolRepeating_EXT task, builds on MoveToLocationProgress_EXT.</semantics>
-                <field>
-                    <name>MoveToLocationWithSpeedProgress</name>
-                    <dataType>MoveToLocationProgress</dataType>
-                    <semantics>Base object.</semantics>
-                </field>
-                <field>
-                    <name>ElapsedTime</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics>Elapsed time since start</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
                 <name>CreateCheckpointTaskDefinition</name>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Task specific data for CreateCheckpoint.</semantics>
@@ -2768,16 +2515,6 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
             </fixedRecordData>
             <fixedRecordData>
-                <name>WaitProgress</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Task progress for wait task.</semantics>
-                <field>
-                    <name>ElapsedTime</name>
-                    <dataType>TimeSecInt32</dataType>
-                    <semantics>Elapsed time since the task started to execute.</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
                 <name>DisruptCommunicationTaskDefinition</name>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Task specific data for DisruptCommuncation</semantics>
@@ -2804,8 +2541,8 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <field>
                     <name>Direction</name>
                     <dataType>AngleDegreeFloat32</dataType>
-                    <semantics>Direction of movement (Compass degrees).
-Heading 0 deg refers to East.
+                    <semantics>Direction of movement (Compass degrees). 
+Heading 0 deg refers to East. 
 Heading 90 deg refers to North.</semantics>
                 </field>
                 <field>
@@ -2826,7 +2563,7 @@ Heading 90 deg refers to North.</semantics>
                 <field>
                     <name>Location</name>
                     <dataType>WorldLocationStruct</dataType>
-                    <semantics> The location to move to.</semantics>
+                    <semantics>The location to move to.</semantics>
                 </field>
                 <field>
                     <name>Distance</name>
@@ -2836,8 +2573,8 @@ Heading 90 deg refers to North.</semantics>
                 <field>
                     <name>Heading</name>
                     <dataType>AngleDegreeFloat32</dataType>
-                    <semantics> The heading of the formation.
-Heading 0 deg refers to East.
+                    <semantics>The heading of the formation. 
+Heading 0 deg refers to East. 
 Heading 90 deg refers to North.</semantics>
                 </field>
             </fixedRecordData>
@@ -2853,7 +2590,7 @@ Heading 90 deg refers to North.</semantics>
                 <field>
                     <name>Path</name>
                     <dataType>ArrayOfWorldLocationStruct</dataType>
-                    <semantics>Route to the specified entity. If not specified, take the linear path. </semantics>
+                    <semantics>Route to the specified entity. If not specified, take the linear path.</semantics>
                 </field>
                 <field>
                     <name>MoveType</name>
@@ -2923,8 +2660,8 @@ Heading 90 deg refers to North.</semantics>
                 <field>
                     <name>Heading</name>
                     <dataType>AngleRadianFloat32</dataType>
-                    <semantics>The heading an entity has to turn to.
-Heading 0 rad refers to East.
+                    <semantics>The heading an entity has to turn to. 
+Heading 0 rad refers to East. 
 Heading pi/2 rad refers to North.</semantics>
                 </field>
             </fixedRecordData>
@@ -2941,6 +2678,77 @@ Heading pi/2 rad refers to North.</semantics>
                     <name>Roll</name>
                     <dataType>AngleRadianFloat32</dataType>
                     <semantics>Defines the angle ot the roll.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>ElapsedTimeProgress</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Progress definition for tasks only needing elapsed time. Used for the following tasks:
+ClearEngineering
+Engineering
+CreateBreach
+CreateCheckpoint
+LayMinefield
+CreateObstacle
+OperateCheckpoint
+Wait
+FollowEntity
+Move
+</semantics>
+                <field>
+                    <name>ElapsedTime</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>Elapsed time since beginning of task</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>FireAtTaskProgress</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task progress data for FireAtLocation, FireAtLocationWM, FireAtEntity and FireAtEntityWM</semantics>
+                <field>
+                    <name>ElapsedTime</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>Elapsed time since beginning of task.</semantics>
+                </field>
+                <field>
+                    <name>MunitionUsed</name>
+                    <dataType>Integer16</dataType>
+                    <semantics>Number of rounds used if specified.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MoveTaskProgress</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task progress data for all move tasks with a path (MoveToEntity, MoveToLocation, MoveToLocationWithSpeed, Patrol and PatrolWithSpeed).</semantics>
+                <field>
+                    <name>LastPassedWaypointIndex</name>
+                    <dataType>Integer32</dataType>
+                    <semantics>Index of last passed waypoint.</semantics>
+                </field>
+                <field>
+                    <name>NextWaypointIndex</name>
+                    <dataType>Integer32</dataType>
+                    <semantics>Index of next waypoint.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>PatrolRepeatingProgress</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task progress data for repeating patrol tasks. </semantics>
+                <field>
+                    <name>PathProgress</name>
+                    <dataType>MoveTaskProgress</dataType>
+                    <semantics>Progress of the current path.</semantics>
+                </field>
+                <field>
+                    <name>ElapsedTime</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>Time elapsed for entire task.</semantics>
+                </field>
+                <field>
+                    <name>IntervalElapsedTime</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>Time elapsed in the latest interaval.</semantics>
                 </field>
             </fixedRecordData>
         </fixedRecordDataTypes>
@@ -2965,183 +2773,7 @@ Heading pi/2 rad refers to North.</semantics>
                 <semantics>The number or density of mines.</semantics>
             </variantRecordData>
             <variantRecordData>
-                <name>TaskVariantRecord</name>
-                <discriminant>TaskType</discriminant>
-                <dataType>TaskTypeEnum</dataType>
-                <alternative>
-                    <enumerator>Move</enumerator>
-                    <name>Move</name>
-                    <dataType>MoveTaskStruct</dataType>
-                    <semantics></semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>Follow</enumerator>
-                    <name>Follow</name>
-                    <dataType>FollowEntityTaskDefinition</dataType>
-                    <semantics></semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>Patrol</enumerator>
-                    <name>Patrol</name>
-                    <dataType>PatrolTaskStruct</dataType>
-                    <semantics></semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>EstablishCheckPoint</enumerator>
-                    <name>Establish</name>
-                    <dataType>EstalishTaskStruct</dataType>
-                    <semantics></semantics>
-                </alternative>
-                <encoding>HLAvariantRecord</encoding>
-                <semantics></semantics>
-            </variantRecordData>
-            <variantRecordData>
-                <name>TaskDefinitionVariantRecord2</name>
-                <discriminant>TaskType</discriminant>
-                <dataType>TaskTypeEnum</dataType>
-                <alternative>
-                    <enumerator>MoveToLocation</enumerator>
-                    <name>MoveToLocation</name>
-                    <dataType>MoveToLocationTaskDefinition</dataType>
-                    <semantics>Reference to the MoveToLocation taskspecific parameters.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>CreateSeObject</enumerator>
-                    <name>CreateSeObject</name>
-                    <dataType>EngineeringTaskDefinition</dataType>
-                    <semantics>Reference to the createSEobject task (NETN-ETR-EXT).</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>Patrol</enumerator>
-                    <name>PatrolTask</name>
-                    <dataType>PatrolTaskDefinition</dataType>
-                    <semantics>Reference to Patrol task.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>PatrolRepeating</enumerator>
-                    <name>PatrolRepeating</name>
-                    <dataType>PatrolRepeatingTaskDefinition</dataType>
-                    <semantics>Reference to PatrolRepeating task.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>CreateSeMinefield</enumerator>
-                    <name>CreateSeMinefield</name>
-                    <dataType>LayMinefieldTaskDefinition</dataType>
-                    <semantics>Reference to CreateSeMinefield (NETN-ETR-EXT).</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>FireAtEntity</enumerator>
-                    <name>FireAtEntity</name>
-                    <dataType>FireAtEntityTaskDefinition</dataType>
-                    <semantics>Reference to FireAtEntity.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>FireAtLocation</enumerator>
-                    <name>FireAtLocation</name>
-                    <dataType>FireAtLocationTaskDefinition</dataType>
-                    <semantics>Reference to FireAtLocation.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>FireAtEntityWM</enumerator>
-                    <name>FireAtEntityWM</name>
-                    <dataType>FireAtEntityWMTaskDefinition</dataType>
-                    <semantics>Reference to FireAtEntityWM.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>FireAtLocationWM</enumerator>
-                    <name>FireAtLocationWM</name>
-                    <dataType>FireAtLocationWMTaskDefinition</dataType>
-                    <semantics>Reference to FireAtLocationWM.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>MoveToLocation_EXT</enumerator>
-                    <name>MoveToLocation_EXT</name>
-                    <dataType>MoveToLocationWithSpeedTaskDefinition</dataType>
-                    <semantics>Reference to MoveToLocation_EXT.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>SetOrderedAltitude</enumerator>
-                    <name>SetOrderedAltitude</name>
-                    <dataType>SetOrderedAltitudeTaskDefinition</dataType>
-                    <semantics>Reference to SetOrderedAltitude.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>SetOrderedSpeed</enumerator>
-                    <name>SetOrderedSpeed</name>
-                    <dataType>SetOrderedSpeedTaskDefiniton</dataType>
-                    <semantics>Reference to SetOrderedSpeed.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>CreateSeBreach</enumerator>
-                    <name>CreateSeBreach</name>
-                    <dataType>CreateBreachTaskDefinition</dataType>
-                    <semantics>Reference to CreateSeBreach.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>Mount</enumerator>
-                    <name>Mount</name>
-                    <dataType>MountTaskDefinition</dataType>
-                    <semantics>Reference to Mount.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>Dismount</enumerator>
-                    <name>Dismount</name>
-                    <dataType>DismountTaskDefinition</dataType>
-                    <semantics>Reference to Dismount.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>Patrol_EXT</enumerator>
-                    <name>Patrol_EXT</name>
-                    <dataType>PatrolWithSpeedTaskDefinition</dataType>
-                    <semantics>Reference to Patrol_EXT.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>PatrolRepeating_EXT</enumerator>
-                    <name>PatrolRepeating_EXT</name>
-                    <dataType>PatrolRepeatingWithSpeedTaskDefinition</dataType>
-                    <semantics>Reference to PatrolRepeating_EXT.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>CreateSeCheckpoint</enumerator>
-                    <name>CreateSeCheckpoint</name>
-                    <dataType>CreateCheckpointTaskDefinition</dataType>
-                    <semantics>Reference to CreateSeCheckpoint (NETN-ETR-EXT).</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>OperateCheckpoint</enumerator>
-                    <name>OperateCheckpoint</name>
-                    <dataType>OperateCheckpointTaskDefinition</dataType>
-                    <semantics>Reference to OperateCheckpoint.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>ClearSeObject</enumerator>
-                    <name>ClearSeObject</name>
-                    <dataType>ClearEngineeringTaskDefinition</dataType>
-                    <semantics>Reference to ClearSeObject.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>MagicMove</enumerator>
-                    <name>MagicMove</name>
-                    <dataType>MagicMoveTaskDefinition</dataType>
-                    <semantics>Reference to MagicMove.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>MagicResource</enumerator>
-                    <name>MagicResource</name>
-                    <dataType>MagicResourceTaskDefinition</dataType>
-                    <semantics>Reference to MagicResource.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>Wait</enumerator>
-                    <name>Wait</name>
-                    <dataType>WaitTaskDefinition</dataType>
-                    <semantics>Reference to Wait.</semantics>
-                </alternative>
-                <encoding>HLAvariantRecord</encoding>
-                <semantics>Variant record for task specific data.</semantics>
-            </variantRecordData>
-            <variantRecordData>
-                <name>TaskProgressVariantRecord</name>
+                <name>TaskProgressVariantRecord2</name>
                 <discriminant>TaskType</discriminant>
                 <dataType>TaskTypeEnum</dataType>
                 <alternative>
@@ -3444,6 +3076,133 @@ Heading pi/2 rad refers to North.</semantics>
                     <enumerator>Wait</enumerator>
                     <name>Wait</name>
                     <dataType>WaitTaskDefinition</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics></semantics>
+            </variantRecordData>
+            <variantRecordData>
+                <name>TaskProgressVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>TaskTypeEnum</dataType>
+                <alternative>
+                    <enumerator>ClearEngineering</enumerator>
+                    <name>ClearEngingeering</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Engineering</enumerator>
+                    <name>Engineering</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateBreach</enumerator>
+                    <name>CreateBreach</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateCheckpoint</enumerator>
+                    <name>CreateCheckpoint</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>LayMinefield</enumerator>
+                    <name>LayMinefield</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>OperateCheckpoint</enumerator>
+                    <name>OperateCheckpoint</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Wait</enumerator>
+                    <name>Wait</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FollowEntity</enumerator>
+                    <name>FollowEntity</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Move</enumerator>
+                    <name>Move</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtEntity</enumerator>
+                    <name>FireAtEntity</name>
+                    <dataType>FireAtTaskProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtEntityWM</enumerator>
+                    <name>FireAtEntityWM</name>
+                    <dataType>FireAtTaskProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtLocation</enumerator>
+                    <name>FireAtLocation</name>
+                    <dataType>FireAtTaskProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>FireAtLocationWM</enumerator>
+                    <name>FireAtLocationWM</name>
+                    <dataType>FireAtTaskProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>MoveToEntity</enumerator>
+                    <name>MoveToEntity</name>
+                    <dataType>MoveTaskProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>MoveToLocation</enumerator>
+                    <name>MoveToLocation</name>
+                    <dataType>MoveTaskProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>MoveToLocationWithSpeed</enumerator>
+                    <name>MoveToLocationWithSpeed</name>
+                    <dataType>MoveTaskDefinition</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Patrol</enumerator>
+                    <name>Patrol</name>
+                    <dataType>MoveTaskProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>InWeaponRangeReport</enumerator>
+                    <name>PatrolWithSpeed</name>
+                    <dataType>MoveTaskProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>PatrolRepeating</enumerator>
+                    <name>PatrolRepeating</name>
+                    <dataType>PatrolRepeatingProgress</dataType>
+                    <semantics></semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>PatrolWithSpeedRepeating</enumerator>
+                    <name>PatrolWithSpeedRepeating</name>
+                    <dataType>PatrolRepeatingProgress</dataType>
                     <semantics></semantics>
                 </alternative>
                 <encoding>HLAvariantRecord</encoding>
