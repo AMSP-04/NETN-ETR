@@ -232,7 +232,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 </objectClass>
             </objectClass>
             <objectClass>
-                <name>Task</name>
+                <name>RemoteFederateTaskExecution</name>
                 <sharing>Neither</sharing>
                 <semantics>Object to represent a task independently in the federation when needed.</semantics>
                 <attribute>
