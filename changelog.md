@@ -5,8 +5,9 @@ This version of NETN-ETR was developed by MSG-191.
 Major changes include:
 * Adaptation to HLA4
 * Addition of Task objectClasses representing active and future tasks.
+* Added `DelegatedTask` objectClass and interactions to allow execution of tasks without a explicit unit.
 
-* Added dependency to NETN-MRM
+* Added dependency to NETN-MRM and NETN-SE
 * Added attribute TaskList to AggregateEntity objectClass
 * Added attribute SupportedTasks to AggregateEntity objectClass
 * Added `WaypointWithSpeed` and `ArrayOfWaypointsWithSpeed`
