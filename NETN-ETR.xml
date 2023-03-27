@@ -42,7 +42,7 @@ This module is a specification of how to represent simulation tasks requests pro
         </poc>
         <reference>
             <type>Dependency</type>
-            <identification>NETN-BASE</identification>
+            <identification>NETN-BASE, RPR-SE</identification>
         </reference>
         <other>
 Copyright © 2020 by NATO/OTAN. All rights reserved.
@@ -232,7 +232,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 </objectClass>
             </objectClass>
             <objectClass>
-                <name>RemoteFederateTaskExecution</name>
+                <name>DelegatedTask</name>
                 <sharing>Neither</sharing>
                 <semantics>Object to represent a task independently in the federation when needed.</semantics>
                 <attribute>
@@ -1224,13 +1224,13 @@ For this class, the Taskee parameter is Optional, and refers to the entity for w
                         </parameter>
                     </interactionClass>
                     <interactionClass>
-                        <name>FederateTaskExecution</name>
+                        <name>DelegatedTaskExecution</name>
                         <sharing>Neither</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics></semantics>
                         <interactionClass>
-                            <name>RequestFederateTaskCancel</name>
+                            <name>CancelTaskDelegation</name>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
@@ -1247,7 +1247,7 @@ For this class, the Taskee parameter is Optional, and refers to the entity for w
                             </parameter>
                         </interactionClass>
                         <interactionClass>
-                            <name>FederateTaskRequestResponse</name>
+                            <name>TaskDelegationResponse</name>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
@@ -1259,7 +1259,7 @@ For this class, the Taskee parameter is Optional, and refers to the entity for w
                             </parameter>
                         </interactionClass>
                         <interactionClass>
-                            <name>RequestFederateTaskExecution</name>
+                            <name>RequestTaskDelegation</name>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
@@ -3054,7 +3054,7 @@ Move</semantics>
             <label>netn-etr_1</label>
             <semantics>The interaction classes are organized in a root class and four base classes: ETR_Task, ETR_Report, ETR_TaskManagement, and ETR_SimCon. 
  
-* ETR_Root: root interaction class for the Entitiy Tasking and Reporting (ETR) interaction classes. 
+* ETR_Root: root interaction class for the Entity Tasking and Reporting (ETR) interaction classes.
 * ETR_Task: A base interaction class for more specialized task interaction classes. 
 * ETR_Report: A base interaction class for more specialized report interaction classes. 
 * ETR_TaskManagement: A base interaction class for more specialized task management interaction classes. 
