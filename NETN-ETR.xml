@@ -759,11 +759,6 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <dataType>TimeMillisecondInt64</dataType>
                             <semantics>Required. The duration of the fire (milliseconds).</semantics>
                         </parameter>
-                        <parameter>
-                            <name>LocationUuid</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Optional. The location to fire at by reference to a NETN SE, SE_GeoObject.</semantics>
-                        </parameter>
                         <interactionClass>
                             <name>FireAtLocationWM</name>
                             <sharing>PublishSubscribe</sharing>
@@ -937,16 +932,6 @@ Heading 90 deg refers to North.</semantics>
                             <dataType>MoveTypeEnum32</dataType>
                             <semantics>Required. Indicates if roads have to be followed.</semantics>
                         </parameter>
-                        <parameter>
-                            <name>PathUuid</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Optional. Path to use to get to the Location by reference to a NETN_SE, SE_GeoObject.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>LocationUuid</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Optional. The location to move to, by reference to a NETN_SE, SE_GeoObject.</semantics>
-                        </parameter>
                     </interactionClass>
                     <interactionClass>
                         <name>MoveToLocationWithSpeed</name>
@@ -1036,11 +1021,6 @@ Heading 90 deg refers to North.</semantics>
                             <name>MoveType</name>
                             <dataType>PatrolMoveTypeEnum32</dataType>
                             <semantics>Required. Defines how the entity shall move during the patrol route.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>PathUuid</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Optional. Path for the patrol by reference to a NETN_SE, SE_GeoObject.</semantics>
                         </parameter>
                         <interactionClass>
                             <name>PatrolRepeating</name>
