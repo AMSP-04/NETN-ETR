@@ -22,8 +22,9 @@ The specification is based on IEEE 1516 High Level Arhitecture (HLA) Object Mode
 * It is independent of any specific doctrine or tactics. 
 
 An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task, it is not specified how an entity (physical or aggregate) will / should perform the task. 	</useLimitation>
-        <useHistory>NETN-LBML_v1.1.0 - Developed by MSG-106 and MSG-134 for NETN-FOM v2.0.</useHistory>
-        <useHistory>v2.0.0 - Renamed and updated by MSG-163 for NETN-FOM v3.0</useHistory>
+        <useHistory>v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN-FOM v2.0.</useHistory>
+        <useHistory>v2.0 - Renamed and updated by MSG-163 for NETN-FOM v3.0</useHistory>
+        <useHistory>3.0 - Updated by MSG-191 for NATO-FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -32,7 +33,7 @@ An entity in ETR can be either a physical entity (e.g. platform or lifeform) or 
         </poc>
         <poc>
             <pocType>Primary author</pocType>
-            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocName>MSG-106 Enhanced CAX Architecture, Desing and Methodology</pocName>
             <pocOrg>NATO Modelling and Simulation Group</pocOrg>
             <pocEmail>msg@cso.nato.int</pocEmail>
         </poc>
@@ -42,9 +43,15 @@ An entity in ETR can be either a physical entity (e.g. platform or lifeform) or 
             <pocOrg>NATO Modelling and Simulation Group</pocOrg>
             <pocEmail>msg@cso.nato.int</pocEmail>
         </poc>
+         <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
         <poc>
             <pocType>Primary author</pocType>
-            <pocName>MSG-106 Enhanced CAX Architecture, Desing and Methodology</pocName>
+            <pocName>MSG-191 NATO Standards for Federated Simulation and Services for Integration, Verification and Certification</pocName>
             <pocOrg>NATO Modelling and Simulation Group</pocOrg>
             <pocEmail>msg@cso.nato.int</pocEmail>
         </poc>
@@ -62,7 +69,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
     <objects>
         <objectClass>
             <name>HLAobjectRoot</name>
-            <objectClass notes="COPY-RPRnoteBase1 COPY-RPRnoteBase1">
+            <objectClass>
                 <name>BaseEntity</name>
                 <sharing>Subscribe</sharing>
                 <semantics>A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.</semantics>
@@ -3067,9 +3074,6 @@ The interaction classes are organized in a root class and four base classes: ETR
 * ETR_TaskManagement: A base interaction class for more specialized task management interaction classes. 
 * ETR_SimCon: A base interaction class for more specialized Simulation Control (SimCon) interaction classes</semantics>
         </note>
-        <note>
-            <label>COPY-RPRnoteBase1</label>
-            <semantics>Federates shall send the time at which the data is valid in the user defined tag with every attribute values update and interaction; see datatype RPRUserDefinedTag for the encoding. All federates shall transmit this field, even if they do not use it themselves, so that other federates can use its value to compensate for network transport delays.</semantics>
-        </note>
+       
     </notes>
 </objectModel>
