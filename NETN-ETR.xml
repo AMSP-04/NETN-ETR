@@ -3,17 +3,25 @@
     <modelIdentification notes="netn-etr_1">
         <name>NETN-ETR</name>
         <type>FOM</type>
-        <version>2.0 </version>
-        <modificationDate>2020-09-03</modificationDate>
+        <version>3.0 </version>
+        <modificationDate>2023-03-28</modificationDate>
         <securityClassification>Not Classified</securityClassification>
-        <purpose>The NETN ETR module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. ETR contains common low level tasks that can easily be interpreted and executed by simulators that model the behavior of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
+        <purpose>The NETN-ETR FOM module provides a common standard interface for sending tasks to simulated entities represented in a federated distributed simulation. NETN-ETR contains common low-level tasks that can easily be interpreted and executed by simulators that model the behaviour of entities. It also defines a set of reports to provide status information, including the status of the tasks being executed by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
-        <description>	
-NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module. 
+        <description>The NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module is a specification of how to represent simulation task requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. 
         
-This module is a specification of how to represent simulation tasks requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN ETR FOM module is available as an XML file for use in HLA based federations.
+The specification is based on IEEE 1516 High Level Arhitecture (HLA) Object Model Template (OMT) and is primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA-based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN-ETR FOM module is available as an XML file for use in HLA-based federations.
         </description>
-        <useLimitation> The NETN ETR FOM module is simulation oriented and focuses on tasks with a fine granularity: * It enables the transformation of command and control messages into tasks that can be executed by a simulator. * It defines status reports that can be used for producing command and control reports needed for decision-making. * It supports the modelling of simulated command and control interactions between federates in a distributed simulation, for example during a MRM disaggregation process. * It contains a comprehensive set of tasks and reports that can easily be interpreted and executed by simulators. * It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) tools, but it is independent of a specific COTS CGF tool, agent framework, or agent modelling paradigm. * It is independent of any specific doctrine or tactics. An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task it is not specified how an entity (physical or aggregate) will / should perform the task. 	</useLimitation>
+        <useLimitation> The NETN-ETR FOM module is simulation oriented and focuses on tasks with fine granularity: 
+    
+* It enables the transformation of command and control messages into tasks that can be executed by a simulator. 
+* It defines status reports that can be used for producing command and control reports needed for decision-making. 
+* It supports the modelling of simulated command and control interactions between federates in a distributed simulation, for example during an MRM disaggregation process. 
+* It contains a comprehensive set of tasks and reports that can easily be interpreted and executed by simulators. 
+* It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) tools, but it is independent of a specific COTS CGF tool, agent framework, or agent modelling paradigm. 
+* It is independent of any specific doctrine or tactics. 
+
+An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task, it is not specified how an entity (physical or aggregate) will / should perform the task. 	</useLimitation>
         <useHistory>NETN-LBML_v1.1.0 - Developed by MSG-106 and MSG-134 for NETN-FOM v2.0.</useHistory>
         <useHistory>v2.0.0 - Renamed and updated by MSG-163 for NETN-FOM v3.0</useHistory>
         <poc>
@@ -1325,7 +1333,7 @@ For this class, the Taskee parameter is Optional, and refers to the entity for w
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics></semantics>
+                        <semantics>Requests resending of SensorReports for all current sensor detections.</semantics>
                     </interactionClass>
                 </interactionClass>
             </interactionClass>
@@ -3050,7 +3058,8 @@ Move</semantics>
     <notes>
         <note>
             <label>netn-etr_1</label>
-            <semantics>The interaction classes are organized in a root class and four base classes: ETR_Task, ETR_Report, ETR_TaskManagement, and ETR_SimCon. 
+            <semantics>## Overview
+The interaction classes are organized in a root class and four base classes: ETR_Task, ETR_Report, ETR_TaskManagement, and ETR_SimCon. 
  
 * ETR_Root: root interaction class for the Entity Tasking and Reporting (ETR) interaction classes. 
 * ETR_Task: A base interaction class for more specialized task interaction classes. 
