@@ -48,8 +48,9 @@ Version numbering of this FOM Module and associated documentation is based on th
 
 |Version|
 |---|
-|NETN-LBML_v1.1.0 - Developed by MSG-106 and MSG-134 for NETN-FOM v2.0.|
-|v2.0.0 - Renamed and updated by MSG-163 for NETN-FOM v3.0|
+|v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN-FOM v2.0.|
+|v2.0 - Renamed and updated by MSG-163 for NETN-FOM v3.0|
+|3.0 - Updated by MSG-191 for NATO-FOM v4.0|
 
 > [Changelog](changelog.md)
 
