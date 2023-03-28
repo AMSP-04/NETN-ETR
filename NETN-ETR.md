@@ -130,8 +130,6 @@ ETR_TaskManagement-->ETR_Root
 
 ## ETR Task Processing
 
-The following sections define how tasks shall be handled.
-
 ### ETR Task Modes
 
 The ETR FOM module defines two modes for a task: non-concurrent mode and concurrent mode.
