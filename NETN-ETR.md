@@ -46,8 +46,6 @@ ETR_TaskManagement-->ETR_Root
 
 
 ### Entity Tasks
-This section summarizes the Entity Task interaction classes in the ETR FOM module.
-
 
 |Task|Description|
 |---|---|
@@ -87,7 +85,6 @@ This section summarizes the Entity Task interaction classes in the ETR FOM modul
 
 
 ### Entity Reports
-This section summarizes the Entity Report interaction classes in the ETR FOM module, shown in the figure below.
 
 |Report|Description|
 |---|---|
@@ -101,11 +98,7 @@ This section summarizes the Entity Report interaction classes in the ETR FOM mod
 |UnderAttackStatusReport|Report from a unit that it is under attack.|
 
 
-
 ### Task Management
-This section summarizes the Task Management interaction classes in the ETR FOM module, shown in the figure below.
-
-
 
 |Task Management|Description|
 |---|---|
@@ -119,7 +112,6 @@ This section summarizes the Task Management interaction classes in the ETR FOM m
 |RequestCurrentSensorDetections|Requests resending of SensorReports for all current sensor detections.|
 
 ### Simulation Control
-This section summarizes the Simulation Control interaction classes in the ETR FOM module, shown in the figure below.
 
 |Simulation Control|Description|
 |---|---|
@@ -278,7 +270,7 @@ There are the following restrictions regarding concurrency:
    1. Only one task in this group can be executed at the same time.
    2. A task in this group can not run together with a task in another group.
 
-So, several tasks can be executed at the same time. For example a `Patrol`, `SetOrderedSpeed` and `FireAtEntity`; or a `MoveToLocation`, `SetOrderedAltitude` and `FireAtLocation`. A `FireAtEntity` task can be timed while executing a `MoveToLocation` task by using the `StartWhen` time. It is also possible to change the speed or altitude after a certain time during a movement by using the `StartWhen` time for the `SetOrderedSpeed` or `SetOrderedAltitude` task.
+Several tasks can be executed at the same time. For example a `Patrol`, `SetOrderedSpeed` and `FireAtEntity`; or a `MoveToLocation`, `SetOrderedAltitude` and `FireAtLocation`. A `FireAtEntity` task can be timed while executing a `MoveToLocation` task by using the `StartWhen` time. It is also possible to change the speed or altitude after a certain time during a movement by using the `StartWhen` time for the `SetOrderedSpeed` or `SetOrderedAltitude` task.
 
 ## ETR Simulation Control
 A Simulation Control task for an entity shall be executed immediately, regardless of the presence of any (concurrent or non-concurrent) executing task.
@@ -296,7 +288,8 @@ A `MagicMove` for an entity shall implicitly cancel all tasks for the entity. A 
 A `MagicResource` shall update the entity resources. Waiting or executing tasks of the entity are affected in the sense that these tasks have more or less resources available after the `MagicResource`.
 
 ## Implementation Requirements
-This section lists the requirements for applications that implement Entity Tasking and Reporting. The requirements are provided from receiver point of view (entity taskee, the federate application modelling the entity) and sender point of view (entity tasker, the federate application sending a task or receiving a report for an entity).
+
+The implementation requirements are provided from receiver point of view (entity taskee, the federate application modelling the entity) and sender point of view (entity tasker, the federate application sending a task or receiving a report for an entity).
 
 The receiver:
 1.  SHALL support all ETR TaskManagement and ETR SimCon classes.
