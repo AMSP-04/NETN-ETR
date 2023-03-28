@@ -24,7 +24,7 @@ The specification is based on IEEE 1516 High Level Arhitecture (HLA) Object Mode
 An entity in ETR can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. If a task or report relates to only a physical entity or to only an aggregate entity, then this is specified in the definition of the task. In the definition of each task, it is not specified how an entity (physical or aggregate) will / should perform the task. 	</useLimitation>
         <useHistory>v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN-FOM v2.0.</useHistory>
         <useHistory>v2.0 - Renamed and updated by MSG-163 for NETN-FOM v3.0</useHistory>
-        <useHistory>3.0 - Updated by MSG-191 for NATO-FOM v4.0</useHistory>
+        <useHistory>v3.0 - Updated by MSG-191 for NATO-FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
