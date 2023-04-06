@@ -1,41 +1,14 @@
 ## Changelog NETN-ETR
 
-### Changes in 3.0
-This version of NETN-ETR was developed by MSG-191.
-Major changes include:
-* Adaptation to HLA4
-* Addition of Task objectClasses representing active and future tasks.
-* Added `DelegatedTask` objectClass and interactions to allow execution of tasks without a explicit unit.
+### v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN-FOM v2.0.
 
-* Added dependency to NETN-MRM and NETN-SE
-* Added attribute TaskList to AggregateEntity objectClass
-* Added attribute SupportedTasks to AggregateEntity objectClass
-* Added `WaypointWithSpeed` and `ArrayOfWaypointsWithSpeed`
-* Added new interactions `MoveToLocationWithSpeed`, `PatrolWithSpeed` and `PatrolRepeatingWithSpeed` based on `WaypointWithSpeed`
+The NETN-ETR FOM Module is based on the previously released NETN-LLBML FOM module developed by MSG-068, updated by MSG-106 and prepared for release by MSG-134.
 
-* Changed datatype `TransactionId` to `UUID`
+The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) is:
+* NETN-LBML_v1.1.0.xml
 
-* Replaced all use of Fixed Record datatype `NETN_SupplyStruct` with `SupplyStruct`
-* Added `DelayTime` to `OperateCheckpoint` interaction.
-* Added `Duration` as an optional parameter to `FireAtEntity`
 
-* Removed the following:
-  *  `EstablishCheckPoint` 
-  *  `ClearObstacle` 
-  *  `CreateObstacle`
-  *  `CreateMinefield`
-  *  `RemoveCheckPoint`
-  *  `RemovePassage`
-* Added `ClearEngineering` and `Engineering` with `LayMinefield`, `CreateObstacle`, `CreateCheckpoint` and `CreateBreach` as subclasses
-* Added `GeometryType` enum and `WorldLocationVariantStruct` 
-* Changed `Direction` in `Move` and `MoveIntoFormation` to use Degrees instead of radians.
-
-### Changes in 2.0
-This version is the initial version of the new NETN-ETR FOM module based on the previous (now deprecated) LLBML FOM Module related to C2SIM and part of AMSP-04 Ed. A. modules. 
-
-This version of NETN-ETR was developed by MSG-163.
-
-The NETN-ETR FOM module is not backwards compatible with the previous NETN LLBML Module and usage requires updates to federates to use the new class names and structure.
+### v2.0 - Renamed and updated by MSG-163 for NETN-FOM v3.0
 
 * Added a new attribute to ETR_Task: CommunicationNetworkIdentifiers
 * Added new Task: DisruptCommunicaction
@@ -71,22 +44,124 @@ The NETN-ETR FOM module is not backwards compatible with the previous NETN LLBML
 * Renamed Parameter MOUNT.EntiityId to EntityId
 
 
+### v3.0 - Updated by MSG-191 for NATO-FOM v4.0
 
-<useHistory>v1.0.0 - First version of the module. It is a development of the old NETN-LBML FOM module.</useHistory>
-<useHistory>v1.0.1 - Fixed typos.</useHistory>
-<useHistory>v2.0.1 - Modified version as described in "LLBML-ChangeProposal-v0.8.docx"</useHistory>
-<useHistory>v2.0.2 - Modified version as described in "LLBML-ChangeProposal-v0.9.docx"</useHistory>
-<useHistory>v2.0.3 - modified version as described in "LLBML-ChangeProposal-v0.10.docx"</useHistory>
-<useHistory>v2.0.4 - Updated model identification descriptions."</useHistory>
-<useHistory>v2.0.5 - TransactionId Datatype moved to NETN Base"</useHistory>
-<useHistory>v2.0.6 - 2019-11-14 - LO - Updated semantics for EstablishCheckPoint and RemoveCheckPoint"</useHistory>
-<useHistory>v2.0.7 - 2019-12-10 - LO - Updated semantics for EstablishCheckPoint and OperateCheckPoint, described implications on passing entities
+* Added dependency to NETN-MRM and NETN-SE
 
-### Previous structure
+* Added `ETR_Report` parameter `ReportingEntity`
+* Changed `ETR_Report` parameter `ReportId` datatype to `UUID`
+* Replaced `ETR_Report` parameter `When` with NETN-BASE `HLAinteractionRoot` parameter `Time`
+* Moved `ETR_Report` parameter `CommunicationNetworkIds` to NETN-COM `ETR_Report
+* Replaced `InWeaponRange` parameter `Observer` with `ETR_Report` parameter `ReportingEntity`
+* Replaced `SpotReport` parameter `Observer` with `ETR_Report` parameter `ReportingEntity`
+* Added `SpotReport` parameter `SensorType`
+* Removed `SensorReport` interaction class
+* Replaced `StatusReport` parameter `EntityId` with `ETR_Report` parameter `ReportingEntity`
+* Removed `StatusReport` interaction class
+* Changed `PositionStatusReport` parameter `Position` datatype to `LocationStruct`
+* Changed `PositionStatusReport` parameter `Heading` datatype to `DirectionDegreesFloat32`
+* Changed `ResourceStatusReport` parameter `Resource` datatype to `SupplyStruct`
+* Changed `UnderAttackStatusReport` parameter `FromDirection` datatype to `DirectionDegreesFloat32`
 
-The NETN-ETR FOM Module is based on previously released NETN-LLBML FOM module developed by MSG-068, updated by MSG-106 and prepared for release by MSG-134.
+* Replaced `ETR_SimCon` parameter `TaskId` with NETN-BASE `HLAinteractionRoot` parameter `UniqueId`
+* Replaced `ETR_SimCon` parameter `Taskee` with `ETR_Report` parameter `SimulatedEntity`
+* Removed `ETR_SimCon` parameter `Tasker`
+* Removed `CapabilitiesSupported` interaction class
+* Removed `QueryCapabilitiesSupported` interaction class
+* Changed `MagicMove` parameter `Heading` datatype to `DirectionDegreesFloat32`
+* Changed `MagicMove` parameter `Location` datatype to `LocationStruct`
+* Removed `MagicMove` parameter `LocationUuid` 
+* Changed `MagicResource` parameter `Resource` datatype to `SupplyStruct`
+* Renamed `MagicResource` interaction class to `UpdateResource`
+* Added `RequestCurrentSensorDetections` interaction class
 
-The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) is:
-* NETN-LBML_v1.1.0.xml
+* Renamed `ETR_Task` interaction class to `RequestTask`
+* Renamed `ETR_TaskManagement` interaction class to `ETR_Task`
+* Moved  (old) `ETR_Task` as a sub-class of  (new) `ETR_Task`
 
+* Renamed (old) `ETR_TaskManagement` parameter `Taskee` to new `ETR_Task` parameter `TaskedEntity`
+* Removed (old) `ETR_TaskManagement` parameter `CommunicationNetworkIds`
+* Removed (old) `ETR_TaskManagement` parameter `Tasker`
+* Replaced (old) `ETR_TaskManagement` parameter `TaskManagementId` with NETN-BASE `HLAinteractionRoot` parameter `UniqueId`
+
+* Changed (old) `ETR_Task` parameter `TaskId` datatype to `UUID`
+* Changed (old) `ETR_Task` parameter `StartWhen` datatype to `ScenarioTime`
+* Renamed (old) `ETR_Task` parameter `Why` to `Annotation`
+* Moved (old) `ETR_Task` parameter `CommunicationNetworkIds` to NETN-COM `ETR_Report
+* Replaced (old) `ETR_Task` parameter `Taskee` with (new) `ETR_Task` parameter `TaskedEntity`
+
+* Added `RequestTask` parameter `MainTask`
+* Added `RequestTask` parameter `PreviousTask`
+* Added `RequestTask` parameter `NextTask`
+
+* Merged `CancelAllTasks` and `CancelSpecifiedTasks` into `CancelTask`
+* Changed `CancelTask` parameter `Tasks` datatype to `ArrayOfUuid`
+
+* Changed `TaskStatusReport` parameter `TaskId` datatype to `UUID`
+* Renamed `TaskStatusReport` parameter `TaskId` to `Task`
+* Replaced `TaskStatusReport` parameter `When` with NETN-BASE `HLAinteractionRoot` parameter `Time`
+
+* Added `RequestTaskStatus` interaction class
+* Added `RequestTaskDelegation` interaction class
+* Added `TaskDelegationResponse` interaction class
+* Added `RequestCancelTaskDelegation` interaction class
+
+* Moved `SetRulesOfEngagement` interaction class as sub-class of `ETR_SimCon`
+* Replaced all task interaction parameters with `TaskParameters` with different datatypes for each task type.
+* Moved `AddPassage` interaction class to NETN-SE `CreateBreach`
+* Moved `ClearObstacle` interaction class to NETN-SE `ClearEngineering`
+* Moved `CreateObstacle` interaction class to NETN-SE `CreateObstacle`
+* Moved `CreateMinefield` interaction class to NETN-SE `LayMinefield`
+* Moved `EstablishCheckPoint` interaction class to NETN-SE `EstablishCheckpoint`
+* Moved `RemoveCheckPoint` interaction class to NETN-SE `ClearEngineering`
+* Moved `RemovePassage` interaction class to NETN-SE `ClearEngineering`
+* Moved `DisruptCommunication` interaction class to NETN-COM `DisruptCommunication`
+* Moved `SetTransmitterStatus` interaction class to NETN-COM `SetTransmitterStatus`
+* Removed `TurnToOrientation` interaction class
+* Merged `PatrolRepeating` and `Patrol` interaction classes to `Patrol`
+* Merged `FireAtEntity` and `FireAtEntityWM` interaction classes to `DirectFire`
+* Merged `FireAtLocation` and `FireAtLocationWM` interaction classes to `IndirectFire`
+* Renamed `Move` interaction class to `MoveInDirection`
+* Added `MoveByRoute` interaction class
+* Renamed `OperateCheckPoint` interaction class to `OperateCheckpoint`
+* Removed `MoveToEntity` interaction class
+* Renamed `SetOrderedAltitude` interaction class to `ChangeAltitude`
+* Renamed `SetOrderedSpeed` interaction class to `ChangeSpeed`
+* Renamed `TurnToHeading` interaction class to `ChangeHeading`
+
+* Added objectClass `DelegatedTask`
+* Added `BaseEntity` attribute `Activity`
+* Added `BaseEntity` attribute `SupportedTasks`
+* Added `AggregateEntity` attribute `TaskProgress`
+* Added `AggregateEntity` attribute `CurrentTasks`
+* Added `AggregateEntity` attribute `PlannedTasks`
+* Added `AggregateEntity` attribute `PreviousTasks`
+* Added `Platform` attribute `TaskProgress`
+* Added `Platform` attribute `CurrentTasks`
+* Added `Platform` attribute `PlannedTasks`
+* Added `Platform` attribute `PreviousTasks`
+* Added `Lifeform` attribute `TaskProgress`
+* Added `Lifeform` attribute `CurrentTasks`
+* Added `Lifeform` attribute `PlannedTasks`
+* Added `Lifeform` attribute `PreviousTasks`
+
+* Removed datatype `MineCountEnum32`
+* Added datatype `RemoteTaskResponseStatusEnum`
+* Added datatype `TaskTypeEnum`
+* Removed datatype `Datetime18`
+* Removed datatype `ArrayOfTaskIds`
+* Removed datatype `ArrayOfNames`
+* Added datatype `ArrayOfTaskTypes`
+* Added datatype `ArrayOfTaskDefinitions`
+* Added datatype `ArrayOfTaskProgress`
+* Added datatype `ArrayOfWaypoints`
+* Added struct datatypes for each task type with task parameters
+* Added struct datatypes for task progress (various)
+* Added datatype `RoundStruct`
+* Added datatype `TaskDefinition`
+* Added datatype `TaskProgress`
+* Added datatype `Waypoint`
+* Removed datatype `MineCountVariantStruct`
+* Added datatype `TaskDefinitionVariantRecord`
+* Added datatype `TaskProgressVariantRecord`
 
