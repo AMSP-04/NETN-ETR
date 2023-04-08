@@ -46,7 +46,7 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
 
 ### v3.0 - Updated by MSG-191 for NATO-FOM v4.0
 
-* Added dependency to NETN-MRM and NETN-SE 
+* Changed dependencies to NETN-Physical
  
 * Added `ETR_Report` parameter `ReportingEntity` 
 * Changed `ETR_Report` parameter `ReportId` datatype to `UUID` 
@@ -130,18 +130,13 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
 * Added objectClass `DelegatedTask` 
 * Added `BaseEntity` attribute `Activity` 
 * Added `BaseEntity` attribute `SupportedTasks` 
-* Added `AggregateEntity` attribute `TaskProgress` 
-* Added `AggregateEntity` attribute `CurrentTasks` 
-* Added `AggregateEntity` attribute `PlannedTasks` 
-* Added `AggregateEntity` attribute `PreviousTasks` 
-* Added `Platform` attribute `TaskProgress` 
-* Added `Platform` attribute `CurrentTasks` 
-* Added `Platform` attribute `PlannedTasks` 
-* Added `Platform` attribute `PreviousTasks` 
-* Added `Lifeform` attribute `TaskProgress` 
-* Added `Lifeform` attribute `CurrentTasks` 
-* Added `Lifeform` attribute `PlannedTasks` 
-* Added `Lifeform` attribute `PreviousTasks` 
+* Added `BaseEntity` attribute `TaskProgress` 
+* Added `BaseEntity` attribute `CurrentTasks` 
+* Added `BaseEntity` attribute `PlannedTasks` 
+* Added `BaseEntity` attribute `PreviousTasks`
+* Added `BaseEntity` attribute `Route`
+* Added `BaseEntity` attribute `Destination`
+
  
 * Removed datatype `MineCountEnum32` 
 * Added datatype `TaskTypeEnum` 

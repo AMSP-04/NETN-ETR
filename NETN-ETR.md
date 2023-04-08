@@ -2,7 +2,7 @@
 # NETN-ETR
 |Version| Date| Dependencies|
 |---|---|---|
-|3.0 |2023-04-07|NETN-BASE|
+|3.0 |2023-04-07|NETN-Physical|
 
 The NETN-ETR FOM module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation. NETN-ETR contains low-level tasks that can easily be interpreted and executed by simulators that model the behaviour of entities. It also defines a set of reports to provide status information, including the status of task execution.
 
@@ -95,10 +95,6 @@ Note that inherited and dependency attributes are not included in the descriptio
 graph RL
 BaseEntity-->HLAobjectRoot
 DelegatedTask-->HLAobjectRoot
-PhysicalEntity-->BaseEntity
-AggregateEntity-->BaseEntity
-Platform-->PhysicalEntity
-Lifeform-->PhysicalEntity
 ```
 
 ### BaseEntity
@@ -107,41 +103,14 @@ A base class of aggregate and discrete scenario domain participants. The BaseEnt
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
-|Activity|AggregateMissionEnum16|Optional: Current activity performed by the entity.|
 |SupportedTasks|ArrayOfTaskTypes|Optional: Tasks supported by this entity.|
-
-### Platform
-
-A physical object under the control of armed forces upon which sensor, communication, or weapon systems may be mounted.
-
-|Attribute|Datatype|Semantics|
-|---|---|---|
 |TaskProgress|ArrayOfTaskProgress|Optional. An array of progress for current tasks.|
 |CurrentTasks|ArrayOfTaskDefinitions|Optional. An array of currently executing tasks.|
 |PlannedTasks|ArrayOfTaskDefinitions|Optional. An array of all planned tasks.|
 |PreviousTasks|ArrayOfTaskDefinitions|Optional. An array of completed or cancelled tasks.|
-
-### Lifeform
-
-A living military platform (human or not).
-
-|Attribute|Datatype|Semantics|
-|---|---|---|
-|TaskProgress|ArrayOfTaskProgress|Optional. An array of progress for current tasks.|
-|CurrentTasks|ArrayOfTaskDefinitions|Optional. An array of currently executing tasks.|
-|PlannedTasks|ArrayOfTaskDefinitions|Optional. An array of all planned tasks.|
-|PreviousTasks|ArrayOfTaskDefinitions|Optional. An array of completed or cancelled tasks.|
-
-### AggregateEntity
-
-A group of one or more separate objects that operate together as part of an organization. These objects may be discrete, may be other aggregate objects, or may be a mixture of both.
-
-|Attribute|Datatype|Semantics|
-|---|---|---|
-|TaskProgress|ArrayOfTaskProgress|Optional. An array of progress for current tasks.|
-|CurrentTasks|ArrayOfTaskDefinitions|Optional. An array of currently executing tasks.|
-|PlannedTasks|ArrayOfTaskDefinitions|Optional. An array of all planned tasks.|
-|PreviousTasks|ArrayOfTaskDefinitions|Optional. An array of completed or cancelled tasks.|
+|Activity|AggregateMissionEnum16|Optional: Current activity performed by the entity.|
+|Destination|LocationStruct|Optional. The current destination of movement.|
+|Route|LocationStructArray|Optional. The current path of movement.|
 
 ### DelegatedTask
 
@@ -537,10 +506,6 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |TaskTypeEnum|Task types.|
 |WaitTaskStruct|Task-specific data for Wait task.|
 |Waypoint|A location and the speed to reach that location.|
-        
-### Simple Datatypes
-|Name|Units|Semantics|
-|---|---|---|
         
 ### Enumerated Datatypes
 |Name|Representation|Semantics|

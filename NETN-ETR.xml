@@ -55,7 +55,7 @@ A tasked entity can be either a physical entity (e.g. platform or lifeform) or a
         </poc>
         <reference>
             <type>Dependency</type>
-            <identification>NETN-BASE</identification>
+            <identification>NETN-Physical</identification>
         </reference>
         <other>
 Copyright © 2020 by NATO/OTAN. All rights reserved.
@@ -72,6 +72,61 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <sharing>Subscribe</sharing>
                 <semantics>A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.</semantics>
                 <attribute>
+                    <name>SupportedTasks</name>
+                    <dataType>ArrayOfTaskTypes</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional: Tasks supported by this entity.</semantics>
+                </attribute>
+                <attribute>
+                    <name>TaskProgress</name>
+                    <dataType>ArrayOfTaskProgress</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. An array of progress for current tasks.</semantics>
+                </attribute>
+                <attribute>
+                    <name>CurrentTasks</name>
+                    <dataType>ArrayOfTaskDefinitions</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. An array of currently executing tasks.</semantics>
+                </attribute>
+                <attribute>
+                    <name>PlannedTasks</name>
+                    <dataType>ArrayOfTaskDefinitions</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. An array of all planned tasks.</semantics>
+                </attribute>
+                <attribute>
+                    <name>PreviousTasks</name>
+                    <dataType>ArrayOfTaskDefinitions</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. An array of completed or cancelled tasks.</semantics>
+                </attribute>
+                <attribute>
                     <name>Activity</name>
                     <dataType>AggregateMissionEnum16</dataType>
                     <updateType>Conditional</updateType>
@@ -83,166 +138,27 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <semantics>Optional: Current activity performed by the entity.</semantics>
                 </attribute>
                 <attribute>
-                    <name>SupportedTasks</name>
-                    <dataType>ArrayOfTaskTypes</dataType>
+                    <name>Destination</name>
+                    <dataType>LocationStruct</dataType>
                     <updateType>Conditional</updateType>
-                    <updateCondition>On change</updateCondition>
+                    <updateCondition>When Changed</updateCondition>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Optional: Tasks supported by this entity.</semantics>
+                    <semantics>Optional. The current destination of movement.</semantics>
                 </attribute>
-                <objectClass>
-                    <name>PhysicalEntity</name>
-                    <objectClass>
-                        <name>Platform</name>
-                        <sharing>Subscribe</sharing>
-                        <semantics>A physical object under the control of armed forces upon which sensor, communication, or weapon systems may be mounted.</semantics>
-                        <attribute>
-                            <name>TaskProgress</name>
-                            <dataType>ArrayOfTaskProgress</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>On change</updateCondition>
-                            <ownership>NoTransfer</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional. An array of progress for current tasks.</semantics>
-                        </attribute>
-                        <attribute>
-                            <name>CurrentTasks</name>
-                            <dataType>ArrayOfTaskDefinitions</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>On change</updateCondition>
-                            <ownership>NoTransfer</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional. An array of currently executing tasks.</semantics>
-                        </attribute>
-                        <attribute>
-                            <name>PlannedTasks</name>
-                            <dataType>ArrayOfTaskDefinitions</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>On change</updateCondition>
-                            <ownership>NoTransfer</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional. An array of all planned tasks.</semantics>
-                        </attribute>
-                        <attribute>
-                            <name>PreviousTasks</name>
-                            <dataType>ArrayOfTaskDefinitions</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>On change</updateCondition>
-                            <ownership>NoTransfer</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional. An array of completed or cancelled tasks.</semantics>
-                        </attribute>
-                    </objectClass>
-                    <objectClass>
-                        <name>Lifeform</name>
-                        <sharing>Subscribe</sharing>
-                        <semantics>A living military platform (human or not).</semantics>
-                        <attribute>
-                            <name>TaskProgress</name>
-                            <dataType>ArrayOfTaskProgress</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>On change</updateCondition>
-                            <ownership>NoTransfer</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional. An array of progress for current tasks.</semantics>
-                        </attribute>
-                        <attribute>
-                            <name>CurrentTasks</name>
-                            <dataType>ArrayOfTaskDefinitions</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>On change</updateCondition>
-                            <ownership>NoTransfer</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional. An array of currently executing tasks.</semantics>
-                        </attribute>
-                        <attribute>
-                            <name>PlannedTasks</name>
-                            <dataType>ArrayOfTaskDefinitions</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>On change</updateCondition>
-                            <ownership>NoTransfer</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional. An array of all planned tasks.</semantics>
-                        </attribute>
-                        <attribute>
-                            <name>PreviousTasks</name>
-                            <dataType>ArrayOfTaskDefinitions</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>On change</updateCondition>
-                            <ownership>NoTransfer</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional. An array of completed or cancelled tasks.</semantics>
-                        </attribute>
-                    </objectClass>
-                </objectClass>
-                <objectClass>
-                    <name>AggregateEntity</name>
+                <attribute>
+                    <name>Route</name>
+                    <dataType>LocationStructArray</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>When Changed</updateCondition>
+                    <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>A group of one or more separate objects that operate together as part of an organization. These objects may be discrete, may be other aggregate objects, or may be a mixture of both.</semantics>
-                    <attribute>
-                        <name>TaskProgress</name>
-                        <dataType>ArrayOfTaskProgress</dataType>
-                        <updateType>Conditional</updateType>
-                        <updateCondition>On change</updateCondition>
-                        <ownership>NoTransfer</ownership>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Optional. An array of progress for current tasks.</semantics>
-                    </attribute>
-                    <attribute>
-                        <name>CurrentTasks</name>
-                        <dataType>ArrayOfTaskDefinitions</dataType>
-                        <updateType>Conditional</updateType>
-                        <updateCondition>On change</updateCondition>
-                        <ownership>NoTransfer</ownership>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Optional. An array of currently executing tasks.</semantics>
-                    </attribute>
-                    <attribute>
-                        <name>PlannedTasks</name>
-                        <dataType>ArrayOfTaskDefinitions</dataType>
-                        <updateType>Conditional</updateType>
-                        <updateCondition>On change</updateCondition>
-                        <ownership>NoTransfer</ownership>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Optional. An array of all planned tasks.</semantics>
-                    </attribute>
-                    <attribute>
-                        <name>PreviousTasks</name>
-                        <dataType>ArrayOfTaskDefinitions</dataType>
-                        <updateType>Conditional</updateType>
-                        <updateCondition>On change</updateCondition>
-                        <ownership>NoTransfer</ownership>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Optional. An array of completed or cancelled tasks.</semantics>
-                    </attribute>
-                </objectClass>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. The current path of movement.</semantics>
+                </attribute>
             </objectClass>
             <objectClass>
                 <name>DelegatedTask</name>
@@ -253,7 +169,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>TaskDefinition</dataType>
                     <updateType>Static</updateType>
                     <updateCondition>NA</updateCondition>
-                    <ownership>NoTransfer</ownership>
+                    <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
@@ -264,7 +180,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>TaskProgress</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
-                    <ownership>NoTransfer</ownership>
+                    <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
@@ -784,7 +700,6 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
         </interactionClass>
     </interactions>
     <dataTypes>
-        <simpleDataTypes/>
         <enumeratedDataTypes>
             <enumeratedData>
                 <name>RulesOfEngagementEnum8</name>
@@ -1848,7 +1763,7 @@ A federate application may need to delegate the execution of some tasks to some 
         </note>
         <note>
             <label>netn-etr_2</label>
-            <semantics>* Added dependency to NETN-MRM and NETN-SE 
+            <semantics>* Changed dependencies to NETN-Physical 
  
 * Added `ETR_Report` parameter `ReportingEntity` 
 * Changed `ETR_Report` parameter `ReportId` datatype to `UUID` 
@@ -1932,18 +1847,13 @@ A federate application may need to delegate the execution of some tasks to some 
 * Added objectClass `DelegatedTask` 
 * Added `BaseEntity` attribute `Activity` 
 * Added `BaseEntity` attribute `SupportedTasks` 
-* Added `AggregateEntity` attribute `TaskProgress` 
-* Added `AggregateEntity` attribute `CurrentTasks` 
-* Added `AggregateEntity` attribute `PlannedTasks` 
-* Added `AggregateEntity` attribute `PreviousTasks` 
-* Added `Platform` attribute `TaskProgress` 
-* Added `Platform` attribute `CurrentTasks` 
-* Added `Platform` attribute `PlannedTasks` 
-* Added `Platform` attribute `PreviousTasks` 
-* Added `Lifeform` attribute `TaskProgress` 
-* Added `Lifeform` attribute `CurrentTasks` 
-* Added `Lifeform` attribute `PlannedTasks` 
-* Added `Lifeform` attribute `PreviousTasks` 
+* Added `BaseEntity` attribute `TaskProgress` 
+* Added `BaseEntity` attribute `CurrentTasks` 
+* Added `BaseEntity` attribute `PlannedTasks` 
+* Added `BaseEntity` attribute `PreviousTasks` 
+* Added `BaseEntity` attribute `Route` 
+* Added `BaseEntity` attribute `Destination` 
+ 
  
 * Removed datatype `MineCountEnum32` 
 * Added datatype `TaskTypeEnum` 
