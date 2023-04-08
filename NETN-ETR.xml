@@ -1014,9 +1014,9 @@ The symbol contains information about the spotted entity's relation to the spott
                     <semantics>The location where the entity were spotted</semantics>
                 </field>
                 <field>
-                    <name>Orientation</name>
-                    <dataType>OrientationStruct</dataType>
-                    <semantics>The orientation in Psi, Theta, Phi [radians]</semantics>
+                    <name>Heading</name>
+                    <dataType>DirectionDegreesFloat32</dataType>
+                    <semantics>Heading of spotted entity.</semantics>
                 </field>
                 <field>
                     <name>Speed</name>
@@ -1872,7 +1872,9 @@ A federate application may need to delegate the execution of some tasks to some 
 * Added datatype `Waypoint` 
 * Removed datatype `MineCountVariantStruct` 
 * Added datatype `TaskDefinitionVariantRecord` 
-* Added datatype `TaskProgressVariantRecord`</semantics>
+* Added datatype `TaskProgressVariantRecord`
+
+* Changed datatype `SpottedEntity` field `Orientation` to `Heading`</semantics>
         </note>
         <note>
             <label>netn-etr_3</label>
