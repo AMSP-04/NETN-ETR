@@ -55,7 +55,7 @@ A tasked entity can be either a physical entity (e.g. platform or lifeform) or a
         </poc>
         <reference>
             <type>Dependency</type>
-            <identification>NETN-Physical</identification>
+            <identification>NETN-BASE</identification>
         </reference>
         <other>
 Copyright © 2020 by NATO/OTAN. All rights reserved.
@@ -249,6 +249,23 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <name>RulesOfEngagement</name>
                         <dataType>RulesOfEngagementEnum8</dataType>
                         <semantics>Required. The rules of engagement for an entity.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>Response</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A response from the receiving federate indicating ability to comply with a request.</semantics>
+                    <parameter>
+                        <name>Request</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Reference to the request this interaction is a response to.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Status</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>Required. Specifies the result of the request action. TRUE indicates success.</semantics>
                     </parameter>
                 </interactionClass>
             </interactionClass>
@@ -1791,6 +1808,7 @@ A federate application may need to delegate the execution of some tasks to some 
 * Changed `MagicResource` parameter `Resource` datatype to `SupplyStruct` 
 * Renamed `MagicResource` interaction class to `UpdateResource` 
 * Added `RequestCurrentSensorDetections` interaction class 
+* Added `Response` interaction class 
  
 * Renamed `ETR_Task` interaction class to `RequestTask` 
 * Renamed `ETR_TaskManagement` interaction class to `ETR_Task` 
@@ -1872,8 +1890,8 @@ A federate application may need to delegate the execution of some tasks to some 
 * Added datatype `Waypoint` 
 * Removed datatype `MineCountVariantStruct` 
 * Added datatype `TaskDefinitionVariantRecord` 
-* Added datatype `TaskProgressVariantRecord`
-
+* Added datatype `TaskProgressVariantRecord` 
+ 
 * Changed datatype `SpottedEntity` field `Orientation` to `Heading`</semantics>
         </note>
         <note>
