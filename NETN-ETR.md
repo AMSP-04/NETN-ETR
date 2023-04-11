@@ -45,7 +45,7 @@ The `TaskStatusUpdate` interaction provides the following notifications regardin
  
 ```mermaid 
 sequenceDiagram 
-autonumber 
+autonumber
 Tasking Federate->>Entity Simulation:RequestTask(TaskParameters) 
 Note left of Entity Simulation: Task Received 
 Entity Simulation->>Tasking Federate:TaskStatusUpdate(Accepted) 
