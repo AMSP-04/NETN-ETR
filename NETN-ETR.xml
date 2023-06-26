@@ -293,7 +293,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     </parameter>
                     <parameter>
                         <name>StartTime</name>
-                        <dataType>ScenarioTime</dataType>
+                        <dataType>EpochTime</dataType>
                         <semantics>Optional. The default value is the current `ScenarioTime`.</semantics>
                     </parameter>
                     <parameter>
@@ -1132,7 +1132,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>StartTime</name>
-                    <dataType>ScenarioTime</dataType>
+                    <dataType>EpochTime</dataType>
                     <semantics>Timestamp of when the task should start.</semantics>
                 </field>
                 <field>
@@ -1187,7 +1187,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>LastUpdated</name>
-                    <dataType>ScenarioTime</dataType>
+                    <dataType>EpochTime</dataType>
                     <semantics>When was this task last updated.</semantics>
                 </field>
                 <field>
@@ -1197,7 +1197,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
                 <field>
                     <name>ETC</name>
-                    <dataType>ScenarioTime</dataType>
+                    <dataType>EpochTime</dataType>
                     <semantics>Estimated time to completion.</semantics>
                 </field>
                 <field>
@@ -1673,7 +1673,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <dataType>WaitTaskStruct</dataType>
                     <semantics>Task parameters.</semantics>
                 </alternative>
-                <encoding>HLAvariantRecord</encoding>
+                <encoding>HLAextendableVariantRecord</encoding>
                 <semantics>Variant record for task definition data.</semantics>
             </variantRecordData>
             <variantRecordData>
@@ -1704,7 +1704,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <dataType>PatrolTaskProgress</dataType>
                     <semantics>Keeps track of achieved waypoints and elapsed time.</semantics>
                 </alternative>
-                <encoding>HLAvariantRecord</encoding>
+                <encoding>HLAextendableVariantRecord</encoding>
                 <semantics>Variant record for task progress data.</semantics>
             </variantRecordData>
         </variantRecordDataTypes>
@@ -1736,8 +1736,8 @@ The `TaskStatusUpdate` interaction provides the following notifications regardin
 * Error: the task execution has been terminated due to a modelling error 
  
 ```mermaid 
-sequenceDiagram
-autonumber
+sequenceDiagram 
+autonumber 
 Tasking Federate-&gt;&gt;Entity Simulation:RequestTask(TaskParameters) 
 Note left of Entity Simulation: Task Received 
 Entity Simulation-&gt;&gt;Tasking Federate:TaskStatusUpdate(Accepted) 
@@ -1820,7 +1820,7 @@ A federate application may need to delegate the execution of some tasks to some 
 * Replaced (old) `ETR_TaskManagement` parameter `TaskManagementId` with NETN-BASE `HLAinteractionRoot` parameter `UniqueId` 
  
 * Changed (old) `ETR_Task` parameter `TaskId` datatype to `UUID` 
-* Changed (old) `ETR_Task` parameter `StartWhen` datatype to `ScenarioTime` 
+* Changed (old) `ETR_Task` parameter `StartWhen` datatype to `EpochTime` 
 * Renamed (old) `ETR_Task` parameter `Why` to `Annotation` 
 * Moved (old) `ETR_Task` parameter `CommunicationNetworkIds` to NETN-COM `ETR_Report 
 * Replaced (old) `ETR_Task` parameter `Taskee` with (new) `ETR_Task` parameter `TaskedEntity` 
