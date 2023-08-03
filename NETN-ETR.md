@@ -44,7 +44,9 @@ The `TaskStatusUpdate` interaction provides the following notifications regardin
 * Error: the task execution has been terminated due to a modelling error 
  
 ```mermaid 
-sequenceDiagram
+
+sequenceDiagram 
+
 autonumber
 Tasking Federate->>Entity Simulation:RequestTask(TaskParameters) 
 Note left of Entity Simulation: Task Received 
