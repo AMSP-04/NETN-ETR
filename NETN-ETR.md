@@ -44,7 +44,9 @@ The `TaskStatusUpdate` interaction provides the following notifications regardin
 * Error: the task execution has been terminated due to a modelling error 
  
 ```mermaid 
+
 sequenceDiagram 
+
 autonumber
 Tasking Federate->>Entity Simulation:RequestTask(TaskParameters) 
 Note left of Entity Simulation: Task Received 
@@ -156,6 +158,7 @@ ChangeAltitude-->RequestTask
 ChangeHeading-->RequestTask
 Patrol-->RequestTask
 StopAtSideOfRoad-->RequestTask
+OperateObservationPost-->RequestTask
 SpotReport-->ETR_Report
 PositionStatusReport-->ETR_Report
 DamageStatusReport-->ETR_Report
@@ -257,6 +260,13 @@ Request an entity to operate a checkpoint. The tasked entity should be within th
 |Parameter|Datatype|Semantics|
 |---|---|---|
 |TaskParameters|OperateCheckpointTaskStruct|Required: Task parameters|
+
+### OperateObservationPost
+
+Requests an entity to operate an observation post. The tasked unit should be within in a given radius from the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration. TaskTypeEnum=34
+|Parameter|Datatype|Semantics|
+|---|---|---|
+|TaskParameters|OperateObservationPostTaskStruct|Required: Task parameters|
 
 ### Observe
 
@@ -489,6 +499,7 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |MoveTypeEnum32|CrossCountry: move directly to the destination without considering the roads. OnlyRoads: stay on the roads to get to the closest point to the destination that is still on the road; if there is no road very near to the start (within around 10 meters), there will be no movement. RoadsAndCrossCountry: move to the destination by considering the roads; it is allowed to go off the road.|
 |ObserveTaskStruct|Task-specific data for Observe task.|
 |OperateCheckpointTaskStruct|Task-specific data for OperateCheckpoint task.|
+|OperateObservationPostTaskStruct|Task-specific data for OperateObservationPost task.|
 |PatrolMoveTypeEnum32|Defines the movement during the execution of the patrol.|
 |PatrolTaskProgress|Task progress data for PatrolRepeating tasks.|
 |PatrolTaskStruct|Task-specific data for a Patrol task.|
@@ -551,6 +562,7 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |MoveToLocationTaskStruct|Location, Path, MoveType, Speed|Task-specific data for MoveToLocation task.|
 |ObserveTaskStruct|ObservationArea|Task-specific data for Observe task.|
 |OperateCheckpointTaskStruct|CheckpointId, Duration, DelayTime|Task-specific data for OperateCheckpoint task.|
+|OperateObservationPostTaskStruct|ObserveTask, Duration, ObservationPostId|Task-specific data for OperateObservationPost task.|
 |PatrolTaskProgress|PathProgress, ElapsedTime, IntervalElapsedTime|Task progress data for PatrolRepeating tasks.|
 |PatrolTaskStruct|Path, PatrolType, MoveType, Duration, IntervalTime|Task-specific data for a Patrol task.|
 |RoundStruct|WeaponType, MunitionType, QuantityFired, RateOfFire|Details of munition fired.|
@@ -564,6 +576,6 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 ### Variant Record Datatypes
 |Name|Discriminant (Datatype)|Alternatives|Semantics|
 |---|---|---|---|
-|TaskDefinitionVariantRecord|TaskType (TaskTypeEnum)|NoTaskParameters, DirectFire, IndirectFire, FollowEntity, MoveInDirection, MoveIntoFormation, MoveToEntity, MoveToLocation, Mount, Observe, OperateCheckpoint, Patrol, ChangeAltitude, ChangeSpeed, ChangeHeading, Wait|Variant record for task definition data.|
+|TaskDefinitionVariantRecord|TaskType (TaskTypeEnum)|NoTaskParameters, DirectFire, IndirectFire, FollowEntity, MoveInDirection, MoveIntoFormation, MoveToEntity, MoveToLocation, Mount, Observe, OperateCheckpoint, OperateObservationPost, Patrol, ChangeAltitude, ChangeSpeed, ChangeHeading, Wait|Variant record for task definition data.|
 |TaskProgressVariantRecord|TaskType (TaskTypeEnum)|ElapsedTime, FireTask, MoveOnPath, Patrol|Variant record for task progress data.|
     
