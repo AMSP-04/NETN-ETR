@@ -1,6 +1,6 @@
 ## Changelog NETN-ETR
 
-### v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN-FOM v2.0.
+### v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.
 
 The NETN-ETR FOM Module is based on the previously released NETN-LLBML FOM module developed by MSG-068, updated by MSG-106 and prepared for release by MSG-134. 
  
@@ -8,7 +8,7 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
 * NETN-LBML_v1.1.0.xml
 
 
-### v2.0 - Renamed and updated by MSG-163 for NETN-FOM v3.0
+### v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0
 
 * Added a new attribute to ETR_Task: CommunicationNetworkIdentifiers 
 * Added new Task: DisruptCommunicaction 
@@ -44,7 +44,7 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
 * Renamed Parameter MOUNT.EntiityId to EntityId
 
 
-### v3.0 - Updated by MSG-191 for NATO-FOM v4.0
+### v3.0 - Updated by MSG-191 for NETN FOM v4.0
 
 * Changed dependencies to NETN-Physical
  
