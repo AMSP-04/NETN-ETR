@@ -159,9 +159,20 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <order>Receive</order>
                     <semantics>Optional. The current path of movement.</semantics>
                 </attribute>
+                <attribute>
+                    <name>CaptureStatus</name>
+                    <dataType>CaptureStatusEnum8</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional: The status of an entity's level of control or influence over its activities. The default is Not-Captured.</semantics>
+                </attribute>
             </objectClass>
             <objectClass>
-                <name>DelegatedTask</name>
+                <name>ETR_DelegatedTask</name>
                 <sharing>PublishSubscribe</sharing>
                 <semantics>Object to represent a task and its execution progress when delegated to a federate application other than the one responsible for the tasked entity.</semantics>
                 <attribute>
@@ -687,7 +698,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <semantics>Report on a unit's remaining amount of resources.</semantics>
                     <parameter>
                         <name>Resource</name>
-                        <dataType>SupplyStruct</dataType>
+                        <dataType>SupplyStatusStruct</dataType>
                         <semantics>Required. The type of resource and remaining quantity.</semantics>
                     </parameter>
                 </interactionClass>
@@ -890,6 +901,27 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                 <enumerator>
                     <name>Open</name>
                     <value>3</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>CaptureStatusEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The status of a simulated entity concerning their control or influence over their activities.</semantics>
+                <enumerator>
+                    <name>Not-Captured</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Captured</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>AttemptingSurrender</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
                 </enumerator>
             </enumeratedData>
             <enumeratedData>
@@ -1917,6 +1949,7 @@ A federate application may need to delegate the execution of some tasks to some 
 * Added `BaseEntity` attribute `PreviousTasks` 
 * Added `BaseEntity` attribute `Route` 
 * Added `BaseEntity` attribute `Destination` 
+* Added `BaseEntity` attribute `CaptureStatus` 
  
  
 * Removed datatype `MineCountEnum32` 
