@@ -127,39 +127,6 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <semantics>Optional. An array of completed or cancelled tasks.</semantics>
                 </attribute>
                 <attribute>
-                    <name>Activity</name>
-                    <dataType>AggregateMissionEnum16</dataType>
-                    <updateType>Conditional</updateType>
-                    <updateCondition>On change</updateCondition>
-                    <ownership>DivestAcquire</ownership>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Optional: Current activity performed by the entity.</semantics>
-                </attribute>
-                <attribute>
-                    <name>Destination</name>
-                    <dataType>LocationStruct</dataType>
-                    <updateType>Conditional</updateType>
-                    <updateCondition>When Changed</updateCondition>
-                    <ownership>DivestAcquire</ownership>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Optional. The current destination of movement.</semantics>
-                </attribute>
-                <attribute>
-                    <name>Route</name>
-                    <dataType>LocationStructArray</dataType>
-                    <updateType>Conditional</updateType>
-                    <updateCondition>When Changed</updateCondition>
-                    <ownership>DivestAcquire</ownership>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Optional. The current path of movement.</semantics>
-                </attribute>
-                <attribute>
                     <name>CaptureStatus</name>
                     <dataType>CaptureStatusEnum8</dataType>
                     <updateType>Conditional</updateType>
@@ -331,14 +298,14 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <semantics>Optional. Determines the task mode. Default NonConcurrentMode</semantics>
                     </parameter>
                     <interactionClass>
-                        <name>Wait</name>
+                        <name>OtherActivity</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Tasking of an entity to wait for a duration of time. TaskTypeEnum=42</semantics>
                         <parameter>
                             <name>TaskParameters</name>
-                            <dataType>WaitTaskStruct</dataType>
+                            <dataType>OtherActivityTaskStruct</dataType>
                             <semantics>Required: Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
@@ -1001,7 +968,7 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                     <value>40</value>
                 </enumerator>
                 <enumerator>
-                    <name>Wait</name>
+                    <name>OtherActivity</name>
                     <value>42</value>
                 </enumerator>
                 <enumerator>
@@ -1419,13 +1386,13 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
             </fixedRecordData>
             <fixedRecordData>
-                <name>WaitTaskStruct</name>
+                <name>OtherActivityTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for Wait task.</semantics>
+                <semantics>Task-specific data for this task.</semantics>
                 <field>
                     <name>Duration</name>
                     <dataType>TimeMillisecondInt64</dataType>
-                    <semantics>Specifies the wait time (milliseconds).</semantics>
+                    <semantics>Specifies the time (milliseconds in the scenario) to perform the activity.</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -1740,9 +1707,9 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <semantics>Task parameters.</semantics>
                 </alternative>
                 <alternative>
-                    <enumerator>Wait</enumerator>
-                    <name>Wait</name>
-                    <dataType>WaitTaskStruct</dataType>
+                    <enumerator>OtherActivity</enumerator>
+                    <name>OtherActivity</name>
+                    <dataType>OtherActivityTaskStruct</dataType>
                     <semantics>Task parameters.</semantics>
                 </alternative>
                 <alternative>
@@ -1759,7 +1726,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <discriminant>TaskType</discriminant>
                 <dataType>TaskTypeEnum</dataType>
                 <alternative>
-                    <enumerator>OperateCheckpoint, Wait, FollowEntity, MoveInDirection, OperateObservationPost</enumerator>
+                    <enumerator>OperateCheckpoint, OtherActivity, FollowEntity, MoveInDirection, OperateObservationPost</enumerator>
                     <name>ElapsedTime</name>
                     <dataType>ElapsedTimeProgress</dataType>
                     <semantics>Keeps track of elapesed time.</semantics>
@@ -1941,14 +1908,12 @@ A federate application may need to delegate the execution of some tasks to some 
 * Renamed `TurnToHeading` interaction class to `ChangeHeading` 
  
 * Added objectClass `DelegatedTask` 
-* Added `BaseEntity` attribute `Activity` 
+
 * Added `BaseEntity` attribute `SupportedTasks` 
 * Added `BaseEntity` attribute `TaskProgress` 
 * Added `BaseEntity` attribute `CurrentTasks` 
 * Added `BaseEntity` attribute `PlannedTasks` 
 * Added `BaseEntity` attribute `PreviousTasks` 
-* Added `BaseEntity` attribute `Route` 
-* Added `BaseEntity` attribute `Destination` 
 * Added `BaseEntity` attribute `CaptureStatus` 
  
  
