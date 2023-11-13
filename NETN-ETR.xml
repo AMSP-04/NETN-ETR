@@ -4,7 +4,7 @@
         <name>NETN-ETR</name>
         <type>FOM</type>
         <version>3.0 </version>
-        <modificationDate>2023-06-28</modificationDate>
+        <modificationDate>2023-11-05</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN-ETR FOM module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation. NETN-ETR contains low-level tasks that can easily be interpreted and executed by simulators that model the behaviour of entities. It also defines a set of reports to provide status information, including the status of task execution.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -12,14 +12,7 @@
         
 The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA.
         </description>
-        <useLimitation>The NETN-ETR module focuses on tasking simulated entities: 
-    
-* It enables the transformation of command and control messages into tasks that a simulator can execute. 
-* It defines a comprehensive set of tasks and reports that simulators can easily interpret and execute.
-* It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) applications but is independent of a specific CGF, agent framework, or agent modelling paradigm. 
-* It is independent of any specific doctrine or tactics. 
-
-A tasked entity can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. The task definition itself does not specify how a simulation models the execution of the task.</useLimitation>
+        <useLimitation>The NETN-ETR module focuses on tasking simulated entities:       * It enables the transformation of command and control messages into tasks that a simulator can execute.  * It defines a comprehensive set of tasks and reports that simulators can easily interpret and execute. * It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) applications but is independent of a specific CGF, agent framework, or agent modelling paradigm.  * It is independent of any specific doctrine or tactics.   A tasked entity can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. The task definition itself does not specify how a simulation models the execution of the task.</useLimitation>
         <useHistory notes="netn-etr_4">v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.</useHistory>
         <useHistory notes="netn-etr_3">v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0</useHistory>
         <useHistory notes="netn-etr_2">v3.0 - Updated by MSG-191 for NETN FOM v4.0</useHistory>
@@ -171,78 +164,13 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
         <interactionClass>
             <name>HLAinteractionRoot</name>
             <interactionClass>
-                <name>ETR_SimCon</name>
-                <sharing>Neither</sharing>
-                <transportation>HLAreliable</transportation>
-                <order>Receive</order>
-                <semantics>Simulation control interactions instruct a simulation model to change a specific state directly. Although the simulation control interactions are not tasks performed by the simulation model, they are a direct change of model state if accepted by a federate application.</semantics>
-                <parameter>
-                    <name>SimulatedEntity</name>
-                    <dataType>UUID</dataType>
-                    <semantics>Required. Reference to the entity that is the subject of simulation control.</semantics>
-                </parameter>
-                <interactionClass>
-                    <name>MagicMove</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Instructs the simulation entity to immediately change location to the specified position and heading.</semantics>
-                    <parameter>
-                        <name>Location</name>
-                        <dataType>LocationStruct</dataType>
-                        <semantics>Required. Location of the entity.</semantics>
-                    </parameter>
-                    <parameter>
-                        <name>Heading</name>
-                        <dataType>DirectionDegreesFloat32</dataType>
-                        <semantics>Optional. Heading of the entity. [0,360). Default = 0. True North.</semantics>
-                    </parameter>
-                </interactionClass>
-                <interactionClass>
-                    <name>RequestCurrentSensorDetections</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Requests the resending of all current `SensorReports`.</semantics>
-                </interactionClass>
-                <interactionClass>
-                    <name>SetRulesOfEngagement</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Instructs the simulation entity to change its rules of engagement immediately.</semantics>
-                    <parameter>
-                        <name>RulesOfEngagement</name>
-                        <dataType>RulesOfEngagementEnum8</dataType>
-                        <semantics>Required. The rules of engagement for an entity.</semantics>
-                    </parameter>
-                </interactionClass>
-                <interactionClass>
-                    <name>Response</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>A response from the receiving federate indicating ability to comply with a request.</semantics>
-                    <parameter>
-                        <name>Request</name>
-                        <dataType>UUID</dataType>
-                        <semantics>Required: Reference to the request this interaction is a response to.</semantics>
-                    </parameter>
-                    <parameter>
-                        <name>Status</name>
-                        <dataType>HLAboolean</dataType>
-                        <semantics>Required. Specifies the result of the request action. TRUE indicates success.</semantics>
-                    </parameter>
-                </interactionClass>
-            </interactionClass>
-            <interactionClass>
                 <name>ETR_Task</name>
                 <sharing>Neither</sharing>
                 <transportation>HLAreliable</transportation>
                 <order>Receive</order>
                 <semantics>Base interaction class related to the tasking of simulated entities and task management.</semantics>
                 <parameter>
-                    <name>TaskedEntity</name>
+                    <name>Entity</name>
                     <dataType>UUID</dataType>
                     <semantics>Required. Reference to the entity that should execute the task.</semantics>
                 </parameter>
@@ -515,9 +443,38 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <semantics>Required: Task parameters</semantics>
                         </parameter>
                     </interactionClass>
+                    <interactionClass>
+                        <name>MagicMove</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Instructs the simulation entity to immediately change location to the specified position and heading.</semantics>
+                        <parameter>
+                            <name>Location</name>
+                            <dataType>LocationStruct</dataType>
+                            <semantics>Required. Location of the entity.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Heading</name>
+                            <dataType>DirectionDegreesFloat32</dataType>
+                            <semantics>Optional. Heading of the entity. [0,360). Default = 0. True North.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>SetRulesOfEngagement</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Instructs the simulation entity to change its rules of engagement immediately.</semantics>
+                        <parameter>
+                            <name>RulesOfEngagement</name>
+                            <dataType>RulesOfEngagementEnum8</dataType>
+                            <semantics>Required. The rules of engagement for an entity.</semantics>
+                        </parameter>
+                    </interactionClass>
                 </interactionClass>
                 <interactionClass>
-                    <name>RequestCancelTask</name>
+                    <name>RequestCancelTasks</name>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
@@ -558,25 +515,27 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     </parameter>
                 </interactionClass>
                 <interactionClass>
-                    <name>TaskStatusUpdate</name>
+                    <name>RequestReport</name>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>A management task report regarding the status of a specific task assigned to an entity. The inherited parameter `Time is required.`</semantics>
+                    <semantics>Requests the resending of all current `SensorReports`.</semantics>
+                </interactionClass>
+                <interactionClass>
+                    <name>Response</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A response from the receiving federate indicating ability to comply with a request.</semantics>
                     <parameter>
-                        <name>Task</name>
+                        <name>Request</name>
                         <dataType>UUID</dataType>
-                        <semantics>Required. Reference to the task associated with the report.</semantics>
+                        <semantics>Required: Reference to the request this interaction is a response to.</semantics>
                     </parameter>
                     <parameter>
-                        <name>TaskStatus</name>
-                        <dataType>TaskStatusEnum32</dataType>
-                        <semantics>Required. The status of the task.</semantics>
-                    </parameter>
-                    <parameter>
-                        <name>Comments</name>
-                        <dataType>HLAunicodeString</dataType>
-                        <semantics>Optional. Any additional comments, e.g. reason for cancelling, errors.</semantics>
+                        <name>Status</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>Required. Specifies the result of the request action. TRUE indicates success.</semantics>
                     </parameter>
                 </interactionClass>
             </interactionClass>
@@ -586,11 +545,6 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <transportation>HLAreliable</transportation>
                 <order>Receive</order>
                 <semantics>A base interaction class for more specialized report interaction classes. The inherited parameter `Time is required.`</semantics>
-                <parameter>
-                    <name>ReportId</name>
-                    <dataType>UUID</dataType>
-                    <semantics>Required: Unique identifier for the report.</semantics>
-                </parameter>
                 <parameter>
                     <name>ReportingEntity</name>
                     <dataType>UUID</dataType>
@@ -701,6 +655,23 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <name>EntitiesInWeaponRange</name>
                         <dataType>ArrayOfUuid</dataType>
                         <semantics>Required. Reference to entities in weapon range.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>TaskStatusUpdate</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A management task report regarding the status of a specific task assigned to an entity. The inherited parameter `Time is required.`</semantics>
+                    <parameter>
+                        <name>Task</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required. Reference to the task associated with the report.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>TaskStatus</name>
+                        <dataType>TaskStatusEnum32</dataType>
+                        <semantics>Required. The status of the task.</semantics>
                     </parameter>
                 </interactionClass>
             </interactionClass>
@@ -1908,7 +1879,7 @@ A federate application may need to delegate the execution of some tasks to some 
 * Renamed `TurnToHeading` interaction class to `ChangeHeading` 
  
 * Added objectClass `DelegatedTask` 
-
+ 
 * Added `BaseEntity` attribute `SupportedTasks` 
 * Added `BaseEntity` attribute `TaskProgress` 
 * Added `BaseEntity` attribute `CurrentTasks` 
