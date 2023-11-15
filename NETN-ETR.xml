@@ -4,15 +4,14 @@
         <name>NETN-ETR</name>
         <type>FOM</type>
         <version>3.0 </version>
-        <modificationDate>2023-11-05</modificationDate>
+        <modificationDate>2023-11-15</modificationDate>
         <securityClassification>Not Classified</securityClassification>
-        <purpose>The NETN-ETR FOM module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation. NETN-ETR contains low-level tasks that can easily be interpreted and executed by simulators that model the behaviour of entities. It also defines a set of reports to provide status information, including the status of task execution.</purpose>
+        <purpose>The NETN-ETR FOM module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation.</purpose>
         <applicationDomain>Training</applicationDomain>
-        <description>The NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module specifies how to represent simulation task requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. 
-        
-The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA.
-        </description>
-        <useLimitation>The NETN-ETR module focuses on tasking simulated entities:       * It enables the transformation of command and control messages into tasks that a simulator can execute.  * It defines a comprehensive set of tasks and reports that simulators can easily interpret and execute. * It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) applications but is independent of a specific CGF, agent framework, or agent modelling paradigm.  * It is independent of any specific doctrine or tactics.   A tasked entity can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. The task definition itself does not specify how a simulation models the execution of the task.</useLimitation>
+        <description>The NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module defines interactions that can be interpreted and executed by simulators that model the behaviour of a tasked entity. The module also defines reports sent by simulated entities, including the status of task execution.</description>
+        <useLimitation>The module defines the pattern for tasking simulated entities and provides a core set of tasks. Other NETN modules define additional tasks. Provided task definitions reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) applications but are independent of a specific CGF, agent framework, or agent modelling paradigm. 
+            
+A tasked entity can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. The task definition itself does not specify how a simulation models the execution of the task.</useLimitation>
         <useHistory notes="netn-etr_4">v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.</useHistory>
         <useHistory notes="netn-etr_3">v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0</useHistory>
         <useHistory notes="netn-etr_2">v3.0 - Updated by MSG-191 for NETN FOM v4.0</useHistory>
@@ -504,9 +503,9 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <order>Receive</order>
                     <semantics>Request a specific federate application to execute a task. If the delegated task is accepted, a `DelegatedTask` object is created in the federation to track the progress of task execution.</semantics>
                     <parameter>
-                        <name>RequestedFederateApplication</name>
-                        <dataType>UUID</dataType>
-                        <semantics>Required. Reference to the target federate application.</semantics>
+                        <name>Federate</name>
+                        <dataType>FederateName</dataType>
+                        <semantics>Required. Reference to the target federate.</semantics>
                     </parameter>
                     <parameter>
                         <name>TaskDefinition</name>
@@ -1729,17 +1728,43 @@ for aggregate entities, also use entity types from platform tables to describe t
         <note>
             <label>netn-etr_1</label>
             <semantics>## Overview 
-The NETN-ETR module defines extensions of the RPR-FOM object classes `BaseEntity`, `AggregateEntity`, `Lifeform`, and `Platform` to represent the planned, current and previous tasks assigned to simulated entities. 
+The NETN-ETR module extends the RPR-FOM object class `BaseEntity` with optional attributes related to tasking. 
+These include a list of what tasks are supported, previous, planned, current, and progress of ongoing tasks. 
+
  
-Tasking, reporting and simulation control use the following base interaction classes: 
+Tasking and reporting use the following base interaction classes: 
  
-* `ETR_Task` is a base class for tasking 
-* `ETR_Report` is a base class for reports 
-* `ETR_SimCon`  is a base class for simulation control 
+* `ETR_Task` is a base class for entity tasking and related task management interactions 
+* `ETR_Report` is a base class for entity reports, including task status update
  
-### Tasks 
+### Tasks
  
-In a standard pattern for tasking a simulation entity, a tasking federate sends a `RequestTask` subclass interaction with the appropriate task parameters, which includes a reference to the simulation entity intended to execute the task. The application responsible for modelling the entity responds with a `TaskStatusUpdate` notification to indicate task status and performs the task when appropriate. 
+Entity tasking uses a standard Request-Response pattern. 
+A TaskingFederate sends a request interaction with references to a simulated entity.
+The federate responsible for modelling the entity (EntityFederate) replies using a `Response` interaction. 
+The `Response` indicates if the requested tasking is accepted by the federate or not. 
+ 
+```mermaid
+sequenceDiagram
+autonumber
+TaskingFederate-&gt;&gt;EntityFederate:Request(entity) 
+EntityFederate-&gt;&gt;TaskingFederate:Response(true/false) 
+```` 
+
+The following entity task interactions are defined: 
+* `RequestTask` - Request EntityFederate to schedule the execution of a specific behaviour. The `RequestTask` subclasses provide specific tasks. Other NETN FOM modules provide subclasses for additional tasks. 
+* `RequestCancelTasks` - Request EntityFederate to cancel all or a specified set of current or planned tasks. 
+* `RequestTaskStatus` - Request EntityFederate to resend the latest task status update for specified tasks. 
+* `RequestTaskDelegation` - Request another federate to perform a specified task on behalf of the EntityFederate. If accepted, the delegated federate will register an `ETR_DelegatedTask` object to publish the progress of task execution.
+* `RequestReport` - Request EntityFederate to resend the latest reports of the specified report types. 
+ 
+
+#### RequestTask
+
+A TaskingFederate sends a `RequestTask` interaction with the appropriate task parameters.
+The EntityFederate responds with a `Response` interaction according to the standard Request-Respose pattern.
+In addition, the federate sends an `ETR_Report` `TaskStatusUpdate` notification indicating the current task execution status.
+The EntityFederate sends `TaskStatusUpdate` reports to notify of any change in the task execution status.
  
 The `TaskStatusUpdate` interaction provides the following notifications regarding the task: 
  
@@ -1750,36 +1775,18 @@ The `TaskStatusUpdate` interaction provides the following notifications regardin
 * Completed: the task has been executed successfully 
 * Cancelled: the task execution has been explicitly terminated 
 * Error: the task execution has been terminated due to a modelling error 
+
  
-```mermaid 
-sequenceDiagram 
-autonumber 
-Tasking Federate-&gt;&gt;Entity Simulation:RequestTask(TaskParameters) 
-Note left of Entity Simulation: Task Received 
-Entity Simulation-&gt;&gt;Tasking Federate:TaskStatusUpdate(Accepted) 
-Note left of Entity Simulation: Task Waiting 
-Entity Simulation-&gt;&gt;Tasking Federate:TaskStatusUpdate(Waiting) 
-Entity Simulation-&gt;&gt;Tasking Federate:TaskStatusUpdate(Executing) 
-Note left of Entity Simulation: Task Executing 
-Entity Simulation-&gt;&gt;Tasking Federate:TaskStatusUpdate(Completed) 
-Note left of Entity Simulation: Task Completed 
-```` 
-1. A tasking federate sends one of the `RequestTask` subclass interactions 
-2. The federate responsible for simulating the entity responds with a `TaskStatusUpdate` indicating that the task is accepted. If the task is not supported, send a `TaskStatusUpdate` indicating `Refused`. 
-3. If there is a delay until the execution, the entity simulation sends a `TaskStatusUpdate` indicating that the task is waiting. 
-4. A `TaskStatusUpdate` indicates that the task started executing. 
-5. A `TaskStatusUpdate` indicates successful completion of task execution. 
- 
-A task can execute concurrently with other tasks or sequentially. The `RequestTask` task parameters indicate the expected mode of task execution. The receiving federate application determines if it can fulfil the concurrent or non-concurrent task mode request and accept the task. Tasks are scheduled based on their start time and task execution mode. 
+A task can be executed concurrently with other tasks or sequentially. The `RequestTask` task parameters indicate the expected mode of task execution. The EntityFederate determines if it can fulfil the concurrent or non-concurrent task mode request and accept the task. Tasks are scheduled based on their start time and task execution mode. 
  
 The execution of a task can start if: 
  
 * For a non-concurrent task 
-* No other non-concurrent task is executing 
-* The task has the earliest `StartTime` parameter of all planned non-concurrent tasks 
-* The task parameter `StartTime` is less than or equal to the current `ScenarioTime`. 
+    * No other non-concurrent task is executing 
+    * The task has the earliest `StartTime` parameter of all planned non-concurrent tasks 
+    * The task parameter `StartTime` is less than or equal to the current `ScenarioTime`. 
 * For a concurrent task 
-* The task parameter `StartTime` is less than or equal to the current `ScenarioTime`. 
+    * The task parameter `StartTime` is less than or equal to the current `ScenarioTime`. 
  
 Scheduled tasks are published using the `PlannedTasks` attribute of the simulated entity. 
  
@@ -1787,12 +1794,7 @@ Currently executing tasks and their execution progress are published using the s
  
 Completed tasks are published using the `PreviousTasks` attribute of the simulated entity. 
  
-Use the `SupportedTasks` attribute available for all simulated `Platform`, `Lifeform` and `AggregatedEntity` entities to indicate which tasks are supported. Normally, a tasking federate check supported tasks before sending a `TaskRequest` to avoid unnecessary `TaskStatusUpdate` with refusal to accept the task. 
- 
- 
-#### Task Delegation 
- 
-A federate application may need to delegate the execution of some tasks to some other federate. Use `RequestTaskDelegation` to request a `FederateApplication` to execute a task based on a `TaskDefinition`. The progress of the task execution is published using a corresponding `DelegatedTask` object. Once execution is complete, remove the `DelegatedTask` object instance from the federation.</semantics>
+Use the `SupportedTasks` attribute to indicate which tasks are supported. Normally, a TaskingFederate check supported tasks before sending a `TaskRequest`.</semantics>
         </note>
         <note>
             <label>netn-etr_2</label>
