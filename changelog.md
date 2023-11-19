@@ -51,7 +51,7 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
 * Added `BaseEntity` attribute `CurrentTasks` 
 * Added `BaseEntity` attribute `PlannedTasks` 
 * Added `BaseEntity` attribute `PreviousTasks` 
-
+ 
  
 * Added object Class `ETR_DelegatedTask` 
  
