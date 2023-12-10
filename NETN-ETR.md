@@ -263,6 +263,9 @@ Tasking of an entity to wait for a duration of time.
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|OtherActivityTaskStruct|Required: Task parameters.|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### DirectFire
 
@@ -280,6 +283,9 @@ Tasking an entity to fire directed at a specified target entity.
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|DirectFireTaskStruct|Required: Task parameters|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### IndirectFire
 
@@ -297,6 +303,9 @@ Tasking an entity to fire directed at an area.
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|IndirectFireTaskStruct|Required: Task parameters|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### OperateCheckpoint
 
@@ -314,6 +323,9 @@ Request an entity to operate a checkpoint. The tasked entity should be within th
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|OperateCheckpointTaskStruct|Required: Task parameters|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### Observe
 
@@ -331,6 +343,9 @@ Tasking of an entity to observe an area.
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ObserveTaskStruct|Required: Task parameters|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### MoveToLocation
 
@@ -348,6 +363,9 @@ Request a simulated entity to move to a specified destination location. The enti
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveToLocationTaskStruct|Required: Task parameters.|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### MoveIntoFormation
 
@@ -365,6 +383,9 @@ Tasking a simulated entity to move into the given formation on the given locatio
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveIntoFormationTaskStruct|Required: Task parameters.|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### MoveInDirection
 
@@ -382,6 +403,9 @@ Tasking of an entity to move in a specified direction for a duration.
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveInDirectionTaskStruct|Required: Task parameters.|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### FollowEntity
 
@@ -399,6 +423,9 @@ Tasking of an entity to follow another entity at a specified distance.
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|FollowEntityTaskStruct|Required: Task parameters.|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### Mount
 
@@ -416,6 +443,9 @@ Requesting a simulated entity to mount the specified entity. The tasked entity s
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|AttachTaskStruct|Required: Task parameters|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### Dismount
 
@@ -432,6 +462,9 @@ Requesting a simulated entity to dismount from a mounted position.
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### MoveByRoute
 
@@ -449,6 +482,9 @@ Requesting a simulated entity to move given the specified route with a given spe
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveByRouteTaskStruct|Required: Task parameters.|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### ChangeSpeed
 
@@ -466,6 +502,9 @@ Tasking of an entity to change speed.
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ChangeSpeedTaskStruct|Required: Task parameters.|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### ChangeAltitude
 
@@ -483,6 +522,9 @@ Tasking of an entity to set move to a specified altitude.
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ChangeAltitudeTaskStruct|Required: Task parameters.|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### ChangeHeading
 
@@ -500,6 +542,9 @@ Tasking of an entity to change heading.
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ChangeHeadingTaskStruct|Required: Task parameters.|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### Patrol
 
@@ -517,6 +562,9 @@ Requesting a simulated entity to perform a patrol task. The tasked entity moves 
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|PatrolTaskStruct|Required: Task parameters|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### StopAtSideOfRoad
 
@@ -533,6 +581,9 @@ Requesting a simulated entity to stop at the side of the road. This task is only
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### OperateObservationPost
 
@@ -550,6 +601,9 @@ Requests an entity to operate an observation post. The tasked unit should be wit
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|OperateObservationPostTaskStruct|Required: Task parameters|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### EnterFacility
 
@@ -567,6 +621,9 @@ Requesting a simulated entity to enter the specified facility (cultural feature)
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|AttachTaskStruct|Required: Task parameters|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### MagicMove
 
@@ -585,6 +642,9 @@ Instructs the simulation entity to immediately change location to the specified 
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### SetRulesOfEngagement
 
@@ -602,6 +662,9 @@ Instructs the simulation entity to change its rules of engagement immediately.
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### RequestTaskStatus
 
