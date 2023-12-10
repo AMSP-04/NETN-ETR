@@ -2,7 +2,7 @@
 # NETN-ETR
 |Version| Date| Dependencies|
 |---|---|---|
-|3.0 |2023-11-19|NETN-BASE, NETN-SMC|
+|3.0 |2023-12-09|NETN-BASE, NETN-SMC|
 
 The NETN-ETR FOM module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation.
 
@@ -63,12 +63,19 @@ Use the NETN-SMC `BaseEntity` attribute `SupportedActions` to indicate which tas
 
 ## Object Classes
 
-Note that inherited and dependency attributes are not included in the description of object classes.
-
 ```mermaid
-graph RL
-BaseEntity-->HLAobjectRoot
-ETR_DelegatedTask-->HLAobjectRoot
+classDiagram 
+direction LR
+
+HLAobjectRoot <|-- BaseEntity
+HLAobjectRoot <|-- ETR_DelegatedTask
+HLAobjectRoot : UniqueId(NETN-BASE)
+BaseEntity : CurrentTasks
+BaseEntity : PlannedTasks
+BaseEntity : PreviousTasks
+BaseEntity : TaskProgress
+ETR_DelegatedTask : TaskDefinition
+ETR_DelegatedTask : TaskProgress
 ```
 
 ### BaseEntity
@@ -78,9 +85,10 @@ A base class of aggregate and discrete scenario domain participants. The BaseEnt
 |Attribute|Datatype|Semantics|
 |---|---|---|
 |CurrentTasks|ArrayOfTaskDefinitions|Optional. An array of currently executing tasks.|
-|TaskProgress|ArrayOfTaskProgress|Optional. An array of progress for current tasks.|
 |PlannedTasks|ArrayOfTaskDefinitions|Optional. An array of all planned tasks.|
 |PreviousTasks|ArrayOfTaskDefinitions|Optional. An array of completed or cancelled tasks.|
+|TaskProgress|ArrayOfTaskProgress|Optional. An array of progress for current tasks.|
+|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
 
 ### ETR_DelegatedTask
 
@@ -90,54 +98,124 @@ Object to represent a task and its execution progress when delegated to a federa
 |---|---|---|
 |TaskDefinition|TaskDefinition|Required. Definition description of the task represented.|
 |TaskProgress|TaskProgress|Required. Progress description of the task represented.|
+|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
 
 ## Interaction Classes
 
-Note that inherited and dependency parameters are not included in the description of interaction classes.
-
 ```mermaid
-graph RL
-SMC_FederateControl-->HLAinteractionRoot
-SMC_EntityControl-->HLAinteractionRoot
-ETR_TaskStatus-->HLAinteractionRoot
-ETR_Report-->HLAinteractionRoot
-TaskDelegation-->SMC_FederateControl
-Task-->SMC_EntityControl
-RequestTaskStatus-->SMC_EntityControl
-CancelTasks-->SMC_EntityControl
-OtherActivity-->Task
-DirectFire-->Task
-IndirectFire-->Task
-OperateCheckpoint-->Task
-Observe-->Task
-MoveToLocation-->Task
-MoveIntoFormation-->Task
-MoveInDirection-->Task
-FollowEntity-->Task
-Mount-->Task
-Dismount-->Task
-MoveByRoute-->Task
-ChangeSpeed-->Task
-ChangeAltitude-->Task
-ChangeHeading-->Task
-Patrol-->Task
-StopAtSideOfRoad-->Task
-OperateObservationPost-->Task
-EnterFacility-->Task
-MagicMove-->Task
-SetRulesOfEngagement-->Task
-ObservationReport-->ETR_Report
-PositionStatusReport-->ETR_Report
-DamageStatusReport-->ETR_Report
-ResourceStatusReport-->ETR_Report
-UnderAttackStatusReport-->ETR_Report
-InWeaponRangeReport-->ETR_Report
+classDiagram 
+direction LR
+HLAinteractionRoot <|-- SMC_FederateControl
+HLAinteractionRoot <|-- SMC_EntityControl
+HLAinteractionRoot <|-- ETR_TaskStatus
+HLAinteractionRoot <|-- ETR_Report
+HLAinteractionRoot <|-- SMC_FederationControl
+HLAinteractionRoot <|-- ETR_SensorEvent
+HLAinteractionRoot : ScenarioTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_FederateControl <|-- TaskDelegation
+TaskDelegation : Entity
+TaskDelegation : TaskDefinition
+SMC_EntityControl <|-- Task
+SMC_EntityControl <|-- RequestTaskStatus
+SMC_EntityControl <|-- CancelTasks
+SMC_EntityControl : Entity(NETN-SMC)
+Task <|-- OtherActivity
+Task <|-- DirectFire
+Task <|-- IndirectFire
+Task <|-- OperateCheckpoint
+Task <|-- Observe
+Task <|-- MoveToLocation
+Task <|-- MoveIntoFormation
+Task <|-- MoveInDirection
+Task <|-- FollowEntity
+Task <|-- Mount
+Task <|-- Dismount
+Task <|-- MoveByRoute
+Task <|-- ChangeSpeed
+Task <|-- ChangeAltitude
+Task <|-- ChangeHeading
+Task <|-- Patrol
+Task <|-- StopAtSideOfRoad
+Task <|-- OperateObservationPost
+Task <|-- EnterFacility
+Task <|-- MagicMove
+Task <|-- SetRulesOfEngagement
+Task : Activity
+Task : Annotation
+Task : MainTask
+Task : NextTask
+Task : PreviousTask
+Task : StartTime
+Task : TaskId
+Task : TaskMode
+Task : Tasker
+OtherActivity : TaskParameters
+DirectFire : TaskParameters
+IndirectFire : TaskParameters
+OperateCheckpoint : TaskParameters
+Observe : TaskParameters
+MoveToLocation : TaskParameters
+MoveIntoFormation : TaskParameters
+MoveInDirection : TaskParameters
+FollowEntity : TaskParameters
+Mount : TaskParameters
+MoveByRoute : TaskParameters
+ChangeSpeed : TaskParameters
+ChangeAltitude : TaskParameters
+ChangeHeading : TaskParameters
+Patrol : TaskParameters
+OperateObservationPost : TaskParameters
+EnterFacility : TaskParameters
+MagicMove : Heading
+MagicMove : Location
+SetRulesOfEngagement : RulesOfEngagement
+RequestTaskStatus : Tasks
+CancelTasks : Tasks
+ETR_TaskStatus : Task
+ETR_TaskStatus : TaskStatus
+ETR_Report <|-- ObservationReport
+ETR_Report <|-- PositionStatusReport
+ETR_Report <|-- DamageStatusReport
+ETR_Report <|-- ResourceStatusReport
+ETR_Report <|-- UnderAttackStatusReport
+ETR_Report <|-- InWeaponRangeReport
+ETR_Report : Comments
+ETR_Report : Receiver
+ETR_Report : ReportId
+ETR_Report : ReportingEntity
+ETR_Report : TimeStamp
+ObservationReport : Activity
+ObservationReport : ConfidenceLevel
+ObservationReport : Equipment
+ObservationReport : Heading
+ObservationReport : Health
+ObservationReport : HostilityStatus
+ObservationReport : IdentificationLevel
+ObservationReport : Location
+ObservationReport : Marking
+ObservationReport : Name
+ObservationReport : ObservedEntity
+ObservationReport : SensorType
+ObservationReport : Side
+ObservationReport : Speed
+ObservationReport : Symbol
+ObservationReport : UncertaintyInterval
+PositionStatusReport : Heading
+PositionStatusReport : Position
+PositionStatusReport : Speed
+DamageStatusReport : DamageType
+ResourceStatusReport : Resource
+UnderAttackStatusReport : FromDirection
+UnderAttackStatusReport : Severeness
+InWeaponRangeReport : EntitiesInWeaponRange
+InWeaponRangeReport : WeaponType
+SMC_FederationControl <|-- ResendSensorUpdates
+ETR_SensorEvent <|-- EntitySensorUpdate
+ETR_SensorEvent : Entity
+EntitySensorUpdate : SensorType
+EntitySensorUpdate : Tracks
 ```
-
-### SMC_FederateControl
-
-
-
 
 ### TaskDelegation
 
@@ -145,13 +223,10 @@ Request a specific federate application to execute a task. If the delegated task
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|TaskDefinition|TaskDefinition|Required. Definition of the task.|
 |Entity|UUID|Required: The entity to perform the task.|
-
-### SMC_EntityControl
-
-
-
+|TaskDefinition|TaskDefinition|Required. Definition of the task.|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### Task
 
@@ -159,15 +234,18 @@ Requests a simulated entity to perform some task based on a task description. If
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|TaskId|UUID|Required. Unique identifier for the task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
 |Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
 |Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
-|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
-|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### OtherActivity
 
@@ -175,7 +253,16 @@ Tasking of an entity to wait for a duration of time.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|OtherActivityTaskStruct|Required: Task parameters.|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### DirectFire
 
@@ -183,7 +270,16 @@ Tasking an entity to fire directed at a specified target entity.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|DirectFireTaskStruct|Required: Task parameters|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### IndirectFire
 
@@ -191,7 +287,16 @@ Tasking an entity to fire directed at an area.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|IndirectFireTaskStruct|Required: Task parameters|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### OperateCheckpoint
 
@@ -199,7 +304,16 @@ Request an entity to operate a checkpoint. The tasked entity should be within th
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|OperateCheckpointTaskStruct|Required: Task parameters|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### Observe
 
@@ -207,7 +321,16 @@ Tasking of an entity to observe an area.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ObserveTaskStruct|Required: Task parameters|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### MoveToLocation
 
@@ -215,7 +338,16 @@ Request a simulated entity to move to a specified destination location. The enti
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveToLocationTaskStruct|Required: Task parameters.|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### MoveIntoFormation
 
@@ -223,7 +355,16 @@ Tasking a simulated entity to move into the given formation on the given locatio
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveIntoFormationTaskStruct|Required: Task parameters.|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### MoveInDirection
 
@@ -231,7 +372,16 @@ Tasking of an entity to move in a specified direction for a duration.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveInDirectionTaskStruct|Required: Task parameters.|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### FollowEntity
 
@@ -239,7 +389,16 @@ Tasking of an entity to follow another entity at a specified distance.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|FollowEntityTaskStruct|Required: Task parameters.|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### Mount
 
@@ -247,12 +406,32 @@ Requesting a simulated entity to mount the specified entity. The tasked entity s
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|AttachTaskStruct|Required: Task parameters|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### Dismount
 
 Requesting a simulated entity to dismount from a mounted position.
 
+|Parameter|Datatype|Semantics|
+|---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### MoveByRoute
 
@@ -260,7 +439,16 @@ Requesting a simulated entity to move given the specified route with a given spe
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveByRouteTaskStruct|Required: Task parameters.|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### ChangeSpeed
 
@@ -268,7 +456,16 @@ Tasking of an entity to change speed.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ChangeSpeedTaskStruct|Required: Task parameters.|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### ChangeAltitude
 
@@ -276,7 +473,16 @@ Tasking of an entity to set move to a specified altitude.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ChangeAltitudeTaskStruct|Required: Task parameters.|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### ChangeHeading
 
@@ -284,7 +490,16 @@ Tasking of an entity to change heading.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ChangeHeadingTaskStruct|Required: Task parameters.|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### Patrol
 
@@ -292,12 +507,32 @@ Requesting a simulated entity to perform a patrol task. The tasked entity moves 
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|PatrolTaskStruct|Required: Task parameters|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### StopAtSideOfRoad
 
 Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location).
 
+|Parameter|Datatype|Semantics|
+|---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### OperateObservationPost
 
@@ -305,7 +540,16 @@ Requests an entity to operate an observation post. The tasked unit should be wit
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|OperateObservationPostTaskStruct|Required: Task parameters|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### EnterFacility
 
@@ -313,7 +557,16 @@ Requesting a simulated entity to enter the specified facility (cultural feature)
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|AttachTaskStruct|Required: Task parameters|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### MagicMove
 
@@ -321,8 +574,17 @@ Instructs the simulation entity to immediately change location to the specified 
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|Location|LocationStruct|Required. Location of the entity.|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
 |Heading|DirectionDegreesFloat32|Optional. Heading of the entity. [0,360). Default = 0. True North.|
+|Location|LocationStruct|Required. Location of the entity.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### SetRulesOfEngagement
 
@@ -330,7 +592,16 @@ Instructs the simulation entity to change its rules of engagement immediately.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Activity|AggregateMissionEnum16|Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).|
+|Annotation|HLAunicodeString|Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.|
+|MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
+|NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
+|PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
 |RulesOfEngagement|RulesOfEngagementEnum8|Required. The rules of engagement for an entity.|
+|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|TaskId|UUID|Required. Unique identifier for the task.|
+|TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
+|Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
 
 ### RequestTaskStatus
 
@@ -339,6 +610,9 @@ Requests the federate application modelling the tasked entity to send a `TaskSta
 |Parameter|Datatype|Semantics|
 |---|---|---|
 |Tasks|ArrayOfUuid|Optional. Tasks for which status reports are requested. The default, if not provided or if the list of tasks is empty, the request refers to all tasks for the tasked entity.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### CancelTasks
 
@@ -347,6 +621,9 @@ Request to cancel all one or more tasks.
 |Parameter|Datatype|Semantics|
 |---|---|---|
 |Tasks|ArrayOfUuid|Required. Tasks to cancel. If no specific tasks are indicated, the default is to cancel all scheduled and ongoing tasks for the simulation entity.|
+|Entity<br/>(NETN-SMC)|UUID|Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions.| 
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### ETR_TaskStatus
 
@@ -356,6 +633,8 @@ A management task report regarding the status of a specific task assigned to an 
 |---|---|---|
 |Task|UUID|Required. Reference to the task associated with the report.|
 |TaskStatus|TaskStatusEnum32|Required. The status of the task.|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### ETR_Report
 
@@ -363,11 +642,13 @@ A base interaction class for more specialized report interaction classes. The in
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
+|Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
-|Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
-|Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### ObservationReport
 
@@ -375,22 +656,29 @@ Report on a unit's observation of a simulated entity. Based on SISO C2SIM standa
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|ObservedEntity|UUID|Required: The unique identifier of the observed entity|
-|IdentificationLevel|IdentificationLevelEnum8|Optional. The identification level of spotted entities.|
-|ConfidenceLevel|Float64|Optional:|
-|SensorType|EntityTypeStruct|Optional: The type of sensor that is the primary source of the report.|
-|UncertaintyInterval|Float64|Optional|
 |Activity|AggregateMissionEnum16|Optional: The current activity of the entity. (Fromm NETN-Base) <br/>Default value: Moving (213)|
-|Health|PercentFloat32|Optional: Observed strength of an entity expressed as a percentage of the perceived normal strength.|
-|Location|LocationStruct|Optional: Observed location where the entity were spotted|
+|Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
+|ConfidenceLevel|Float64|Optional:|
+|Equipment|ArrayOfObservedEquipment|Optional: Observed supplies and equipment.|
 |Heading|DirectionDegreesFloat32|Optional: Observed heading of spotted entity.|
-|Speed|VelocityMeterPerSecondFloat32|Optional: Observed speed of the entity (m/s).|
+|Health|PercentFloat32|Optional: Observed strength of an entity expressed as a percentage of the perceived normal strength.|
 |HostilityStatus|HostilityStatusCodeEnum32|Optional: Perceived hostility of the observed entity.|
+|IdentificationLevel|IdentificationLevelEnum8|Optional. The identification level of spotted entities.|
+|Location|LocationStruct|Optional: Observed location where the entity were spotted|
 |Marking|HLAunicodeString|Optional: Observed marking on the entity.|
 |Name|HLAunicodeString|Optional: Perceived name of the observed entity.|
+|ObservedEntity|UUID|Required: The unique identifier of the observed entity|
+|Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
+|ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportingEntity|UUID|Required: The entity sending the report.|
+|SensorType|EntityTypeStruct|Optional: The type of sensor that is the primary source of the report.|
 |Side|UUID|Optional: Perceived force identifier of the observed entity.|
-|Equipment|ArrayOfObservedEquipment|Optional: Observed supplies and equipment.|
+|Speed|VelocityMeterPerSecondFloat32|Optional: Observed speed of the entity (m/s).|
 |Symbol|SymbolIdentifier|Optional: Symbol identifier for the entity.|
+|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
+|UncertaintyInterval|Float64|Optional|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### PositionStatusReport
 
@@ -398,9 +686,16 @@ Report on an entity's own position, speed, and heading.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|Position|LocationStruct|Required. Position of the entity at the specified time.|
+|Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
 |Heading|DirectionDegreesFloat32|Required. Heading of the entity. [0,360). Default = 0. True North.|
+|Position|LocationStruct|Required. Position of the entity at the specified time.|
+|Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
+|ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportingEntity|UUID|Required: The entity sending the report.|
 |Speed|VelocityMeterPerSecondFloat32|Required. Speed of the entity.|
+|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### DamageStatusReport
 
@@ -408,7 +703,14 @@ Report on a unit's damage status.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
 |DamageType|DamageStatusEnhancedEnum32|Required. Damage state of the reported entity.|
+|Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
+|ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportingEntity|UUID|Required: The entity sending the report.|
+|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### ResourceStatusReport
 
@@ -416,7 +718,14 @@ Report on a unit's remaining amount of resources.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
+|Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
+|ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportingEntity|UUID|Required: The entity sending the report.|
 |Resource|SupplyStatusStruct|Required. The type of resource and remaining quantity.|
+|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### UnderAttackStatusReport
 
@@ -424,8 +733,15 @@ Report from a unit that it is under attack.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
+|Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
 |FromDirection|DirectionDegreesFloat32|Required. The direction to the attacking entity [0,360). Default = 0. True North.|
+|Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
+|ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportingEntity|UUID|Required: The entity sending the report.|
 |Severeness|AttackTypeEnum32|Required. Severeness of the attack upon the reporting entity.|
+|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### InWeaponRangeReport
 
@@ -433,8 +749,42 @@ Report on a unit's ability to reach specific targets with its weapon systems.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|WeaponType|EntityTypeStruct|Required. The type of weapon that is in range.|
+|Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
 |EntitiesInWeaponRange|ArrayOfUuid|Required. Reference to entities in weapon range.|
+|Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
+|ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportingEntity|UUID|Required: The entity sending the report.|
+|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
+|WeaponType|EntityTypeStruct|Required. The type of weapon that is in range.|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
+
+### ResendSensorUpdates
+
+Request all sensor services to resend their latest sensor updates.
+
+
+### ETR_SensorEvent
+
+A sensor event such as a detection, track or alarm.
+
+|Parameter|Datatype|Semantics|
+|---|---|---|
+|Entity|UUID|Optional: Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced.|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
+
+### EntitySensorUpdate
+
+Report on a unit's awareness of spotted entities.
+
+|Parameter|Datatype|Semantics|
+|---|---|---|
+|Entity|UUID|Optional: Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced.|
+|SensorType|EntityTypeStruct|Required. The type of the sensor that detected the entities.|
+|Tracks|ArrayOfTrack|Required. Spotted entities at the time specified in the parameter 'When'.|
+|ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
+|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ## Datatypes
 
@@ -443,15 +793,18 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 ### Overview
 |Name|Semantics|
 |---|---|
+|ArrayOfDetectedEquipment|An array with spotted equipment at the spotted entity.|
 |ArrayOfObservedEquipment|An array with spotted equipment at the spotted entity.|
 |ArrayOfTaskDefinitions|Array containing task definitions.|
 |ArrayOfTaskProgress|Array of task progress types.|
+|ArrayOfTrack|A list of tracks representing an aggregate output from a sensor's detections.|
 |ArrayOfWaypoints|Array of waypoints with location and the speed to the waypoint.|
 |AttachTaskStruct|Task-specific data for tasks related to attach or associate one entity with another, e.g. mount a platform, embark on a ship, or to enter a facility.|
 |AttackTypeEnum32|The kind of attack by the enemy.|
 |ChangeAltitudeTaskStruct|Task-specific data for ChangeAltitude|
 |ChangeHeadingTaskStruct|Task-specific data to turn to the specified heading.|
 |ChangeSpeedTaskStruct|Task-specific data for ChangeSpeedTask task.|
+|DetectedEquipment|Equipment at the spotted entity.|
 |DirectFireTaskStruct|Task-specific data for direct fire.|
 |ElapsedTimeProgress|Progress definition for tasks only needing elapsed time.|
 |EmptyTaskStruct|No task parameters.|
@@ -485,6 +838,7 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |TaskProgress|Fixed record to describe the progress of an executing task.|
 |TaskProgressVariantRecord|Variant record for task progress data.|
 |TaskStatusEnum32|The status of a task.|
+|TrackStruct|Descripton of the observed entity. The symbol contains information about the spotted entity's relation to the spotter and details about the type and echelon at the spotted entity.|
 |Waypoint|A location and the speed to reach that location.|
         
 ### Enumerated Datatypes
@@ -504,9 +858,11 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 ### Array Datatypes
 |Name|Element Datatype|Semantics|
 |---|---|---|
+|ArrayOfDetectedEquipment|DetectedEquipment|An array with spotted equipment at the spotted entity.|
 |ArrayOfObservedEquipment|ObservedEquipment|An array with spotted equipment at the spotted entity.|
 |ArrayOfTaskDefinitions|TaskDefinition|Array containing task definitions.|
 |ArrayOfTaskProgress|TaskProgress|Array of task progress types.|
+|ArrayOfTrack|TrackStruct|A list of tracks representing an aggregate output from a sensor's detections.|
 |ArrayOfWaypoints|Waypoint|Array of waypoints with location and the speed to the waypoint.|
         
 ### Fixed Record Datatypes
@@ -516,6 +872,7 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |ChangeAltitudeTaskStruct|Altitude|Task-specific data for ChangeAltitude|
 |ChangeHeadingTaskStruct|Heading|Task-specific data to turn to the specified heading.|
 |ChangeSpeedTaskStruct|Speed|Task-specific data for ChangeSpeedTask task.|
+|DetectedEquipment|Type, NumberOfEquipment|Equipment at the spotted entity.|
 |DirectFireTaskStruct|Target, Duration, Round|Task-specific data for direct fire.|
 |ElapsedTimeProgress|ElapsedTime|Progress definition for tasks only needing elapsed time.|
 |EmptyTaskStruct||No task parameters.|
@@ -538,6 +895,7 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |RoundStruct|WeaponType, MunitionType, QuantityFired, RateOfFire|Details of munition fired.|
 |TaskDefinition|TaskId, TaskedEntity, Tasker, StartTime, Annotation, TaskMode, Activity, Status, TaskParameters, MainTask, PreviousTask, NextTask|Fixed record to describe the definition of a task.|
 |TaskProgress|TaskId, LastUpdated, ExecutingFederateId, ETC, ProgressData|Fixed record to describe the progress of an executing task.|
+|TrackStruct|Track, Entity, IdentificationLevel, Equipment, Location, Orientation, Speed, Activity, Symbol|Descripton of the observed entity. The symbol contains information about the spotted entity's relation to the spotter and details about the type and echelon at the spotted entity.|
 |Waypoint|Location, Speed|A location and the speed to reach that location.|
         
 ### Variant Record Datatypes
