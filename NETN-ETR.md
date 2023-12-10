@@ -212,7 +212,7 @@ InWeaponRangeReport : EntitiesInWeaponRange
 InWeaponRangeReport : WeaponType
 SMC_FederationControl <|-- ResendSensorUpdates
 ETR_SensorEvent <|-- EntitySensorUpdate
-ETR_SensorEvent : Entity
+ETR_SensorEvent : ProducingEntity
 EntitySensorUpdate : SensorType
 EntitySensorUpdate : Tracks
 ```
@@ -770,7 +770,7 @@ A sensor event such as a detection, track or alarm.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|Entity|UUID|Optional: Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced.|
+|ProducingEntity|UUID|Optional: Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced.|
 |ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -780,7 +780,7 @@ Report on a unit's awareness of spotted entities.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|Entity|UUID|Optional: Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced.|
+|ProducingEntity|UUID|Optional: Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced.|
 |SensorType|EntityTypeStruct|Required. The type of the sensor that detected the entities.|
 |Tracks|ArrayOfTrack|Required. Spotted entities at the time specified in the parameter 'When'.|
 |ScenarioTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 

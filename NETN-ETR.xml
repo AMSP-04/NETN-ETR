@@ -724,7 +724,7 @@ Default value: Moving (213)</semantics>
                 <order>Receive</order>
                 <semantics>A sensor event such as a detection, track or alarm.</semantics>
                 <parameter>
-                    <name>Entity</name>
+                    <name>ProducingEntity</name>
                     <dataType>UUID</dataType>
                     <semantics>Optional: Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced.</semantics>
                 </parameter>
@@ -1926,8 +1926,9 @@ Use the NETN-SMC `BaseEntity` attribute `SupportedActions` to indicate which tas
 * Replaced `InWeaponRange` parameter `Observer` with `ETR_Report` parameter `ReportingEntity` 
 * Replaced `SpotReport` parameter `Observer` with `ETR_Report` parameter `ReportingEntity` 
 * Added `SpotReport` parameter `SensorType` 
-* Removed `SensorReport` interaction class 
+* Renamed `SensorReport` interaction class to `ETR_SensorEvent` and move as subclass to `HLAinteractionClass` 
 * Replaced `StatusReport` parameter `EntityId` with `ETR_Report` parameter `ReportingEntity` 
+* Added `EntitySensorUpdate` interaction class
 * Removed `StatusReport` interaction class 
  
 * Changed `PositionStatusReport` parameter `Position` datatype to `LocationStruct` 

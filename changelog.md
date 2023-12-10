@@ -109,8 +109,9 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
 * Replaced `InWeaponRange` parameter `Observer` with `ETR_Report` parameter `ReportingEntity` 
 * Replaced `SpotReport` parameter `Observer` with `ETR_Report` parameter `ReportingEntity` 
 * Added `SpotReport` parameter `SensorType` 
-* Removed `SensorReport` interaction class 
+* Renamed `SensorReport` interaction class to `ETR_SensorEvent` and move as subclass to `HLAinteractionClass` 
 * Replaced `StatusReport` parameter `EntityId` with `ETR_Report` parameter `ReportingEntity` 
+* Added `EntitySensorUpdate` interaction class
 * Removed `StatusReport` interaction class 
  
 * Changed `PositionStatusReport` parameter `Position` datatype to `LocationStruct` 
