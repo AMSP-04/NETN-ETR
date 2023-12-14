@@ -12,9 +12,9 @@
         <useLimitation>The module defines the pattern for tasking simulated entities and provides a core set of tasks. Other NETN modules define additional tasks. Provided task definitions reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) applications but are independent of a specific CGF, agent framework, or agent modelling paradigm. 
             
 A tasked entity can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. The task definition itself does not specify how a simulation models the execution of the task.</useLimitation>
-        <useHistory notes="netn-etr_1">v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.</useHistory>
-        <useHistory notes="netn-etr_2">v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0</useHistory>
-        <useHistory notes="netn-etr_3">v3.0 - Updated by MSG-191 for NETN FOM v4.0</useHistory>
+        <useHistory notes="netn-etr_changelog_1">v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.</useHistory>
+        <useHistory notes="netn-etr_changelog_2">v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0</useHistory>
+        <useHistory notes="netn-etr_changelog_3">v3.0 - Updated by MSG-191 for NETN FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -1862,7 +1862,7 @@ Completed tasks are published using the `PreviousTasks` attribute of the simulat
 Use the NETN-SMC `BaseEntity` attribute `SupportedActions` to indicate which tasks are supported. Normally, a TaskingFederate check supported tasks before sending a `Task`.</semantics>
         </note>
         <note>
-            <label>netn-etr_3</label>
+            <label>netn-etr_changelog_3</label>
             <semantics>* Added `BaseEntity` attribute `SupportedTasks` 
 * Added `BaseEntity` attribute `TaskProgress` 
 * Added `BaseEntity` attribute `CurrentTasks` 
@@ -1928,7 +1928,7 @@ Use the NETN-SMC `BaseEntity` attribute `SupportedActions` to indicate which tas
 * Added `SpotReport` parameter `SensorType` 
 * Renamed `SensorReport` interaction class to `ETR_SensorEvent` and move as subclass to `HLAinteractionClass` 
 * Replaced `StatusReport` parameter `EntityId` with `ETR_Report` parameter `ReportingEntity` 
-* Added `EntitySensorUpdate` interaction class
+* Added `EntitySensorUpdate` interaction class 
 * Removed `StatusReport` interaction class 
  
 * Changed `PositionStatusReport` parameter `Position` datatype to `LocationStruct` 
@@ -1970,7 +1970,7 @@ Use the NETN-SMC `BaseEntity` attribute `SupportedActions` to indicate which tas
 * Changed datatype `SpottedEntity` field `Orientation` to `Heading`</semantics>
         </note>
         <note>
-            <label>netn-etr_2</label>
+            <label>netn-etr_changelog_2</label>
             <semantics>* Added a new attribute to ETR_Task: CommunicationNetworkIdentifiers 
 * Added new Task: DisruptCommunicaction 
 * Added new Task: Observe 
@@ -2005,7 +2005,7 @@ Use the NETN-SMC `BaseEntity` attribute `SupportedActions` to indicate which tas
 * Renamed Parameter MOUNT.EntiityId to EntityId</semantics>
         </note>
         <note>
-            <label>netn-etr_1</label>
+            <label>netn-etr_changelog_1</label>
             <semantics>The NETN-ETR FOM Module is based on the previously released NETN-LLBML FOM module developed by MSG-068, updated by MSG-106 and prepared for release by MSG-134. 
  
 The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) is: 
