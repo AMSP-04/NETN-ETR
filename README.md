@@ -3,7 +3,7 @@
 
 |Version| Date| Dependencies|
 |---|---|---|
-|3.0 |2023-12-09|NETN-BASE, NETN-SMC|
+|3.0 |2024-02-28|NETN-BASE, NETN-SMC|
 
 > [Full Documentation](NETN-ETR.md)
 
@@ -11,7 +11,7 @@ The NETN-ETR FOM module provides a standard interface for sending tasks to simul
 
 The NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module defines interactions that can be interpreted and executed by simulators that model the behaviour of a tasked entity. The module also defines reports sent by simulated entities.
 
-The module defines the pattern for tasking simulated entities and provides a core set of tasks. Other NETN modules define additional tasks. Provided task definitions reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) applications but are independent of a specific CGF, agent framework, or agent modelling paradigm. 
+The module defines the pattern for tasking simulated entities and provides a core set of tasks. Other NETN modules define additional tasks. Provided task definitions reflect the capabilities commonly found in COTS Computer Generated Forces (CGF) applications but are independent of a specific CGF, agent framework, or agent modelling paradigm. 
             
 A tasked entity can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. The task definition itself does not specify how a simulation models the execution of the task.
 

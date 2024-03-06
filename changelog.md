@@ -152,3 +152,6 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
  
 * Changed datatype `SpottedEntity` field `Orientation` to `Heading`
 
+* Renamed `Mount` interaction class to `Attach` 
+* Renamed `Dismount` interaction class to `Detach` 
+
