@@ -2059,6 +2059,29 @@ InWeaponRangeReport : WeaponType
 
 In particular, the ObservationReport is designed to allow mapping to the SISO-STD-019 C2SIM standard ontology for representing corresponding reports.
 
+## Sensor Updates
+
+Sensor models tracking entities can use NETN-ETR to send `EntitySensorUpdate` interactions with information regarding all current tracks produced by an entity using a specific type of sensor. This information can be used to collect data as input or trigger for generating observation reports.
+
+
+```mermaid
+classDiagram 
+direction LR
+
+
+HLAinteractionRoot &lt;|-- SMC_FederationControl
+HLAinteractionRoot &lt;|-- ETR_SensorEvent
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+
+
+SMC_FederationControl &lt;|-- ResendSensorUpdates
+ETR_SensorEvent &lt;|-- EntitySensorUpdate
+ETR_SensorEvent : ProducingEntity
+EntitySensorUpdate : SensorType
+EntitySensorUpdate : Tracks
+```
+Normally track data is only sent if a change occurs. This may cause an issue for late joining federates. The NETN-ETR includes a NETN-SMC Federation Control Action to `ResendSensorUpdates`. Use this request to trigger a re-sending of all current tracks for all entities.
 </semantics>
         </note>
         <note>
