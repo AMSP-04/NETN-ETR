@@ -12,93 +12,93 @@ The module defines the pattern for tasking simulated entities and provides a cor
             
 A tasked entity can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. The task definition itself does not specify how a simulation models the execution of the task.
 
-## Overview
-        
-NETN-ETR depends on NETN-SMC and uses the `SMC_EntityControl` interaction class to direct tasks to specific entities. Available tasks are defined in the NETN-ETR module and published using the NETN-SMC `BaseEntity` attribute `SupportedActions`.
-
-```mermaid
+## Overview 
+ 
+NETN-ETR depends on NETN-SMC and uses the `SMC_EntityControl` interaction class to direct tasks to specific entities. Available tasks are defined in the NETN-ETR module and published using the NETN-SMC `BaseEntity` attribute `SupportedActions`. 
+ 
+```mermaid 
 classDiagram 
-direction LR
-HLAinteractionRoot <|-- SMC_EntityControl
-HLAinteractionRoot : SendTime(NETN-BASE)
-HLAinteractionRoot : UniqueId(NETN-BASE)
-SMC_EntityControl : Entity(NETN-SMC)
-HLAobjectRoot <|-- BaseEntity
-HLAobjectRoot : UniqueId(NETN-BASE)
-BaseEntity : SupportedActions(NETN-SMC)
-```
-
-## Tasking
-
+direction LR 
+HLAinteractionRoot <|-- SMC_EntityControl 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+SMC_EntityControl : Entity(NETN-SMC) 
+HLAobjectRoot <|-- BaseEntity 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+BaseEntity : SupportedActions(NETN-SMC) 
+``` 
+ 
+## Tasking 
+ 
 To send a task, use the interaction `Task` which is a subclass of the NETN-SMC `SMC_EntityControl` interaction. The `Task` interaction class is the base class for all tasks defined in NETN-ETR and in other modules. 
-
-```mermaid
+ 
+```mermaid 
 classDiagram 
-direction LR
-
-HLAinteractionRoot <|-- SMC_EntityControl
-HLAinteractionRoot <|-- ETR_TaskStatus
-
-
-
-HLAinteractionRoot : SendTime(NETN-BASE)
-HLAinteractionRoot : UniqueId(NETN-BASE)
-class AllTasks["< task >"]
-SMC_EntityControl <|-- Task
-Task <|-- "*" AllTasks
-SMC_EntityControl <|-- RequestTaskStatus
-SMC_EntityControl <|-- CancelTasks
-SMC_EntityControl : Entity(NETN-SMC)
-
-Task : Activity
-Task : Annotation
-Task : MainTask
-Task : NextTask
-Task : PreviousTask
-Task : StartTime
-Task : TaskId
-Task : TaskMode
-Task : Tasker
-AllTasks : TaskParameters
-
-RequestTaskStatus : Tasks
-CancelTasks : Tasks
-ETR_TaskStatus : Task
-ETR_TaskStatus : TaskStatus
-
-
-```
-
-The following tasks are defined in NETN-ETR:
-
-|Task|Description|
-|---|---|
-|MagicMove|Instructs the simulation entity to immediately change location to the specified position and heading. An attached entity is detached immediately just before the move task starts.|
-|MoveByRoute|Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. An attached entity is detached immediately just before the move task starts.|
-|MoveInDirection|Tasking of an entity to move in a specified direction for a duration. An attached entity is detached immediately just before the move task starts.|
-|MoveIntoFormation|Tasking a simulated entity to move into the given formation on the given location with the given heading. An attached entity is detached immediately just before the move task starts.|
-|MoveToLocation|Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. An attached entity is detached immediately just before the move task starts.|
-|FollowEntity|Tasking of an entity to follow another entity at a specified distance. An attached entity is detached immediately just before the move task starts.|
-|Patrol|Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. An attached entity is detached immediately just before the move task starts.|
-|ChangeHeading|Tasking of an entity to change heading.|
-|ChangeSpeed|Tasking of an entity to change speed.|
-|ChangeAltitude|Tasking of an entity to set move to a specified altitude.|
-|StopAtSideOfRoad|Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). An attached entity is detached immediately just before the move task starts.|
-|Attach|Requesting a simulated entity to attach to (mount) the specified entity.|
-|Detach|Requesting a simulated entity to detach from a simulated entity.|
-|DirectFire|Tasking an entity to fire directed at a specified target entity.|
-|IndirectFire|Tasking an entity to fire directed at an area.|
-|Observe|Tasking of an entity to observe an area.|
-|OperateCheckpoint|Request an entity to operate a checkpoint. The tasked entity should be within the radius of the checkpoint object. If not, a separate move task should be issued first. The tasked entity activates an inactive checkpoint and operates the checkpoint for the specified duration.|
-|OperateObservationPost|Requests an entity to operate an observation post. The tasked unit should be within in a given radius from the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration.|
-|EnterFacility|Requesting a simulated entity to enter the specified facility (cultural feature). The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the facility location to enter.|
-|ChangeRulesOfEngagement|Instructs the simulation entity to change its rules of engagement immediately.|
-|OtherActivity|Tasking of an entity to wait for a duration of time.|
-
-When sending a task the minimum required set of parameters is the `TaskId` and any `TaskParameters` associated with the specific task. All other parameters are optional with defined default values.
-
+direction LR 
+ 
+HLAinteractionRoot <|-- SMC_EntityControl 
+HLAinteractionRoot <|-- ETR_TaskStatus 
+ 
+ 
+ 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+class AllTasks["< task >"] 
+SMC_EntityControl <|-- Task 
+Task <|-- "*" AllTasks 
+SMC_EntityControl <|-- RequestTaskStatus 
+SMC_EntityControl <|-- CancelTasks 
+SMC_EntityControl : Entity(NETN-SMC) 
+ 
+Task : Activity 
+Task : Annotation 
+Task : MainTask 
+Task : NextTask 
+Task : PreviousTask 
+Task : StartTime 
+Task : TaskId 
+Task : TaskMode 
+Task : Tasker 
+AllTasks : TaskParameters 
+ 
+RequestTaskStatus : Tasks 
+CancelTasks : Tasks 
+ETR_TaskStatus : Task 
+ETR_TaskStatus : TaskStatus 
+ 
+ 
+``` 
+ 
+The following tasks are defined in NETN-ETR: 
+ 
+|Task|Description| 
+|---|---| 
+|MagicMove|Instructs the simulation entity to immediately change location to the specified position and heading. An attached entity is detached immediately just before the move task starts.| 
+|MoveByRoute|Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. An attached entity is detached immediately just before the move task starts.| 
+|MoveInDirection|Tasking of an entity to move in a specified direction for a duration. An attached entity is detached immediately just before the move task starts.| 
+|MoveIntoFormation|Tasking a simulated entity to move into the given formation on the given location with the given heading. An attached entity is detached immediately just before the move task starts.| 
+|MoveToLocation|Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. An attached entity is detached immediately just before the move task starts.| 
+|FollowEntity|Tasking of an entity to follow another entity at a specified distance. An attached entity is detached immediately just before the move task starts.| 
+|Patrol|Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. An attached entity is detached immediately just before the move task starts.| 
+|ChangeHeading|Tasking of an entity to change heading.| 
+|ChangeSpeed|Tasking of an entity to change speed.| 
+|ChangeAltitude|Tasking of an entity to set move to a specified altitude.| 
+|StopAtSideOfRoad|Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). An attached entity is detached immediately just before the move task starts.| 
+|Attach|Requesting a simulated entity to attach to (mount) the specified entity.| 
+|Detach|Requesting a simulated entity to detach from a simulated entity.| 
+|DirectFire|Tasking an entity to fire directed at a specified target entity.| 
+|IndirectFire|Tasking an entity to fire directed at an area.| 
+|Observe|Tasking of an entity to observe an area.| 
+|OperateCheckpoint|Request an entity to operate a checkpoint. The tasked entity should be within the radius of the checkpoint object. If not, a separate move task should be issued first. The tasked entity activates an inactive checkpoint and operates the checkpoint for the specified duration.| 
+|OperateObservationPost|Requests an entity to operate an observation post. The tasked unit should be within in a given radius from the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration.| 
+|EnterFacility|Requesting a simulated entity to enter the specified facility (cultural feature). The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the facility location to enter.| 
+|ChangeRulesOfEngagement|Instructs the simulation entity to change its rules of engagement immediately.| 
+|OtherActivity|Tasking of an entity to wait for a duration of time.| 
+ 
+When sending a task the minimum required set of parameters is the `TaskId` and any `TaskParameters` associated with the specific task. All other parameters are optional with defined default values. 
+ 
 Task status is provided using the `ETR_TaskStatus` interaction to indicate change in status. Use the `RequestTaskStatus` interaction to request a resend of `ETR_TaskStatus` for a specific task. 
-
+ 
 The `ETR_TaskStatus` interaction provides the following notifications regarding the task: 
  
 * Accepted: the task is received and scheduled for execution 
@@ -108,9 +108,9 @@ The `ETR_TaskStatus` interaction provides the following notifications regarding 
 * Completed: the task has been executed successfully 
 * Cancelled: the task execution has been explicitly terminated 
 * Error: the task execution has been terminated due to a modelling error 
-
-Use the `CancelTasks` interaction to request an entity to terminate the execution of a scheduled or currently executing task.
-
+ 
+Use the `CancelTasks` interaction to request an entity to terminate the execution of a scheduled or currently executing task. 
+ 
 A task can be executed concurrently with other tasks or sequentially. The task parameters indicate the expected mode of task execution. Tasks are scheduled based on their start time and task execution mode. 
  
 The execution of a task can start if: 
@@ -121,60 +121,113 @@ The execution of a task can start if:
 * The task parameter `StartTime` is less than or equal to the current Scenario Time. 
 * For a concurrent task 
 * The task parameter `StartTime` is less than or equal to the current Scenario Time. 
-
-## Planned Tasks and Progress
-
+ 
+## Planned Tasks and Progress 
+ 
 The NETN-ETR module extends the RPR-FOM object class `BaseEntity` with optional attributes related to tasking. 
-These include lists of planned, ongoing and completed tasks. In addition, the progress of ongoing tasks is provided as a separate attribute.
-
-```mermaid
+These include lists of planned, ongoing and completed tasks. In addition, the progress of ongoing tasks is provided as a separate attribute. 
+ 
+```mermaid 
 classDiagram 
-direction LR
-
-HLAobjectRoot <|-- BaseEntity
-HLAobjectRoot : UniqueId(NETN-BASE)
-BaseEntity : CurrentTasks
-BaseEntity : PlannedTasks
-BaseEntity : PreviousTasks
-BaseEntity : TaskProgress
-
-```
-
+direction LR 
+ 
+HLAobjectRoot <|-- BaseEntity 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+BaseEntity : CurrentTasks 
+BaseEntity : PlannedTasks 
+BaseEntity : PreviousTasks 
+BaseEntity : TaskProgress 
+ 
+``` 
+ 
 This information is published in order to provide means for monitoring, recording and initializing the current state of all accepted tasks in the federation. 
-
-## Task Delegation
-
+ 
+## Task Delegation 
+ 
 Normally it is the federate with modelling responsibility that performs the simulation of a task. A special mechanism is provided to allow temporary delegation of this responsibility to another federate. 
-
+ 
 Use the `TaskDelegation` interaction, which is based on the NETN-SMC `SMC_FederateControl` control action, to request a federate to perform a task on behalf of the requesting federate. 
-
-```mermaid
+ 
+```mermaid 
 classDiagram 
-direction LR
-HLAinteractionRoot <|-- SMC_FederateControl
-HLAinteractionRoot : SendTime(NETN-BASE)
-HLAinteractionRoot : UniqueId(NETN-BASE)
-SMC_FederateControl <|-- TaskDelegation
-SMC_FederateControl:Federate(NETN-SMC)
-TaskDelegation : Entity
-TaskDelegation : TaskDefinition
+direction LR 
+HLAinteractionRoot <|-- SMC_FederateControl 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+SMC_FederateControl <|-- TaskDelegation 
+SMC_FederateControl:Federate(NETN-SMC) 
+TaskDelegation : Entity 
+TaskDelegation : TaskDefinition 
+ 
+HLAobjectRoot <|-- ETR_DelegatedTask 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+ 
+ETR_DelegatedTask : TaskDefinition 
+ETR_DelegatedTask : TaskProgress 
+ 
+``` 
+ 
+If the task delegation is accepted, an `ETR_DelegatedTask` object is created and used to transfer information regarding the state of task execution. It is still the responsibility of the federate with primary modelling responsibility to perform all `ETR_TaskStatus` updates and to publish `TaskProgress` information. 
+ 
+ 
+## Reporting 
+ 
+NETN-ETR provides a way for simulated entities to send reports with information related to own state or observed state of other simulated entities. A report relays perceived-truth data and can be generated using different combinations of sensor and information fusion models. Reports can be used by other simulation models or for example as report stimulation of C2 systems.
 
-HLAobjectRoot <|-- ETR_DelegatedTask
-HLAobjectRoot : UniqueId(NETN-BASE)
 
-ETR_DelegatedTask : TaskDefinition
-ETR_DelegatedTask : TaskProgress
 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+ 
+HLAinteractionRoot <|-- ETR_Report 
+ 
+ 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+ 
+ETR_Report <|-- ObservationReport 
+ETR_Report <|-- PositionStatusReport 
+ETR_Report <|-- DamageStatusReport 
+ETR_Report <|-- ResourceStatusReport 
+ETR_Report <|-- UnderAttackStatusReport 
+ETR_Report <|-- InWeaponRangeReport 
+ETR_Report : Comments 
+ETR_Report : Receiver 
+ETR_Report : ReportId 
+ETR_Report : ReportingEntity 
+ETR_Report : ReportTime 
+ObservationReport : Activity 
+ObservationReport : ConfidenceLevel 
+ObservationReport : Equipment 
+ObservationReport : Heading 
+ObservationReport : Health 
+ObservationReport : HostilityStatus 
+ObservationReport : IdentificationLevel 
+ObservationReport : Location 
+ObservationReport : Marking 
+ObservationReport : Name 
+ObservationReport : ObservedEntity 
+ObservationReport : SensorType 
+ObservationReport : Side 
+ObservationReport : Speed 
+ObservationReport : Symbol 
+ObservationReport : UncertaintyInterval 
+PositionStatusReport : Heading 
+PositionStatusReport : Position 
+PositionStatusReport : Speed 
+DamageStatusReport : DamageType 
+ResourceStatusReport : Resource 
+UnderAttackStatusReport : FromDirection 
+UnderAttackStatusReport : Severeness 
+InWeaponRangeReport : EntitiesInWeaponRange 
+InWeaponRangeReport : WeaponType 
 ```
 
-If the task delegation is accepted, an `ETR_DelegatedTask` object is created and used to transfer information regarding the state of task execution. It is still the responsibility of the federate with primary modelling responsibility to perform all `ETR_TaskStatus` updates and to `TaskProgress` information.
+In particular, the ObservationReport is designed to allow mapping to the SISO-STD-019 C2SIM standard ontology for representing corresponding reports.
 
- 
-## Reporting
-
-* `ETR_Report` is a base class for reports generated by entities. 
-
- 
 
 
 
@@ -302,8 +355,8 @@ ETR_Report <|-- InWeaponRangeReport
 ETR_Report : Comments
 ETR_Report : Receiver
 ETR_Report : ReportId
+ETR_Report : ReportTime
 ETR_Report : ReportingEntity
-ETR_Report : TimeStamp
 ObservationReport : Activity
 ObservationReport : ConfidenceLevel
 ObservationReport : Equipment
@@ -825,8 +878,8 @@ A base interaction class for more specialized report interaction classes. The in
 |Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
-|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -850,12 +903,12 @@ Report on a unit's observation of a simulated entity. Based on SISO C2SIM standa
 |ObservedEntity|UUID|Required: The unique identifier of the observed entity|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
 |SensorType|EntityTypeStruct|Optional: The type of sensor that is the primary source of the report.|
 |Side|UUID|Optional: Perceived force identifier of the observed entity.|
 |Speed|VelocityMeterPerSecondFloat32|Optional: Observed speed of the entity (m/s).|
 |Symbol|SymbolIdentifier|Optional: Symbol identifier for the entity.|
-|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
 |UncertaintyInterval|Float64|Optional|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
@@ -871,9 +924,9 @@ Report on an entity's own position, speed, and heading.
 |Position|LocationStruct|Required. Position of the entity at the specified time.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
 |Speed|VelocityMeterPerSecondFloat32|Required. Speed of the entity.|
-|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -887,8 +940,8 @@ Report on a unit's damage status.
 |DamageType|DamageStatusEnhancedEnum32|Required. Damage state of the reported entity.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
-|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -901,9 +954,9 @@ Report on a unit's remaining amount of resources.
 |Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
 |Resource|SupplyStatusStruct|Required. The type of resource and remaining quantity.|
-|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -917,9 +970,9 @@ Report from a unit that it is under attack.
 |FromDirection|DirectionDegreesFloat32|Required. The direction to the attacking entity [0,360). Default = 0. True North.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
 |Severeness|AttackTypeEnum32|Required. Severeness of the attack upon the reporting entity.|
-|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -933,8 +986,8 @@ Report on a unit's ability to reach specific targets with its weapon systems.
 |EntitiesInWeaponRange|ArrayOfUuid|Required. Reference to entities in weapon range.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
+|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
-|TimeStamp|EpochTime|Required: The timestamp of the report in Scenario Time.|
 |WeaponType|EntityTypeStruct|Required. The type of weapon that is in range.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
