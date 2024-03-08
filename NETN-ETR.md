@@ -435,7 +435,7 @@ Requests a simulated entity to perform some task based on a task description. If
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
@@ -454,7 +454,7 @@ Tasking of an entity to wait for a duration of time.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|OtherActivityTaskStruct|Required: Task parameters.|
@@ -474,7 +474,7 @@ Tasking an entity to fire directed at a specified target entity.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|DirectFireTaskStruct|Required: Task parameters|
@@ -494,7 +494,7 @@ Tasking an entity to fire directed at an area.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|IndirectFireTaskStruct|Required: Task parameters|
@@ -514,7 +514,7 @@ Request an entity to operate a checkpoint. The tasked entity should be within th
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|OperateCheckpointTaskStruct|Required: Task parameters|
@@ -534,7 +534,7 @@ Tasking of an entity to observe an area.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ObserveTaskStruct|Required: Task parameters|
@@ -555,7 +555,7 @@ An attached entity is detached immediately just before the move task starts.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveToLocationTaskStruct|Required: Task parameters.|
@@ -575,7 +575,7 @@ Tasking a simulated entity to move into the given formation on the given locatio
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveIntoFormationTaskStruct|Required: Task parameters.|
@@ -595,7 +595,7 @@ Tasking of an entity to move in a specified direction for a duration. An attache
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveInDirectionTaskStruct|Required: Task parameters.|
@@ -615,7 +615,7 @@ Tasking of an entity to follow another entity at a specified distance. An attach
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|FollowEntityTaskStruct|Required: Task parameters.|
@@ -635,7 +635,7 @@ Requesting a simulated entity to attach to (mount) the specified entity.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|AttachTaskStruct|Required: Task parameters|
@@ -655,7 +655,7 @@ Requesting a simulated entity to detach from a simulated entity.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
@@ -674,7 +674,7 @@ Requesting a simulated entity to move given the specified route with a given spe
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MoveByRouteTaskStruct|Required: Task parameters.|
@@ -694,7 +694,7 @@ Tasking of an entity to change speed.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ChangeSpeedTaskStruct|Required: Task parameters.|
@@ -714,7 +714,7 @@ Tasking of an entity to set move to a specified altitude.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ChangeAltitudeTaskStruct|Required: Task parameters.|
@@ -734,7 +734,7 @@ Tasking of an entity to change heading.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ChangeHeadingTaskStruct|Required: Task parameters.|
@@ -754,7 +754,7 @@ Requesting a simulated entity to perform a patrol task. The tasked entity moves 
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|PatrolTaskStruct|Required: Task parameters|
@@ -774,7 +774,7 @@ Requesting a simulated entity to stop at the side of the road. This task is only
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |Tasker|UUID|Optional. Reference to the commander of the task. If missing, the commander is undefined.|
@@ -793,7 +793,7 @@ Requests an entity to operate an observation post. The tasked unit should be wit
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|OperateObservationPostTaskStruct|Required: Task parameters|
@@ -813,7 +813,7 @@ Requesting a simulated entity to enter the specified facility (cultural feature)
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|AttachTaskStruct|Required: Task parameters|
@@ -833,7 +833,7 @@ Instructs the simulation entity to immediately change location to the specified 
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|MagicMoveTaskStruct|Required: Task parameters.|
@@ -853,7 +853,7 @@ Instructs the simulation entity to change its rules of engagement immediately.
 |MainTask|UUID|Optional. Provided to indicate that this task is a subtask related to a main task.|
 |NextTask|UUID|Optional. Provided to indicate that the task will execute before the referenced task.|
 |PreviousTask|UUID|Optional. Provided to indicate that the task will execute after the referenced task.|
-|StartTime|EpochTime|Optional. The default value is the current `ScenarioTime`.|
+|StartTime|EpochTime|Optional. The default value is the current `SendTime`.|
 |TaskId|UUID|Required. Unique identifier for the task.|
 |TaskMode|TaskModeEnum8|Optional. Determines the task mode. Default NonConcurrentMode|
 |TaskParameters|ChangeRulesOfEngagementTaskStruct|Required: Task parameters.|

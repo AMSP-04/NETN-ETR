@@ -180,7 +180,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>StartTime</name>
                         <dataType>EpochTime</dataType>
-                        <semantics>Optional. The default value is the current `ScenarioTime`.</semantics>
+                        <semantics>Optional. The default value is the current `SendTime`.</semantics>
                     </parameter>
                     <parameter>
                         <name>Activity</name>
