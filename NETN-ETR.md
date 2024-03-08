@@ -2,7 +2,7 @@
 # NETN-ETR
 |Version| Date| Dependencies|
 |---|---|---|
-|3.0 |2024-02-28|NETN-BASE, NETN-SMC|
+|3.0 |2024-03-08|NETN-BASE, NETN-SMC|
 
 The NETN-ETR FOM module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation.
 
@@ -198,7 +198,7 @@ ETR_Report : Comments
 ETR_Report : Receiver 
 ETR_Report : ReportId 
 ETR_Report : ReportingEntity 
-ETR_Report : ReportTime 
+ETR_Report : TimeStamp
 ObservationReport : Activity 
 ObservationReport : ConfidenceLevel 
 ObservationReport : Equipment 
@@ -210,6 +210,7 @@ ObservationReport : Location
 ObservationReport : Marking 
 ObservationReport : Name 
 ObservationReport : ObservedEntity 
+ObservationReport : ObservationTime
 ObservationReport : SensorType 
 ObservationReport : Side 
 ObservationReport : Speed 
@@ -378,8 +379,8 @@ ETR_Report <|-- InWeaponRangeReport
 ETR_Report : Comments
 ETR_Report : Receiver
 ETR_Report : ReportId
-ETR_Report : ReportTime
 ETR_Report : ReportingEntity
+ETR_Report : TimeStamp
 ObservationReport : Activity
 ObservationReport : ConfidenceLevel
 ObservationReport : Equipment
@@ -390,6 +391,7 @@ ObservationReport : IdentificationLevel
 ObservationReport : Location
 ObservationReport : Marking
 ObservationReport : Name
+ObservationReport : ObservationTime
 ObservationReport : ObservedEntity
 ObservationReport : SensorType
 ObservationReport : Side
@@ -901,8 +903,8 @@ A base interaction class for more specialized report interaction classes. The in
 |Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
-|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
+|TimeStamp|EpochTime|Required: The time when the report was created.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -923,15 +925,16 @@ Report on a unit's observation of a simulated entity. Based on SISO C2SIM standa
 |Location|LocationStruct|Optional: Observed location where the entity were spotted|
 |Marking|HLAunicodeString|Optional: Observed marking on the entity.|
 |Name|HLAunicodeString|Optional: Perceived name of the observed entity.|
+|ObservationTime|EpochTime|Required: The time when the observation was made.|
 |ObservedEntity|UUID|Required: The unique identifier of the observed entity|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
-|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
 |SensorType|EntityTypeStruct|Optional: The type of sensor that is the primary source of the report.|
 |Side|UUID|Optional: Perceived force identifier of the observed entity.|
 |Speed|VelocityMeterPerSecondFloat32|Optional: Observed speed of the entity (m/s).|
 |Symbol|SymbolIdentifier|Optional: Symbol identifier for the entity.|
+|TimeStamp|EpochTime|Required: The time when the report was created.|
 |UncertaintyInterval|Float64|Optional|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
@@ -947,9 +950,9 @@ Report on an entity's own position, speed, and heading.
 |Position|LocationStruct|Required. Position of the entity at the specified time.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
-|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
 |Speed|VelocityMeterPerSecondFloat32|Required. Speed of the entity.|
+|TimeStamp|EpochTime|Required: The time when the report was created.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -963,8 +966,8 @@ Report on a unit's damage status.
 |DamageType|DamageStatusEnhancedEnum32|Required. Damage state of the reported entity.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
-|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
+|TimeStamp|EpochTime|Required: The time when the report was created.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -977,9 +980,9 @@ Report on a unit's remaining amount of resources.
 |Comments|HLAunicodeString|Optional. Any additional comments associated with the report.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
-|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
 |Resource|SupplyStatusStruct|Required. The type of resource and remaining quantity.|
+|TimeStamp|EpochTime|Required: The time when the report was created.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -993,9 +996,9 @@ Report from a unit that it is under attack.
 |FromDirection|DirectionDegreesFloat32|Required. The direction to the attacking entity [0,360). Default = 0. True North.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
-|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
 |Severeness|AttackTypeEnum32|Required. Severeness of the attack upon the reporting entity.|
+|TimeStamp|EpochTime|Required: The time when the report was created.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
@@ -1009,8 +1012,8 @@ Report on a unit's ability to reach specific targets with its weapon systems.
 |EntitiesInWeaponRange|ArrayOfUuid|Required. Reference to entities in weapon range.|
 |Receiver|UUID|Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.|
 |ReportId|UUID|Required: Unique identifier for the report itself.|
-|ReportTime|EpochTime|Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.|
 |ReportingEntity|UUID|Required: The entity sending the report.|
+|TimeStamp|EpochTime|Required: The time when the report was created.|
 |WeaponType|EntityTypeStruct|Required. The type of weapon that is in range.|
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 

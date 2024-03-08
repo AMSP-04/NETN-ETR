@@ -4,7 +4,7 @@
         <name>NETN-ETR</name>
         <type>FOM</type>
         <version>3.0 </version>
-        <modificationDate>2024-02-28</modificationDate>
+        <modificationDate>2024-03-08</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NETN-ETR FOM module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation.</purpose>
         <applicationDomain>Training</applicationDomain>
@@ -525,9 +525,9 @@ An attached entity is detached immediately just before the move task starts.</se
                     <semantics>Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.</semantics>
                 </parameter>
                 <parameter>
-                    <name>ReportTime</name>
+                    <name>TimeStamp</name>
                     <dataType>EpochTime</dataType>
-                    <semantics>Required: The scenario time for which the content of the report is valid. E.g. for an ObservationReport the value reflects the time of the observation.</semantics>
+                    <semantics>Required: The time when the report was created.</semantics>
                 </parameter>
                 <parameter>
                     <name>Comments</name>
@@ -544,6 +544,11 @@ An attached entity is detached immediately just before the move task starts.</se
                         <name>ObservedEntity</name>
                         <dataType>UUID</dataType>
                         <semantics>Required: The unique identifier of the observed entity</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>ObservationTime</name>
+                        <dataType>EpochTime</dataType>
+                        <semantics>Required: The time when the observation was made.</semantics>
                     </parameter>
                     <parameter>
                         <name>IdentificationLevel</name>
@@ -2029,7 +2034,7 @@ ETR_Report : Comments
 ETR_Report : Receiver 
 ETR_Report : ReportId 
 ETR_Report : ReportingEntity 
-ETR_Report : ReportTime 
+ETR_Report : TimeStamp
 ObservationReport : Activity 
 ObservationReport : ConfidenceLevel 
 ObservationReport : Equipment 
@@ -2041,6 +2046,7 @@ ObservationReport : Location
 ObservationReport : Marking 
 ObservationReport : Name 
 ObservationReport : ObservedEntity 
+ObservationReport : ObservationTime
 ObservationReport : SensorType 
 ObservationReport : Side 
 ObservationReport : Speed 
