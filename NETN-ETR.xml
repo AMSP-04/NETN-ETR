@@ -6,12 +6,10 @@
         <version>3.0 </version>
         <modificationDate>2024-03-08</modificationDate>
         <securityClassification>Not Classified</securityClassification>
-        <purpose>The NETN-ETR FOM module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation.</purpose>
+        <purpose>The NATO Education and Training Network Entity Tasking and Reports Module (NETN-ETR) provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation. It defines interactions that can be interpreted and executed by simulators that model the behaviour of a tasked entity. The module also defines report interactions sent by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
-        <description>The NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module defines interactions that can be interpreted and executed by simulators that model the behaviour of a tasked entity. The module also defines reports sent by simulated entities.</description>
-        <useLimitation>The module defines the pattern for tasking simulated entities and provides a core set of tasks. Other NETN modules define additional tasks. Provided task definitions reflect the capabilities commonly found in COTS Computer Generated Forces (CGF) applications but are independent of a specific CGF, agent framework, or agent modelling paradigm. 
-            
-A tasked entity can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. The task definition itself does not specify how a simulation models the execution of the task.</useLimitation>
+        <description>Based on the SMC_EntityControl pattern, the module defines a core set of tasks for simulated entities. Other NETN-FOM modules define additional tasks. The task definitions provided in NETN reflect the capabilities commonly found in Commercial-off-the-Shelf (COTS) Computer-Generated Forces (CGF) applications but are independent of any specific CGF.</description>
+        <useLimitation>A tasked entity can be either a physical entity (e.g., platform or lifeform) or an aggregate entity. A task definition does not specify in detail how a simulation models the execution of the task.</useLimitation>
         <useHistory notes="netn-etr_changelog_1">v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.</useHistory>
         <useHistory notes="netn-etr_changelog_2">v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0</useHistory>
         <useHistory notes="netn-etr_changelog_3">v3.0 - Updated by MSG-191 for NETN FOM v4.0</useHistory>
@@ -1866,7 +1864,9 @@ BaseEntity : SupportedActions(NETN-SMC)
  
 ## Tasking 
  
-To send a task, use the interaction `Task` which is a subclass of the NETN-SMC `SMC_EntityControl` interaction. The `Task` interaction class is the base class for all tasks defined in NETN-ETR and in other modules. 
+To send a task, use the interaction `Task` a subclass of the NETN-SMC `SMC_EntityControl` interaction. 
+
+The `Task` interaction class is the base class for all tasks defined in NETN-ETR and other modules. 
  
 ```mermaid 
 classDiagram 
@@ -1909,7 +1909,7 @@ The following tasks are defined in NETN-ETR:
  
 |Task|Description| 
 |---|---| 
-|MagicMove|Instructs the simulation entity to immediately change location to the specified position and heading. An attached entity is detached immediately just before the move task starts.| 
+|MagicMove|Instructs the simulation entity to change location to the specified position and heading immediately. An attached entity is detached immediately just before the move task starts.| 
 |MoveByRoute|Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. An attached entity is detached immediately just before the move task starts.| 
 |MoveInDirection|Tasking of an entity to move in a specified direction for a duration. An attached entity is detached immediately just before the move task starts.| 
 |MoveIntoFormation|Tasking a simulated entity to move into the given formation on the given location with the given heading. An attached entity is detached immediately just before the move task starts.| 
@@ -1926,14 +1926,14 @@ The following tasks are defined in NETN-ETR:
 |IndirectFire|Tasking an entity to fire directed at an area.| 
 |Observe|Tasking of an entity to observe an area.| 
 |OperateCheckpoint|Request an entity to operate a checkpoint. The tasked entity should be within the radius of the checkpoint object. If not, a separate move task should be issued first. The tasked entity activates an inactive checkpoint and operates the checkpoint for the specified duration.| 
-|OperateObservationPost|Requests an entity to operate an observation post. The tasked unit should be within in a given radius from the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration.| 
-|EnterFacility|Requesting a simulated entity to enter the specified facility (cultural feature). The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the facility location to enter.| 
+|OperateObservationPost|Requests an entity to operate an observation post. The tasked unit should be within a given radius of the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration.| 
+|EnterFacility|Requesting a simulated entity to enter the specified facility (cultural feature). The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the facility location.| 
 |ChangeRulesOfEngagement|Instructs the simulation entity to change its rules of engagement immediately.| 
 |OtherActivity|Tasking of an entity to wait for a duration of time.| 
  
 When sending a task the minimum required set of parameters is the `TaskId` and any `TaskParameters` associated with the specific task. All other parameters are optional with defined default values. 
  
-Task status is provided using the `ETR_TaskStatus` interaction to indicate change in status. Use the `RequestTaskStatus` interaction to request a resend of `ETR_TaskStatus` for a specific task. 
+Task status is provided using the `ETR_TaskStatus` interaction to indicate a change in status. Use the `RequestTaskStatus` interaction to request a resend of `ETR_TaskStatus` for a specific task. 
  
 The `ETR_TaskStatus` interaction provides the following notifications regarding the task: 
  
@@ -1942,7 +1942,7 @@ The `ETR_TaskStatus` interaction provides the following notifications regarding 
 * Waiting: the task is waiting for execution 
 * Executing: the task is running 
 * Completed: the task has been executed successfully 
-* Cancelled: the task execution has been explicitly terminated 
+* Cancelled: the execution of the task has been explicitly terminated
 * Error: the task execution has been terminated due to a modelling error 
  
 Use the `CancelTasks` interaction to request an entity to terminate the execution of a scheduled or currently executing task. 
@@ -1980,9 +1980,9 @@ This information is published in order to provide means for monitoring, recordin
  
 ## Task Delegation 
  
-Normally it is the federate with modelling responsibility that performs the simulation of a task. A special mechanism is provided to allow temporary delegation of this responsibility to another federate. 
+Normally, the federate with modelling responsibility performs the task simulation. A special mechanism allows temporary delegation of this responsibility to another federate.
  
-Use the `TaskDelegation` interaction, which is based on the NETN-SMC `SMC_FederateControl` control action, to request a federate to perform a task on behalf of the requesting federate. 
+Use the `TaskDelegation` interaction, based on the NETN-SMC `SMC_FederateControl` control action, to request a federate to perform a task on behalf of the requesting federate. 
  
 ```mermaid 
 classDiagram 
@@ -2003,15 +2003,12 @@ ETR_DelegatedTask : TaskProgress
  
 ``` 
  
-If the task delegation is accepted, an `ETR_DelegatedTask` object is created and used to transfer information regarding the state of task execution. It is still the responsibility of the federate with primary modelling responsibility to perform all `ETR_TaskStatus` updates and to publish `TaskProgress` information. 
+If the task delegation is accepted, an `ETR_DelegatedTask` object is created and used to transfer information regarding the state of task execution. The federate with primary modelling responsibility still has the responsibility to perform all `ETR_TaskStatus` updates and to publish `TaskProgress` information. 
  
  
 ## Reporting 
  
-NETN-ETR provides a way for simulated entities to send reports with information related to own state or observed state of other simulated entities. A report relays perceived-truth data and can be generated using different combinations of sensor and information fusion models. Reports can be used by other simulation models or for example as report stimulation of C2 systems.
-
-
-
+NETN-ETR provides a way for simulated entities to send reports with information related to their state or the observed state of other simulated entities. A report relays perceived-truth data and can be generated using different combinations of sensor and information fusion models. Reports can be used by other simulation models or, for example, as report stimulation of C2 systems.
  
 ```mermaid 
 classDiagram 
@@ -2063,24 +2060,21 @@ InWeaponRangeReport : EntitiesInWeaponRange
 InWeaponRangeReport : WeaponType 
 ```
 
-In particular, the ObservationReport is designed to allow mapping to the SISO-STD-019 C2SIM standard ontology for representing corresponding reports.
+In particular, the `ObservationReport` is designed to allow mapping to the SISO-STD-019 C2SIM standard ontology for representing corresponding reports.
 
 ## Sensor Updates
 
-Sensor models tracking entities can use NETN-ETR to send `EntitySensorUpdate` interactions with information regarding all current tracks produced by an entity using a specific type of sensor. This information can be used to collect data as input or trigger for generating observation reports.
+Sensor models tracking entities can use NETN-ETR to send `EntitySensorUpdate` interactions with information regarding all current tracks produced by an entity using a specific type of sensor, see Figure 10. This information can be used to collect data as input or trigger for generating observation reports.
 
+The sensor track data is usually only sent if a change occurs, which may cause an issue for late-joining federates. The NETN-ETR includes a NETN-SMC Federation Control Action to `ResendSensorUpdates`. Use this request to trigger the resending of all current tracks for all entities.
 
 ```mermaid
 classDiagram 
 direction LR
-
-
 HLAinteractionRoot &lt;|-- SMC_FederationControl
 HLAinteractionRoot &lt;|-- ETR_SensorEvent
 HLAinteractionRoot : SendTime(NETN-BASE)
 HLAinteractionRoot : UniqueId(NETN-BASE)
-
-
 SMC_FederationControl &lt;|-- ResendSensorUpdates
 ETR_SensorEvent &lt;|-- EntitySensorUpdate
 ETR_SensorEvent : ProducingEntity
