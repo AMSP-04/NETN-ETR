@@ -1073,7 +1073,6 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |MoveInDirectionTaskStruct|Tasking of an entity to move in a specified direction for a given duration.|
 |MoveIntoFormationTaskStruct|Initial movement speed.|
 |MoveTaskProgress|Task progress data for all move tasks with a path. If the next waypoint index < the last waypoint index, it indicates the reverse movement along a route.|
-|MoveToEntityTaskStruct|Task-specific data for MoveToEntity.|
 |MoveToLocationTaskStruct|Task-specific data for MoveToLocation task.|
 |MoveTypeEnum32|CrossCountry: move directly to the destination without considering the roads. OnlyRoads: stay on the roads to get to the closest point to the destination that is still on the road; RoadsAndCrossCountry: move to the destination by considering the roads; it is allowed to go off the road.|
 |ObserveTaskStruct|Task-specific data for Observe task.|
@@ -1140,7 +1139,6 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |MoveInDirectionTaskStruct|Direction, Speed, Duration|Tasking of an entity to move in a specified direction for a given duration.|
 |MoveIntoFormationTaskStruct|Formation, Location, Distance, Heading, Speed|Initial movement speed.|
 |MoveTaskProgress|LastPassedWaypointIndex, NextWaypointIndex|Task progress data for all move tasks with a path. If the next waypoint index < the last waypoint index, it indicates the reverse movement along a route.|
-|MoveToEntityTaskStruct|Entity, Path, MoveType|Task-specific data for MoveToEntity.|
 |MoveToLocationTaskStruct|Location, Path, MoveType, Speed|Task-specific data for MoveToLocation task.|
 |ObserveTaskStruct|ObservationArea|Task-specific data for Observe task.|
 |ObservedEquipment|Type, NumberOfEquipment|Equipment at the observed entity.|
@@ -1158,6 +1156,6 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 ### Variant Record Datatypes
 |Name|Discriminant (Datatype)|Alternatives|Semantics|
 |---|---|---|---|
-|TaskDefinitionVariantRecord|TaskType (EntityControlActionEnum)|NoTaskParameters, DirectFire, IndirectFire, FollowEntity, MoveInDirection, MoveIntoFormation, MoveToEntity, MoveToLocation, Attach, Observe, OperateCheckpoint, Patrol, ChangeAltitude, ChangeSpeed, ChangeHeading, OtherActivity, OperateObservationPost, ChangeRulesOfEngagement, MagicMove|Variant record for task definition data.|
+|TaskDefinitionVariantRecord|TaskType (EntityControlActionEnum)|NoTaskParameters, DirectFire, IndirectFire, FollowEntity, MoveInDirection, MoveIntoFormation, MoveToLocation, Attach, Observe, OperateCheckpoint, Patrol, ChangeAltitude, ChangeSpeed, ChangeHeading, OtherActivity, OperateObservationPost, ChangeRulesOfEngagement, MagicMove|Variant record for task definition data.|
 |TaskProgressVariantRecord|TaskType (EntityControlActionEnum)|ElapsedTime, FireTask, MoveOnPath, Patrol|Variant record for task progress data.|
     

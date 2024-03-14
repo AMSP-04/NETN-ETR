@@ -1498,26 +1498,6 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
             </fixedRecordData>
             <fixedRecordData>
-                <name>MoveToEntityTaskStruct</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for MoveToEntity.</semantics>
-                <field>
-                    <name>Entity</name>
-                    <dataType>UUID</dataType>
-                    <semantics>Reference to the entity to move to.</semantics>
-                </field>
-                <field>
-                    <name>Path</name>
-                    <dataType>LocationStructArray</dataType>
-                    <semantics>Route to the specified entity. If not specified, take the linear path.</semantics>
-                </field>
-                <field>
-                    <name>MoveType</name>
-                    <dataType>MoveTypeEnum32</dataType>
-                    <semantics>Indicates if roads have to be followed.</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
                 <name>MoveByRouteTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Task-specific data for MoveByRoute.</semantics>
@@ -1727,12 +1707,6 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <enumerator>MoveIntoFormation</enumerator>
                     <name>MoveIntoFormation</name>
                     <dataType>MoveIntoFormationTaskStruct</dataType>
-                    <semantics>Task parameters.</semantics>
-                </alternative>
-                <alternative>
-                    <enumerator>MoveToEntity</enumerator>
-                    <name>MoveToEntity</name>
-                    <dataType>MoveToEntityTaskStruct</dataType>
                     <semantics>Task parameters.</semantics>
                 </alternative>
                 <alternative>
