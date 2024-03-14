@@ -1694,7 +1694,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <discriminant>TaskType</discriminant>
                 <dataType>EntityControlActionEnum</dataType>
                 <alternative>
-                    <enumerator>Dismount, StopAtSideOfRoad</enumerator>
+                    <enumerator>Detach, StopAtSideOfRoad</enumerator>
                     <name>NoTaskParameters</name>
                     <dataType>EmptyTaskStruct</dataType>
                     <semantics>No additional parameters.</semantics>
@@ -1742,7 +1742,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <semantics>Task parameters.</semantics>
                 </alternative>
                 <alternative>
-                    <enumerator>Mount, EnterFacility</enumerator>
+                    <enumerator>Attach, EnterFacility</enumerator>
                     <name>Attach</name>
                     <dataType>AttachTaskStruct</dataType>
                     <semantics>Task parameters.</semantics>
