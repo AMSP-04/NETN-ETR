@@ -150,5 +150,8 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
 * Added datatype `TaskDefinitionVariantRecord` 
 * Added datatype `TaskProgressVariantRecord` 
  
-* Changed datatype `SpottedEntity` field `Orientation` to `Heading`
+* Changed datatype `SpottedEntity` field `Orientation` to `Heading` 
+ 
+* Renamed `Mount` interaction class to `Attach` 
+* Renamed `Dismount` interaction class to `Detach`
 

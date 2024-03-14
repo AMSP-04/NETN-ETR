@@ -4,14 +4,12 @@
         <name>NETN-ETR</name>
         <type>FOM</type>
         <version>3.0 </version>
-        <modificationDate>2023-12-09</modificationDate>
+        <modificationDate>2024-03-08</modificationDate>
         <securityClassification>Not Classified</securityClassification>
-        <purpose>The NETN-ETR FOM module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation.</purpose>
+        <purpose>The NATO Education and Training Network Entity Tasking and Reports Module (NETN-ETR) provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation. It defines interactions that can be interpreted and executed by simulators that model the behaviour of a tasked entity. The module also defines report interactions sent by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
-        <description>The NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module defines interactions that can be interpreted and executed by simulators that model the behaviour of a tasked entity. The module also defines reports sent by simulated entities.</description>
-        <useLimitation>The module defines the pattern for tasking simulated entities and provides a core set of tasks. Other NETN modules define additional tasks. Provided task definitions reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) applications but are independent of a specific CGF, agent framework, or agent modelling paradigm. 
-            
-A tasked entity can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. The task definition itself does not specify how a simulation models the execution of the task.</useLimitation>
+        <description>Based on the SMC_EntityControl pattern, the module defines a core set of tasks for simulated entities. Other NETN-FOM modules define additional tasks. The task definitions provided in NETN reflect the capabilities commonly found in Commercial-off-the-Shelf (COTS) Computer-Generated Forces (CGF) applications but are independent of any specific CGF.</description>
+        <useLimitation>A tasked entity can be either a physical entity (e.g., platform or lifeform) or an aggregate entity. A task definition does not specify in detail how a simulation models the execution of the task.</useLimitation>
         <useHistory notes="netn-etr_changelog_1">v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.</useHistory>
         <useHistory notes="netn-etr_changelog_2">v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0</useHistory>
         <useHistory notes="netn-etr_changelog_3">v3.0 - Updated by MSG-191 for NETN FOM v4.0</useHistory>
@@ -180,7 +178,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>StartTime</name>
                         <dataType>EpochTime</dataType>
-                        <semantics>Optional. The default value is the current `ScenarioTime`.</semantics>
+                        <semantics>Optional. The default value is the current `SendTime`.</semantics>
                     </parameter>
                     <parameter>
                         <name>Activity</name>
@@ -282,7 +280,8 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination.</semantics>
+                        <semantics>Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. 
+An attached entity is detached immediately just before the move task starts.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>MoveToLocationTaskStruct</dataType>
@@ -294,7 +293,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasking a simulated entity to move into the given formation on the given location with the given heading.</semantics>
+                        <semantics>Tasking a simulated entity to move into the given formation on the given location with the given heading. An attached entity is detached immediately just before the move task starts.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>MoveIntoFormationTaskStruct</dataType>
@@ -306,7 +305,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasking of an entity to move in a specified direction for a duration.</semantics>
+                        <semantics>Tasking of an entity to move in a specified direction for a duration. An attached entity is detached immediately just before the move task starts.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>MoveInDirectionTaskStruct</dataType>
@@ -318,7 +317,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasking of an entity to follow another entity at a specified distance.</semantics>
+                        <semantics>Tasking of an entity to follow another entity at a specified distance. An attached entity is detached immediately just before the move task starts.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>FollowEntityTaskStruct</dataType>
@@ -326,11 +325,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         </parameter>
                     </interactionClass>
                     <interactionClass>
-                        <name>Mount</name>
+                        <name>Attach</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Requesting a simulated entity to mount the specified entity. The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the entity's location to mount.</semantics>
+                        <semantics>Requesting a simulated entity to attach to (mount) the specified entity.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>AttachTaskStruct</dataType>
@@ -338,18 +337,18 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         </parameter>
                     </interactionClass>
                     <interactionClass>
-                        <name>Dismount</name>
+                        <name>Detach</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Requesting a simulated entity to dismount from a mounted position.</semantics>
+                        <semantics>Requesting a simulated entity to detach from a simulated entity.</semantics>
                     </interactionClass>
                     <interactionClass>
                         <name>MoveByRoute</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops.</semantics>
+                        <semantics>Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. An attached entity is detached immediately just before the move task starts.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>MoveByRouteTaskStruct</dataType>
@@ -397,7 +396,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints.</semantics>
+                        <semantics>Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. An attached entity is detached immediately just before the move task starts.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>PatrolTaskStruct</dataType>
@@ -409,7 +408,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location).</semantics>
+                        <semantics>Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). An attached entity is detached immediately just before the move task starts.</semantics>
                     </interactionClass>
                     <interactionClass>
                         <name>OperateObservationPost</name>
@@ -440,28 +439,23 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Instructs the simulation entity to immediately change location to the specified position and heading.</semantics>
+                        <semantics>Instructs the simulation entity to immediately change location to the specified position and heading. An attached entity is detached immediately just before the move task starts.</semantics>
                         <parameter>
-                            <name>Location</name>
-                            <dataType>LocationStruct</dataType>
-                            <semantics>Required. Location of the entity.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>Heading</name>
-                            <dataType>DirectionDegreesFloat32</dataType>
-                            <semantics>Optional. Heading of the entity. [0,360). Default = 0. True North.</semantics>
+                            <name>TaskParameters</name>
+                            <dataType>MagicMoveTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
-                        <name>SetRulesOfEngagement</name>
+                        <name>ChangeRulesOfEngagement</name>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Instructs the simulation entity to change its rules of engagement immediately.</semantics>
                         <parameter>
-                            <name>RulesOfEngagement</name>
-                            <dataType>RulesOfEngagementEnum8</dataType>
-                            <semantics>Required. The rules of engagement for an entity.</semantics>
+                            <name>TaskParameters</name>
+                            <dataType>ChangeRulesOfEngagementTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -531,7 +525,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <parameter>
                     <name>TimeStamp</name>
                     <dataType>EpochTime</dataType>
-                    <semantics>Required: The timestamp of the report in Scenario Time.</semantics>
+                    <semantics>Required: The time when the report was created.</semantics>
                 </parameter>
                 <parameter>
                     <name>Comments</name>
@@ -548,6 +542,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <name>ObservedEntity</name>
                         <dataType>UUID</dataType>
                         <semantics>Required: The unique identifier of the observed entity</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>ObservationTime</name>
+                        <dataType>EpochTime</dataType>
+                        <semantics>Required: The time when the observation was made.</semantics>
                     </parameter>
                     <parameter>
                         <name>IdentificationLevel</name>
@@ -800,7 +799,7 @@ Default value: Moving (213)</semantics>
                 <name>MoveTypeEnum32</name>
                 <representation>HLAinteger32BE</representation>
                 <semantics>CrossCountry: move directly to the destination without considering the roads. 
-OnlyRoads: stay on the roads to get to the closest point to the destination that is still on the road; if there is no road very near to the start (within around 10 meters), there will be no movement. 
+OnlyRoads: stay on the roads to get to the closest point to the destination that is still on the road; 
 RoadsAndCrossCountry: move to the destination by considering the roads; it is allowed to go off the road.</semantics>
                 <enumerator>
                     <name>CrossCountry</name>
@@ -915,17 +914,13 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
             <enumeratedData>
                 <name>EntityControlActionEnum</name>
                 <representation>HLAinteger32BE</representation>
-                <semantics>Control actions for entities.</semantics>
+                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
                 <enumerator>
                     <name>MagicMove</name>
                     <value>10</value>
                 </enumerator>
                 <enumerator>
-                    <name>MagicResource</name>
-                    <value>11</value>
-                </enumerator>
-                <enumerator>
-                    <name>Dismount</name>
+                    <name>Detach</name>
                     <value>18</value>
                 </enumerator>
                 <enumerator>
@@ -949,15 +944,11 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                     <value>26</value>
                 </enumerator>
                 <enumerator>
-                    <name>MoveToEntity</name>
-                    <value>27</value>
-                </enumerator>
-                <enumerator>
                     <name>MoveToLocation</name>
                     <value>28</value>
                 </enumerator>
                 <enumerator>
-                    <name>Mount</name>
+                    <name>Attach</name>
                     <value>30</value>
                 </enumerator>
                 <enumerator>
@@ -993,10 +984,6 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                     <value>42</value>
                 </enumerator>
                 <enumerator>
-                    <name>TaskStatusReport</name>
-                    <value>49</value>
-                </enumerator>
-                <enumerator>
                     <name>MoveByRoute</name>
                     <value>29</value>
                 </enumerator>
@@ -1008,11 +995,15 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                     <name>EnterFacility</name>
                     <value>21</value>
                 </enumerator>
+                <enumerator>
+                    <name>SetRulesOfEngagement</name>
+                    <value>41</value>
+                </enumerator>
             </enumeratedData>
             <enumeratedData>
                 <name>FederateControlActionEnum</name>
                 <representation>HLAinteger32BE</representation>
-                <semantics>SMC Control action enumeration.</semantics>
+                <semantics>Enumeration of Federate Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
                 <enumerator>
                     <name>TaskDelegation</name>
                     <value>30</value>
@@ -1390,6 +1381,11 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <dataType>VelocityMeterPerSecondFloat32</dataType>
                     <semantics>Speed over ground for an entity, in m/s.</semantics>
                 </field>
+                <field>
+                    <name>SegmentMaxWidth</name>
+                    <dataType>MeterFloat32</dataType>
+                    <semantics>Maximum allowed width on road or terrain. Use zero (0) for no max width.</semantics>
+                </field>
             </fixedRecordData>
             <fixedRecordData>
                 <name>ChangeSpeedTaskStruct</name>
@@ -1502,26 +1498,6 @@ for aggregate entities, also use entity types from platform tables to describe t
                 </field>
             </fixedRecordData>
             <fixedRecordData>
-                <name>MoveToEntityTaskStruct</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for MoveToEntity.</semantics>
-                <field>
-                    <name>Entity</name>
-                    <dataType>UUID</dataType>
-                    <semantics>Reference to the entity to move to.</semantics>
-                </field>
-                <field>
-                    <name>Path</name>
-                    <dataType>LocationStructArray</dataType>
-                    <semantics>Route to the specified entity. If not specified, take the linear path.</semantics>
-                </field>
-                <field>
-                    <name>MoveType</name>
-                    <dataType>MoveTypeEnum32</dataType>
-                    <semantics>Indicates if roads have to be followed.</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
                 <name>MoveByRouteTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Task-specific data for MoveByRoute.</semantics>
@@ -1533,7 +1509,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <field>
                     <name>MoveType</name>
                     <dataType>MoveTypeEnum32</dataType>
-                    <semantics>Indicates if roads have to be followed.</semantics>
+                    <semantics>Indicates if roads have to be followed or not.</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -1666,6 +1642,31 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <semantics>UniqueId of the observatin post to operate.</semantics>
                 </field>
             </fixedRecordData>
+            <fixedRecordData>
+                <name>ChangeRulesOfEngagementTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data for ChangeRulesOfEngagement.</semantics>
+                <field>
+                    <name>RulesOfEngagement</name>
+                    <dataType>RulesOfEngagementEnum8</dataType>
+                    <semantics>The rules of engagement for an entity.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MagicMoveTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data for MagicMove.</semantics>
+                <field>
+                    <name>Location</name>
+                    <dataType>LocationStruct</dataType>
+                    <semantics>Location of the entity.</semantics>
+                </field>
+                <field>
+                    <name>Heading</name>
+                    <dataType>DirectionDegreesFloat32</dataType>
+                    <semantics>Heading of the entity. [0,360). Default = 0. True North.</semantics>
+                </field>
+            </fixedRecordData>
         </fixedRecordDataTypes>
         <variantRecordDataTypes>
             <variantRecordData>
@@ -1673,7 +1674,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                 <discriminant>TaskType</discriminant>
                 <dataType>EntityControlActionEnum</dataType>
                 <alternative>
-                    <enumerator>Dismount, StopAtSideOfRoad</enumerator>
+                    <enumerator>Detach, StopAtSideOfRoad</enumerator>
                     <name>NoTaskParameters</name>
                     <dataType>EmptyTaskStruct</dataType>
                     <semantics>No additional parameters.</semantics>
@@ -1709,19 +1710,13 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <semantics>Task parameters.</semantics>
                 </alternative>
                 <alternative>
-                    <enumerator>MoveToEntity</enumerator>
-                    <name>MoveToEntity</name>
-                    <dataType>MoveToEntityTaskStruct</dataType>
-                    <semantics>Task parameters.</semantics>
-                </alternative>
-                <alternative>
                     <enumerator>MoveToLocation</enumerator>
                     <name>MoveToLocation</name>
                     <dataType>MoveToLocationTaskStruct</dataType>
                     <semantics>Task parameters.</semantics>
                 </alternative>
                 <alternative>
-                    <enumerator>Mount, EnterFacility</enumerator>
+                    <enumerator>Attach, EnterFacility</enumerator>
                     <name>Attach</name>
                     <dataType>AttachTaskStruct</dataType>
                     <semantics>Task parameters.</semantics>
@@ -1774,6 +1769,18 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <dataType>OperateObservationPostTaskStruct</dataType>
                     <semantics>Task parameters.</semantics>
                 </alternative>
+                <alternative>
+                    <enumerator>SetRulesOfEngagement</enumerator>
+                    <name>ChangeRulesOfEngagement</name>
+                    <dataType>ChangeRulesOfEngagementTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>MagicMove</enumerator>
+                    <name>MagicMove</name>
+                    <dataType>MagicMoveTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
                 <encoding>HLAextendableVariantRecord</encoding>
                 <semantics>Variant record for task definition data.</semantics>
             </variantRecordData>
@@ -1794,7 +1801,7 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <semantics>Keeps track of elapesed time and spent munition.</semantics>
                 </alternative>
                 <alternative>
-                    <enumerator>MoveToLocation, MoveByRoute, </enumerator>
+                    <enumerator>MoveToLocation, MoveByRoute</enumerator>
                     <name>MoveOnPath</name>
                     <dataType>MoveTaskProgress</dataType>
                     <semantics>Keeps track of achieved waypoints.</semantics>
@@ -1814,22 +1821,93 @@ for aggregate entities, also use entity types from platform tables to describe t
         <note>
             <label>netn-etr_overview</label>
             <semantics>## Overview 
-The NETN-ETR module extends the RPR-FOM object class `BaseEntity` with optional attributes related to tasking. 
-These include a list of what tasks are supported, previous, planned, current, and progress of ongoing tasks. 
+ 
+NETN-ETR depends on NETN-SMC and uses the `SMC_EntityControl` interaction class to direct tasks to specific entities. Available tasks are defined in the NETN-ETR module and published using the NETN-SMC `BaseEntity` attribute `SupportedActions`. 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+HLAinteractionRoot &lt;|-- SMC_EntityControl 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+SMC_EntityControl : Entity(NETN-SMC) 
+HLAobjectRoot &lt;|-- BaseEntity 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+BaseEntity : SupportedActions(NETN-SMC) 
+``` 
+ 
+## Tasking 
+ 
+To send a task, use the interaction `Task` a subclass of the NETN-SMC `SMC_EntityControl` interaction. 
+
+The `Task` interaction class is the base class for all tasks defined in NETN-ETR and other modules. 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+HLAinteractionRoot &lt;|-- SMC_EntityControl 
+HLAinteractionRoot &lt;|-- ETR_TaskStatus 
  
  
-Tasking and reporting use the following base interaction classes: 
  
-* `Task` is a subclass of the NETN-SMC `SMC_EntityControl` class for sending control actions to a federate modelling a referenced entity. The `Task` interaction class is the base class for all tasks defined in NETN-ETR and other modules. 
-* `ETR_Report` is a base class for reports generated by entities. 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+class AllTasks["&lt; task &gt;"] 
+SMC_EntityControl &lt;|-- Task 
+Task &lt;|-- "*" AllTasks 
+SMC_EntityControl &lt;|-- RequestTaskStatus 
+SMC_EntityControl &lt;|-- CancelTasks 
+SMC_EntityControl : Entity(NETN-SMC) 
  
-### Tasks 
+Task : Activity 
+Task : Annotation 
+Task : MainTask 
+Task : NextTask 
+Task : PreviousTask 
+Task : StartTime 
+Task : TaskId 
+Task : TaskMode 
+Task : Tasker 
+AllTasks : TaskParameters 
  
-Entity tasking uses the standard `SMC_EntityControl` Request-Response pattern. 
+RequestTaskStatus : Tasks 
+CancelTasks : Tasks 
+ETR_TaskStatus : Task 
+ETR_TaskStatus : TaskStatus 
  
-* A TaskingFederate sends a `Taks` interaction with task parameters to an EntityFederate. 
-* If the task is accepted, the receiving EntityFederate sends a `SMC_Respose` indicating success. 
-* During the execution of the task, the EntityFederate sends `ETR_TaskStatus` to notify of any change in the task execution status. 
+ 
+``` 
+ 
+The following tasks are defined in NETN-ETR: 
+ 
+|Task|Description| 
+|---|---| 
+|MagicMove|Instructs the simulation entity to change location to the specified position and heading immediately. An attached entity is detached immediately just before the move task starts.| 
+|MoveByRoute|Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. An attached entity is detached immediately just before the move task starts.| 
+|MoveInDirection|Tasking of an entity to move in a specified direction for a duration. An attached entity is detached immediately just before the move task starts.| 
+|MoveIntoFormation|Tasking a simulated entity to move into the given formation on the given location with the given heading. An attached entity is detached immediately just before the move task starts.| 
+|MoveToLocation|Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. An attached entity is detached immediately just before the move task starts.| 
+|FollowEntity|Tasking of an entity to follow another entity at a specified distance. An attached entity is detached immediately just before the move task starts.| 
+|Patrol|Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. An attached entity is detached immediately just before the move task starts.| 
+|ChangeHeading|Tasking of an entity to change heading.| 
+|ChangeSpeed|Tasking of an entity to change speed.| 
+|ChangeAltitude|Tasking of an entity to set move to a specified altitude.| 
+|StopAtSideOfRoad|Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). An attached entity is detached immediately just before the move task starts.| 
+|Attach|Requesting a simulated entity to attach to (mount) the specified entity.| 
+|Detach|Requesting a simulated entity to detach from a simulated entity.| 
+|DirectFire|Tasking an entity to fire directed at a specified target entity.| 
+|IndirectFire|Tasking an entity to fire directed at an area.| 
+|Observe|Tasking of an entity to observe an area.| 
+|OperateCheckpoint|Request an entity to operate a checkpoint. The tasked entity should be within the radius of the checkpoint object. If not, a separate move task should be issued first. The tasked entity activates an inactive checkpoint and operates the checkpoint for the specified duration.| 
+|OperateObservationPost|Requests an entity to operate an observation post. The tasked unit should be within a given radius of the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration.| 
+|EnterFacility|Requesting a simulated entity to enter the specified facility (cultural feature). The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the facility location.| 
+|ChangeRulesOfEngagement|Instructs the simulation entity to change its rules of engagement immediately.| 
+|OtherActivity|Tasking of an entity to wait for a duration of time.| 
+ 
+When sending a task the minimum required set of parameters is the `TaskId` and any `TaskParameters` associated with the specific task. All other parameters are optional with defined default values. 
+ 
+Task status is provided using the `ETR_TaskStatus` interaction to indicate a change in status. Use the `RequestTaskStatus` interaction to request a resend of `ETR_TaskStatus` for a specific task. 
  
 The `ETR_TaskStatus` interaction provides the following notifications regarding the task: 
  
@@ -1838,9 +1916,10 @@ The `ETR_TaskStatus` interaction provides the following notifications regarding 
 * Waiting: the task is waiting for execution 
 * Executing: the task is running 
 * Completed: the task has been executed successfully 
-* Cancelled: the task execution has been explicitly terminated 
+* Cancelled: the execution of the task has been explicitly terminated
 * Error: the task execution has been terminated due to a modelling error 
  
+Use the `CancelTasks` interaction to request an entity to terminate the execution of a scheduled or currently executing task. 
  
 A task can be executed concurrently with other tasks or sequentially. The task parameters indicate the expected mode of task execution. Tasks are scheduled based on their start time and task execution mode. 
  
@@ -1849,17 +1928,135 @@ The execution of a task can start if:
 * For a non-concurrent task 
 * No other non-concurrent task is executing 
 * The task has the earliest `StartTime` parameter of all planned non-concurrent tasks 
-* The task parameter `StartTime` is less than or equal to the current `ScenarioTime`. 
+* The task parameter `StartTime` is less than or equal to the current Scenario Time. 
 * For a concurrent task 
-* The task parameter `StartTime` is less than or equal to the current `ScenarioTime`. 
+* The task parameter `StartTime` is less than or equal to the current Scenario Time. 
  
-Scheduled tasks are published using the `PlannedTasks` attribute of the simulated entity. 
+## Planned Tasks and Progress 
  
-Currently executing tasks and their execution progress are published using the simulated entity's `CurrentTasks` and `TaskProgress` attributes. 
+The NETN-ETR module extends the RPR-FOM object class `BaseEntity` with optional attributes related to tasking. 
+These include lists of planned, ongoing and completed tasks. In addition, the progress of ongoing tasks is provided as a separate attribute. 
  
-Completed tasks are published using the `PreviousTasks` attribute of the simulated entity. 
+```mermaid 
+classDiagram 
+direction LR 
  
-Use the NETN-SMC `BaseEntity` attribute `SupportedActions` to indicate which tasks are supported. Normally, a TaskingFederate check supported tasks before sending a `Task`.</semantics>
+HLAobjectRoot &lt;|-- BaseEntity 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+BaseEntity : CurrentTasks 
+BaseEntity : PlannedTasks 
+BaseEntity : PreviousTasks 
+BaseEntity : TaskProgress 
+ 
+``` 
+ 
+This information is published in order to provide means for monitoring, recording and initializing the current state of all accepted tasks in the federation. 
+ 
+## Task Delegation 
+ 
+Normally, the federate with modelling responsibility performs the task simulation. A special mechanism allows temporary delegation of this responsibility to another federate.
+ 
+Use the `TaskDelegation` interaction, based on the NETN-SMC `SMC_FederateControl` control action, to request a federate to perform a task on behalf of the requesting federate. 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+HLAinteractionRoot &lt;|-- SMC_FederateControl 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+SMC_FederateControl &lt;|-- TaskDelegation 
+SMC_FederateControl:Federate(NETN-SMC) 
+TaskDelegation : Entity 
+TaskDelegation : TaskDefinition 
+ 
+HLAobjectRoot &lt;|-- ETR_DelegatedTask 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+ 
+ETR_DelegatedTask : TaskDefinition 
+ETR_DelegatedTask : TaskProgress 
+ 
+``` 
+ 
+If the task delegation is accepted, an `ETR_DelegatedTask` object is created and used to transfer information regarding the state of task execution. The federate with primary modelling responsibility still has the responsibility to perform all `ETR_TaskStatus` updates and to publish `TaskProgress` information. 
+ 
+ 
+## Reporting 
+ 
+NETN-ETR provides a way for simulated entities to send reports with information related to their state or the observed state of other simulated entities. A report relays perceived-truth data and can be generated using different combinations of sensor and information fusion models. Reports can be used by other simulation models or, for example, as report stimulation of C2 systems.
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+ 
+HLAinteractionRoot &lt;|-- ETR_Report 
+ 
+ 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+ 
+ETR_Report &lt;|-- ObservationReport 
+ETR_Report &lt;|-- PositionStatusReport 
+ETR_Report &lt;|-- DamageStatusReport 
+ETR_Report &lt;|-- ResourceStatusReport 
+ETR_Report &lt;|-- UnderAttackStatusReport 
+ETR_Report &lt;|-- InWeaponRangeReport 
+ETR_Report : Comments 
+ETR_Report : Receiver 
+ETR_Report : ReportId 
+ETR_Report : ReportingEntity 
+ETR_Report : TimeStamp
+ObservationReport : Activity 
+ObservationReport : ConfidenceLevel 
+ObservationReport : Equipment 
+ObservationReport : Heading 
+ObservationReport : Health 
+ObservationReport : HostilityStatus 
+ObservationReport : IdentificationLevel 
+ObservationReport : Location 
+ObservationReport : Marking 
+ObservationReport : Name 
+ObservationReport : ObservedEntity 
+ObservationReport : ObservationTime
+ObservationReport : SensorType 
+ObservationReport : Side 
+ObservationReport : Speed 
+ObservationReport : Symbol 
+ObservationReport : UncertaintyInterval 
+PositionStatusReport : Heading 
+PositionStatusReport : Position 
+PositionStatusReport : Speed 
+DamageStatusReport : DamageType 
+ResourceStatusReport : Resource 
+UnderAttackStatusReport : FromDirection 
+UnderAttackStatusReport : Severeness 
+InWeaponRangeReport : EntitiesInWeaponRange 
+InWeaponRangeReport : WeaponType 
+```
+
+In particular, the `ObservationReport` is designed to allow mapping to the SISO-STD-019 C2SIM standard ontology for representing corresponding reports.
+
+## Sensor Updates
+
+Sensor models tracking entities can use NETN-ETR to send `EntitySensorUpdate` interactions with information regarding all current tracks produced by an entity using a specific type of sensor, see Figure 10. This information can be used to collect data as input or trigger for generating observation reports.
+
+The sensor track data is usually only sent if a change occurs, which may cause an issue for late-joining federates. The NETN-ETR includes a NETN-SMC Federation Control Action to `ResendSensorUpdates`. Use this request to trigger the resending of all current tracks for all entities.
+
+```mermaid
+classDiagram 
+direction LR
+HLAinteractionRoot &lt;|-- SMC_FederationControl
+HLAinteractionRoot &lt;|-- ETR_SensorEvent
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_FederationControl &lt;|-- ResendSensorUpdates
+ETR_SensorEvent &lt;|-- EntitySensorUpdate
+ETR_SensorEvent : ProducingEntity
+EntitySensorUpdate : SensorType
+EntitySensorUpdate : Tracks
+```
+Normally track data is only sent if a change occurs. This may cause an issue for late joining federates. The NETN-ETR includes a NETN-SMC Federation Control Action to `ResendSensorUpdates`. Use this request to trigger a re-sending of all current tracks for all entities.
+</semantics>
         </note>
         <note>
             <label>netn-etr_changelog_3</label>
@@ -1967,7 +2164,10 @@ Use the NETN-SMC `BaseEntity` attribute `SupportedActions` to indicate which tas
 * Added datatype `TaskDefinitionVariantRecord` 
 * Added datatype `TaskProgressVariantRecord` 
  
-* Changed datatype `SpottedEntity` field `Orientation` to `Heading`</semantics>
+* Changed datatype `SpottedEntity` field `Orientation` to `Heading` 
+ 
+* Renamed `Mount` interaction class to `Attach` 
+* Renamed `Dismount` interaction class to `Detach`</semantics>
         </note>
         <note>
             <label>netn-etr_changelog_2</label>
